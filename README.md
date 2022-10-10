@@ -13,7 +13,7 @@
 **Collaborateurs**
 + LAGASSE Adrian: @Alpha-Lin
 + MSIAH Romain: @Romain9
-+ REMY Léo: @KeziahOnoru
++ REMY Léo: @KeziahOnuru
 + BERTHEL Gabriel: @PhobosWolf
 
 [Consulter l'historique des réunions](https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/resum%C3%A9-reunions.md)
