@@ -1,13 +1,15 @@
-# Gestionnaire-Distribution-Agricoles
-Conception et visualisation de tournées agricoles en circuits courts.
+# Projet: Gestionnaire de dstribution agricoles
 
-### Collaborateurs
-+ LAGASSE Adrian - @Alpha-Lin
-+ MSIAH Romain - @Romain9
-+ REMY Léo - @KeziahOnoru
-+ BERTHEL Gabriel - @PhobosWolf
+## Pitchs:
 
-### Réunion de groupes:
-**10 octobre 2022**:
-  + V0 du MCD
+## Impact Maping:
 
+---
+
+**Collaborateurs**
++ LAGASSE Adrian: @Alpha-Lin
++ MSIAH Romain: @Romain9
++ REMY Léo: @KeziahOnoru
++ BERTHEL Gabriel: @PhobosWolf
+
+Consultier l'historique des réunions: [historique des réunions.](https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/resum%C3%A9-reunions.md)
