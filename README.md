@@ -1,6 +1,6 @@
 <div align='center'>
   <h1>Patate & Salade</h1>
-  <p>PPlannification, vérification et visualisation de tournée agrile.</p>
+  <p>Plannification, vérification et visualisation de tournées agricole.</p>
 </div>
 <br>
 
@@ -11,7 +11,10 @@
 
 ---
 
-**Collaborateurs**
+**Conventions de codage:**
+- Commentaires au format Javadoc
+
+**Collaborateurs:**
 + LAGASSE Adrian: @Alpha-Lin
 + MSIAH Romain: @Romain9
 + REMY Léo: @KeziahOnuru
