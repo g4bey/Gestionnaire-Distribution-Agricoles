@@ -1,10 +1,11 @@
 <div align='center'>
   <h1>Patate & Salade</h1>
+  <p>PPlannification, vérification et visualisation de tournée agrile.</p>
 </div>
 <br>
 
 <div align='center'>
-  <a href="https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/6ed7fb76c2fdda28a56b839a36dda841556d827e/Genie%20Logiciel/MCD_v0.svg?token=AOKNYX3THHWXHOT66J4IPLLDIUUC6>MCD</a> • 
+  <a href="https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/6ed7fb76c2fdda28a56b839a36dda841556d827e/Genie%20Logiciel/MCD_v0.svg?token=AOKNYX3THHWXHOT66J4IPLLDIUUC6">MCD</a> • 
   <a href="https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/main/Genie%20Logiciel/impact_mapping.PNG?token=GHSAT0AAAAAABZXZS5ZPOH77I4AISMBVSOYY2FGW5A\">Impact Map</a>
 </div>
 
