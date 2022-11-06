@@ -11,7 +11,6 @@
    + Ecriture de scénarios.
 
  **28 octobre 2022**
-    + Transformation des scnénarios en use-case diagram
-    + Creation des diagrams de sequence a partir des use-case diagram. 
-    
-    
+   + Transformation des scnénarios en use-case diagram
+   + Creation des diagrams de sequence a partir des use-case diagram. 
+   + Ecriture de scénarios.
