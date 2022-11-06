@@ -6,8 +6,12 @@
   + Création de l'[impact map](https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/main/GenieLogiciel/impact_mapping.PNG?token=GHSAT0AAAAAABYOZXNNCB52R6ZEU3BKA4XUY2EMPMA)
  
  **19 octobre 2022**
-   + Correction Impact Map
-   + Correction MCD
-   + Ecriture de scenarios.
+   + Correction de l'Impact Map
+   + Correction du MCD
+   + Ecriture de scénarios.
 
  **28 octobre 2022**
+    + Transformation des scnénarios en use-case diagram
+    + Creation des diagrams de sequence a partir des use-case diagram. 
+    
+    
