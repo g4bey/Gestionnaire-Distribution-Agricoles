@@ -12,5 +12,10 @@
 
  **28 octobre 2022**
    + Transformation des scnénarios en use-case diagram
-   + Creation des diagrams de sequence a partir des use-case diagram. 
+   + Creation des diagrammes de sequence à partir des use-case diagram. 
    + Ecriture de scénarios.
+
+ **9 novembre 2022**
+  + Correction du MCD 
+  + Debut maquette 
+  + Refonte des diagrammes de sequences 
