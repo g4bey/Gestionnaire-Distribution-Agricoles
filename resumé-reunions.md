@@ -19,3 +19,9 @@
   + Correction du MCD 
   + Debut maquette 
   + Refonte des diagrammes de sequences 
+  
+  **15 novembre 2022**
+  + Continuation diagramme de classe
+  + Concertation maquette
+  + Remise en propre maquette
+  + Ajout des vues sur la maquette
