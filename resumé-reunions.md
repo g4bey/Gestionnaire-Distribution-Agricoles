@@ -24,4 +24,3 @@
   + Continuation diagramme de classe
   + Concertation maquette
   + Remise en propre maquette
-  + Ajout des vues sur la maquette
