@@ -1,6 +1,6 @@
 <div align='center'>
   <h1>Patate & Salade</h1>
-  <p>Plannification, vérification et visualisation de tournées agricole.</p>
+  <p>Planification, vérification et visualisation de tournées agricoles.</p>
 </div>
 <br>
 
