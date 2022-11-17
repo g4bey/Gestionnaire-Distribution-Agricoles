@@ -1,16 +1,16 @@
 ## Scenario Principal
 
-**Acteur 1er** : Producteur
-**Acteur 2nd** : Administrateur
-**Contexte** : Logiciel
-**Niveau** : Système 
-**Stakeholders & Interests** :
-•    Administrateur : assurer le bon fonctionnement du système. 
-•    Producteur : pouvoir utiliser le logiciel de gestion de tournée
-**Préconditions** : Un admin doit avoir un compte et être connecté
-**Résultat minimum** : l’administrateur enregistre un utilisateur
-**Résultat maximum** : le producteur planifie une tournée 
-**Déclencheur** : demande informelle de l’ajout d’un producteur
+**Acteur 1er** : Producteur<br>
+**Acteur 2nd** : Administrateur<br>
+**Contexte** : Logiciel<br>
+**Niveau** : Système <br>
+**Stakeholders & Interests** :<br>
+•    Administrateur : assurer le bon fonctionnement du système.<br>
+•    Producteur : pouvoir utiliser le logiciel de gestion de tournée<br>
+**Préconditions** : Un admin doit avoir un compte et être connecté<br>
+**Résultat minimum** : l’administrateur enregistre un utilisateur<br>
+**Résultat maximum** : le producteur planifie une tournée<br>
+**Déclencheur** : demande informelle de l’ajout d’un producteur<br>
 
 ---
 
@@ -26,23 +26,23 @@ Scénario nominal :
 
 ---
 
-Scénario alternatif :
-1a. Des informations sont manquantes ou n’ont pas le bon format
----- 1a1. Logiciel signale l’erreur
----- 1a2. L’administrateur rentre les bonnes informations
-2a. L’utilisateur existe déjà (SIRET ou pseudo administrateur)
----- 2a1. Le logiciel signale l’erreur
-4a. Les informations sont erronées
----- 4a1. Le logiciel signale l’erreur
----- 4a2. Le user rentre les bonnes données
-6a Mauvais format / informations manquantes
----- 6a1. Le logiciel signale l’erreur
----- 6a2. Le producteur rentre les bonnes dates
-7a. Le créneau n’est pas bon
----- 7a1. Erreur
----- 7a2. Change l’horaire de la tournées
-7b. Le véhicule n’est pas disponible
----- 7b1. Erreur
----- 7b2. Le producteur sélectionne un autre véhicule
--------- 7b2a. Aucun véhicule libre
--------- 7b2b. Erreur
+Scénario alternatif :<br>
+1a. Des informations sont manquantes ou n’ont pas le bon format<br>
+---- 1a1. Logiciel signale l’erreur<br>
+---- 1a2. L’administrateur rentre les bonnes informations<br>
+2a. L’utilisateur existe déjà (SIRET ou pseudo administrateur)<br>
+---- 2a1. Le logiciel signale l’erreur<br>
+4a. Les informations sont erronées<br>
+---- 4a1. Le logiciel signale l’erreur<br>
+---- 4a2. Le user rentre les bonnes données<br>
+6a Mauvais format / informations manquantes<br>
+---- 6a1. Le logiciel signale l’erreur<br>
+---- 6a2. Le producteur rentre les bonnes dates<br>
+7a. Le créneau n’est pas bon<br>
+---- 7a1. Erreur<br>
+---- 7a2. Change l’horaire de la tournées<br>
+7b. Le véhicule n’est pas disponible<br>
+---- 7b1. Erreur<br>
+---- 7b2. Le producteur sélectionne un autre véhicule<br>
+-------- 7b2a. Aucun véhicule libre<br>
+-------- 7b2b. Erreur<br>
