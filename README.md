@@ -17,6 +17,11 @@
 
 **Conventions de codage:**
 - Commentaires au format Javadoc
+- CamelCase
+- Une seule déclaration d'entité par ligne
+- Constantes en majuscule
+- Indentation 4 espaces 
+- Inversion des instructions if 
 
 **Collaborateurs:**
 + LAGASSE Adrian: @Alpha-Lin
