@@ -2,8 +2,8 @@
 **10 octobre 2022**:
   + Décorticage de la consigne.
   + Ecriture des pitchs.
-  + [V0 du MCD](https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/7b3492c693e64c8927d840f795e7b01b884aaf41/MCD/Diagramme%20sans%20nom.drawio.svg?token=AOKNYX6ZNKWN37TD2Q3THZTDIP4GG)
-  + Création de l'[impact map](https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/main/GenieLogiciel/impact_mapping.PNG?token=GHSAT0AAAAAABYOZXNNCB52R6ZEU3BKA4XUY2EMPMA)
+  + V0 du MCD
+  + Création de l'impact map
  
  **19 octobre 2022**
    + Correction de l'Impact Map
@@ -30,3 +30,8 @@
   + Concertation maquette
   + Remise en propre maquette
   + Continuation du rapport 
+
+  **17 novembre 2022**
+  + Fin diagramme de classe
+  + Peaufinage de la maquette
+  + Creation du MLD.
