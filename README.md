@@ -23,6 +23,11 @@
 - Indentation 4 espaces 
 - Inversion des instructions if si possible
 
+**Outils:**
+- JavaFX
+- MySQL & JDBC
+- JUnit
+
 **Collaborateurs:**
 + LAGASSE Adrian: @Alpha-Lin
 + MSIAH Romain: @Romain9
