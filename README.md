@@ -5,12 +5,12 @@
 <br>
 
 <div align='center'>
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Scnenario.md">Scénario Principal</a> • 
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/MCD">MCD</a> • 
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/impact_maping.png">Impact Map</a> • 
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20classes">Diagramme de classes</a> • 
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20cas%20d'utilisation">Diagramme cas d'utilisation</a> • 
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20sequence">Diagramme de sequence</a>
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Scnenario.md">Scénario Principal</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/MCD">MCD</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/impact_maping.png">Impact Map</a><br>
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20classes">Diagramme de classes</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20cas%20d'utilisation">Diagramme cas d'utilisation</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20sequence">Diagramme de sequence</a>
 </div>
 
 ---
