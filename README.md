@@ -21,7 +21,7 @@
 - Une seule déclaration d'entité par ligne
 - Constantes en majuscule
 - Indentation 4 espaces 
-- Inversion des instructions if 
+- Inversion des instructions if si possible
 
 **Collaborateurs:**
 + LAGASSE Adrian: @Alpha-Lin
