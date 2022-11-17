@@ -5,8 +5,12 @@
 <br>
 
 <div align='center'>
-  <a href="https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/6ed7fb76c2fdda28a56b839a36dda841556d827e/Genie%20Logiciel/MCD_v0.svg?token=AOKNYX3THHWXHOT66J4IPLLDIUUC6">MCD</a> • 
-  <a href="https://raw.githubusercontent.com/phoboswolf/Gestionnaire-Distribution-Agricoles/main/Genie%20Logiciel/impact_mapping.PNG?token=GHSAT0AAAAAABZXZS5ZPOH77I4AISMBVSOYY2FGW5A\">Impact Map</a>
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Scnenario.md">Scénario Principal</a> • 
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/MCD">MCD</a> • 
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/impact_maping.png">Impact Map</a> • 
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20classes">Diagramme de classes</a> • 
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20cas%20d'utilisation">Diagramme cas d'utilisation</a> • 
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20sequence">Diagramme de sequence</a>
 </div>
 
 ---
