@@ -117,6 +117,7 @@
 							"top": 112,
 							"width": 2441,
 							"height": 897,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEhnGA414viPk="
 							}
@@ -219,6 +220,7 @@
 							"top": 1304,
 							"width": 1224,
 							"height": 593,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEhloqzjLkg/8="
 							}
@@ -920,23 +922,6 @@
 										},
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGEaA5Fgu10qj8=",
-											"_parent": {
-												"$ref": "AAAAAAGEZ1Oy0ha8S6A="
-											},
-											"model": {
-												"$ref": "AAAAAAGEaA5FeO1xz54="
-											},
-											"font": "Arial;13;0",
-											"left": 2741,
-											"top": 267,
-											"width": 714.3017578125,
-											"height": 13,
-											"text": "-producteur: Producteur",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGEdakZmm36De0=",
 											"_parent": {
 												"$ref": "AAAAAAGEZ1Oy0ha8S6A="
@@ -946,7 +931,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 2741,
-											"top": 282,
+											"top": 267,
 											"width": 714.3017578125,
 											"height": 13,
 											"text": "-tournees: Tournee[0..*]",
@@ -963,7 +948,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 2741,
-											"top": 297,
+											"top": 282,
 											"width": 714.3017578125,
 											"height": 13,
 											"text": "-producteur: Producteur",
@@ -974,7 +959,7 @@
 									"left": 2736,
 									"top": 217,
 									"width": 724.3017578125,
-									"height": 98
+									"height": 83
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -997,7 +982,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 2741,
-											"top": 320,
+											"top": 305,
 											"width": 714.3017578125,
 											"height": 13,
 											"text": "«constructeur»+Vehicule(idVehicule: int, numImmat: String, poidsMax: float, producteur: Producteur, tournees: Tournee[0..*])",
@@ -1006,7 +991,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 2736,
-									"top": 315,
+									"top": 300,
 									"width": 724.3017578125,
 									"height": 23
 								},
@@ -1048,7 +1033,7 @@
 							"left": 2736,
 							"top": 192,
 							"width": 724.3017578125,
-							"height": 146,
+							"height": 131,
 							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEZ1Oy0ha3hNk="
@@ -3671,7 +3656,7 @@
 											"top": 1486,
 											"width": 274.3505859375,
 											"height": 13,
-											"text": "+get(): T",
+											"text": "+get(id: int): T",
 											"horizontalAlignment": 0
 										},
 										{
@@ -5001,7 +4986,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 3113,
-									"top": 421,
+									"top": 414,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -5022,7 +5007,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 3128,
-									"top": 421,
+									"top": 414,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -5043,7 +5028,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 3084,
-									"top": 422,
+									"top": 415,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -5063,7 +5048,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 3086,
-									"top": 357,
+									"top": 342,
 									"width": 54.919921875,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -5086,7 +5071,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 3038,
-									"top": 359,
+									"top": 344,
 									"width": 176.10302734375,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -5108,7 +5093,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 3076,
-									"top": 353,
+									"top": 338,
 									"width": 19.5126953125,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -5222,7 +5207,7 @@
 								"$ref": "AAAAAAGEZ1Oy0ha2up4="
 							},
 							"lineStyle": 1,
-							"points": "3098:338;3100:519",
+							"points": "3098:323;3100:519",
 							"showVisibility": true,
 							"showProperty": false,
 							"nameLabel": {
@@ -5282,7 +5267,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 2673,
-									"top": 245,
+									"top": 241,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -5303,7 +5288,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 2673,
-									"top": 230,
+									"top": 226,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -5324,7 +5309,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 2673,
-									"top": 275,
+									"top": 271,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -5343,9 +5328,9 @@
 										"$ref": "AAAAAAGEdczskoRTkuA="
 									},
 									"font": "Arial;13;0",
-									"left": 2606,
-									"top": 245,
-									"width": 61.7880859375,
+									"left": 2604,
+									"top": 241,
+									"width": 65.7490234375,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -5367,7 +5352,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 2613,
-									"top": 232,
+									"top": 228,
 									"width": 53.49169921875,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -5389,7 +5374,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 2623,
-									"top": 273,
+									"top": 269,
 									"width": 19.5126953125,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -5411,7 +5396,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 2674,
-									"top": 245,
+									"top": 241,
 									"width": 69.74169921875,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -5433,7 +5418,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 2706,
-									"top": 231,
+									"top": 227,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -5452,7 +5437,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 2710,
-									"top": 272,
+									"top": 268,
 									"width": 7.22998046875,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -5503,7 +5488,7 @@
 								"$ref": "AAAAAAGEZ1HlWRY5c8E="
 							},
 							"lineStyle": 1,
-							"points": "2611:267;2735:266",
+							"points": "2611:263;2735:262",
 							"showVisibility": true,
 							"showProperty": false,
 							"nameLabel": {
@@ -13572,6 +13557,7 @@
 							"top": 424,
 							"width": 103.90087890625,
 							"height": 73,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEhmw+ZSv2as4="
 							},
@@ -14139,7 +14125,7 @@
 								"$ref": "AAAAAAGEZ1Oy0ha2up4="
 							},
 							"lineStyle": 2,
-							"points": "2944:337;2944:448;1343:448",
+							"points": "2944:322;2944:448;1343:448",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGEhm9UarkZPu8="
@@ -15764,6 +15750,7 @@
 							"top": 1088,
 							"width": 206.89794921875,
 							"height": 73,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEhnqZ4GYOwXM="
 							},
@@ -19171,7 +19158,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la connexion d'un Producteur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19207,7 +19195,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur de la page d'accueil."
 						},
 						{
 							"_type": "UMLClass",
@@ -19230,7 +19219,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la connexion d'un Administrateur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19253,7 +19243,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la consultation Administrateur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19276,7 +19267,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'ajout d'une Commande."
 						},
 						{
 							"_type": "UMLClass",
@@ -19299,7 +19291,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la suppression d'une Commande."
 						},
 						{
 							"_type": "UMLInterface",
@@ -19344,6 +19337,7 @@
 									}
 								}
 							],
+							"documentation": "Contrôleur de la page profil.",
 							"stereotype": "Interface"
 						},
 						{
@@ -19375,7 +19369,8 @@
 										"$ref": "AAAAAAGEhP6p+ZGGFd4="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur de la page profil de l'Administrateur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19451,7 +19446,8 @@
 										"$ref": "AAAAAAGEhP6p+ZGGFd4="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur de la page profil du Producteur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19474,7 +19470,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la modification d'une Commande."
 						},
 						{
 							"_type": "UMLClass",
@@ -19497,7 +19494,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la consultation d'un Producteur."
 						},
 						{
 							"_type": "UMLInterface",
@@ -19528,7 +19526,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la modification d'une Tournee."
 						},
 						{
 							"_type": "UMLClass",
@@ -19551,7 +19550,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'ajout d'une Tournee."
 						},
 						{
 							"_type": "UMLClass",
@@ -19574,7 +19574,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la suppression d'une Tournee."
 						},
 						{
 							"_type": "UMLClass",
@@ -19597,7 +19598,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la suppression d'un Vehicule."
 						},
 						{
 							"_type": "UMLClass",
@@ -19620,7 +19622,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'ajout d'un Vehicule."
 						},
 						{
 							"_type": "UMLClass",
@@ -19643,7 +19646,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'aperçu Commande."
 						},
 						{
 							"_type": "UMLClass",
@@ -19666,7 +19670,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'aperçu d'un Vehicule."
 						},
 						{
 							"_type": "UMLClass",
@@ -19689,7 +19694,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'ajout d'un Producteur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19712,7 +19718,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la modification d'un Producteur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19735,7 +19742,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la suppression d'un Producteur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19758,7 +19766,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'aperçu Producteur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19781,7 +19790,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la suppression d'un Client."
 						},
 						{
 							"_type": "UMLClass",
@@ -19804,7 +19814,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'aperçu Tournee."
 						},
 						{
 							"_type": "UMLClass",
@@ -19843,7 +19854,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'ajout d'un Administrateur."
 						},
 						{
 							"_type": "UMLClass",
@@ -19889,7 +19901,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant la modification d'un Client."
 						},
 						{
 							"_type": "UMLClass",
@@ -19912,7 +19925,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'ajout d'un Client."
 						},
 						{
 							"_type": "UMLClass",
@@ -19935,7 +19949,8 @@
 										"$ref": "AAAAAAGEhnqZ32YLAiU="
 									}
 								}
-							]
+							],
+							"documentation": "Contrôleur permettant l'aperçu Client."
 						},
 						{
 							"_type": "UMLClass",
@@ -20076,6 +20091,7 @@
 									}
 								}
 							],
+							"documentation": "Contrôleur commun.",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -20206,6 +20222,7 @@
 									}
 								}
 							],
+							"documentation": "Représente le DAO des producteurs.",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -20214,6 +20231,7 @@
 										"$ref": "AAAAAAGEbLG6N/JHSAE="
 									},
 									"name": "ProducteurDAO",
+									"documentation": "Constructeur de ProducteurDAO.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -20223,6 +20241,7 @@
 												"$ref": "AAAAAAGEesoXSQ4RHu8="
 											},
 											"name": "conn",
+											"documentation": "Une Connection représentant la connexion à la base de données.",
 											"type": {
 												"$ref": "AAAAAAGEexlrA65LACU="
 											}
@@ -20282,6 +20301,7 @@
 									]
 								}
 							],
+							"documentation": "Représente le DAO des administrateurs.",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -20290,6 +20310,7 @@
 										"$ref": "AAAAAAGEbLHGg/JwhWo="
 									},
 									"name": "AdministrateurDAO",
+									"documentation": "Constructeur de AdministrateurDAO.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -20299,6 +20320,7 @@
 												"$ref": "AAAAAAGEesolQA6tLvw="
 											},
 											"name": "conn",
+											"documentation": "Une Connection représentant la connexion à la base de données.",
 											"type": {
 												"$ref": "AAAAAAGEexlrA65LACU="
 											}
@@ -20358,6 +20380,7 @@
 									]
 								}
 							],
+							"documentation": "Représente le DAO des véhicules.",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -20366,6 +20389,7 @@
 										"$ref": "AAAAAAGEbLHQWvKZUGk="
 									},
 									"name": "VehiculeDAO",
+									"documentation": "Constructeur de VehiculeDAO.",
 									"stereotype": "constrcteur",
 									"parameters": [
 										{
@@ -20375,6 +20399,7 @@
 												"$ref": "AAAAAAGEespIuRCByY8="
 											},
 											"name": "conn",
+											"documentation": "Une Connection représentant la connexion à la base de données.",
 											"type": {
 												"$ref": "AAAAAAGEexlrA65LACU="
 											}
@@ -20434,6 +20459,7 @@
 									}
 								}
 							],
+							"documentation": "Représente le DAO des tournées.",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -20442,6 +20468,7 @@
 										"$ref": "AAAAAAGEdZrx7GzzoJ0="
 									},
 									"name": "TourneeDAO",
+									"documentation": "Constructeur de TourneeDAO.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -20451,6 +20478,7 @@
 												"$ref": "AAAAAAGEesowbQ9JDGw="
 											},
 											"name": "conn",
+											"documentation": "Une Connection représentant la connexion à la base de données.",
 											"type": {
 												"$ref": "AAAAAAGEexlrA65LACU="
 											}
@@ -20510,6 +20538,7 @@
 									]
 								}
 							],
+							"documentation": "Représente le DAO des client.",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -20518,6 +20547,7 @@
 										"$ref": "AAAAAAGEbLHZ//LCT5g="
 									},
 									"name": "ClientDAO",
+									"documentation": "Constructeur de ClientDAO.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -20527,6 +20557,7 @@
 												"$ref": "AAAAAAGEeso80g/llxQ="
 											},
 											"name": "conn",
+											"documentation": "Une Connection représentant la connexion à la base de données.",
 											"type": {
 												"$ref": "AAAAAAGEexlrA65LACU="
 											}
@@ -20574,6 +20605,7 @@
 									"visibility": "protected"
 								}
 							],
+							"documentation": "Classe abstraite des DAO.",
 							"stereotype": "abstract",
 							"templateParameters": [
 								{
@@ -20610,6 +20642,7 @@
 										"$ref": "AAAAAAGEbMNDTvX2ORU="
 									},
 									"name": "DAO",
+									"documentation": "Constructeur de DAO.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -20619,6 +20652,7 @@
 												"$ref": "AAAAAAGEesWO0wDAWG8="
 											},
 											"name": "conn",
+											"documentation": "une Connection représentant la connexion à la base de données.",
 											"type": {
 												"$ref": "AAAAAAGEexlrA65LACU="
 											}
@@ -20632,6 +20666,7 @@
 										"$ref": "AAAAAAGEbMNDTvX2ORU="
 									},
 									"name": "get",
+									"documentation": "Récupère dans la base de données l'instance de T demandée.",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -20640,10 +20675,21 @@
 												"$ref": "AAAAAAGEbNLXdvfIIVM="
 											},
 											"name": "T",
+											"documentation": "Une instance de T.",
 											"type": {
 												"$ref": "AAAAAAGEdYjPZWv37KA="
 											},
 											"direction": "return"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGEyO1+4NitWSc=",
+											"_parent": {
+												"$ref": "AAAAAAGEbNLXdvfIIVM="
+											},
+											"name": "id",
+											"documentation": "id de type int, représente l'id de l'objet T demandé.",
+											"type": "int"
 										}
 									],
 									"isAbstract": true
@@ -20655,6 +20701,7 @@
 										"$ref": "AAAAAAGEbMNDTvX2ORU="
 									},
 									"name": "getAll",
+									"documentation": "Récupère dans la base de données toutes les instances de T.",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -20663,6 +20710,7 @@
 												"$ref": "AAAAAAGEesCaleu+4ys="
 											},
 											"name": "T",
+											"documentation": "Une liste d'instances de T.",
 											"type": {
 												"$ref": "AAAAAAGEdYjPZWv37KA="
 											},
@@ -20680,6 +20728,7 @@
 										"$ref": "AAAAAAGEbMNDTvX2ORU="
 									},
 									"name": "add",
+									"documentation": "Ajoute dans la base de données une instance de T.",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -20688,6 +20737,7 @@
 												"$ref": "AAAAAAGEbNLv1vfU89g="
 											},
 											"name": "t",
+											"documentation": "l'instance T de l'objet à ajouter.",
 											"type": {
 												"$ref": "AAAAAAGEdYjPZWv37KA="
 											}
@@ -20702,6 +20752,7 @@
 										"$ref": "AAAAAAGEbMNDTvX2ORU="
 									},
 									"name": "update",
+									"documentation": "Met à jour dans la base de données une instance de T.",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -20710,6 +20761,7 @@
 												"$ref": "AAAAAAGEbNL5svfab9s="
 											},
 											"name": "t",
+											"documentation": "l'instance T de l'objet à mettre à jour.",
 											"type": {
 												"$ref": "AAAAAAGEdYjPZWv37KA="
 											}
@@ -20724,6 +20776,7 @@
 										"$ref": "AAAAAAGEbMNDTvX2ORU="
 									},
 									"name": "delete",
+									"documentation": "Supprime de la base de données  l'instance de T associée à l'id.",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -20732,6 +20785,7 @@
 												"$ref": "AAAAAAGEbNWAKffjF44="
 											},
 											"name": "id",
+											"documentation": "int représentant l'id de T à supprimer.",
 											"type": "int"
 										}
 									],
@@ -20749,7 +20803,7 @@
 						"$ref": "AAAAAAGEZ0ryNhYycqY="
 					},
 					"name": "DatabaseConnection",
-					"documentation": "Singleton class",
+					"documentation": "Représente la connexion à la base de données.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -20812,6 +20866,7 @@
 								"$ref": "AAAAAAGEbJAWDu7oWNM="
 							},
 							"name": "getInstance",
+							"documentation": "Permet d'obtenir l'instance Connection partagée.",
 							"isStatic": true,
 							"parameters": [
 								{
@@ -20820,6 +20875,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGEbJI1t+8bHXY="
 									},
+									"documentation": "une Connection, l'instance commune à tous les DAO.",
 									"type": {
 										"$ref": "AAAAAAGEexlrA65LACU="
 									},
@@ -20928,6 +20984,7 @@
 									}
 								}
 							],
+							"documentation": "Métier représentant un Producteur.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -21048,6 +21105,7 @@
 										"$ref": "AAAAAAGEZ1HlVxY3uMM="
 									},
 									"name": "Producteur",
+									"documentation": "Constructeur de Producteur.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -21057,6 +21115,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "idProducteur",
+											"documentation": "int représentant l'id du Producteur.",
 											"type": "int"
 										},
 										{
@@ -21066,6 +21125,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "siret",
+											"documentation": "String représentant le siret du Producteur.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21077,6 +21137,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "proprietaire",
+											"documentation": "String représentant le nom et prénom du propriétaire.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21088,6 +21149,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "adresseProd",
+											"documentation": "String représentant l'adresse du Producteur.",
 											"stereotype": "",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
@@ -21100,6 +21162,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "numTelProd",
+											"documentation": "String représentant le numéro de téléphone du Producteur.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21111,6 +21174,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "gpsProd",
+											"documentation": "String représentant les coordonnées GPS du Producteur.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21122,6 +21186,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "mdpProd",
+											"documentation": "String représentant le hash du mot de passe du Producteur.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21133,6 +21198,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "vehicules",
+											"documentation": "ArrayList<Vehicule> représentant les véhicules du Producteur.",
 											"type": {
 												"$ref": "AAAAAAGEZ1Oy0Ra0R8I="
 											},
@@ -21146,6 +21212,7 @@
 												"$ref": "AAAAAAGEZ2uGKRfO+Eg="
 											},
 											"name": "commandes",
+											"documentation": "ArrayList<Commande> représentant les commandes du Producteur.",
 											"type": {
 												"$ref": "AAAAAAGEZ1PDKRcGJkw="
 											},
@@ -21213,6 +21280,7 @@
 									}
 								}
 							],
+							"documentation": "Métier représentant un Véhicule.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -21245,18 +21313,6 @@
 									"name": "poidsMax",
 									"visibility": "private",
 									"type": "float"
-								},
-								{
-									"_type": "UMLAttribute",
-									"_id": "AAAAAAGEaA5FeO1xz54=",
-									"_parent": {
-										"$ref": "AAAAAAGEZ1Oy0Ra0R8I="
-									},
-									"name": "producteur",
-									"visibility": "private",
-									"type": {
-										"$ref": "AAAAAAGEZ1HlVxY3uMM="
-									}
 								},
 								{
 									"_type": "UMLAttribute",
@@ -21293,6 +21349,7 @@
 										"$ref": "AAAAAAGEZ1Oy0Ra0R8I="
 									},
 									"name": "Vehicule",
+									"documentation": "Constructeur de Vehicule.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -21302,6 +21359,7 @@
 												"$ref": "AAAAAAGEaA4XfuwnJ88="
 											},
 											"name": "idVehicule",
+											"documentation": "int représentant l'id du Vehicule.",
 											"type": "int"
 										},
 										{
@@ -21311,6 +21369,7 @@
 												"$ref": "AAAAAAGEaA4XfuwnJ88="
 											},
 											"name": "numImmat",
+											"documentation": "String représentant le numéro d'immatriculation du Vehicule.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21322,6 +21381,7 @@
 												"$ref": "AAAAAAGEaA4XfuwnJ88="
 											},
 											"name": "poidsMax",
+											"documentation": "float représentant le poids maximum que le Vehicule peut accepter.",
 											"type": "float"
 										},
 										{
@@ -21331,6 +21391,7 @@
 												"$ref": "AAAAAAGEaA4XfuwnJ88="
 											},
 											"name": "producteur",
+											"documentation": "Producteur représentant le producteur utilisant le Vehicule.",
 											"type": {
 												"$ref": "AAAAAAGEZ1HlVxY3uMM="
 											}
@@ -21342,6 +21403,7 @@
 												"$ref": "AAAAAAGEaA4XfuwnJ88="
 											},
 											"name": "tournees",
+											"documentation": "ArrayList<Tournee> représentant les tournées du Vehicule.",
 											"type": {
 												"$ref": "AAAAAAGEZ1SqzBcyy88="
 											},
@@ -21374,6 +21436,7 @@
 									}
 								}
 							],
+							"documentation": "Métier représentant une commande.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -21477,6 +21540,7 @@
 										"$ref": "AAAAAAGEZ1PDKRcGJkw="
 									},
 									"name": "Commande",
+									"documentation": "Constructeur de Commande.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -21486,6 +21550,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "idCommande",
+											"documentation": "int représentant l'id de la Commande.",
 											"type": "int"
 										},
 										{
@@ -21495,6 +21560,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "libelle",
+											"documentation": "String représentant le libellé de la Commande.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21506,6 +21572,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "poids",
+											"documentation": "float représentant le poids de la commande.",
 											"type": "float"
 										},
 										{
@@ -21515,6 +21582,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "horaireDebut",
+											"documentation": "String représentant l'horaire de début de la Commande.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21526,6 +21594,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "horaireFin",
+											"documentation": "String représentant l'horaire de fin de la Commande.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21537,6 +21606,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "producteur",
+											"documentation": "Producteur représentant le producteur qui effectue la Commande.",
 											"type": {
 												"$ref": "AAAAAAGEZ1HlVxY3uMM="
 											}
@@ -21548,6 +21618,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "client",
+											"documentation": "Client représentant le client qui a passé la Commande.",
 											"type": {
 												"$ref": "AAAAAAGEbHKJxuymjCY="
 											}
@@ -21559,6 +21630,7 @@
 												"$ref": "AAAAAAGEbGm3FduESUU="
 											},
 											"name": "tournee",
+											"documentation": "Tournee représentant la tournée à laquelle appartient la Commande.",
 											"type": {
 												"$ref": "AAAAAAGEZ1SqzBcyy88="
 											},
@@ -21625,6 +21697,7 @@
 									}
 								}
 							],
+							"documentation": "Métier représentant une Tournée.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -21705,6 +21778,7 @@
 										"$ref": "AAAAAAGEZ1SqzBcyy88="
 									},
 									"name": "Tournee",
+									"documentation": "Constructeur de Tournee.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -21714,6 +21788,7 @@
 												"$ref": "AAAAAAGEZ9hvY/Jgtfc="
 											},
 											"name": "idTournee",
+											"documentation": "int représentant l'id de la Tournee.",
 											"type": "int"
 										},
 										{
@@ -21723,6 +21798,7 @@
 												"$ref": "AAAAAAGEZ9hvY/Jgtfc="
 											},
 											"name": "horaireDebut",
+											"documentation": "String représentant l'horaire de début de la Tournee.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21734,6 +21810,7 @@
 												"$ref": "AAAAAAGEZ9hvY/Jgtfc="
 											},
 											"name": "horaireFin",
+											"documentation": "String représentant l'horaire de fin de la Tournee.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21745,6 +21822,7 @@
 												"$ref": "AAAAAAGEZ9hvY/Jgtfc="
 											},
 											"name": "poids",
+											"documentation": "float représentant le poids total de la Tournee.",
 											"type": "float"
 										},
 										{
@@ -21754,6 +21832,7 @@
 												"$ref": "AAAAAAGEZ9hvY/Jgtfc="
 											},
 											"name": "vehicule",
+											"documentation": "Vehicule représentant le véhicule utilisé pour effectuer la Tournee.",
 											"type": {
 												"$ref": "AAAAAAGEZ1Oy0Ra0R8I="
 											}
@@ -21765,6 +21844,7 @@
 												"$ref": "AAAAAAGEZ9hvY/Jgtfc="
 											},
 											"name": "commandes",
+											"documentation": "ArrayList<Commande> représentant les commandes composant la Tournee.",
 											"visibility": "private",
 											"type": {
 												"$ref": "AAAAAAGEZ1PDKRcGJkw="
@@ -21832,6 +21912,7 @@
 									}
 								}
 							],
+							"documentation": "Métier représentant un client.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -21914,6 +21995,7 @@
 										"$ref": "AAAAAAGEbHKJxuymjCY="
 									},
 									"name": "Client",
+									"documentation": "Constructeur de Client.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -21923,6 +22005,7 @@
 												"$ref": "AAAAAAGEbHMD+uzuRZI="
 											},
 											"name": "idClient",
+											"documentation": "int représentant l'id du Client.",
 											"type": "int"
 										},
 										{
@@ -21932,6 +22015,7 @@
 												"$ref": "AAAAAAGEbHMD+uzuRZI="
 											},
 											"name": "nomClient",
+											"documentation": "String représentant le nom du Client.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21943,6 +22027,7 @@
 												"$ref": "AAAAAAGEbHMD+uzuRZI="
 											},
 											"name": "adresseClient",
+											"documentation": "String représentant l'adresse du Client.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21954,6 +22039,7 @@
 												"$ref": "AAAAAAGEbHMD+uzuRZI="
 											},
 											"name": "gpsClient",
+											"documentation": "String représentant les coordonnées GPS du Client.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21965,6 +22051,7 @@
 												"$ref": "AAAAAAGEbHMD+uzuRZI="
 											},
 											"name": "numTelClient",
+											"documentation": "String représentant le numéro de téléphone du Client.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -21976,6 +22063,7 @@
 												"$ref": "AAAAAAGEbHMD+uzuRZI="
 											},
 											"name": "commandes",
+											"documentation": "ArrayList<Commande> représentant les commandes du Client.",
 											"type": {
 												"$ref": "AAAAAAGEZ1PDKRcGJkw="
 											},
@@ -22007,7 +22095,8 @@
 										"$ref": "AAAAAAGEhlRwdO2bo+c="
 									}
 								}
-							]
+							],
+							"documentation": "Métier commun."
 						},
 						{
 							"_type": "UMLClass",
@@ -22031,6 +22120,7 @@
 									}
 								}
 							],
+							"documentation": "Métier représentant un Administrateur.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -22075,6 +22165,7 @@
 										"$ref": "AAAAAAGEZ1O5lBbdGrk="
 									},
 									"name": "Administrateur",
+									"documentation": "Constructeur d'Administrateur.",
 									"stereotype": "constructeur",
 									"parameters": [
 										{
@@ -22084,6 +22175,7 @@
 												"$ref": "AAAAAAGEbG+1n+yC4T8="
 											},
 											"name": "idAdministrateur",
+											"documentation": "int représentant l'Administrateur.",
 											"type": "int"
 										},
 										{
@@ -22093,6 +22185,7 @@
 												"$ref": "AAAAAAGEbG+1n+yC4T8="
 											},
 											"name": "pseudo",
+											"documentation": "String représentant l'Administrateur.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
@@ -22104,6 +22197,7 @@
 												"$ref": "AAAAAAGEbG+1n+yC4T8="
 											},
 											"name": "mdpAdmin",
+											"documentation": "String représentant l'Administrateur.",
 											"type": {
 												"$ref": "AAAAAAGEexbW06RvQrs="
 											}
