@@ -18427,6 +18427,7 @@
 							"top": 928,
 							"width": 153,
 							"height": 81,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEhplc40rYCMg="
 							},
@@ -18629,6 +18630,7 @@
 							"top": 1080,
 							"width": 145,
 							"height": 73,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEhp38xdv75BA="
 							},
@@ -18818,6 +18820,7 @@
 							"top": 1184,
 							"width": 145,
 							"height": 73,
+							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEhqAxFy+coQ4="
 							},
@@ -19295,14 +19298,6 @@
 							"documentation": "Contrôleur permettant la suppression d'une Commande."
 						},
 						{
-							"_type": "UMLInterface",
-							"_id": "AAAAAAGEhQI2Px7c2KI=",
-							"_parent": {
-								"$ref": "AAAAAAGEhPv1YOcqQmg="
-							},
-							"name": "Profil"
-						},
-						{
 							"_type": "UMLClass",
 							"_id": "AAAAAAGEhP6p+ZGGFd4=",
 							"_parent": {
@@ -19339,14 +19334,6 @@
 							],
 							"documentation": "Contrôleur de la page profil.",
 							"stereotype": "Interface"
-						},
-						{
-							"_type": "UMLClass",
-							"_id": "AAAAAAGEhQLSzkEd/Ao=",
-							"_parent": {
-								"$ref": "AAAAAAGEhPv1YOcqQmg="
-							},
-							"name": "Profil"
 						},
 						{
 							"_type": "UMLClass",
@@ -19496,14 +19483,6 @@
 								}
 							],
 							"documentation": "Contrôleur permettant la consultation d'un Producteur."
-						},
-						{
-							"_type": "UMLInterface",
-							"_id": "AAAAAAGEhQzmGdDxCeI=",
-							"_parent": {
-								"$ref": "AAAAAAGEhPv1YOcqQmg="
-							},
-							"name": "Interface1"
 						},
 						{
 							"_type": "UMLClass",
@@ -19819,22 +19798,6 @@
 						},
 						{
 							"_type": "UMLClass",
-							"_id": "AAAAAAGEhRE5jjzRbnc=",
-							"_parent": {
-								"$ref": "AAAAAAGEhPv1YOcqQmg="
-							},
-							"name": "ApercuTourneeCtrl"
-						},
-						{
-							"_type": "UMLClass",
-							"_id": "AAAAAAGEhR1syrb8V1E=",
-							"_parent": {
-								"$ref": "AAAAAAGEhPv1YOcqQmg="
-							},
-							"name": "ApercuTourneeCtrl"
-						},
-						{
-							"_type": "UMLClass",
 							"_id": "AAAAAAGEhRbicig0blU=",
 							"_parent": {
 								"$ref": "AAAAAAGEhPv1YOcqQmg="
@@ -19856,29 +19819,6 @@
 								}
 							],
 							"documentation": "Contrôleur permettant l'ajout d'un Administrateur."
-						},
-						{
-							"_type": "UMLClass",
-							"_id": "AAAAAAGEhRfHjyyXD3M=",
-							"_parent": {
-								"$ref": "AAAAAAGEhPv1YOcqQmg="
-							},
-							"name": "ApercuAdminCtrl",
-							"ownedElements": [
-								{
-									"_type": "UMLRealization",
-									"_id": "AAAAAAGEhpTydW/mhAM=",
-									"_parent": {
-										"$ref": "AAAAAAGEhRfHjyyXD3M="
-									},
-									"source": {
-										"$ref": "AAAAAAGEhRfHjyyXD3M="
-									},
-									"target": {
-										"$ref": "AAAAAAGEhnqZ32YLAiU="
-									}
-								}
-							]
 						},
 						{
 							"_type": "UMLClass",
@@ -22342,7 +22282,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGEZ0ryNhYycqY="
 					},
-					"name": "GenerateurMap"
+					"name": "GenerateurMap",
+					"documentation": "Génère une carte de la zone demandée."
 				},
 				{
 					"_type": "UMLClass",
@@ -22351,6 +22292,7 @@
 						"$ref": "AAAAAAGEZ0ryNhYycqY="
 					},
 					"name": "ValidateurDonnee",
+					"documentation": "Valide ou pas les entrées fournies.",
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -22384,7 +22326,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGEZ0ryNhYycqY="
 					},
-					"name": "ValidateurTournee"
+					"name": "ValidateurTournee",
+					"documentation": "Valide ou pas la tournée paramétrée."
 				}
 			],
 			"stereotype": "root"

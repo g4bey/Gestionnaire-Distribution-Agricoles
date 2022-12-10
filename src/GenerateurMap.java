@@ -13,6 +13,10 @@ import java.time.*;
 // ----------- << imports@AAAAAAGEhpj48DpuqBk= >>
 // ----------- >>
 
+/**
+* Génère une carte de la zone demandée.
+*/
+
 // ----------- << class.annotations@AAAAAAGEhpj48DpuqBk= >>
 // ----------- >>
 public class GenerateurMap {

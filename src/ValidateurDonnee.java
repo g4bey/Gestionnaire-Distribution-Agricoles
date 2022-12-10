@@ -13,6 +13,10 @@ import java.time.*;
 // ----------- << imports@AAAAAAGEhplc40rVhBo= >>
 // ----------- >>
 
+/**
+* Valide ou pas les entrées fournies.
+*/
+
 // ----------- << class.annotations@AAAAAAGEhplc40rVhBo= >>
 // ----------- >>
 public class ValidateurDonnee {

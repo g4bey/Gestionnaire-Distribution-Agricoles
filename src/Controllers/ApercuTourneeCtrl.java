@@ -10,14 +10,16 @@ import java.time.*;
 
 
 
-// ----------- << imports@AAAAAAGEhR1syrb8V1E= >>
+// ----------- << imports@AAAAAAGEhR8O+OxAveQ= >>
 // ----------- >>
 
-// ----------- << class.annotations@AAAAAAGEhR1syrb8V1E= >>
+/**
+* Contrôleur permettant l'aperçu Tournee.
+*/
+
+// ----------- << class.annotations@AAAAAAGEhR8O+OxAveQ= >>
 // ----------- >>
 public class ApercuTourneeCtrl {
-// ----------- << class.extras@AAAAAAGEhR1syrb8V1E= >>
-// ----------- >>
-}s.extras@AAAAAAGEhR8O+OxAveQ= >>
+// ----------- << class.extras@AAAAAAGEhR8O+OxAveQ= >>
 // ----------- >>
 }

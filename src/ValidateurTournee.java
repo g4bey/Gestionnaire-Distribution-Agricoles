@@ -13,6 +13,10 @@ import java.time.*;
 // ----------- << imports@AAAAAAGEhqAxFy+ZazU= >>
 // ----------- >>
 
+/**
+* Valide ou pas la tournée paramétrée.
+*/
+
 // ----------- << class.annotations@AAAAAAGEhqAxFy+ZazU= >>
 // ----------- >>
 public class ValidateurTournee {
