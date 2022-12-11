@@ -3,7 +3,7 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package Modele;
+package GDA.Modele;
 
 import java.util.*;
 import java.time.*;
