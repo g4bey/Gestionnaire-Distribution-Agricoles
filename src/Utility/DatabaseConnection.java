@@ -1,4 +1,4 @@
-package GDA;
+package GDA.Utility;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -3,23 +3,23 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package GDA;
+package GDA.Utility;
 
 import java.util.*;
 import java.time.*;
 
 
 
-// ----------- << imports@AAAAAAGEhqAxFy+ZazU= >>
+// ----------- << imports@AAAAAAGEhpj48DpuqBk= >>
 // ----------- >>
 
 /**
-* Valide ou pas la tournée paramétrée.
+* Génère une carte de la zone demandée.
 */
 
-// ----------- << class.annotations@AAAAAAGEhqAxFy+ZazU= >>
+// ----------- << class.annotations@AAAAAAGEhpj48DpuqBk= >>
 // ----------- >>
-public class ValidateurTournee {
-// ----------- << class.extras@AAAAAAGEhqAxFy+ZazU= >>
+public class GenerateurMap {
+// ----------- << class.extras@AAAAAAGEhpj48DpuqBk= >>
 // ----------- >>
 }
