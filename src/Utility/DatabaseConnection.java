@@ -26,12 +26,12 @@ import java.util.Properties;
 public class DatabaseConnection {
     private static Connection conn;
     private static String url;
-    private static String login;
+    private static String username;
     private static String password;
 
     /**
      * Création de la connection à l'aide de driver manager.
-     * L'on commence par charger les attributs url, login et password à
+     * L'on commence par charger les attributs url, username et password à
      * partir du fichier config.properties, et de l'environnement fournit
      * en paramètre.
      *
@@ -40,7 +40,7 @@ public class DatabaseConnection {
     private DatabaseConnection(String environment) throws ClassNotFoundException, SQLException, IOException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         chargerAttribut(environment);
-        conn = DriverManager.getConnection(url, login, password);
+        conn = DriverManager.getConnection(url, username, password);
     }
 
     /**
@@ -90,7 +90,7 @@ public class DatabaseConnection {
 
             // Chargeons les attributs
             url = config.getProperty("db." + environment + ".url");
-            login = config.getProperty("db." + environment + ".login");
+            username = config.getProperty("db." + environment + ".username");
             password = config.getProperty("db." + environment + ".password");
         } catch (IOException e) {
             throw new IOException(e);
