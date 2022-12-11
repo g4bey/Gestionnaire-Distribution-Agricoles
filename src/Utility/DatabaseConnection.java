@@ -75,6 +75,7 @@ public class DatabaseConnection {
      * Attention ! Cette méthode est invoquée uniquement lors du premier appel
      * du singleton.
      *
+     * @param environment l'environnement (production, testing, development...)
      * @throws IOException Impossible de trouver le fichier config.
      */
     private static void chargerAttribut(String environment) throws IOException {
