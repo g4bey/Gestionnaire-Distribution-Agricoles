@@ -6,11 +6,10 @@
 package DAO;
 
 import java.util.*;
-import java.time.*;
 
 
 import DAO.DAO.T;
-import Modele.Administrateur;
+import modele.Administrateur;
 import java.sql.Connection;
 // ----------- << imports@AAAAAAGEbLHGg/JwhWo= >>
 // ----------- >>

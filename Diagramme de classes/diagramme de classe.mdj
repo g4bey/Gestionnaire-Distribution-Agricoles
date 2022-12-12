@@ -62,7 +62,7 @@
 											"top": 134,
 											"width": 2431,
 											"height": 13,
-											"text": "Modele"
+											"text": "modele"
 										},
 										{
 											"_type": "LabelView",
@@ -268,7 +268,7 @@
 											"top": 1054,
 											"width": 1271,
 											"height": 13,
-											"text": "Controllers"
+											"text": "controllers"
 										},
 										{
 											"_type": "LabelView",
@@ -474,7 +474,7 @@
 											"top": -176,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Modele)"
+											"text": "(from modele)"
 										},
 										{
 											"_type": "LabelView",
@@ -825,7 +825,7 @@
 											"top": -256,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Modele)"
+											"text": "(from modele)"
 										},
 										{
 											"_type": "LabelView",
@@ -1108,7 +1108,7 @@
 											"top": 1008,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Modele)"
+											"text": "(from modele)"
 										},
 										{
 											"_type": "LabelView",
@@ -1357,7 +1357,7 @@
 											"top": 128,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Modele)"
+											"text": "(from modele)"
 										},
 										{
 											"_type": "LabelView",
@@ -1691,7 +1691,7 @@
 											"top": 112,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Modele)"
+											"text": "(from modele)"
 										},
 										{
 											"_type": "LabelView",
@@ -2188,7 +2188,7 @@
 											"top": 208,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Modele)"
+											"text": "(from modele)"
 										},
 										{
 											"_type": "LabelView",
@@ -7400,7 +7400,7 @@
 											"top": 64,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -7580,7 +7580,7 @@
 											"top": 96,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -7760,7 +7760,7 @@
 											"top": -8,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -7940,7 +7940,7 @@
 											"top": -344,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -8120,7 +8120,7 @@
 											"top": -296,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -8300,7 +8300,7 @@
 											"top": -720,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -8481,7 +8481,7 @@
 											"top": -1056,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -8661,7 +8661,7 @@
 											"top": -1208,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -8841,7 +8841,7 @@
 											"top": -1200,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -9021,7 +9021,7 @@
 											"top": -560,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -9201,7 +9201,7 @@
 											"top": -280,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -9571,7 +9571,7 @@
 											"top": -968,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -9751,7 +9751,7 @@
 											"top": -1104,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -9931,7 +9931,7 @@
 											"top": -1112,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -10111,7 +10111,7 @@
 											"top": -1184,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -10291,7 +10291,7 @@
 											"top": -1448,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -10471,7 +10471,7 @@
 											"top": -256,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -10651,7 +10651,7 @@
 											"top": -1272,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -10831,7 +10831,7 @@
 											"top": -1080,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -11011,7 +11011,7 @@
 											"top": -1208,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -11191,7 +11191,7 @@
 											"top": -1344,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -11371,7 +11371,7 @@
 											"top": -1272,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -11551,7 +11551,7 @@
 											"top": -1304,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -11731,7 +11731,7 @@
 											"top": -448,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -11911,7 +11911,7 @@
 											"top": -624,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -12091,7 +12091,7 @@
 											"top": -1352,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -12271,7 +12271,7 @@
 											"top": -1320,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -12451,7 +12451,7 @@
 											"top": -1400,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -13454,7 +13454,7 @@
 											"top": 96,
 											"width": 80.9072265625,
 											"height": 13,
-											"text": "(from Modele)"
+											"text": "(from modele)"
 										},
 										{
 											"_type": "LabelView",
@@ -15608,7 +15608,7 @@
 											"top": 248,
 											"width": 101.12451171875,
 											"height": 13,
-											"text": "(from Controllers)"
+											"text": "(from controllers)"
 										},
 										{
 											"_type": "LabelView",
@@ -19138,7 +19138,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGEZ0ryNhYycqY="
 					},
-					"name": "Controllers",
+					"name": "controllers",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",
@@ -20831,7 +20831,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGEZ0ryNhYycqY="
 					},
-					"name": "Modele",
+					"name": "modele",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",
