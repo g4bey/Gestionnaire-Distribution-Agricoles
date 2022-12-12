@@ -3,27 +3,11 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package GDA;
 
 import java.util.*;
 import java.time.*;
 
-
-
-// ----------- << imports@AAAAAAGEhn+JwwFZbrM= >>
-// ----------- >>
-
-// ----------- << class.annotations@AAAAAAGEhn+JwwFZbrM= >>
-// ----------- >>
 public class ActionListener {
-// ----------- << class.extras@AAAAAAGEhn+JwwFZbrM= >>
-// ----------- >>
-}AAAAGEhnjVZjzFcpc= >>
-    // ----------- >>
     public void ActionPerformed(ActionEvent e) {
-    // ----------- << method.body@AAAAAAGEhnjVZjzFcpc= >>
-    // ----------- >>
     }
-// ----------- << class.extras@AAAAAAGEhnhubTeCttk= >>
-// ----------- >>
 }

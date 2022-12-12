@@ -3,14 +3,13 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package GDA.DAO;
+package DAO;
 
 import java.util.*;
-import java.time.*;
 
 
 import DAO.DAO.T;
-import Modele.Producteur;
+import modele.Producteur;
 import java.sql.Connection;
 // ----------- << imports@AAAAAAGEbLG6N/JHSAE= >>
 // ----------- >>
