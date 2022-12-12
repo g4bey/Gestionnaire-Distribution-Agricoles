@@ -1,7 +1,7 @@
 package utility;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -62,8 +62,8 @@ public class DatabaseConnection {
 
     /**
      * Cette méthode permet de mettre à jour les attributs selon le fichier
-     * de configuration config.properties disponible à la racine du projet,
-     * soit src/config.properties
+     * de configuration config.properties disponible dans le fichier ressources,
+     * soit ressources/config.properties
      * <p>
      * D'abord nous chargeons le fichier configuration sous forme de stream.
      * Ensuite, nous instancions un object java.utils.Properties que
@@ -80,8 +80,11 @@ public class DatabaseConnection {
      */
     private static void chargerAttribut(String environment) throws IOException {
         try {
-            // Obtenons le fichier de configuration sous forme de stream
-            FileInputStream configFile = new FileInputStream("config.properties");
+            // Récupérons le classLoader de l'object
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
+            // Obtenons le fichier de configuration sous forme de stream, a partir de la racine
+            InputStream configFile = classLoader.getResourceAsStream("ressources/config.properties");
 
             // Déclarons un object Properties que nous nommerons config.
             Properties config = new Properties();
@@ -91,6 +94,7 @@ public class DatabaseConnection {
 
             // Chargeons les attributs
             url = config.getProperty("db." + environment + ".url");
+            System.out.println(url);
             username = config.getProperty("db." + environment + ".username");
             password = config.getProperty("db." + environment + ".password");
         } catch (IOException e) {
@@ -100,11 +104,15 @@ public class DatabaseConnection {
 
     /**
      * Cette methode permet la fermeture d'une connection.
+     * Enfin l'on reset l'attribut connection.
      *
      * @param conn la connection qui doit etre close.
      * @throws SQLException
      */
-    public static void close(Connection conn) throws SQLException {
-        conn.close();
+    public static void close() throws SQLException {
+        if(conn != null) {
+            conn.close();
+            conn = null;
+        }
     }
 }
