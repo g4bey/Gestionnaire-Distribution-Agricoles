@@ -22,6 +22,7 @@ public class SQLInjectionTest {
     public void init() throws SQLException, IOException, ClassNotFoundException {
         conn = DatabaseConnection.getInstance("testing");
         Statement st = conn.createStatement();
+        st.execute("DROP DATABASE `users`;");
         st.execute(
                 "INSERT INTO `users` (`id`, `username`, `email`, `password`)"
                 + " VALUES (null, 'user1', 'user1@gmail.com', 'password'),"
