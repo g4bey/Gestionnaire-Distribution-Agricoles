@@ -97,4 +97,14 @@ public class DatabaseConnection {
             throw new IOException(e);
         }
     }
+
+    /**
+     * Cette methode permet la fermeture d'une connection.
+     *
+     * @param conn la connection qui doit etre close.
+     * @throws SQLException
+     */
+    public static void close(Connection conn) throws SQLException {
+        conn.close();
+    }
 }
