@@ -17,12 +17,29 @@
 ---
 
 **Conventions de codage:**
-- Commentaires au format Javadoc
-- CamelCase
-- Une seule déclaration d'entité par ligne
-- Constantes en majuscule
-- Indentation 4 espaces 
-- Inversion des instructions if si possible
+- Accolades à côté des noms
+- Un attribut par ligne
+- camelCase
+- Majuscules aux noms de classes
+- Tab => 4 espaces
+- Un saut de ligne entre chaque méthode (on ne colle pas les blocs)
+- Commenter la dernière accolade
+- Inverser les clauses (if) si possible
+- Pas de oneliner sauf si ternaire possible sur le return
+- Etendre Exception dans un package dédié pour avoir des Exceptions personnalisées
+- Saut de ligne entre bloc déclaration et bloc logique
+- Pas de saut de ligne dans les blocs sauf déclaration/logique
+- Espace entre valeurs et opérateurs
+- Espace après les virgules
+- Espace après if, for, else
+- Package en minuscule sauf acronyme
+- CONSTANTE
+- Commentaire JavaDoc
+- IdBDD, port, tous les trucs de setup dans un json à part
+- Documenter chaque classe
+
+La configuration du checkstyle pour les IDE se trouve dans /src/ressources/checkstyleConfigurationGDA.xml
+
 
 **Outils:**
 - JavaFX
