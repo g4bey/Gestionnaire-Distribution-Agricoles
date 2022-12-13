@@ -1,5 +1,5 @@
 -- Création de la base de données
-CREATE DATABASE IF NOT EXIST GDADev;
+CREATE DATABASE IF NOT EXISTS GDADev;
 USE GDADev;
 
 #------------------------------------------------------------

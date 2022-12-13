@@ -1,5 +1,5 @@
 -- Création de la base de données
-CREATE DATABASE IF NOT EXIST GDAProd;
+CREATE DATABASE IF NOT EXISTS GDAProd;
 USE GDAProd;
 
 #------------------------------------------------------------
