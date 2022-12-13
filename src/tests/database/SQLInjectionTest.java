@@ -1,3 +1,11 @@
+package tests.database;
+
+import utility.DatabaseConnection;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -19,7 +27,7 @@ public class SQLInjectionTest {
     public void init() throws SQLException, IOException, ClassNotFoundException {
         conn = DatabaseConnection.getInstance("testing");
         Statement st = conn.createStatement();
-        st.execute("DROP DATABASE `users`;");
+        st.execute("TRUNCATE TABLE `users`;");
         st.execute(
                 "INSERT INTO `users` (`id`, `username`, `email`, `password`)"
                 + " VALUES (null, 'user1', 'user1@gmail.com', 'password'),"
@@ -41,7 +49,7 @@ public class SQLInjectionTest {
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1,"users2'--");
         pst.setString(2,"no");
-        ResultSet res = pst.executeQuery(sql);
+        ResultSet res = pst.executeQuery();
         assertFalse(res.first());
         pst.close();
     }
@@ -64,7 +72,7 @@ public class SQLInjectionTest {
         PreparedStatement pst = conn.prepareStatement(requete1);
         pst.setString(1, "user2'--");
         pst.setString(2, "123");
-        pst.executeQuery();
+        pst.executeUpdate();
         pst.close();
 
         // Cela devient... "SET password = newPassword WHERE username = user2"
@@ -86,5 +94,14 @@ public class SQLInjectionTest {
             assertEquals("AncienPassword", rs.getString("password"));
         }
         st.close();
+    }
+
+    /**
+     * Fermeture de la connection apres les tests.
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
     }
 }
