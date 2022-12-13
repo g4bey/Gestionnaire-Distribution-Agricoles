@@ -106,6 +106,9 @@ CREATE TABLE Commande(
 )ENGINE=InnoDB;
 
 
+-- Insertion de l'administrateur initial
+INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('null', 'Admin');
+
 -- Création de l'utilisateur et paramétrage des droits
 CREATE USER 'GDADev'@'localhost' IDENTIFIED BY '1234';
 GRANT SELECT, INSERT, UPDATE, DELETE ON 'GDADev'.* TO 'GDADev'@'localhost';
