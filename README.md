@@ -42,9 +42,10 @@ La configuration du checkstyle pour les IDE se trouve dans /src/ressources/check
 
 
 **Outils:**
-- JavaFX
+- JDK 19
+- JavaFX & FXML
 - MySQL & JDBC
-- JUnit
+- JUnit 5
 
 **Collaborateurs:**
 + LAGASSE Adrian: @Alpha-Lin
