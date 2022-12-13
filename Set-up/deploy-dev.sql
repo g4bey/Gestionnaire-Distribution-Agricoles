@@ -1,12 +1,9 @@
--- Création des différentes base de donnés
-CREATE DATABASE IF NOT EXIST gestAgricoleProd;
-CREATE DATABASE IF NOT EXIST gestAgricoleDev;
-CREATE DATABASE IF NOT EXIST gestAgricoleTest;
+CREATE DATABASE IF NOT EXIST GDADevTest;
 
 --
 -- Création de la base de test
 --
-USE gestAgricoleTest;
+USE GDADevTest;
 CREATE TABLE `users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `username` varchar(256) NOT NULL,
