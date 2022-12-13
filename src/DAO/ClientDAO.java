@@ -1,62 +1,70 @@
 package DAO;
 
-import java.util.*;
-
-
-import DAO.DAO.T;
 import modele.Client;
 import java.sql.Connection;
+import java.util.List;
 
 /**
-* Représente le DAO des client.
-*/
+ * Représente le DAO des clients.
+ */
 
 public class ClientDAO extends DAO<Client> {
     /**
-    * Récupère dans la base de données l'instance de T demandée.
-    * @param id id de type int, représente l'id de l'objet T demandé.
-    * @returns Une instance de T.
-    */
+     * Récupère dans la base de données l'instance de Client demandée.
+     * 
+     * @param id id de type int, représente l'id de l'objet Client demandé.
+     * @returns Une instance de Client.
+     */
 
     @Override
-    public T get(int id) {
+    public Client get(int id) {
     }
+
     /**
-    * Récupère dans la base de données toutes les instances de T.
-    * @returns Une liste d'instances de T.
-    */
+     * Récupère dans la base de données toutes les instances de Client.
+     * 
+     * @returns Une liste d'instances de Client.
+     */
 
     @Override
-    public List<T> getAll() {
+    public List<Client> getAll() {
     }
+
     /**
-    * Ajoute dans la base de données une instance de T.
-    * @param t l'instance T de l'objet à ajouter.
-    */
+     * Ajoute dans la base de données une instance de Client.
+     * 
+     * @param t l'instance Client de l'objet à ajouter.
+     */
 
     @Override
-    public void add(T t) {
+    public void add(Client t) {
     }
+
     /**
-    * Met à jour dans la base de données une instance de T.
-    * @param t l'instance T de l'objet à mettre à jour.
-    */
+     * Met à jour dans la base de données une instance de Client.
+     * 
+     * @param t l'instance Client de l'objet à mettre à jour.
+     */
 
     @Override
-    public void update(T t) {
+    public void update(Client t) {
     }
+
     /**
-    * Supprime de la base de données  l'instance de T associée à l'id.
-    * @param id int représentant l'id de T à supprimer.
-    */
+     * Supprime de la base de données l'instance de Client associée à l'id.
+     * 
+     * @param id int représentant l'id de Client à supprimer.
+     */
 
     @Override
     public void delete(int id) {
     }
+
     /**
-    * Constructeur de ClientDAO.
-    * @param conn Une Connection représentant la connexion à la base de données.
-    */
+     * Constructeur de ClientDAO.
+     * 
+     * @param conn Une Connection représentant la connexion à la base de données.
+     */
 
     public ClientDAO(Connection conn) {
     }

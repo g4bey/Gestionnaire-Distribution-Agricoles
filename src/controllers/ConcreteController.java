@@ -1,22 +1,23 @@
 package controllers;
 
-
+import javafx.event.ActionEvent;
 import modele.ModeleConcret;
 
 /**
-* Contrôleur commun.
-*/
+ * Contrôleur commun.
+ */
 
 public class ConcreteController {
     /**
-    * @param e
-    */
+     * @param e
+     */
 
     public void ActionPerformed(ActionEvent e) {
     }
+
     /**
-    * @param m
-    */
+     * @param m
+     */
 
     public void SetModele(ModeleConcret m) {
     }

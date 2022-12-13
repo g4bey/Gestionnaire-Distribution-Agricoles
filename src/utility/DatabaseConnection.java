@@ -1,3 +1,6 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -49,7 +52,7 @@ public class DatabaseConnection {
      * @return la connection au server sql.
      */
     public static Connection getInstance(String environment) throws ClassNotFoundException, SQLException, IOException {
-        if(conn == null){
+        if (conn == null) {
             new DatabaseConnection(environment);
         }
         return conn;
