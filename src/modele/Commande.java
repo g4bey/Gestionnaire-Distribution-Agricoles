@@ -1,10 +1,8 @@
 package modele;
 
-
-
 /**
-* Métier représentant une commande.
-*/
+ * Objet métier représentant une commande.
+ */
 
 public class Commande extends ModeleConcret {
     private int idCommande;
@@ -88,17 +86,21 @@ public class Commande extends ModeleConcret {
     }
 
     /**
-    * Constructeur de Commande.
-    * @param idCommande int représentant l'id de la Commande.
-    * @param libelle String représentant le libellé de la Commande.
-    * @param poids float représentant le poids de la commande.
-    * @param horaireDebut String représentant l'horaire de début de la Commande.
-    * @param horaireFin String représentant l'horaire de fin de la Commande.
-    * @param producteur Producteur représentant le producteur qui effectue la Commande.
-    * @param client Client représentant le client qui a passé la Commande.
-    * @param tournee Tournee représentant la tournée à laquelle appartient la Commande.
-    */
+     * Constructeur de Commande.
+     * 
+     * @param idCommande   int représentant l'id de la Commande.
+     * @param libelle      String représentant le libellé de la Commande.
+     * @param poids        float représentant le poids de la commande.
+     * @param horaireDebut String représentant l'horaire de début de la Commande.
+     * @param horaireFin   String représentant l'horaire de fin de la Commande.
+     * @param producteur   Producteur représentant le producteur qui effectue la
+     *                     Commande.
+     * @param client       Client représentant le client qui a passé la Commande.
+     * @param tournee      Tournee représentant la tournée à laquelle appartient la
+     *                     Commande.
+     */
 
-    public Commande(int idCommande, String libelle, float poids, String horaireDebut, String horaireFin, Producteur producteur, Client client, Tournee tournee) {
+    public Commande(int idCommande, String libelle, float poids, String horaireDebut, String horaireFin,
+            Producteur producteur, Client client, Tournee tournee) {
     }
 }

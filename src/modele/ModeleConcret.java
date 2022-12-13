@@ -1,11 +1,10 @@
 package modele;
 
-
 import java.util.Observable;
 
 /**
-* Métier commun.
-*/
+ * Objet métier commun.
+ */
 
 public class ModeleConcret extends Observable {
 }

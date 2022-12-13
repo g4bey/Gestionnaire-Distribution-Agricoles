@@ -2,11 +2,9 @@ package modele;
 
 import java.util.*;
 
-
-
 /**
-* Métier représentant un client.
-*/
+ * Objet métier représentant un client.
+ */
 
 public class Client extends ModeleConcret {
     private int idClient;
@@ -66,15 +64,18 @@ public class Client extends ModeleConcret {
     }
 
     /**
-    * Constructeur de Client.
-    * @param idClient int représentant l'id du Client.
-    * @param nomClient String représentant le nom du Client.
-    * @param adresseClient String représentant l'adresse du Client.
-    * @param gpsClient String représentant les coordonnées GPS du Client.
-    * @param numTelClient String représentant le numéro de téléphone du Client.
-    * @param commandes ArrayList<Commande> représentant les commandes du Client.
-    */
+     * Constructeur de Client.
+     * 
+     * @param idClient      int représentant l'id du Client.
+     * @param nomClient     String représentant le nom du Client.
+     * @param adresseClient String représentant l'adresse du Client.
+     * @param gpsClient     String représentant les coordonnées GPS du Client.
+     * @param numTelClient  String représentant le numéro de téléphone du Client.
+     * @param commandes     ArrayList<Commande> représentant les commandes du
+     *                      Client.
+     */
 
-    public Client(int idClient, String nomClient, String adresseClient, String gpsClient, String numTelClient, List<Commande> commandes) {
+    public Client(int idClient, String nomClient, String adresseClient, String gpsClient, String numTelClient,
+            List<Commande> commandes) {
     }
 }

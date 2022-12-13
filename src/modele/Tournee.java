@@ -2,11 +2,9 @@ package modele;
 
 import java.util.*;
 
-
-
 /**
-* Métier représentant une Tournée.
-*/
+ * Objet métier représentant une Tournée.
+ */
 
 public class Tournee extends ModeleConcret {
     private int idTournee;
@@ -66,15 +64,19 @@ public class Tournee extends ModeleConcret {
     }
 
     /**
-    * Constructeur de Tournee.
-    * @param idTournee int représentant l'id de la Tournee.
-    * @param horaireDebut String représentant l'horaire de début de la Tournee.
-    * @param horaireFin String représentant l'horaire de fin de la Tournee.
-    * @param poids float représentant le poids total de la Tournee.
-    * @param vehicule Vehicule représentant le véhicule utilisé pour effectuer la Tournee.
-    * @param commandes ArrayList<Commande> représentant les commandes composant la Tournee.
-    */
+     * Constructeur de Tournee.
+     * 
+     * @param idTournee    int représentant l'id de la Tournee.
+     * @param horaireDebut String représentant l'horaire de début de la Tournee.
+     * @param horaireFin   String représentant l'horaire de fin de la Tournee.
+     * @param poids        float représentant le poids total de la Tournee.
+     * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
+     *                     la Tournee.
+     * @param commandes    ArrayList<Commande> représentant les commandes composant
+     *                     la Tournee.
+     */
 
-    public Tournee(int idTournee, String horaireDebut, String horaireFin, float poids, Vehicule vehicule, List<Commande> commandes) {
+    public Tournee(int idTournee, String horaireDebut, String horaireFin, float poids, Vehicule vehicule,
+            List<Commande> commandes) {
     }
 }

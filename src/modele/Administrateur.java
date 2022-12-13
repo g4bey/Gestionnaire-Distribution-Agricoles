@@ -1,10 +1,8 @@
 package modele;
 
-
-
 /**
-* Métier représentant un Administrateur.
-*/
+ * Objet métier représentant un Administrateur.
+ */
 
 public class Administrateur extends ModeleConcret {
     private int idAdministrateur;
@@ -38,11 +36,12 @@ public class Administrateur extends ModeleConcret {
     }
 
     /**
-    * Constructeur d'Administrateur.
-    * @param idAdministrateur int représentant l'Administrateur.
-    * @param pseudo String représentant l'Administrateur.
-    * @param mdpAdmin String représentant l'Administrateur.
-    */
+     * Constructeur d'Administrateur.
+     * 
+     * @param idAdministrateur int représentant l'Administrateur.
+     * @param pseudo           String représentant l'Administrateur.
+     * @param mdpAdmin         String représentant l'Administrateur.
+     */
 
     public Administrateur(int idAdministrateur, String pseudo, String mdpAdmin) {
     }

@@ -2,11 +2,9 @@ package modele;
 
 import java.util.*;
 
-
-
 /**
-* Métier représentant un Véhicule.
-*/
+ * Objet métier représentant un Véhicule.
+ */
 
 public class Vehicule extends ModeleConcret {
     private int idVehicule;
@@ -56,13 +54,17 @@ public class Vehicule extends ModeleConcret {
     }
 
     /**
-    * Constructeur de Vehicule.
-    * @param idVehicule int représentant l'id du Vehicule.
-    * @param numImmat String représentant le numéro d'immatriculation du Vehicule.
-    * @param poidsMax float représentant le poids maximum que le Vehicule peut accepter.
-    * @param producteur Producteur représentant le producteur utilisant le Vehicule.
-    * @param tournees ArrayList<Tournee> représentant les tournées du Vehicule.
-    */
+     * Constructeur de Vehicule.
+     * 
+     * @param idVehicule int représentant l'id du Vehicule.
+     * @param numImmat   String représentant le numéro d'immatriculation du
+     *                   Vehicule.
+     * @param poidsMax   float représentant le poids maximum que le Vehicule peut
+     *                   accepter.
+     * @param producteur Producteur représentant le producteur utilisant le
+     *                   Vehicule.
+     * @param tournees   ArrayList<Tournee> représentant les tournées du Vehicule.
+     */
 
     public Vehicule(int idVehicule, String numImmat, float poidsMax, Producteur producteur, List<Tournee> tournees) {
     }

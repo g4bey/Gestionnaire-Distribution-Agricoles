@@ -2,11 +2,9 @@ package modele;
 
 import java.util.*;
 
-
-
 /**
-* Métier représentant un Producteur.
-*/
+ * Objet métier représentant un Producteur.
+ */
 
 public class Producteur extends ModeleConcret {
     private int idProducteur;
@@ -92,18 +90,23 @@ public class Producteur extends ModeleConcret {
     }
 
     /**
-    * Constructeur de Producteur.
-    * @param idProducteur int représentant l'id du Producteur.
-    * @param siret String représentant le siret du Producteur.
-    * @param proprietaire String représentant le nom et prénom du propriétaire.
-    * @param adresseProd String représentant l'adresse du Producteur.
-    * @param numTelProd String représentant le numéro de téléphone du Producteur.
-    * @param gpsProd String représentant les coordonnées GPS du Producteur.
-    * @param mdpProd String représentant le hash du mot de passe du Producteur.
-    * @param vehicules ArrayList<Vehicule> représentant les véhicules du Producteur.
-    * @param commandes ArrayList<Commande> représentant les commandes du Producteur.
-    */
+     * Constructeur de Producteur.
+     * 
+     * @param idProducteur int représentant l'id du Producteur.
+     * @param siret        String représentant le siret du Producteur.
+     * @param proprietaire String représentant le nom et prénom du propriétaire.
+     * @param adresseProd  String représentant l'adresse du Producteur.
+     * @param numTelProd   String représentant le numéro de téléphone du Producteur.
+     * @param gpsProd      String représentant les coordonnées GPS du Producteur.
+     * @param mdpProd      String représentant le hash du mot de passe du
+     *                     Producteur.
+     * @param vehicules    ArrayList<Vehicule> représentant les véhicules du
+     *                     Producteur.
+     * @param commandes    ArrayList<Commande> représentant les commandes du
+     *                     Producteur.
+     */
 
-    public Producteur(int idProducteur, String siret, String proprietaire, String adresseProd, String numTelProd, String gpsProd, String mdpProd, List<Vehicule> vehicules, List<Commande> commandes) {
+    public Producteur(int idProducteur, String siret, String proprietaire, String adresseProd, String numTelProd,
+            String gpsProd, String mdpProd, List<Vehicule> vehicules, List<Commande> commandes) {
     }
 }
