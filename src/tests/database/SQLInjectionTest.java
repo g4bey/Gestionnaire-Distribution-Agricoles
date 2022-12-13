@@ -1,6 +1,8 @@
 package tests.database;
 
 import utility.DatabaseConnection;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -40,7 +42,6 @@ public class SQLInjectionTest {
      *<p>
      * L'on vérifie qu'il n'y a aucun retour.
      */
-    @Disabled
     @Test
     @DisplayName("Protection Injection SQL de Premiere Ordre")
     public void executeQueryFirstOrder() throws SQLException {
@@ -93,5 +94,14 @@ public class SQLInjectionTest {
             assertEquals("AncienPassword", rs.getString("password"));
         }
         st.close();
+    }
+
+    /**
+     * Fermeture de la connection apres les tests.
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
     }
 }

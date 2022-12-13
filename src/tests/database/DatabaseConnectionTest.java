@@ -2,6 +2,7 @@ package tests.database;
 
 import utility.DatabaseConnection;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ public class DatabaseConnectionTest {
 
     @BeforeEach
     void init() throws SQLException {
-        DatabaseConnection.close();
+        DatabaseConnection.close("testing");
     }
 
     /**
@@ -36,7 +37,7 @@ public class DatabaseConnectionTest {
 
     /**
      * Nous vérifions qu'un environnement inexistant du fichier de configuration
-     * génère bien une erreur.
+     * génère bien une erreur IOException.
      */
     @Test
     @DisplayName("Chargeur d'attribut fonctionnel")
@@ -46,6 +47,8 @@ public class DatabaseConnectionTest {
             conn = DatabaseConnection.getInstance("existePas");
             fail("Connection qui ne devrait pas exister.");
         } catch (SQLException e) {
+            fail("Problem avec le constructeur.");
+        } catch (IOException e) {
             assertNull(conn);
         }
     }
@@ -66,5 +69,14 @@ public class DatabaseConnectionTest {
         } catch (SQLException e) {
             fail("Le singleton ne renvoi pas un unique connection");
         }
+    }
+
+    /**
+     * Fermeture de la connection apres les tests.
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
     }
 }
