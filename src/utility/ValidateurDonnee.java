@@ -49,22 +49,14 @@ public class ValidateurDonnee {
 
     /*
      * Permet de valider le poids avec une contrainte de poids max.
+     * On utilise validePoids pour verifer qu'on puisse bien parser.
      *
      * @param poids le poids sous forme de string.
      * @param max le poids max en double.
      */
     public static boolean validePoids(String poids, double max) {
-        double poidDouble;
-
-        // On vérifie que le poids fournit puisse être parsé.
-        try {
-            poidDouble = Double.valueOf(poids); 
-        } catch (NumberFormatException e) {
-            return false;
-        } // end try catch
-
-        // Si le poid est > a max, false. sinon true.
-        return poidDouble > max ? false : true;
+        // Si non parsable, ou poids > max: false, sinon true.
+        return !validePoids(poids) || Double.parseDouble(poids) > max ? false : true;
     }
 
     /*
