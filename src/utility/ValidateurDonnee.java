@@ -6,9 +6,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
-* Cette classe permet de valider la coherente des entrées fournies.
-* Il s'agit d'agit de s'assurer que les données seront exploitable et homogene.
-* Ainsi, pour les dates, l'on verifie par exemple qu'elles puissent bien etre parsés.
+* Cette classe permet de valider la coherence des entrées fournies.
+* Il s'agit d'agit de s'assurer que les données seront exploitables et homogènes.
+* Ainsi, pour les dates, l'on verifie par exemple qu'elles puissent bien être parsées.
 */
 public class ValidateurDonnee {
 
@@ -36,7 +36,7 @@ public class ValidateurDonnee {
      */
     public static boolean validePoids(String poids) {
 
-        // On verifie que le poids fournit puisse etre parsé.
+        // On vérifie que le poids fournit puisse être parsé.
         try {
             Double.valueOf(poids); 
         } catch (NumberFormatException e) {
@@ -49,14 +49,14 @@ public class ValidateurDonnee {
 
     /*
      * Permet de valider le poids avec une contrainte de poids max.
-     *   * 
+     *
      * @param poids le poids sous forme de string.
      * @param max le poids max en double.
      */
     public static boolean validePoids(String poids, double max) {
         double poidDouble;
 
-        // On verifie que le poids fournit puisse etre parsé.
+        // On vérifie que le poids fournit puisse être parsé.
         try {
             poidDouble = Double.valueOf(poids); 
         } catch (NumberFormatException e) {
@@ -68,7 +68,7 @@ public class ValidateurDonnee {
     }
 
     /*
-     * Permet de s'arrurer que l'heure puisse etre parsée,
+     * Permet de s'arrurer que l'heure puisse être parsée,
      * et que l'heure de fin est bien apres l'heure de debut.
      * 
      * @param heure l'heure sous forme de string.
@@ -77,7 +77,7 @@ public class ValidateurDonnee {
         LocalDate dateDebut;
         LocalDate dateFin;
 
-        // Verifions que l'heure fournit puisse etre parsée.
+        // Verifions que l'heure fournit puisse être parsée.
         try{
             dateDebut = LocalDate.parse(heureDebut);
             dateFin = LocalDate.parse(heureFin);
@@ -95,9 +95,8 @@ public class ValidateurDonnee {
      */
     public static boolean valideNom(String nom, int maxChars) {
         // Jean val Jean, Jam-bom-beurre, Jean, Jean'ne'mar valide.
-        // Accents valide, il doit y avoir une suite 
-        // apres un -, un espace ou un apostrophe.
-        // Jean-, Jean' invalide.
+        // Accents valide, il doit y avoir une suite apres un t ired
+        // un espace ou un apostrophe.
         pattern = Pattern.compile("^([a-zA-ZÀ-ÿ]+((-| |')[a-zA-ZÀ-ÿ]+)*)$"); 
         matcher = pattern.matcher(nom);
 
