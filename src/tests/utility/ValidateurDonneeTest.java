@@ -14,7 +14,7 @@ public class ValidateurDonneeTest {
      */
     @Test
     @DisplayName("Validation du siret")
-    public void valideSiretTest(){
+    public void valideSiretTest() {
         assertTrue(ValidateurDonnee.valideSiret("12341234123412"));
         assertFalse(ValidateurDonnee.valideSiret("A2341234123412"));
         assertFalse(ValidateurDonnee.valideSiret("1234123412341A"));
@@ -28,7 +28,7 @@ public class ValidateurDonneeTest {
      */
     @Test
     @DisplayName("Validation du numero de telephone au format francais")
-    public void valideTelephoneTest(){
+    public void valideTelephoneTest() {
         assertTrue(ValidateurDonnee.valideTelephone("0628050505"));
         assertFalse(ValidateurDonnee.valideTelephone("1628050505"));
         assertFalse(ValidateurDonnee.valideTelephone("0628050A05"));
@@ -41,7 +41,7 @@ public class ValidateurDonneeTest {
      */
     @Test
     @DisplayName("Validation d'un poids sous forme de string.")
-    public void validePoidsTest(){
+    public void validePoidsTest() {
         assertFalse(ValidateurDonnee.validePoids("banane"));
         assertFalse(ValidateurDonnee.validePoids("d43"));
         assertFalse(ValidateurDonnee.validePoids(""));
@@ -50,11 +50,12 @@ public class ValidateurDonneeTest {
     }
 
     /*
-     * Permet d'assurer qu'un poids fournit est bien strictement inférieur au maximum fournit..
+     * Permet d'assurer qu'un poids fournit est bien strictement inférieur au
+     * maximum fournit..
      */
     @Test
     @DisplayName("Validation d'un poids inferieur à un poids max.")
-    public void validePoidsMaxTest(){
+    public void validePoidsMaxTest() {
         assertTrue(ValidateurDonnee.validePoids("42", 50));
         assertTrue(ValidateurDonnee.validePoids("42", 42));
         assertFalse(ValidateurDonnee.validePoids("42", 41));
@@ -62,19 +63,19 @@ public class ValidateurDonneeTest {
 
     @Test
     @DisplayName("Permet de valider un date")
-    public void valideDateTest(){ 
+    public void valideDateTest() {
         fail("Not implemented");
     }
 
     /**
-     * Un nom peut contenir tirets, espaces et apostrophes. 
+     * Un nom peut contenir tirets, espaces et apostrophes.
      * Cependant, il ne peut finir ainsi. Un nom ne pas être vide.
      * 
      * L'on definit une taille max dans la fonction de validation.
      */
     @Test
     @DisplayName("Vérification du format des noms, et limite de caracteres.")
-    public void valideNomTest(){
+    public void valideNomTest() {
         assertTrue(ValidateurDonnee.valideNom("O", 15));
         assertTrue(ValidateurDonnee.valideNom("Jéâêîôûàèùan", 50));
         assertTrue(ValidateurDonnee.valideNom("Jean-Euclide", 50));
@@ -97,7 +98,7 @@ public class ValidateurDonneeTest {
      */
     @Test
     @DisplayName("Validation d'un pseudonyme")
-    public void validePseudonymeTest(){
+    public void validePseudonymeTest() {
         assertFalse(ValidateurDonnee.validePseudonyme("Kaleb", 2));
         assertFalse(ValidateurDonnee.validePseudonyme("K@leb", 15));
         assertTrue(ValidateurDonnee.validePseudonyme("K4leb_4-ko", 15));
@@ -106,7 +107,7 @@ public class ValidateurDonneeTest {
     }
 
     /**
-     * Regex trouvée en ligne. 
+     * Regex trouvée en ligne.
      * https://regex101.com/r/VGjLx1/1
      * 
      * Elle en compte les formats anciens / recents.
@@ -115,7 +116,7 @@ public class ValidateurDonneeTest {
      */
     @Test
     @DisplayName("Validation Immatricuation")
-    public void valideImmatriculationTest(){
+    public void valideImmatriculationTest() {
         assertFalse(ValidateurDonnee.valideImmatriculation("3123AA11"));
         assertFalse(ValidateurDonnee.valideImmatriculation("3123 AA 11"));
         assertFalse(ValidateurDonnee.valideImmatriculation("AZ-123-BU"));

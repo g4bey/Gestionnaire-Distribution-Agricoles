@@ -73,6 +73,7 @@ public class DatabaseConnectionTest {
 
     /**
      * Fermeture de la connection apres les tests.
+     * 
      * @throws SQLException
      */
     @AfterAll

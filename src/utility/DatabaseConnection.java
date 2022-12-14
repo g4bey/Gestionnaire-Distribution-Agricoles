@@ -8,12 +8,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Properties;
 
-
 /**
  * Fournit un ensemble de connection unique à la base de donnée.
  * Cette dernière est créée si elle n'existe pas déjà.
  * <p>
- * L'on identifie chaque connection par son attribut environnement, 
+ * L'on identifie chaque connection par son attribut environnement,
  * dans l'Hasmap conn.
  * <p>
  * L'on présuppose l'existence d'un fichier config.properties
@@ -28,13 +27,13 @@ import java.util.Properties;
  * + db.testing.login=root
  * + db.testing.password=jdbc:mysql://localhost/gestAgricoleTest
  * <p>
- * L'aura chargera donc 
- *  urlMap<testing, root>
- *  usernameMap<testing, root>
- *  passwordMap<testing, jdbc:mysql://localhost/gestAgricoleTest>
+ * L'aura chargera donc
+ * urlMap<testing, root>
+ * usernameMap<testing, root>
+ * passwordMap<testing, jdbc:mysql://localhost/gestAgricoleTest>
  * <p>
  * Et dans connection l'on aura:
- *  conn<testing, <instance@DatabaseConnection>
+ * conn<testing, <instance@DatabaseConnection>
  */
 public class DatabaseConnection {
 
@@ -49,7 +48,8 @@ public class DatabaseConnection {
      * partir du fichier config.properties, et de l'environnement fournit
      * en paramètre.
      * 
-     * Ensuite l'on instancie la connection, puis nous l'inserons dans une HashMap avec
+     * Ensuite l'on instancie la connection, puis nous l'inserons dans une HashMap
+     * avec
      * comme identifiant l'environnement.
      *
      * @param environment l'environnement (production, testing, development...)
@@ -58,10 +58,9 @@ public class DatabaseConnection {
         Class.forName("com.mysql.cj.jdbc.Driver");
         chargerAttribut(environment);
         Connection dbConn = DriverManager.getConnection(
-            urlMap.get(environment), 
-            usernameMap.get(environment), 
-            passwordMap.get(environment)
-        );
+                urlMap.get(environment),
+                usernameMap.get(environment),
+                passwordMap.get(environment));
         conn.put(environment, dbConn);
     }
 
@@ -76,7 +75,7 @@ public class DatabaseConnection {
      * @return la connection au server sql.
      */
     public static Connection getInstance(String environment) throws ClassNotFoundException, SQLException, IOException {
-        if(conn.get(environment) == null){
+        if (conn.get(environment) == null) {
             new DatabaseConnection(environment);
         } // end if
         return conn.get(environment);
@@ -106,7 +105,8 @@ public class DatabaseConnection {
             // Récupérons le classLoader de l'object
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-            // Obtenons le fichier de configuration sous forme de stream, a partir de la racine
+            // Obtenons le fichier de configuration sous forme de stream, a partir de la
+            // racine
             InputStream configFile = classLoader.getResourceAsStream("ressources/config.properties");
 
             // Déclarons un object Properties que nous nommerons config.
@@ -119,13 +119,12 @@ public class DatabaseConnection {
             String url = config.getProperty("db." + environment + ".url");
             String username = config.getProperty("db." + environment + ".username");
             String password = config.getProperty("db." + environment + ".password");
-            
+
             // Vérifions que ces variables existent bien.
-            if( url == null ||  username == null || password == null) {
+            if (url == null || username == null || password == null) {
                 throw new IOException(
-                    "Impossible de recuperer la base de donnee de l'environnement " 
-                    + environment
-                );
+                        "Impossible de recuperer la base de donnee de l'environnement "
+                                + environment);
             } // end if
 
             // Inserons les dans leur hashmap respective.
@@ -138,14 +137,15 @@ public class DatabaseConnection {
     }
 
     /**
-     * Cette methode permet la fermeture d'une connection identifable par la variable environment.
+     * Cette methode permet la fermeture d'une connection identifable par la
+     * variable environment.
      * Enfin l'on reset l'attribut connection associé.
      *
      * @param conn la connection qui doit etre close.
      * @throws SQLException la connexion n'existe pas.
      */
     public static void close(String environment) throws SQLException {
-        if(conn.get(environment) != null) {
+        if (conn.get(environment) != null) {
             conn.get(environment).close();
             conn.remove(environment);
         } // end if
