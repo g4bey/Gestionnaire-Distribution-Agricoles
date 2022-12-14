@@ -90,6 +90,19 @@ public class ValidateurDonnee {
     }
 
     /*
+    * Permet de valider un numero de telephone francais.
+    * 
+    * @param heure l'heure sous forme de string.
+    */
+    public static boolean valideTelephone(String telephone){
+        pattern = Pattern.compile("(0[0-9])([0-9][0-9]){4}$"); 
+        matcher = pattern.matcher(telephone);
+
+        // Si la regex match
+        return matcher.matches();
+    }
+
+    /*
      * @param nom le nom sous forme de string.
      * @param maxChars la taille maximale du nom.
      */
