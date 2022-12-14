@@ -1,5 +1,6 @@
 package utility;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -62,40 +63,11 @@ public class ValidateurDonnee {
     }
 
     /*
-     * Permet de s'arrurer que l'heure puisse être parsée.
-     * Dans un premiere temps, l'on check la conversaion en LocalDate.
-     * Ensuite l'on applique le formateur.
-     * 
-     * @param hr l'heure sous forme de string.
+     * Not implemented yet.
      */
-    public static boolean valideHeure(String hr) {
-        // Verifions que l'heure fournit puisse être parsée.
-        try{
-            LocalDate heure = LocalDate.parse(hr);
-            DateTimeFormatter formatHeure = DateTimeFormatter.ofPattern("HH:mm");
-            formatHeure.format(heure);
-        } catch (DateTimeParseException e) {
-            return false;
-        } // end try catch
-
-        return true;
-    }
-
-    /*
-     * Permet de s'arrurer que l'heure puisse être parsée,
-     * et que l'heure de fin est bien apres l'heure de debut.
-     * 
-     * @param heureDebut l'heure de debut sous forme de string.
-     * @param heureFin l'heure de fin sous forme de string.
-     * @see valideHeure
-     */
-    public static boolean valideHeureDebutFin(String heureDebut, String heureFin) {
-        if(!valideHeure(heureDebut) || !valideHeure(heureFin)) {
-            return false;
-        }
-
-        // Verifions que les deux heures sont coherentes.
-        return LocalDate.parse(heureDebut).isAfter(LocalDate.parse(heureFin));
+    public static boolean valideDate(String date) {
+        // not implemented
+        return false;
     }
 
     /*
@@ -117,13 +89,13 @@ public class ValidateurDonnee {
      */
     public static boolean valideNom(String nom, int maxChars) {
         // Jean val Jean, Jam-bom-beurre, Jean, Jean'ne'mar valide.
-        // Accents valide, il doit y avoir une suite apres un t ired
+        // Accents valide, il doit y avoir une suite apres un tiret
         // un espace ou un apostrophe.
         pattern = Pattern.compile("^([a-zA-ZÀ-ÿ]+((-| |')[a-zA-ZÀ-ÿ]+)*)$"); 
         matcher = pattern.matcher(nom);
 
         // Si la regex match & et que le nom est de la bonne taille, true.
-        return matcher.matches() && nom.length() < maxChars ? true : false;
+        return matcher.matches() && nom.length() <= maxChars ? true : false;
     }
 
     /*
@@ -137,7 +109,7 @@ public class ValidateurDonnee {
         matcher = pattern.matcher(pseudonyme);
 
         // Si la regex match & et que le pseudo est de la bonne taille, true.
-        return matcher.matches() && pseudonyme.length() < maxChars ? true : false;
+        return matcher.matches() && pseudonyme.length() <= maxChars ? true : false;
     }
 
     /*
