@@ -32,7 +32,7 @@ public class DatabaseConnectionTest {
             assertNotNull(conn);
         } catch (SQLException e) {
             fail("Serveur MySQL indisponible");
-        }
+        } // end try catch
     }
 
     /**
@@ -50,7 +50,7 @@ public class DatabaseConnectionTest {
             fail("Problem avec le constructeur.");
         } catch (IOException e) {
             assertNull(conn);
-        }
+        } // end try catch
     }
 
     /**
@@ -68,7 +68,7 @@ public class DatabaseConnectionTest {
             assertEquals(conn, conn2);
         } catch (SQLException e) {
             fail("Le singleton ne renvoi pas un unique connection");
-        }
+        } // end try catch
     }
 
     /**

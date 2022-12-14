@@ -78,7 +78,7 @@ public class DatabaseConnection {
     public static Connection getInstance(String environment) throws ClassNotFoundException, SQLException, IOException {
         if(conn.get(environment) == null){
             new DatabaseConnection(environment);
-        }
+        } // end if
         return conn.get(environment);
     }
 
@@ -126,7 +126,7 @@ public class DatabaseConnection {
                     "Impossible de recuperer la base de donnee de l'environnement " 
                     + environment
                 );
-            }
+            } // end if
 
             // Inserons les dans leur hashmap respective.
             urlMap.put(environment, url);
@@ -134,7 +134,7 @@ public class DatabaseConnection {
             passwordMap.put(environment, password);
         } catch (IOException e) {
             throw new IOException(e);
-        }
+        } // end try/catch
     }
 
     /**
@@ -148,6 +148,6 @@ public class DatabaseConnection {
         if(conn.get(environment) != null) {
             conn.get(environment).close();
             conn.remove(environment);
-        }
+        } // end if
     }
 }

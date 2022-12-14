@@ -4,7 +4,6 @@ import utility.DatabaseConnection;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -92,7 +91,7 @@ public class SQLInjectionTest {
         if(rs.first()) {
             assertNotEquals("nouveauPassword", rs.getString("password"));
             assertEquals("AncienPassword", rs.getString("password"));
-        }
+        } // end if
         st.close();
     }
 

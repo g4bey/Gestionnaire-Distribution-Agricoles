@@ -41,7 +41,7 @@ public class ValidateurDonnee {
             Double.valueOf(poids); 
         } catch (NumberFormatException e) {
             return false;
-        }
+        } // end try catch
 
         // Le poids est bien parsable.
         return true;
@@ -61,7 +61,7 @@ public class ValidateurDonnee {
             poidDouble = Double.valueOf(poids); 
         } catch (NumberFormatException e) {
             return false;
-        }
+        } // end try catch
 
         // Si le poid est > a max, false. sinon true.
         return poidDouble > max ? false : true;
@@ -83,7 +83,7 @@ public class ValidateurDonnee {
             dateFin = LocalDate.parse(heureFin);
         } catch (DateTimeParseException e) {
             return false;
-        }
+        } // end try catch
 
         // Verifions que les deux heures sont coherentes.
         return dateFin.isAfter(dateDebut);
