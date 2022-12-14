@@ -1,0 +1,119 @@
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="879.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="477.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournée:">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Text fx:id="tourLabel" layoutX="628.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Libellé&gt;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="59.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poids:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="223.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="430.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure de départ:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="tourWeightLabel" layoutX="126.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="tourDatetimeLabel" layoutX="285.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX/XX/XXXX">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="startLabel" layoutX="601.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Line endX="760.0" endY="7.62939453125E-6" layoutX="297.0" layoutY="84.0" startX="-297.0" startY="7.62939453125E-6" />
+      <Line endX="-105.69998168945312" endY="-64.0999984741211" layoutX="283.0" layoutY="65.0" startX="-105.69998168945312" startY="18.50000762939453" />
+      <ImageView fitHeight="79.0" fitWidth="144.0" layoutX="14.0" layoutY="3.0">
+         <image>
+            <Image url="@carrote.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="closeConsultBtn" layoutX="931.0" layoutY="824.0" mnemonicParsing="false" text="Quitter" />
+      <Text layoutX="40.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations générales:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="693.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure d'arrivée/retour:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="156.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="endLabel" layoutX="910.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Véhicule utilisé:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="59.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° d'immatriculation:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="numImmatLabel" layoutX="263.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;numéro&gt;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="403.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacité:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="capacityLabel" layoutX="503.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="530.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Line endX="493.5" endY="8.5" layoutX="491.0" layoutY="380.0" startX="-10.5" startY="9.5" />
+      <Line endX="-100.0" endY="398.4000244140625" layoutX="580.0" layoutY="390.0" startX="-100.0" />
+      <Line endX="-100.0" endY="398.4000244140625" layoutX="1085.0" layoutY="389.0" startX="-100.0" />
+      <Text layoutX="39.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes concernées:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <ListView fx:id="commsListView" layoutX="59.0" layoutY="433.0" prefHeight="354.0" prefWidth="362.0" />
+      <Line endX="495.29998779296875" endY="-25.0999755859375" layoutX="490.0" layoutY="814.0" startX="-9.5" startY="-25.0999755859375" />
+      <ImageView fx:id="mapImageView" fitHeight="399.0" fitWidth="505.0" layoutX="480.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
