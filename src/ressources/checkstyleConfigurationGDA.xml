@@ -5,7 +5,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: gdaCheckstyleConfig
+    Checkstyle-Configuration: checkstyleConfigurationGDA
     Description: none
 -->
 <module name="Checker">
@@ -18,7 +18,9 @@
       <property name="allowedAbbreviationLength" value="1"/>
       <property name="allowedAbbreviations" value="DAO"/>
     </module>
-    <module name="PackageName"/>
+    <module name="PackageName">
+      <property name="format" value="^[a-z]+(\.[a-zA-Z_]\w*)*$|^DAO$"/>
+    </module>
     <module name="LocalVariableName"/>
     <module name="MethodName"/>
     <module name="ClassTypeParameterName"/>
@@ -31,12 +33,7 @@
     </module>
     <module name="OneStatementPerLine"/>
     <module name="WhitespaceAround">
-      <property name="allowEmptyConstructors" value="true"/>
-      <property name="allowEmptyMethods" value="true"/>
-      <property name="allowEmptyTypes" value="true"/>
-      <property name="allowEmptyLoops" value="true"/>
-      <property name="allowEmptyLambdas" value="true"/>
-      <property name="allowEmptyCatches" value="true"/>
+      <property name="ignoreEnhancedForColon" value="false"/>
     </module>
     <module name="WhitespaceAfter">
       <property name="tokens" value="COMMA,LITERAL_IF,LITERAL_ELSE,LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_FINALLY,LITERAL_RETURN,LITERAL_YIELD,LITERAL_CATCH,DO_WHILE,ELLIPSIS,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_CASE,LAMBDA"/>
