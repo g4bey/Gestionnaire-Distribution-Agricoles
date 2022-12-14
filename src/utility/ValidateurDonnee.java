@@ -53,6 +53,7 @@ public class ValidateurDonnee {
      *
      * @param poids le poids sous forme de string.
      * @param max le poids max en double.
+     * @see validePoids
      */
     public static boolean validePoids(String poids, double max) {
         // Si non parsable, ou poids > max: false, sinon true.
@@ -60,25 +61,36 @@ public class ValidateurDonnee {
     }
 
     /*
-     * Permet de s'arrurer que l'heure puisse être parsée,
-     * et que l'heure de fin est bien apres l'heure de debut.
+     * Permet de s'arrurer que l'heure puisse être parsée.
      * 
-     * @param heure l'heure sous forme de string.
+     * @param heureFormatString l'heure sous forme de string.
      */
-    public static boolean valideHeure(String heureDebut, String heureFin) {
-        LocalDate dateDebut;
-        LocalDate dateFin;
-
+    public static boolean valideHeure(String heureFormatString) {
         // Verifions que l'heure fournit puisse être parsée.
         try{
-            dateDebut = LocalDate.parse(heureDebut);
-            dateFin = LocalDate.parse(heureFin);
+            LocalDate heureFormatDate = LocalDate.parse(heureFormatString);
         } catch (DateTimeParseException e) {
             return false;
         } // end try catch
 
+        return true;
+    }
+
+    /*
+     * Permet de s'arrurer que l'heure puisse être parsée,
+     * et que l'heure de fin est bien apres l'heure de debut.
+     * 
+     * @param heureDebut l'heure de debut sous forme de string.
+     * @param heureFin l'heure de fin sous forme de string.
+     * @see valideHeure
+     */
+    public static boolean valideHeureDebutFin(String heureDebut, String heureFin) {
+        if(!valideHeure(heureDebut) || !valideHeure(heureFin)) {
+            return false;
+        }
+
         // Verifions que les deux heures sont coherentes.
-        return dateFin.isAfter(dateDebut);
+        return LocalDate.parse(heureDebut).isAfter(LocalDate.parse(heureFin));
     }
 
     /*
