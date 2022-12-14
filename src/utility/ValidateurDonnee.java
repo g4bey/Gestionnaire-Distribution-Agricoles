@@ -1,6 +1,7 @@
 package utility;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,13 +63,17 @@ public class ValidateurDonnee {
 
     /*
      * Permet de s'arrurer que l'heure puisse être parsée.
+     * Dans un premiere temps, l'on check la conversaion en LocalDate.
+     * Ensuite l'on applique le formateur.
      * 
-     * @param heureFormatString l'heure sous forme de string.
+     * @param hr l'heure sous forme de string.
      */
-    public static boolean valideHeure(String heureFormatString) {
+    public static boolean valideHeure(String hr) {
         // Verifions que l'heure fournit puisse être parsée.
         try{
-            LocalDate heureFormatDate = LocalDate.parse(heureFormatString);
+            LocalDate heure = LocalDate.parse(hr);
+            DateTimeFormatter formatHeure = DateTimeFormatter.ofPattern("HH:mm");
+            formatHeure.format(heure);
         } catch (DateTimeParseException e) {
             return false;
         } // end try catch
