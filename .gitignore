@@ -19,7 +19,8 @@
 *.tar.gz
 *.rar
 
-# Eclipse specific files
+# Eclipse specific files and folders
+.settings/
 *.project
 *.checkstyle
 
