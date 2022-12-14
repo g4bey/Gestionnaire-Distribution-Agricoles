@@ -37,7 +37,7 @@ public class ValidateurDonneeTest {
     }
 
     /*
-     * Permet d'assurer qu'un poids puisse bien etre convertit en double.
+     * Permet d'assurer qu'un poids puisse bien être convertit en double.
      */
     @Test
     @DisplayName("Validation d'un poids sous forme de string.")
@@ -50,8 +50,7 @@ public class ValidateurDonneeTest {
     }
 
     /*
-     * Permet d'assurer qu'un poids fournit est bien inferieur au max.
-     * Il peut etre egal.
+     * Permet d'assurer qu'un poids fournit est bien strictement inférieur au maximum fournit..
      */
     @Test
     @DisplayName("Validation d'un poids inferieur à un poids max.")
@@ -68,8 +67,8 @@ public class ValidateurDonneeTest {
     }
 
     /**
-     * Un nom peut contenir tiret, espace et apostrophe. 
-     * Cependant, il ne peut finir ainsi. Un nom ne peut aussi etre vide.
+     * Un nom peut contenir tirets, espaces et apostrophes. 
+     * Cependant, il ne peut finir ainsi. Un nom ne pas être vide.
      * 
      * L'on definit une taille max dans la fonction de validation.
      */
@@ -91,8 +90,8 @@ public class ValidateurDonneeTest {
 
     /**
      * Validation d'un pseudonyme.
-     * On accept tired et undercore, ainsi que chiffres en plus des lettres.\
-     * Un pseudo ne peut etre vide.
+     * On accept tirets underscore et valeurs alphanumériques.
+     * Un pseudo ne peut être vide.
      * 
      * L'on definit une taille max dans la fonction de validation.
      */
