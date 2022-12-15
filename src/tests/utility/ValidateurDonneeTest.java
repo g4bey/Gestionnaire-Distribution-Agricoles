@@ -24,7 +24,7 @@ public class ValidateurDonneeTest {
 
     /*
      * Permet d'assurer que le numéro de téléphone suit le bon format.
-     * Ici, l'on ne prend en compte que les numéros nationaux.
+     * Ici, l'on ne prend en compte que les numéros nationaux, +33 compris.
      */
     @Test
     @DisplayName("Validation du numero de telephone au format francais")

@@ -68,7 +68,7 @@ public class ValidateurDonnee {
     }
 
     /*
-     * Permet de valider un numero de téléphone francais.
+     * Permet de valider un numero de téléphone francais, +33 compris.
      * 
      * @param heure l'heure sous forme de string.
      */
