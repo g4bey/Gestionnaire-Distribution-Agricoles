@@ -4,7 +4,6 @@ import utility.DatabaseConnection;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,8 @@ import java.sql.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * L'on veut s'assurer que les preparedStatement protege bien des injections SQL.
+ * L'on veut s'assurer que les preparedStatement protege bien des injections
+ * SQL.
  */
 public class SQLInjectionTest {
 
@@ -30,16 +30,15 @@ public class SQLInjectionTest {
         st.execute("TRUNCATE TABLE `users`;");
         st.execute(
                 "INSERT INTO `users` (`id`, `username`, `email`, `password`)"
-                + " VALUES (null, 'user1', 'user1@gmail.com', 'password'),"
-                + " (null, 'user2', 'user2@gmail.com', 'AncienPassword');"
-        );
+                        + " VALUES (null, 'user1', 'user1@gmail.com', 'password'),"
+                        + " (null, 'user2', 'user2@gmail.com', 'AncienPassword');");
         st.close();
     }
 
     /**
      * Injection SQL de premier ordre.
-     * La requete devient... SELECT * FROM  users WHERE username = user2
-     *<p>
+     * La requete devient... SELECT * FROM users WHERE username = user2
+     * <p>
      * L'on vérifie qu'il n'y a aucun retour.
      */
     @Test
@@ -47,20 +46,21 @@ public class SQLInjectionTest {
     public void executeQueryFirstOrder() throws SQLException {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1,"users2'--");
-        pst.setString(2,"no");
+        pst.setString(1, "users2'--");
+        pst.setString(2, "no");
         ResultSet res = pst.executeQuery();
         assertFalse(res.first());
         pst.close();
     }
 
     /**
-     * Vérifions que les preparedStatement protègent des injections SQL de second ordre.
+     * Vérifions que les preparedStatement protègent des injections SQL de second
+     * ordre.
      * L'on veut deux utilisateurs en base : user2'-- et user2
-     *<p>
+     * <p>
      * Lors de l'update, apres WHERE username = ...
      * '-- clos la requete et met le reste en commentaire.
-     *<p>
+     * <p>
      * Enfin l'on vérifie que le changement n'est pas effectif.
      */
     @Test
@@ -84,20 +84,21 @@ public class SQLInjectionTest {
         pst2.executeUpdate();
         pst2.close();
 
-        //Verifions que le mot de passe est toujours AncienPassword
+        // Verifions que le mot de passe est toujours AncienPassword
         String requete3 = "SELECT password FROM users WHERE username = 'user2'";
         Statement st = conn.createStatement();
         st.executeQuery(requete3);
         ResultSet rs = st.getResultSet();
-        if(rs.first()) {
+        if (rs.first()) {
             assertNotEquals("nouveauPassword", rs.getString("password"));
             assertEquals("AncienPassword", rs.getString("password"));
-        }
+        } // end if
         st.close();
     }
 
     /**
      * Fermeture de la connection apres les tests.
+     * 
      * @throws SQLException
      */
     @AfterAll
