@@ -1,0 +1,43 @@
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="484.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="228.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Client">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nomAddField" layoutX="251.0" layoutY="123.0" />
+      <TextField fx:id="addressModField" layoutX="250.0" layoutY="186.0" />
+      <TextField fx:id="phoneAddField" layoutX="251.0" layoutY="252.0" />
+      <Label layoutX="179.0" layoutY="121.0" text="Nom:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="154.0" layoutY="183.0" text="Adresse:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="249.0" text="Num. téléphone:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="valAddClient" layoutX="346.0" layoutY="336.0" mnemonicParsing="false" text="Valider" />
+      <Button fx:id="cancelAddClient" layoutX="84.0" layoutY="336.0" mnemonicParsing="false" text="Annuler" />
+      <Line endX="374.0000305175781" layoutX="109.0" layoutY="76.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
+      <ImageView fitHeight="60.0" fitWidth="123.0" layoutX="9.0" layoutY="5.0">
+         <image>
+            <Image url="@carrote.png" />
+         </image>
+      </ImageView>
+      <Line endX="-117.10003662109375" endY="-117.0" layoutX="267.0" layoutY="114.0" startX="-117.10002136230469" startY="-39.50000762939453" />
+   </children>
+</AnchorPane>

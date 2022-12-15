@@ -1,0 +1,93 @@
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="19.0" layoutY="58.0" prefHeight="318.0" prefWidth="558.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Commandes">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
+                     <children>
+                        <Label layoutX="167.0" layoutY="14.0" text="Commandes">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="commsTableView" layoutX="26.0" layoutY="83.0" prefHeight="200.0" prefWidth="401.0" />
+                        <Button fx:id="addCommBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="modCommBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
+                        <Button fx:id="delCommBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Tournées">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
+                     <children>
+                        <Label layoutX="193.0" layoutY="14.0" text="Tournées">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="toursTableView" layoutX="26.0" layoutY="83.0" prefHeight="200.0" prefWidth="401.0" />
+                        <Button fx:id="addTourBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="modTourBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
+                        <Button fx:id="delTourBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Véhicules">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
+                     <children>
+                        <Label layoutX="191.0" layoutY="14.0" text="Véhicules">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="addVehiBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <TableView fx:id="vehisTableView" layoutX="26.0" layoutY="83.0" prefHeight="200.0" prefWidth="401.0" />
+                        <Button fx:id="modVehiBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
+                        <Button fx:id="delVehiBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+         <effect>
+            <DropShadow />
+         </effect>
+      </TabPane>
+      <Rectangle fx:id="adminProfileBtn" arcHeight="100.0" arcWidth="5.0" fill="#c4c4c4" height="36.0" layoutX="450.0" layoutY="5.0" stroke="#8c8c8c" strokeType="INSIDE" width="136.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Label fx:id="nomLabel" layoutX="471.0" layoutY="14.0" prefHeight="18.0" prefWidth="47.0" text="&lt;Nom&gt;" />
+      <Circle fill="#c4c4c4" layoutX="554.0" layoutY="23.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="44.0" fitWidth="92.0" layoutX="14.0" layoutY="1.0">
+         <image>
+            <Image url="@carrote.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
