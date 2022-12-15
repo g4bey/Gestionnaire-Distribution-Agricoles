@@ -73,7 +73,7 @@ public class ValidateurDonnee {
      * @param heure l'heure sous forme de string.
      */
     public static boolean valideTelephone(String telephone) {
-        pattern = Pattern.compile("(0[0-9])([0-9][0-9]){4}$");
+        pattern = Pattern.compile("^(0[0-9]|\\+33[0-9])([0-9][0-9]){4}$");
         matcher = pattern.matcher(telephone);
 
         // Si la regex match

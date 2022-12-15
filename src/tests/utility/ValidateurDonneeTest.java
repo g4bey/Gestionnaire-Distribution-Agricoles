@@ -30,6 +30,12 @@ public class ValidateurDonneeTest {
     @DisplayName("Validation du numero de telephone au format francais")
     public void valideTelephoneTest() {
         assertTrue(ValidateurDonnee.valideTelephone("0628050505"));
+        assertTrue(ValidateurDonnee.valideTelephone("+33628050505"));
+        assertFalse(ValidateurDonnee.valideTelephone("+333628050505"));
+        assertFalse(ValidateurDonnee.valideTelephone("+3628050505"));
+        assertFalse(ValidateurDonnee.valideTelephone("+33A628050505"));
+        assertFalse(ValidateurDonnee.valideTelephone("#33628050505"));
+        assertFalse(ValidateurDonnee.valideTelephone("33628050505"));
         assertFalse(ValidateurDonnee.valideTelephone("1628050505"));
         assertFalse(ValidateurDonnee.valideTelephone("0628050A05"));
         assertFalse(ValidateurDonnee.valideTelephone("06280505054"));
