@@ -15,6 +15,16 @@
 </div>
 
 ---
+**Structure:**
+    .
+    ├── Genie Logiciel        # Partie liée au génie logiciel      
+    ├── Rapports              # Rapports envoyées
+    ├── Set-up                # Scripte de mise en route du projet    
+    ├── src                   # Racine du projet               
+    ├── README.md             # Information sur le projet
+    └── resumé-reunions.md    # Résumé des réunions de groupe
+
+---
 
 **Conventions de codage:**
 - Accolades à côté des noms
