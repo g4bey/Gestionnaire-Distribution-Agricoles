@@ -26,6 +26,18 @@
     └── resumé-reunions.md    # Résumé des réunions de groupe
     
 
+**Focus sur src:**
+
+    src
+    ├── DAO                   # Accesseur aux données    
+    ├── controllers           # Controlleurs (lien entre modele et vue)
+    ├── modele                # Objets-Metiers
+    ├── ressources            # Configurations et fichiers utilisé par le logiciel. 
+    ├── exceptions            # les exceptions dérivant d'Exception
+    ├── tests                 # Tests des classes, rangés intuitivement.
+    ├── views                 # Vues (interface graphique)
+    └── utility               # Classes utilitaires et objets-service
+
 ---
 
 **Conventions de codage:**
