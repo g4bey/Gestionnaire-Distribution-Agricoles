@@ -47,6 +47,7 @@
   + Revue des vues FXML.
   + Revue du connecteur et ses tests.
   + Mise au norme du projet
+  + Attribution des taches prochain spring.
 
 
 
