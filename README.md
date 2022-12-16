@@ -20,9 +20,9 @@
     .
     ├── Genie Logiciel        # Partie liée au génie logiciel      
     ├── Rapports              # Rapports envoyées
-    ├── Set-up                # Scripte de mise en route du projet    
+    ├── Set-up                # Script de mise en route du projet    
     ├── src                   # Racine du projet               
-    ├── README.md             # Information sur le projet
+    ├── README.md             # Informatiosn sur le projet
     └── resumé-reunions.md    # Résumé des réunions de groupe
     
 
@@ -30,13 +30,13 @@
 
     src
     ├── DAO                   # Accesseur aux données    
-    ├── controllers           # Controlleurs (lien entre modele et vue)
-    ├── modele                # Objets-Metiers
-    ├── ressources            # Configurations et fichiers utilisé par le logiciel. 
-    ├── exceptions            # les exceptions dérivant d'Exception
+    ├── controllers           # Contrôleurs (lien entre modele et vue)
+    ├── modele                # Objets-Métier
+    ├── ressources            # Configurations et fichiers utilisés par le logiciel. 
+    ├── exceptions            # Exceptions dérivant d'Exception
     ├── tests                 # Tests des classes, rangés intuitivement.
     ├── views                 # Vues (interface graphique)
-    └── utility               # Classes utilitaires et objets-service
+    └── utility               # Classes utilitaires et objets-Service
 
 ---
 
