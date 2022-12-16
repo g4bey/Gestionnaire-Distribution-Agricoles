@@ -5,13 +5,14 @@
 <br>
 
 <div align='center'>
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Scnenario.md">Scénario Principal</a>
-  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/MCD">MCD</a>
-  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/impact_maping.png">Impact Map</a>
-  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/Romain9/Maquette">Maquette</a><br>
-  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20classes">Diagramme de classes</a>
-  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20cas%20d'utilisation">Diagramme cas d'utilisation</a>
-  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Diagramme%20de%20sequence">Diagramme de sequence</a>
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Genie%20Logiciel/Scnenario.md">Scénario Principal</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Genie%20Logiciel/MCD/MCD.mcd">MCD</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Genie%20Logiciel/impact_maping.png">Impact Map</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Genie%20Logiciel/Maquette/Maquette_sp-1.pdf">Maquette</a><br>
+  <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Genie%20Logiciel/Diagramme%20de%20classes/diagramme%20de%20classes.svg">Diagramme de classes</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Genie%20Logiciel/Diagramme%20cas%20d'utilisation">Diagramme cas d'utilisation</a>
+  • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/tree/main/Genie%20Logiciel/Diagramme%20de%20sequence">Diagramme de sequence</a>
+   • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Genie%20Logiciel/Requetes.pdf">Requetes</a>
 </div>
 
 ---
@@ -22,7 +23,7 @@
     ├── Rapports              # Rapports envoyées
     ├── Set-up                # Script de mise en route du projet    
     ├── src                   # Racine du projet               
-    ├── README.md             # Informatiosn sur le projet
+    ├── README.md             # Informations sur le projet
     └── resumé-reunions.md    # Résumé des réunions de groupe
     
 
