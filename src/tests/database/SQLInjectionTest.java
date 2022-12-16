@@ -46,7 +46,7 @@ public class SQLInjectionTest {
     public void executeQueryFirstOrder() throws SQLException {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, "users2'--");
+        pst.setString(1, "users2'-- ");
         pst.setString(2, "no");
         ResultSet res = pst.executeQuery();
         assertFalse(res.first());
@@ -70,7 +70,7 @@ public class SQLInjectionTest {
         String requete1 = "INSERT INTO `users` (`id`, `username`, `email`, `password`)"
                 + " VALUES (null, ?, 'default@gmail.com', ?)";
         PreparedStatement pst = conn.prepareStatement(requete1);
-        pst.setString(1, "user2'--");
+        pst.setString(1, "user2'-- ");
         pst.setString(2, "123");
         pst.executeUpdate();
         pst.close();
