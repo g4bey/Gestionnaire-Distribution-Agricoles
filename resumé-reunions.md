@@ -47,7 +47,9 @@
   + Revue des vues FXML.
   + Revue du connecteur et ses tests.
   + Mise au norme du projet
-  + Attribution des taches prochain spring.
+  + Attribution des taches prochain sprint.
 
+  **16 decembre 2022**
+  + Réunion prévue à 19h30.
 
 
