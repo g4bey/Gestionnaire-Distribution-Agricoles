@@ -16,6 +16,7 @@
 
 ---
 **Structure:**
+
     .
     ├── Genie Logiciel        # Partie liée au génie logiciel      
     ├── Rapports              # Rapports envoyées
@@ -23,6 +24,7 @@
     ├── src                   # Racine du projet               
     ├── README.md             # Information sur le projet
     └── resumé-reunions.md    # Résumé des réunions de groupe
+    
 
 ---
 
