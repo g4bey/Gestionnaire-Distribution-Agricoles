@@ -6,7 +6,7 @@ import java.util.*;
  * Objet métier représentant un Producteur.
  */
 
-public class Producteur extends ModeleConcret {
+public class Producteur {
     private int idProducteur;
 
     private String siret;

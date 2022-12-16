@@ -4,7 +4,7 @@ package modele;
  * Objet métier représentant un Administrateur.
  */
 
-public class Administrateur extends ModeleConcret {
+public class Administrateur {
     private int idAdministrateur;
 
     private String pseudo;

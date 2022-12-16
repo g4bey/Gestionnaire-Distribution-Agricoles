@@ -6,7 +6,7 @@ import java.util.*;
  * Objet métier représentant un client.
  */
 
-public class Client extends ModeleConcret {
+public class Client {
     private int idClient;
 
     private String nomClient;

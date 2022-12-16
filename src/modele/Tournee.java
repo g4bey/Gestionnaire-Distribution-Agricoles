@@ -6,7 +6,7 @@ import java.util.*;
  * Objet métier représentant une Tournée.
  */
 
-public class Tournee extends ModeleConcret {
+public class Tournee {
     private int idTournee;
 
     private String horaireDebut;

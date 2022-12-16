@@ -6,7 +6,7 @@ import java.util.*;
  * Objet métier représentant un Véhicule.
  */
 
-public class Vehicule extends ModeleConcret {
+public class Vehicule {
     private int idVehicule;
 
     private String numImmat;

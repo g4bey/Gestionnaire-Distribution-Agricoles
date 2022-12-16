@@ -4,7 +4,7 @@ package modele;
  * Objet métier représentant une commande.
  */
 
-public class Commande extends ModeleConcret {
+public class Commande {
     private int idCommande;
 
     private String libelle;
