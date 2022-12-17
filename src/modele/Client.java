@@ -1,7 +1,5 @@
 package modele;
 
-import java.util.*;
-
 /**
  * Objet métier représentant un client.
  */
@@ -16,8 +14,6 @@ public class Client {
     private String gpsClient;
 
     private String numTelClient;
-
-    private List<Commande> commandes = new ArrayList<>();
 
     private int getIdClient() {
         return idClient;
@@ -37,10 +33,6 @@ public class Client {
 
     private String getNumTelClient() {
         return numTelClient;
-    }
-
-    private List<Commande> getCommandes() {
-        return commandes;
     }
 
     private void setIdClient(int idClient) {
@@ -71,11 +63,8 @@ public class Client {
      * @param adresseClient String représentant l'adresse du Client.
      * @param gpsClient     String représentant les coordonnées GPS du Client.
      * @param numTelClient  String représentant le numéro de téléphone du Client.
-     * @param commandes     ArrayList<Commande> représentant les commandes du
-     *                      Client.
      */
 
-    public Client(int idClient, String nomClient, String adresseClient, String gpsClient, String numTelClient,
-            List<Commande> commandes) {
+    public Client(int idClient, String nomClient, String adresseClient, String gpsClient, String numTelClient) {
     }
 }

@@ -17,7 +17,7 @@ public class Tournee {
 
     private Vehicule vehicule;
 
-    private List<Commande> commandes = new ArrayList<>();
+    private List<Commande> commandes;
 
     private int getIdTournee() {
         return idTournee;
@@ -72,11 +72,25 @@ public class Tournee {
      * @param poids        float représentant le poids total de la Tournee.
      * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
      *                     la Tournee.
-     * @param commandes    ArrayList<Commande> représentant les commandes composant
-     *                     la Tournee.
      */
 
-    public Tournee(int idTournee, String horaireDebut, String horaireFin, float poids, Vehicule vehicule,
-            List<Commande> commandes) {
+    public Tournee(int idTournee, String horaireDebut, String horaireFin, float poids, Vehicule vehicule) {
+        this.commandes = new ArrayList<>();
+    }
+
+    /**
+     * Permet d'ajouter une commande à la liste de commandes de la tournée
+     * @param commande L'objet Tournee à ajouter
+     */
+    public void addCommande(Commande commande) {
+        this.commandes.add(commande);
+    }
+
+    /**
+     * Permet de supprimer une commande de la liste de commandes de la tournée
+     * @param commande L'objet Commande à supprimer
+     */
+    public void removeCommande(Commande commande) {
+        this.commandes.remove(commande);
     }
 }

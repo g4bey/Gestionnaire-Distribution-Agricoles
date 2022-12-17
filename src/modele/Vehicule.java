@@ -63,9 +63,25 @@ public class Vehicule {
      *                   accepter.
      * @param producteur Producteur représentant le producteur utilisant le
      *                   Vehicule.
-     * @param tournees   ArrayList<Tournee> représentant les tournées du Vehicule.
      */
 
-    public Vehicule(int idVehicule, String numImmat, float poidsMax, Producteur producteur, List<Tournee> tournees) {
+    public Vehicule(int idVehicule, String numImmat, float poidsMax, Producteur producteur) {
+        this.tournees = new ArrayList<>();
+    }
+
+    /**
+     * Permet d'ajouter une tournée à la liste de tournées du véhicule
+     * @param tournee L'objet Tournee à ajouter
+     */
+    public void addTournee(Tournee tournee) {
+        this.tournees.add(tournee);
+    }
+
+    /**
+     * Permet de supprimer une tournée de la liste de tournées du véhicule
+     * @param tournee L'objet Tournee à supprimer
+     */
+    public void removeTournee(Tournee tournee) {
+        this.tournees.remove(tournee);
     }
 }
