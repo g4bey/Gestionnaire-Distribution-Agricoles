@@ -4,7 +4,6 @@ import modele.Client;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +33,6 @@ public class ClientDAO extends DAO<Client> {
             }
 
             return null;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -110,7 +108,6 @@ public class ClientDAO extends DAO<Client> {
             pstmt.setInt(1, t.getIdClient());
 
             pstmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -129,7 +126,6 @@ public class ClientDAO extends DAO<Client> {
             pstmt.setInt(1, id);
 
             pstmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

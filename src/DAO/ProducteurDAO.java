@@ -2,6 +2,8 @@ package DAO;
 
 import modele.Producteur;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,24 @@ public class ProducteurDAO extends DAO<Producteur> {
 
     @Override
     public Producteur get(int id) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Producteur WHERE idProducteur = ?");
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Producteur(id, rs.getString("siret"), rs.getString("proprietaire"),
+                        rs.getString("adresseProd"),
+                        rs.getString("numTelProd"),
+                        rs.getString("gpsProd"),
+                        rs.getString("mdpProd"));
+            }
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -28,6 +48,24 @@ public class ProducteurDAO extends DAO<Producteur> {
 
     @Override
     public List<Producteur> getAll() {
+        ArrayList<Producteur> producteurs = new ArrayList<>();
+        try {
+            rs = stmt.executeQuery("SELECT * FROM Producteur");
+
+            while (rs.next()) {
+                producteurs.add(
+                        new Producteur(rs.getInt("idProducteur"), rs.getString("siret"), rs.getString("proprietaire"),
+                                rs.getString("adresseProd"),
+                                rs.getString("numTelProd"),
+                                rs.getString("gpsProd"),
+                                rs.getString("mdpProd")));
+            }
+
+            return producteurs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -38,6 +76,24 @@ public class ProducteurDAO extends DAO<Producteur> {
 
     @Override
     public void add(Producteur t) {
+        try {
+            pstmt = conn.prepareStatement("INSERT INTO Producteur VALUES (NULL, ?, ?, ?, ?, ?, ?)");
+            pstmt.setString(1, t.getSiret());
+            pstmt.setString(2, t.getProprietaire());
+            pstmt.setString(3, t.getAdresseProd());
+            pstmt.setString(4, t.getNumTelProd());
+            pstmt.setString(5, t.getGpsProd());
+            pstmt.setString(6, t.getMdpProd());
+
+            pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
+
+            if (rs.next())
+                t.setIdProducteur(rs.getInt("idProducteur"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -48,6 +104,20 @@ public class ProducteurDAO extends DAO<Producteur> {
 
     @Override
     public void update(Producteur t) {
+        try {
+            pstmt = conn.prepareStatement(
+                    "UPDATE Producteur SET siret = ?, proprietaire = ?, adresseProd = ?, numTelProd = ?, gpsProd = ?, mdpProd = ?)");
+            pstmt.setString(1, t.getSiret());
+            pstmt.setString(2, t.getProprietaire());
+            pstmt.setString(3, t.getAdresseProd());
+            pstmt.setString(4, t.getNumTelProd());
+            pstmt.setString(5, t.getGpsProd());
+            pstmt.setString(6, t.getMdpProd());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -58,6 +128,14 @@ public class ProducteurDAO extends DAO<Producteur> {
 
     @Override
     public void delete(int id) {
+        try {
+            pstmt = conn.prepareStatement("DELETE FROM Producteur WHERE idProducteur = ?");
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
