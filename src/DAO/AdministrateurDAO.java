@@ -67,5 +67,6 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      */
 
     public AdministrateurDAO(Connection conn) {
+        super(conn);
     }
 }

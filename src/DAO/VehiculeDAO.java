@@ -67,5 +67,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      */
 
     public VehiculeDAO(Connection conn) {
+        super(conn);
     }
 }

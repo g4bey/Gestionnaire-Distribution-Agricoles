@@ -1,6 +1,10 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -8,11 +12,10 @@ import java.util.List;
  */
 
 public abstract class DAO<T> {
-    private Connection conn;
-
-    protected Connection getConn() {
-        return conn;
-    }
+    protected Connection conn = null;
+    protected Statement stmt = null;
+    protected PreparedStatement pstmt = null;
+    protected ResultSet rs = null;
 
     /**
      * Constructeur de DAO.
@@ -21,6 +24,12 @@ public abstract class DAO<T> {
      */
 
     public DAO(Connection conn) {
+        this.conn = conn;
+        try {
+            stmt = conn.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -67,5 +67,6 @@ public class ProducteurDAO extends DAO<Producteur> {
      */
 
     public ProducteurDAO(Connection conn) {
+        super(conn);
     }
 }

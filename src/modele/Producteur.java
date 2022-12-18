@@ -21,11 +21,11 @@ public class Producteur {
 
     private String mdpProd;
 
-    private List<Vehicule> vehicules;
+    private List<Vehicule> vehicules = new ArrayList<>();
 
-    private List<Commande> commandes;
+    private List<Commande> commandes = new ArrayList<>();
 
-    private List<Tournee> tournees;
+    private List<Tournee> tournees = new ArrayList<>();
 
     private int getIdProducteur() {
         return idProducteur;
@@ -110,13 +110,27 @@ public class Producteur {
 
     public Producteur(int idProducteur, String siret, String proprietaire, String adresseProd, String numTelProd,
             String gpsProd, String mdpProd) {
-        this.vehicules = new ArrayList<>();
-        this.commandes = new ArrayList<>();
-        this.tournees = new ArrayList<>();
+    }
+
+    /**
+     * Constructeur de Producteur.
+     * 
+     * @param siret        String représentant le siret du Producteur.
+     * @param proprietaire String représentant le nom et prénom du propriétaire.
+     * @param adresseProd  String représentant l'adresse du Producteur.
+     * @param numTelProd   String représentant le numéro de téléphone du Producteur.
+     * @param gpsProd      String représentant les coordonnées GPS du Producteur.
+     * @param mdpProd      String représentant le hash du mot de passe du
+     *                     Producteur.
+     */
+
+    public Producteur(String siret, String proprietaire, String adresseProd, String numTelProd,
+            String gpsProd, String mdpProd) {
     }
 
     /**
      * Permet d'ajouter un véhicule à la liste de véhicules du producteur
+     * 
      * @param vehicule L'objet Vehicule à ajouter
      */
     public void addVehicule(Vehicule vehicule) {
@@ -125,6 +139,7 @@ public class Producteur {
 
     /**
      * Permet de supprimer un véhicule de la liste de véhicules du producteur
+     * 
      * @param vehicule L'objet Vehicule à supprimer
      */
     public void removeVehicule(Vehicule vehicule) {
@@ -133,6 +148,7 @@ public class Producteur {
 
     /**
      * Permet d'ajouter une commande à la liste de commandes du producteur
+     * 
      * @param commande L'objet Commande à ajouter
      */
     public void addCommande(Commande commande) {
@@ -141,6 +157,7 @@ public class Producteur {
 
     /**
      * Permet de supprimer une commande de la liste de commandes du producteur
+     * 
      * @param commande L'objet Commande à supprimer
      */
     public void removeCommande(Commande commande) {
@@ -149,6 +166,7 @@ public class Producteur {
 
     /**
      * Permet d'ajouter une tournée à la liste de Tournées du producteur
+     * 
      * @param tournee L'objet Tournee à ajouter
      */
     public void addTournee(Tournee tournee) {
@@ -157,6 +175,7 @@ public class Producteur {
 
     /**
      * Permet de supprimer une tournée de la liste de Tournées du producteur
+     * 
      * @param tournee L'objet Tournee à supprimer
      */
     public void removeTournee(Tournee tournee) {

@@ -45,4 +45,14 @@ public class Administrateur {
 
     public Administrateur(int idAdministrateur, String pseudo, String mdpAdmin) {
     }
+
+    /**
+     * Constructeur d'Administrateur.
+     * 
+     * @param pseudo   String représentant l'Administrateur.
+     * @param mdpAdmin String représentant l'Administrateur.
+     */
+
+    public Administrateur(String pseudo, String mdpAdmin) {
+    }
 }

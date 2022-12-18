@@ -67,5 +67,6 @@ public class TourneeDAO extends DAO<Tournee> {
      */
 
     public TourneeDAO(Connection conn) {
+        super(conn);
     }
 }

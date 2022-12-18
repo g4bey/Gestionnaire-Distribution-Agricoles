@@ -15,43 +15,43 @@ public class Client {
 
     private String numTelClient;
 
-    private int getIdClient() {
+    public int getIdClient() {
         return idClient;
     }
 
-    private String getNomClient() {
+    public String getNomClient() {
         return nomClient;
     }
 
-    private String getAdresseClient() {
+    public String getAdresseClient() {
         return adresseClient;
     }
 
-    private String getGpsClient() {
+    public String getGpsClient() {
         return gpsClient;
     }
 
-    private String getNumTelClient() {
+    public String getNumTelClient() {
         return numTelClient;
     }
 
-    private void setIdClient(int idClient) {
+    public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
 
-    private void setNomClient(String nomClient) {
+    public void setNomClient(String nomClient) {
         this.nomClient = nomClient;
     }
 
-    private void setAdresseClient(String adresseClient) {
+    public void setAdresseClient(String adresseClient) {
         this.adresseClient = adresseClient;
     }
 
-    private void setGpsClient(String gpsClient) {
+    public void setGpsClient(String gpsClient) {
         this.gpsClient = gpsClient;
     }
 
-    private void setNumTelClient(String numTelClient) {
+    public void setNumTelClient(String numTelClient) {
         this.numTelClient = numTelClient;
     }
 
@@ -66,5 +66,17 @@ public class Client {
      */
 
     public Client(int idClient, String nomClient, String adresseClient, String gpsClient, String numTelClient) {
+    }
+
+    /**
+     * Constructeur de Client.
+     * 
+     * @param nomClient     String représentant le nom du Client.
+     * @param adresseClient String représentant l'adresse du Client.
+     * @param gpsClient     String représentant les coordonnées GPS du Client.
+     * @param numTelClient  String représentant le numéro de téléphone du Client.
+     */
+
+    public Client(String nomClient, String adresseClient, String gpsClient, String numTelClient) {
     }
 }

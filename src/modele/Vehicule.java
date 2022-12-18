@@ -70,7 +70,23 @@ public class Vehicule {
     }
 
     /**
+     * Constructeur de Vehicule.
+     * 
+     * @param numImmat   String représentant le numéro d'immatriculation du
+     *                   Vehicule.
+     * @param poidsMax   float représentant le poids maximum que le Vehicule peut
+     *                   accepter.
+     * @param producteur Producteur représentant le producteur utilisant le
+     *                   Vehicule.
+     */
+
+    public Vehicule(String numImmat, float poidsMax, Producteur producteur) {
+        this.tournees = new ArrayList<>();
+    }
+
+    /**
      * Permet d'ajouter une tournée à la liste de tournées du véhicule
+     * 
      * @param tournee L'objet Tournee à ajouter
      */
     public void addTournee(Tournee tournee) {
@@ -79,6 +95,7 @@ public class Vehicule {
 
     /**
      * Permet de supprimer une tournée de la liste de tournées du véhicule
+     * 
      * @param tournee L'objet Tournee à supprimer
      */
     public void removeTournee(Tournee tournee) {
