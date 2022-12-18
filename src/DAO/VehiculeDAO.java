@@ -2,6 +2,8 @@ package DAO;
 
 import modele.Vehicule;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,23 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
     @Override
     public Vehicule get(int id) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Vehicule WHERE idVehicule = ?");
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                ProducteurDAO pDAO = new ProducteurDAO(conn);
+
+                return new Vehicule(id, rs.getString("numImmat"), rs.getFloat("poidsMax"), rs.getString("libelle"),
+                        pDAO.get(rs.getInt("idProducteur")));
+            }
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -28,6 +47,21 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
     @Override
     public List<Vehicule> getAll() {
+        ArrayList<Vehicule> vehicules = new ArrayList<>();
+        try {
+            rs = stmt.executeQuery("SELECT * FROM Client");
+
+            ProducteurDAO pDAO = new ProducteurDAO(conn);
+
+            while (rs.next())
+                vehicules.add(new Vehicule(rs.getInt("idVehicule"), rs.getString("numImmat"), rs.getFloat("poidsMax"),
+                        rs.getString("libelle"), pDAO.get(rs.getInt("idProducteur"))));
+
+            return vehicules;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -38,6 +72,22 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
     @Override
     public void add(Vehicule t) {
+        try {
+            pstmt = conn.prepareStatement("INSERT INTO Vehicule VALUES (NULL, ?, ?, ?, ?)");
+            pstmt.setFloat(1, t.getPoidsMax());
+            pstmt.setString(2, t.getLibelle());
+            pstmt.setString(3, t.getNumImmat());
+            pstmt.setInt(4, t.getProducteur().getIdProducteur());
+
+            pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
+
+            if (rs.next())
+                t.setIdVehicule(rs.getInt("idVehicule"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -48,6 +98,19 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
     @Override
     public void update(Vehicule t) {
+        try {
+            pstmt = conn.prepareStatement(
+                    "UPDATE Vehicule SET poidsMax = ?, libelle = ?, numImmat = ?, idProducteur = ? WHERE idVehicule = ?");
+            pstmt.setFloat(1, t.getPoidsMax());
+            pstmt.setString(2, t.getLibelle());
+            pstmt.setString(3, t.getNumImmat());
+            pstmt.setInt(4, t.getProducteur().getIdProducteur());
+            pstmt.setInt(1, t.getIdVehicule());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -58,6 +121,14 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
     @Override
     public void delete(int id) {
+        try {
+            pstmt = conn.prepareStatement("DELETE FROM Vehicule WHERE idVehicule = ?");
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

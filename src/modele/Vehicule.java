@@ -13,6 +13,8 @@ public class Vehicule {
 
     private float poidsMax;
 
+    private String libelle;
+
     private List<Tournee> tournees = new ArrayList<>();
 
     private Producteur producteur;
@@ -27,6 +29,10 @@ public class Vehicule {
 
     public float getPoidsMax() {
         return poidsMax;
+    }
+
+    public String getLibelle() {
+        return libelle;
     }
 
     public List<Tournee> getTournees() {
@@ -49,6 +55,10 @@ public class Vehicule {
         this.poidsMax = poidsMax;
     }
 
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
     public void setProducteur(Producteur producteur) {
         this.producteur = producteur;
     }
@@ -59,13 +69,14 @@ public class Vehicule {
      * @param idVehicule int représentant l'id du Vehicule.
      * @param numImmat   String représentant le numéro d'immatriculation du
      *                   Vehicule.
+     * @param libelle    String représentant le libellé du Vehicule.
      * @param poidsMax   float représentant le poids maximum que le Vehicule peut
      *                   accepter.
      * @param producteur Producteur représentant le producteur utilisant le
      *                   Vehicule.
      */
 
-    public Vehicule(int idVehicule, String numImmat, float poidsMax, Producteur producteur) {
+    public Vehicule(int idVehicule, String numImmat, float poidsMax, String libelle, Producteur producteur) {
         this.tournees = new ArrayList<>();
     }
 
@@ -74,13 +85,14 @@ public class Vehicule {
      * 
      * @param numImmat   String représentant le numéro d'immatriculation du
      *                   Vehicule.
+     * @param libelle    String représentant le libellé du Vehicule.
      * @param poidsMax   float représentant le poids maximum que le Vehicule peut
      *                   accepter.
      * @param producteur Producteur représentant le producteur utilisant le
      *                   Vehicule.
      */
 
-    public Vehicule(String numImmat, float poidsMax, Producteur producteur) {
+    public Vehicule(String numImmat, float poidsMax, String libelle, Producteur producteur) {
         this.tournees = new ArrayList<>();
     }
 
