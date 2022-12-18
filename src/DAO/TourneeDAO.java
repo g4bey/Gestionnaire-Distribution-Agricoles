@@ -1,7 +1,12 @@
 package DAO;
 
+import modele.Commande;
 import modele.Tournee;
+import modele.Vehicule;
+
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +23,22 @@ public class TourneeDAO extends DAO<Tournee> {
 
     @Override
     public Tournee get(int id) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Tournee WHERE idTournee = ?");
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+
+            VehiculeDAO vDAO = new VehiculeDAO(conn);
+
+            if (rs.next())
+                return new Tournee(id, rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
+                        rs.getFloat("poids"), rs.getString("libelle"), vDAO.get(rs.getInt("idVehicule")));
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -28,6 +49,22 @@ public class TourneeDAO extends DAO<Tournee> {
 
     @Override
     public List<Tournee> getAll() {
+        ArrayList<Tournee> tournees = new ArrayList<>();
+        try {
+            rs = stmt.executeQuery("SELECT * FROM Tournee");
+
+            VehiculeDAO vDAO = new VehiculeDAO(conn);
+
+            while (rs.next())
+                tournees.add(new Tournee(rs.getInt("idTournee"), rs.getTimestamp("horaireDebut"),
+                        rs.getTimestamp("horaireFin"), rs.getFloat("poids"), rs.getString("libelle"),
+                        vDAO.get(rs.getInt("idVehicule"))));
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -48,6 +85,24 @@ public class TourneeDAO extends DAO<Tournee> {
 
     @Override
     public void update(Tournee t) {
+        try {
+            pstmt = conn.prepareStatement(
+                    "UPDATE Tournee SET horaireDebut = ?, horaireFin = ?, poids = ?, libelle = ?, idVehicule = ? WHERE idClient = ?");
+            pstmt.setTimestamp(1, t.getHoraireDebut());
+            pstmt.setTimestamp(2, t.getHoraireFin());
+            pstmt.setFloat(3, t.getPoids());
+            pstmt.setString(4, t.getLibelle());
+            pstmt.setInt(5, t.getVehicule().getIdVehicule());
+
+            pstmt.executeUpdate();
+
+            CommandeDAO coDAO = new CommandeDAO(conn);
+
+            for (Commande commande : t.getCommandes())
+                coDAO.update(commande);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -58,6 +113,14 @@ public class TourneeDAO extends DAO<Tournee> {
 
     @Override
     public void delete(int id) {
+        try {
+            pstmt = conn.prepareStatement("DELETE FROM Tournee WHERE idTournee = ?");
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

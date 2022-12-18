@@ -1,5 +1,6 @@
 package modele;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -9,11 +10,13 @@ import java.util.*;
 public class Tournee {
     private int idTournee;
 
-    private String horaireDebut;
+    private Timestamp horaireDebut;
 
-    private String horaireFin;
+    private Timestamp horaireFin;
 
     private float poids;
+
+    private String libelle;
 
     private Vehicule vehicule;
 
@@ -23,11 +26,11 @@ public class Tournee {
         return idTournee;
     }
 
-    public String getHoraireDebut() {
+    public Timestamp getHoraireDebut() {
         return horaireDebut;
     }
 
-    public String getHoraireFin() {
+    public Timestamp getHoraireFin() {
         return horaireFin;
     }
 
@@ -47,11 +50,11 @@ public class Tournee {
         this.idTournee = idTournee;
     }
 
-    public void setHoraireDebut(String horaireDebut) {
+    public void setHoraireDebut(Timestamp horaireDebut) {
         this.horaireDebut = horaireDebut;
     }
 
-    public void setHoraireFin(String horaireFin) {
+    public void setHoraireFin(Timestamp horaireFin) {
         this.horaireFin = horaireFin;
     }
 
@@ -61,6 +64,14 @@ public class Tournee {
 
     public void setVehicule(Vehicule vehicule) {
         this.vehicule = vehicule;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     /**
@@ -74,7 +85,8 @@ public class Tournee {
      *                     la Tournee.
      */
 
-    public Tournee(int idTournee, String horaireDebut, String horaireFin, float poids, Vehicule vehicule) {
+    public Tournee(int idTournee, Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle,
+            Vehicule vehicule, List<Commande> commandes) {
     }
 
     /**
@@ -87,7 +99,8 @@ public class Tournee {
      *                     la Tournee.
      */
 
-    public Tournee(String horaireDebut, String horaireFin, float poids, Vehicule vehicule) {
+    public Tournee(Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle, Vehicule vehicule,
+            List<Commande> commandes) {
     }
 
     /**

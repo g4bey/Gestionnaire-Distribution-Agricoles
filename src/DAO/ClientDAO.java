@@ -52,8 +52,7 @@ public class ClientDAO extends DAO<Client> {
 
             while (rs.next())
                 clients.add(new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
-                        rs.getString("gpsClient"),
-                        rs.getString("numTelClient")));
+                        rs.getString("gpsClient"), rs.getString("numTelClient")));
 
             return clients;
         } catch (SQLException e) {
