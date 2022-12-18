@@ -11,27 +11,27 @@ public class Administrateur {
 
     private String mdpAdmin;
 
-    private int getIdAdministrateur() {
+    public int getIdAdministrateur() {
         return idAdministrateur;
     }
 
-    private String getPseudo() {
+    public String getPseudo() {
         return pseudo;
     }
 
-    private String getMdpAdmin() {
+    public String getMdpAdmin() {
         return mdpAdmin;
     }
 
-    private void setIdAdministrateur(int idAdministrateur) {
+    public void setIdAdministrateur(int idAdministrateur) {
         this.idAdministrateur = idAdministrateur;
     }
 
-    private void setPseudo(String pseudo) {
+    public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
 
-    private void setMdpAdmin(String mdpAdmin) {
+    public void setMdpAdmin(String mdpAdmin) {
         this.mdpAdmin = mdpAdmin;
     }
 

@@ -17,39 +17,39 @@ public class Vehicule {
 
     private Producteur producteur;
 
-    private int getIdVehicule() {
+    public int getIdVehicule() {
         return idVehicule;
     }
 
-    private String getNumImmat() {
+    public String getNumImmat() {
         return numImmat;
     }
 
-    private float getPoidsMax() {
+    public float getPoidsMax() {
         return poidsMax;
     }
 
-    private List<Tournee> getTournees() {
+    public List<Tournee> getTournees() {
         return tournees;
     }
 
-    private Producteur getProducteur() {
+    public Producteur getProducteur() {
         return producteur;
     }
 
-    private void setIdVehicule(int idVehicule) {
+    public void setIdVehicule(int idVehicule) {
         this.idVehicule = idVehicule;
     }
 
-    private void setNumImmat(String numImmat) {
+    public void setNumImmat(String numImmat) {
         this.numImmat = numImmat;
     }
 
-    private void setPoidsMax(float poidsMax) {
+    public void setPoidsMax(float poidsMax) {
         this.poidsMax = poidsMax;
     }
 
-    private void setProducteur(Producteur producteur) {
+    public void setProducteur(Producteur producteur) {
         this.producteur = producteur;
     }
 

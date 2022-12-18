@@ -21,67 +21,67 @@ public class Commande {
 
     private Tournee tournee;
 
-    private int getIdCommande() {
+    public int getIdCommande() {
         return idCommande;
     }
 
-    private String getLibelle() {
+    public String getLibelle() {
         return libelle;
     }
 
-    private float getPoids() {
+    public float getPoids() {
         return poids;
     }
 
-    private String getHoraireDebut() {
+    public String getHoraireDebut() {
         return horaireDebut;
     }
 
-    private String getHoraireFin() {
+    public String getHoraireFin() {
         return horaireFin;
     }
 
-    private Producteur getProducteur() {
+    public Producteur getProducteur() {
         return producteur;
     }
 
-    private Client getClient() {
+    public Client getClient() {
         return client;
     }
 
-    private Tournee getTournee() {
+    public Tournee getTournee() {
         return tournee;
     }
 
-    private void setIdCommande(int idCommande) {
+    public void setIdCommande(int idCommande) {
         this.idCommande = idCommande;
     }
 
-    private void setLibelle(String libelle) {
+    public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
 
-    private void setPoids(float poids) {
+    public void setPoids(float poids) {
         this.poids = poids;
     }
 
-    private void setHoraireDebut(String horaireDebut) {
+    public void setHoraireDebut(String horaireDebut) {
         this.horaireDebut = horaireDebut;
     }
 
-    private void setHoraireFin(String horaireFin) {
+    public void setHoraireFin(String horaireFin) {
         this.horaireFin = horaireFin;
     }
 
-    private void setProducteur(Producteur producteur) {
+    public void setProducteur(Producteur producteur) {
         this.producteur = producteur;
     }
 
-    private void setClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
-    private void setTournee(Tournee tournee) {
+    public void setTournee(Tournee tournee) {
         this.tournee = tournee;
     }
 

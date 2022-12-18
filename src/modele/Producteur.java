@@ -27,71 +27,71 @@ public class Producteur {
 
     private List<Tournee> tournees = new ArrayList<>();
 
-    private int getIdProducteur() {
+    public int getIdProducteur() {
         return idProducteur;
     }
 
-    private String getSiret() {
+    public String getSiret() {
         return siret;
     }
 
-    private String getProprietaire() {
+    public String getProprietaire() {
         return proprietaire;
     }
 
-    private String getAdresseProd() {
+    public String getAdresseProd() {
         return adresseProd;
     }
 
-    private String getNumTelProd() {
+    public String getNumTelProd() {
         return numTelProd;
     }
 
-    private String getGpsProd() {
+    public String getGpsProd() {
         return gpsProd;
     }
 
-    private String getMdpProd() {
+    public String getMdpProd() {
         return mdpProd;
     }
 
-    private List<Vehicule> getVehicules() {
+    public List<Vehicule> getVehicules() {
         return vehicules;
     }
 
-    private List<Commande> getCommandes() {
+    public List<Commande> getCommandes() {
         return commandes;
     }
 
-    private List<Tournee> getTournees() {
+    public List<Tournee> getTournees() {
         return tournees;
     }
 
-    private void setIdProducteur(int idProducteur) {
+    public void setIdProducteur(int idProducteur) {
         this.idProducteur = idProducteur;
     }
 
-    private void setSiret(String siret) {
+    public void setSiret(String siret) {
         this.siret = siret;
     }
 
-    private void setProprietaire(String proprietaire) {
+    public void setProprietaire(String proprietaire) {
         this.proprietaire = proprietaire;
     }
 
-    private void setAdresseProd(String adresseProd) {
+    public void setAdresseProd(String adresseProd) {
         this.adresseProd = adresseProd;
     }
 
-    private void setNumTelProd(String numTelProd) {
+    public void setNumTelProd(String numTelProd) {
         this.numTelProd = numTelProd;
     }
 
-    private void setGpsProd(String gpsProd) {
+    public void setGpsProd(String gpsProd) {
         this.gpsProd = gpsProd;
     }
 
-    private void setMdpProd(String mdpProd) {
+    public void setMdpProd(String mdpProd) {
         this.mdpProd = mdpProd;
     }
 

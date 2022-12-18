@@ -19,47 +19,47 @@ public class Tournee {
 
     private List<Commande> commandes = new ArrayList<>();
 
-    private int getIdTournee() {
+    public int getIdTournee() {
         return idTournee;
     }
 
-    private String getHoraireDebut() {
+    public String getHoraireDebut() {
         return horaireDebut;
     }
 
-    private String getHoraireFin() {
+    public String getHoraireFin() {
         return horaireFin;
     }
 
-    private float getPoids() {
+    public float getPoids() {
         return poids;
     }
 
-    private Vehicule getVehicule() {
+    public Vehicule getVehicule() {
         return vehicule;
     }
 
-    private List<Commande> getCommandes() {
+    public List<Commande> getCommandes() {
         return commandes;
     }
 
-    private void setIdTournee(int idTournee) {
+    public void setIdTournee(int idTournee) {
         this.idTournee = idTournee;
     }
 
-    private void setHoraireDebut(String horaireDebut) {
+    public void setHoraireDebut(String horaireDebut) {
         this.horaireDebut = horaireDebut;
     }
 
-    private void setHoraireFin(String horaireFin) {
+    public void setHoraireFin(String horaireFin) {
         this.horaireFin = horaireFin;
     }
 
-    private void setPoids(float poids) {
+    public void setPoids(float poids) {
         this.poids = poids;
     }
 
-    private void setVehicule(Vehicule vehicule) {
+    public void setVehicule(Vehicule vehicule) {
         this.vehicule = vehicule;
     }
 
