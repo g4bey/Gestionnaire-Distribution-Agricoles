@@ -1,5 +1,7 @@
 package modele;
 
+import java.sql.Timestamp;
+
 /**
  * Objet métier représentant une commande.
  */
@@ -11,15 +13,15 @@ public class Commande {
 
     private float poids;
 
-    private String horaireDebut;
+    private Timestamp horaireDebut;
 
-    private String horaireFin;
+    private Timestamp horaireFin;
+
+    private Tournee tournee;
 
     private Producteur producteur;
 
     private Client client;
-
-    private Tournee tournee;
 
     public int getIdCommande() {
         return idCommande;
@@ -33,11 +35,11 @@ public class Commande {
         return poids;
     }
 
-    public String getHoraireDebut() {
+    public Timestamp getHoraireDebut() {
         return horaireDebut;
     }
 
-    public String getHoraireFin() {
+    public Timestamp getHoraireFin() {
         return horaireFin;
     }
 
@@ -65,11 +67,11 @@ public class Commande {
         this.poids = poids;
     }
 
-    public void setHoraireDebut(String horaireDebut) {
+    public void setHoraireDebut(Timestamp horaireDebut) {
         this.horaireDebut = horaireDebut;
     }
 
-    public void setHoraireFin(String horaireFin) {
+    public void setHoraireFin(Timestamp horaireFin) {
         this.horaireFin = horaireFin;
     }
 
@@ -100,8 +102,8 @@ public class Commande {
      *                     Commande.
      */
 
-    public Commande(int idCommande, String libelle, float poids, String horaireDebut, String horaireFin,
-            Producteur producteur, Client client, Tournee tournee) {
+    public Commande(int idCommande, String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin,
+            Tournee tournee, Producteur producteur, Client client) {
     }
 
     /**
@@ -118,7 +120,7 @@ public class Commande {
      *                     Commande.
      */
 
-    public Commande(String libelle, float poids, String horaireDebut, String horaireFin,
-            Producteur producteur, Client client, Tournee tournee) {
+    public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin, Tournee tournee,
+            Producteur producteur, Client client) {
     }
 }
