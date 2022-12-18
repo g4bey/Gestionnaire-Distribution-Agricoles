@@ -81,6 +81,7 @@ public class Tournee {
      * @param horaireDebut String représentant l'horaire de début de la Tournee.
      * @param horaireFin   String représentant l'horaire de fin de la Tournee.
      * @param poids        float représentant le poids total de la Tournee.
+     * @param libelle      String représentant le libellé de la Tournee.
      * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
      *                     la Tournee.
      */
@@ -95,6 +96,7 @@ public class Tournee {
      * @param horaireDebut String représentant l'horaire de début de la Tournee.
      * @param horaireFin   String représentant l'horaire de fin de la Tournee.
      * @param poids        float représentant le poids total de la Tournee.
+     * @param libelle      String représentant le libellé de la Tournee.
      * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
      *                     la Tournee.
      */
