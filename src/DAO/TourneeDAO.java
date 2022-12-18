@@ -28,11 +28,12 @@ public class TourneeDAO extends DAO<Tournee> {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            VehiculeDAO vDAO = new VehiculeDAO(conn);
-
-            if (rs.next())
+            if (rs.next()) {
                 return new Tournee(id, rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
-                        rs.getFloat("poids"), rs.getString("libelle"), vDAO.get(rs.getInt("idVehicule")));
+                        rs.getFloat("poids"), rs.getString("libelle"),
+                        new VehiculeDAO(conn).get(rs.getInt("idVehicule")),
+                        new CommandeDAO(conn).getAllByIdTournee(id));
+            }
 
             return null;
         } catch (SQLException e) {
@@ -54,11 +55,12 @@ public class TourneeDAO extends DAO<Tournee> {
             rs = stmt.executeQuery("SELECT * FROM Tournee");
 
             VehiculeDAO vDAO = new VehiculeDAO(conn);
+            CommandeDAO coDAO = new CommandeDAO(conn);
 
             while (rs.next())
                 tournees.add(new Tournee(rs.getInt("idTournee"), rs.getTimestamp("horaireDebut"),
                         rs.getTimestamp("horaireFin"), rs.getFloat("poids"), rs.getString("libelle"),
-                        vDAO.get(rs.getInt("idVehicule"))));
+                        vDAO.get(rs.getInt("idVehicule")), coDAO.getAllByIdTournee(rs.getInt("idTournee"))));
 
             return null;
         } catch (SQLException e) {
@@ -75,6 +77,28 @@ public class TourneeDAO extends DAO<Tournee> {
 
     @Override
     public void add(Tournee t) {
+        try {
+            pstmt = conn.prepareStatement("INSERT INTO Tournee VALUES (NULL, ?, ?, ?, ?, ?)");
+            pstmt.setTimestamp(1, t.getHoraireDebut());
+            pstmt.setTimestamp(2, t.getHoraireFin());
+            pstmt.setFloat(3, t.getPoids());
+            pstmt.setString(4, t.getLibelle());
+            pstmt.setInt(5, t.getVehicule().getIdVehicule());
+
+            pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                t.setIdTournee(rs.getInt("idTournee"));
+
+                CommandeDAO coDAO = new CommandeDAO(conn);
+
+                for (Commande commande : t.getCommandes())
+                    coDAO.add(commande);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

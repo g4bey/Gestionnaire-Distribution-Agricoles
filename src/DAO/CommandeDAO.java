@@ -73,6 +73,26 @@ public class CommandeDAO extends DAO<Commande> {
     }
 
     /**
+     * Récupère dans la base de données toutes les instances de Commande appartenant
+     * à la Tournee correspond à l'id.
+     * 
+     * @param id id de type int, représente l'id de la Tournee auquelle appartient
+     *           la Commande.
+     * @returns Une liste d'instances de Commande.
+     */
+
+    public List<Commande> getAllByIdTournee(int idTournee) {
+        ArrayList<Commande> commandes = new ArrayList<>();
+
+        for (Commande commande : getAll()) {
+            if (commande.getTournee().getIdTournee() == idTournee)
+                commandes.add(commande);
+        }
+
+        return commandes;
+    }
+
+    /**
      * Ajoute dans la base de données une instance de Commande.
      * 
      * @param t l'instance Commande de l'objet à ajouter.
