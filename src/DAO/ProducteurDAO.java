@@ -25,13 +25,12 @@ public class ProducteurDAO extends DAO<Producteur> {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next())
                 return new Producteur(id, rs.getString("siret"), rs.getString("proprietaire"),
                         rs.getString("adresseProd"),
                         rs.getString("numTelProd"),
                         rs.getString("gpsProd"),
                         rs.getString("mdpProd"));
-            }
 
             return null;
         } catch (SQLException e) {
@@ -52,14 +51,13 @@ public class ProducteurDAO extends DAO<Producteur> {
         try {
             rs = stmt.executeQuery("SELECT * FROM Producteur");
 
-            while (rs.next()) {
+            while (rs.next())
                 producteurs.add(
                         new Producteur(rs.getInt("idProducteur"), rs.getString("siret"), rs.getString("proprietaire"),
                                 rs.getString("adresseProd"),
                                 rs.getString("numTelProd"),
                                 rs.getString("gpsProd"),
                                 rs.getString("mdpProd")));
-            }
 
             return producteurs;
         } catch (SQLException e) {

@@ -2,6 +2,8 @@ package DAO;
 
 import modele.Administrateur;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,19 @@ public class AdministrateurDAO extends DAO<Administrateur> {
 
     @Override
     public Administrateur get(int id) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Administrateur WHERE idAdministrateur = ?");
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next())
+                return new Administrateur(id, rs.getString("pseudo"), rs.getString("mdpAdmin"));
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -28,6 +43,19 @@ public class AdministrateurDAO extends DAO<Administrateur> {
 
     @Override
     public List<Administrateur> getAll() {
+        ArrayList<Administrateur> administrateurs = new ArrayList<>();
+        try {
+            rs = stmt.executeQuery("SELECT * FROM Administrateur");
+
+            while (rs.next())
+                administrateurs.add(new Administrateur(rs.getInt("idAdministrateur"), rs.getString("pseudo"),
+                        rs.getString("mdpAdmin")));
+
+            return administrateurs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -38,6 +66,20 @@ public class AdministrateurDAO extends DAO<Administrateur> {
 
     @Override
     public void add(Administrateur t) {
+        try {
+            pstmt = conn.prepareStatement("INSERT INTO Administrateur VALUES (NULL, ?, ?)");
+            pstmt.setString(1, t.getPseudo());
+            pstmt.setString(2, t.getMdpAdmin());
+
+            pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
+
+            if (rs.next())
+                t.setIdAdministrateur(rs.getInt("idAdministrateur"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -48,6 +90,17 @@ public class AdministrateurDAO extends DAO<Administrateur> {
 
     @Override
     public void update(Administrateur t) {
+        try {
+            pstmt = conn.prepareStatement(
+                    "UPDATE Administrateur SET pseudo = ?, mdpAdmin = ? WHERE idAdministrateur = ?");
+            pstmt.setString(1, t.getPseudo());
+            pstmt.setString(2, t.getMdpAdmin());
+            pstmt.setInt(1, t.getIdAdministrateur());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -58,6 +111,14 @@ public class AdministrateurDAO extends DAO<Administrateur> {
 
     @Override
     public void delete(int id) {
+        try {
+            pstmt = conn.prepareStatement("DELETE FROM Administrateur WHERE idAdministrateur = ?");
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

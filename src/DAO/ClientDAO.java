@@ -26,11 +26,10 @@ public class ClientDAO extends DAO<Client> {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next())
                 return new Client(id, rs.getString("nomClient"), rs.getString("adresseClient"),
                         rs.getString("gpsClient"),
                         rs.getString("numTelClient"));
-            }
 
             return null;
         } catch (SQLException e) {
@@ -51,11 +50,10 @@ public class ClientDAO extends DAO<Client> {
         try {
             rs = stmt.executeQuery("SELECT * FROM Client");
 
-            while (rs.next()) {
+            while (rs.next())
                 clients.add(new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
                         rs.getString("gpsClient"),
                         rs.getString("numTelClient")));
-            }
 
             return clients;
         } catch (SQLException e) {
