@@ -6,15 +6,24 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNull;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Testons DatabaseConnection.
+ */
 public class DatabaseConnectionTest {
 
+    /**
+     * Fermons la connection avant chaque tests.
+     *
+     * @throws SQLException
+     */
     @BeforeEach
     void init() throws SQLException {
         DatabaseConnection.close("testing");
@@ -23,6 +32,9 @@ public class DatabaseConnectionTest {
     /**
      * Nous vérifions que le singleton renvoie bien une instance lors que
      * getInstance est invoqué pour la premiere fois.
+     *
+     *  @throws IOException
+     *  @throws ClassNotFoundException
      */
     @Test
     @DisplayName("Premiere connection valide")
@@ -38,6 +50,9 @@ public class DatabaseConnectionTest {
     /**
      * Nous vérifions qu'un environnement inexistant du fichier de configuration
      * génère bien une erreur IOException.
+     *
+     *  @throws IOException
+     *  @throws ClassNotFoundException
      */
     @Test
     @DisplayName("Chargeur d'attribut fonctionnel")
@@ -56,6 +71,9 @@ public class DatabaseConnectionTest {
     /**
      * Nous cherchons à tester l'unicité de la connection.
      * Le singleton doit renvoyer une instance si elle existe deja.
+     *
+     *  @throws IOException
+     *  @throws ClassNotFoundException
      */
     @Test
     @DisplayName("Singleton retournant une et une seule connection")
@@ -73,7 +91,7 @@ public class DatabaseConnectionTest {
 
     /**
      * Fermeture de la connection apres les tests.
-     * 
+     *
      * @throws SQLException
      */
     @AfterAll

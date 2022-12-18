@@ -7,10 +7,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.sql.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 /**
  * L'on veut s'assurer que les preparedStatement protege bien des injections
@@ -22,6 +29,10 @@ public class SQLInjectionTest {
 
     /**
      * Base de donnée par défaut, utile pour connaitre les valeurs en avance.
+     *
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
     @BeforeEach
     public void init() throws SQLException, IOException, ClassNotFoundException {
@@ -29,9 +40,11 @@ public class SQLInjectionTest {
         Statement st = conn.createStatement();
         st.execute("TRUNCATE TABLE `users`;");
         st.execute(
-                "INSERT INTO `users` (`id`, `username`, `email`, `password`)"
+                "INSERT INTO `users`"
+                        + "(`id`, `username`, `email`, `password`)"
                         + " VALUES (null, 'user1', 'user1@gmail.com', 'password'),"
-                        + " (null, 'user2', 'user2@gmail.com', 'AncienPassword');");
+                        + " (null, 'user2', 'user2@gmail.com', 'AncienPassword');")
+                ;
         st.close();
     }
 
@@ -40,6 +53,8 @@ public class SQLInjectionTest {
      * La requete devient... SELECT * FROM users WHERE username = user2
      * <p>
      * L'on vérifie qu'il n'y a aucun retour.
+     *
+     * @throws SQLException
      */
     @Test
     @DisplayName("Protection Injection SQL de Premiere Ordre")
@@ -62,6 +77,8 @@ public class SQLInjectionTest {
      * '-- clos la requete et met le reste en commentaire.
      * <p>
      * Enfin l'on vérifie que le changement n'est pas effectif.
+     *
+     * @throws SQLException
      */
     @Test
     @DisplayName("Protection Injection SQL de Second Ordre")
@@ -98,7 +115,7 @@ public class SQLInjectionTest {
 
     /**
      * Fermeture de la connection apres les tests.
-     * 
+     *
      * @throws SQLException
      */
     @AfterAll
