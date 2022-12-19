@@ -111,7 +111,7 @@ CREATE TABLE Commande(
 INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('null', 'Admin');
 
 -- Création de l'utilisateur et paramétrage des droits
-DROP USER 'GDADev'@'localhost';
+DROP USER IF EXISTS 'GDADev'@'localhost';
 CREATE USER 'GDADev'@'localhost' IDENTIFIED BY '1234';
 GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO 'GDADev'@'localhost';
 FLUSH PRIVILEGES;

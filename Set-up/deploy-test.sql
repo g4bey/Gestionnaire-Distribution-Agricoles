@@ -119,3 +119,9 @@ CREATE TABLE `users` (
     `password` varchar(256) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Création de l'utilisateur et paramétrage des droits
+DROP USER IF EXISTS 'GDATest'@'localhost';
+CREATE USER 'GDATest'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL ON *.* TO 'GDATest'@'localhost';
+FLUSH PRIVILEGES;
