@@ -4,6 +4,7 @@ import modele.Commande;
 import modele.Tournee;
 import java.math.BigInteger;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class TourneeDAO extends DAO<Tournee> {
     @Override
     public void add(Tournee t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Tournee VALUES (NULL, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO Tournee VALUES (NULL, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setTimestamp(1, t.getHoraireDebut());
             pstmt.setTimestamp(2, t.getHoraireFin());
             pstmt.setFloat(3, t.getPoids());

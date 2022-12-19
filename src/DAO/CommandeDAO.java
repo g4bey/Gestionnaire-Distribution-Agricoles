@@ -3,6 +3,7 @@ package DAO;
 import modele.Commande;
 import java.math.BigInteger;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +111,7 @@ public class CommandeDAO extends DAO<Commande> {
     @Override
     public void add(Commande t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Commande VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO Commande VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getLibelle());
             pstmt.setFloat(2, t.getPoids());
             pstmt.setTimestamp(3, t.getHoraireDebut());

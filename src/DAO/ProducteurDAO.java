@@ -3,6 +3,7 @@ package DAO;
 import modele.Producteur;
 import java.math.BigInteger;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class ProducteurDAO extends DAO<Producteur> {
     @Override
     public void add(Producteur t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Producteur VALUES (NULL, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO Producteur VALUES (NULL, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getSiret());
             pstmt.setString(2, t.getProprietaire());
             pstmt.setString(3, t.getAdresseProd());

@@ -3,6 +3,7 @@ package DAO;
 import modele.Vehicule;
 import java.math.BigInteger;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
     @Override
     public void add(Vehicule t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Vehicule VALUES (NULL, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO Vehicule VALUES (NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setFloat(1, t.getPoidsMax());
             pstmt.setString(2, t.getLibelle());
             pstmt.setString(3, t.getNumImmat());

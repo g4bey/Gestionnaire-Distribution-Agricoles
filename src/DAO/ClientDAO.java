@@ -3,6 +3,7 @@ package DAO;
 import modele.Client;
 import java.math.BigInteger;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +105,7 @@ public class ClientDAO extends DAO<Client> {
     public void update(Client t) {
         try {
             pstmt = conn.prepareStatement(
-                    "UPDATE Client SET nomClient = ?, adresseClient = ?, gpsClient = ?, numTelClient = ? WHERE idClient = ?");
+                    "UPDATE Client SET nomClient = ?, adresseClient = ?, gpsClient = ?, numTelClient = ? WHERE idClient = ?", Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getNomClient());
             pstmt.setString(2, t.getAdresseClient());
             pstmt.setString(3, t.getGpsClient());
