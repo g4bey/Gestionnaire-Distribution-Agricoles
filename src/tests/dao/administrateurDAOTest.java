@@ -64,10 +64,9 @@ public class administrateurDAOTest {
     @Test
     @DisplayName("Test de la methode add")
     public void addTest() {
+        // Apres ajout, l'ID doit devenir 1 et non 0.
         assertEquals(0, ADMIN_A.getIdAdministrateur());
-
         adminDAO.add(ADMIN_A);
-
         assertEquals(1, ADMIN_A.getIdAdministrateur());
     }
 
@@ -83,6 +82,8 @@ public class administrateurDAOTest {
     public void getTest() {
         adminDAO.add(ADMIN_A);
 
+        // Demander un administrateur d'ID associé à l'ADMIN_A
+        // doit aboutir à une égalité d'attributs.
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
         assertEquals(ADMIN_A.getIdAdministrateur(), adminRetour.getIdAdministrateur());
         assertEquals(ADMIN_A.getMdpAdmin(), adminRetour.getMdpAdmin());
@@ -96,7 +97,7 @@ public class administrateurDAOTest {
      * L'on insert ADMIN_A et ADMIN_B en base.
      * Ainsi, l'on 2 admins en base, d'id 1 et 2 respectivement.
      * <p>
-     * Enfin, l'on vérife que la liste contient bien uniquement ces elements.
+     * Enfin, l'on vérifie que la liste contient bien uniquement ces elements.
      */
     @Test
     @DisplayName("Test la methode getAll")
@@ -104,6 +105,7 @@ public class administrateurDAOTest {
         adminDAO.add(ADMIN_A);
         adminDAO.add(ADMIN_B);
 
+        // Dans la liste, il doit y avoir 2 admins d'ID 1 et 2.
         List<Administrateur> adminList = adminDAO.getAll();
         assertEquals(2, adminList.size());
         assertEquals(1, adminList.get(0).getIdAdministrateur());
@@ -122,8 +124,9 @@ public class administrateurDAOTest {
         adminDAO.add(ADMIN_A);
         int idAdmin = ADMIN_A.getIdAdministrateur();
 
+        // Apres suppression, un get idAdmin doit etre null.
         adminDAO.delete(idAdmin);
-        assertNull(adminDAO.get(1));
+        assertNull(adminDAO.get(idAdmin));
     }
 
     /**
@@ -141,6 +144,8 @@ public class administrateurDAOTest {
         ADMIN_A.setMdpAdmin("UpdateMDP");
         adminDAO.update(ADMIN_A);
 
+        // On créer un autre object de meme ID pour s'assurer que les attributs
+        // sont identique. Cela induit qu'ils sont modifés en BDD.
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
         assertEquals(adminRetour.getPseudo(), ADMIN_A.getPseudo());
         assertEquals(adminRetour.getMdpAdmin(), ADMIN_A.getMdpAdmin());

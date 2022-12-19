@@ -17,10 +17,10 @@ CREATE TABLE Producteur(
         idProducteur Int  Auto_increment  NOT NULL ,
         proprietaire Varchar (50) NOT NULL ,
         adresseProd  Varchar (50) NOT NULL ,
-        numTelProd   Numeric NOT NULL ,
+        numTelProd   Varchar (12) NOT NULL ,
         gpsProd      Char (19) NOT NULL ,
         mdpProd      Char (100) NOT NULL ,
-        siret        Numeric NOT NULL
+        siret        Varchar (14) NOT NULL
 	,CONSTRAINT Producteur_AK UNIQUE (siret)
 	,CONSTRAINT Producteur_PK PRIMARY KEY (idProducteur)
 )ENGINE=InnoDB;
@@ -82,7 +82,7 @@ CREATE TABLE Client(
         nomClient     Varchar (50) NOT NULL ,
         adresseClient Varchar (50) NOT NULL ,
         gpsClient     Char (19) NOT NULL ,
-        numTelClient  Numeric NOT NULL
+        numTelClient  Varchar (12) NOT NULL
 	,CONSTRAINT Client_PK PRIMARY KEY (idClient)
 )ENGINE=InnoDB;
 
