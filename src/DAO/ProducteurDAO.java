@@ -25,12 +25,13 @@ public class ProducteurDAO extends DAO<Producteur> {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            if (rs.next())
+            if (rs.next()) {
                 return new Producteur(id, rs.getString("siret"), rs.getString("proprietaire"),
                         rs.getString("adresseProd"),
                         rs.getString("numTelProd"),
                         rs.getString("gpsProd"),
                         rs.getString("mdpProd"));
+            }
 
             return null;
         } catch (SQLException e) {
