@@ -78,7 +78,7 @@ La configuration du checkstyle pour les IDE se trouve dans /src/ressources/check
 + LAGASSE Adrian: @Alpha-Lin
 + MSIAH Romain: @Romain9
 + REMY Léo: @KeziahOnuru
-+ BERTHEL Gabriel: @PhobosWolf
++ BERTHEL Gabriel: @g4bey
 
 [Consulter l'historique des réunions](https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/resum%C3%A9-reunions.md)
 
