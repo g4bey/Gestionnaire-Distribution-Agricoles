@@ -49,8 +49,9 @@ public class administrateurDAOTest {
     public void init() throws SQLException {
         ADMIN_A = new Administrateur("Jean", "123");
         ADMIN_B = new Administrateur("Baptiste", "321123");
+
         Statement st = conn.createStatement();
-        st.execute("TRUNCATE TABLE Administrateur;");
+        st.execute("TRUNCATE TABLE `Administrateur`;");
     }
 
     /**
@@ -64,7 +65,9 @@ public class administrateurDAOTest {
     @DisplayName("Test de la methode add")
     public void addTest() {
         assertEquals(0, ADMIN_A.getIdAdministrateur());
+
         adminDAO.add(ADMIN_A);
+
         assertEquals(1, ADMIN_A.getIdAdministrateur());
     }
 
@@ -79,6 +82,7 @@ public class administrateurDAOTest {
     @DisplayName("Test de la methode get")
     public void getTest() {
         adminDAO.add(ADMIN_A);
+
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
         assertEquals(ADMIN_A.getIdAdministrateur(), adminRetour.getIdAdministrateur());
         assertEquals(ADMIN_A.getMdpAdmin(), adminRetour.getMdpAdmin());
@@ -99,6 +103,7 @@ public class administrateurDAOTest {
     public void getAllTest() {
         adminDAO.add(ADMIN_A);
         adminDAO.add(ADMIN_B);
+
         List<Administrateur> adminList = adminDAO.getAll();
         assertEquals(2, adminList.size());
         assertEquals(1, adminList.get(0).getIdAdministrateur());
@@ -116,6 +121,7 @@ public class administrateurDAOTest {
     public void deleteTest() {
         adminDAO.add(ADMIN_A);
         int idAdmin = ADMIN_A.getIdAdministrateur();
+
         adminDAO.delete(idAdmin);
         assertNull(adminDAO.get(1));
     }
@@ -134,6 +140,7 @@ public class administrateurDAOTest {
         ADMIN_A.setPseudo("Update");
         ADMIN_A.setMdpAdmin("UpdateMDP");
         adminDAO.update(ADMIN_A);
+
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
         assertEquals(adminRetour.getPseudo(), ADMIN_A.getPseudo());
         assertEquals(adminRetour.getMdpAdmin(), ADMIN_A.getMdpAdmin());
