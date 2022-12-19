@@ -1,4 +1,5 @@
 -- Création de la base de données
+DROP DATABASE IF EXISTS GDAProd;
 CREATE DATABASE IF NOT EXISTS GDAProd;
 USE GDAProd;
 
@@ -110,6 +111,7 @@ CREATE TABLE Commande(
 INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('null', 'Admin');
 
 -- Création de l'utilisateur et paramétrage des droits
+DROP USER 'GDA'@'localhost';
 CREATE USER 'GDA'@'localhost' IDENTIFIED BY '1234';
-GRANT SELECT, INSERT, UPDATE, DELETE ON 'GDA'.* TO 'GDA'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO 'GDA'@'localhost';
 FLUSH PRIVILEGES;
