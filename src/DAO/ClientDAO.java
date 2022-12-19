@@ -10,13 +10,12 @@ import java.util.List;
 /**
  * Représente le DAO des clients.
  */
-
 public class ClientDAO extends DAO<Client> {
     /**
      * Récupère dans la base de données l'instance de Client demandée.
      * 
      * @param id id de type int, représente l'id de l'objet Client demandé.
-     * @returns Une instance de Client.
+     * @return Une instance de Client.
      */
     @Override
     public Client get(int id) {
@@ -44,7 +43,7 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Récupère dans la base de données toutes les instances de Client.
      * 
-     * @returns Une liste d'instances de Client.
+     * @return Une liste d'instances de Client.
      */
     @Override
     public List<Client> getAll() {

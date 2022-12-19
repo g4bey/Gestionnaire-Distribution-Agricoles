@@ -11,13 +11,12 @@ import java.util.List;
 /**
  * Représente le DAO des administrateurs.
  */
-
 public class AdministrateurDAO extends DAO<Administrateur> {
     /**
      * Récupère dans la base de données l'instance d'Administrateur demandée.
      * 
      * @param id id de type int, représente l'id de l'objet Administrateur demandé.
-     * @returns Une instance d'Administrateur.
+     * @return Une instance d'Administrateur.
      */
     @Override
     public Administrateur get(int id) {
@@ -40,7 +39,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     /**
      * Récupère dans la base de données toutes les instances d'Administrateur.
      * 
-     * @returns Une liste d'instances d'Administrateur.
+     * @return Une liste d'instances d'Administrateur.
      */
     @Override
     public List<Administrateur> getAll() {
@@ -113,7 +112,6 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      * 
      * @param id int représentant l'id d'Administrateur à supprimer.
      */
-
     @Override
     public void delete(int id) {
         try {
@@ -131,7 +129,6 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
      */
-
     public AdministrateurDAO(Connection conn) {
         super(conn);
     }

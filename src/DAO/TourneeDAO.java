@@ -11,13 +11,12 @@ import java.util.List;
 /**
  * Représente le DAO des tournées.
  */
-
 public class TourneeDAO extends DAO<Tournee> {
     /**
      * Récupère dans la base de données l'instance de Tournee demandée.
      * 
      * @param id id de type int, représente l'id de l'objet Tournee demandé.
-     * @returns Une instance de Tournee.
+     * @return Une instance de Tournee.
      */
     @Override
     public Tournee get(int id) {
@@ -43,7 +42,7 @@ public class TourneeDAO extends DAO<Tournee> {
     /**
      * Récupère dans la base de données toutes les instances de Tournee.
      * 
-     * @returns Une liste d'instances de Tournee.
+     * @return Une liste d'instances de Tournee.
      */
     @Override
     public List<Tournee> getAll() {
@@ -66,7 +65,7 @@ public class TourneeDAO extends DAO<Tournee> {
                 );
             }
 
-            return null;
+            return tournees;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -115,12 +114,13 @@ public class TourneeDAO extends DAO<Tournee> {
     public void update(Tournee t) {
         try {
             pstmt = conn.prepareStatement(
-                    "UPDATE Tournee SET horaireDebut = ?, horaireFin = ?, poids = ?, libelle = ?, idVehicule = ? WHERE idClient = ?");
+                    "UPDATE Tournee SET horaireDebut = ?, horaireFin = ?, poids = ?, libelle = ?, idVehicule = ? WHERE idTournee = ?");
             pstmt.setTimestamp(1, t.getHoraireDebut());
             pstmt.setTimestamp(2, t.getHoraireFin());
             pstmt.setFloat(3, t.getPoids());
             pstmt.setString(4, t.getLibelle());
             pstmt.setInt(5, t.getVehicule().getIdVehicule());
+            pstmt.setInt(6, t.getIdTournee());
 
             pstmt.executeUpdate();
 

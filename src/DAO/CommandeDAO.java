@@ -10,13 +10,12 @@ import java.util.List;
 /**
  * Représente le DAO des véhicules.
  */
-
 public class CommandeDAO extends DAO<Commande> {
     /**
      * Récupère dans la base de données l'instance de Commande demandée.
      * 
      * @param id id de type int, représente l'id de l'objet Commande demandé.
-     * @returns Une instance de Commande.
+     * @return Une instance de Commande.
      */
     @Override
     public Commande get(int id) {
@@ -51,9 +50,8 @@ public class CommandeDAO extends DAO<Commande> {
     /**
      * Récupère dans la base de données toutes les instances de Commande.
      * 
-     * @returns Une liste d'instances de Commande.
+     * @return Une liste d'instances de Commande.
      */
-
     @Override
     public List<Commande> getAll() {
         ArrayList<Commande> commandes = new ArrayList<>();
@@ -77,7 +75,7 @@ public class CommandeDAO extends DAO<Commande> {
                 );
             }
 
-            return null;
+            return commandes;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -88,11 +86,10 @@ public class CommandeDAO extends DAO<Commande> {
      * Récupère dans la base de données toutes les instances de Commande appartenant
      * à la Tournee correspond à l'id.
      * 
-     * @param id id de type int, représente l'id de la Tournee auquelle appartient
+     * @param idTournee de type int, représente l'id de la Tournee auquelle appartient
      *           la Commande.
-     * @returns Une liste d'instances de Commande.
+     * @return Une liste d'instances de Commande.
      */
-
     public List<Commande> getAllByIdTournee(int idTournee) {
         ArrayList<Commande> commandes = new ArrayList<>();
 
@@ -110,7 +107,6 @@ public class CommandeDAO extends DAO<Commande> {
      * 
      * @param t l'instance Commande de l'objet à ajouter.
      */
-
     @Override
     public void add(Commande t) {
         try {
@@ -153,6 +149,7 @@ public class CommandeDAO extends DAO<Commande> {
             pstmt.setInt(5, t.getTournee().getIdTournee());
             pstmt.setInt(6, t.getProducteur().getIdProducteur());
             pstmt.setInt(7, t.getClient().getIdClient());
+            pstmt.setInt(7, t.getIdCommande());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

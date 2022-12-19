@@ -10,13 +10,12 @@ import java.util.List;
 /**
  * Représente le DAO des producteurs.
  */
-
 public class ProducteurDAO extends DAO<Producteur> {
     /**
      * Récupère dans la base de données l'instance de Producteur demandée.
      * 
      * @param id id de type int, représente l'id de l'objet Producteur demandé.
-     * @returns Une instance de Producteur.
+     * @return Une instance de Producteur.
      */
     @Override
     public Producteur get(int id) {
@@ -43,7 +42,7 @@ public class ProducteurDAO extends DAO<Producteur> {
     /**
      * Récupère dans la base de données toutes les instances de Producteur.
      * 
-     * @returns Une liste d'instances de Producteur.
+     * @return Une liste d'instances de Producteur.
      */
     @Override
     public List<Producteur> getAll() {
@@ -109,13 +108,14 @@ public class ProducteurDAO extends DAO<Producteur> {
     public void update(Producteur t) {
         try {
             pstmt = conn.prepareStatement(
-                    "UPDATE Producteur SET siret = ?, proprietaire = ?, adresseProd = ?, numTelProd = ?, gpsProd = ?, mdpProd = ?)");
+                    "UPDATE Producteur SET siret = ?, proprietaire = ?, adresseProd = ?, numTelProd = ?, gpsProd = ?, mdpProd = ? WHERE idProducteur = ?");
             pstmt.setString(1, t.getSiret());
             pstmt.setString(2, t.getProprietaire());
             pstmt.setString(3, t.getAdresseProd());
             pstmt.setString(4, t.getNumTelProd());
             pstmt.setString(5, t.getGpsProd());
             pstmt.setString(6, t.getMdpProd());
+            pstmt.setInt(7, t.getIdProducteur());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
