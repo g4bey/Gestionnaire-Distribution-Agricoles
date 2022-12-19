@@ -10,17 +10,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="202.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout producteur">
+      <Text layoutX="149.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification Producteur">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="prodSiretField" layoutX="241.0" layoutY="125.0" />
-      <TextField fx:id="propNameField" layoutX="241.0" layoutY="186.0" />
-      <TextField fx:id="prodAddressField" layoutX="241.0" layoutY="248.0" />
-      <TextField fx:id="prodPhoneField" layoutX="241.0" layoutY="312.0" />
+      <TextField fx:id="prodSiretField" layoutX="241.0" layoutY="125.0" text="infoUser" />
+      <TextField fx:id="propNameField" layoutX="241.0" layoutY="186.0" text="infoUser" />
+      <TextField fx:id="prodAddressField" layoutX="241.0" layoutY="248.0" text="infoUser" />
+      <TextField fx:id="prodPhoneField" layoutX="241.0" layoutY="312.0" text="infoUser" />
       <TextField fx:id="prodPasswordField" layoutX="241.0" layoutY="372.0" />
       <TextField fx:id="confirmPasswordField" layoutX="241.0" layoutY="433.0" />
       <Label layoutX="170.0" layoutY="122.0" text="SIRET:">
@@ -53,16 +53,16 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="validateAddProd" layoutX="364.0" layoutY="531.0" mnemonicParsing="false" text="Valider" />
-      <Button fx:id="cancelAddProd" layoutX="76.0" layoutY="531.0" mnemonicParsing="false" text="Annuler" />
+      <Button fx:id="validateModifyProd" layoutX="364.0" layoutY="531.0" mnemonicParsing="false" text="Valider" />
+      <Button fx:id="cancelModifyProd" layoutX="76.0" layoutY="531.0" mnemonicParsing="false" text="Annuler" />
       <Line endX="379.0" layoutX="109.0" layoutY="78.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
       <Line endX="-117.10003662109375" endY="-117.0" layoutX="255.0" layoutY="117.0" startX="-117.10002136230469" startY="-39.50000762939453" />
-      <ImageView fitHeight="65.0" fitWidth="120.0" layoutX="6.0" layoutY="6.0">
+      <ImageView fitHeight="63.0" fitWidth="124.0" layoutX="4.0" layoutY="7.0">
          <image>
             <Image url="@../ressources/pictures/1751148-ff5722.png" />
          </image>
       </ImageView>
-      <Text fx:id="formErrorText" layoutX="198.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
+      <Text fx:id="modifyErrorText" layoutX="195.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
          <font>
             <Font size="15.0" />
          </font>
