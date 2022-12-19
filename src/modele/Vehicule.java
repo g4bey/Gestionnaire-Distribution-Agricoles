@@ -75,9 +75,13 @@ public class Vehicule {
      * @param producteur Producteur représentant le producteur utilisant le
      *                   Vehicule.
      */
-
     public Vehicule(int idVehicule, String numImmat, float poidsMax, String libelle, Producteur producteur) {
         this.tournees = new ArrayList<>();
+        this.idVehicule = idVehicule;
+        this.numImmat = numImmat;
+        this.libelle = libelle;
+        this.poidsMax = poidsMax;
+        this.producteur = producteur;
     }
 
     /**
@@ -91,9 +95,12 @@ public class Vehicule {
      * @param producteur Producteur représentant le producteur utilisant le
      *                   Vehicule.
      */
-
     public Vehicule(String numImmat, float poidsMax, String libelle, Producteur producteur) {
         this.tournees = new ArrayList<>();
+        this.numImmat = numImmat;
+        this.libelle = libelle;
+        this.poidsMax = poidsMax;
+        this.producteur = producteur;
     }
 
     /**

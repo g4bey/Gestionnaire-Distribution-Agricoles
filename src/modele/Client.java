@@ -3,7 +3,6 @@ package modele;
 /**
  * Objet métier représentant un client.
  */
-
 public class Client {
     private int idClient;
 
@@ -64,8 +63,12 @@ public class Client {
      * @param gpsClient     String représentant les coordonnées GPS du Client.
      * @param numTelClient  String représentant le numéro de téléphone du Client.
      */
-
     public Client(int idClient, String nomClient, String adresseClient, String gpsClient, String numTelClient) {
+        this.idClient = idClient;
+        this.nomClient = nomClient;
+        this.adresseClient = adresseClient;
+        this.gpsClient = gpsClient;
+        this.numTelClient = numTelClient;
     }
 
     /**
@@ -76,7 +79,10 @@ public class Client {
      * @param gpsClient     String représentant les coordonnées GPS du Client.
      * @param numTelClient  String représentant le numéro de téléphone du Client.
      */
-
     public Client(String nomClient, String adresseClient, String gpsClient, String numTelClient) {
+        this.nomClient = nomClient;
+        this.adresseClient = adresseClient;
+        this.gpsClient = gpsClient;
+        this.numTelClient = numTelClient;
     }
 }

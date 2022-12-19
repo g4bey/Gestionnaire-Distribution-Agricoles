@@ -5,7 +5,6 @@ import java.util.*;
 /**
  * Objet métier représentant un Producteur.
  */
-
 public class Producteur {
     private int idProducteur;
 
@@ -107,9 +106,15 @@ public class Producteur {
      * @param mdpProd      String représentant le hash du mot de passe du
      *                     Producteur.
      */
-
     public Producteur(int idProducteur, String siret, String proprietaire, String adresseProd, String numTelProd,
             String gpsProd, String mdpProd) {
+                this.idProducteur = idProducteur;
+                this.siret = siret;
+                this.proprietaire = proprietaire;
+                this.adresseProd = adresseProd;
+                this.numTelProd = numTelProd;
+                this.gpsProd = gpsProd;
+                this.mdpProd = mdpProd;
     }
 
     /**
@@ -123,9 +128,14 @@ public class Producteur {
      * @param mdpProd      String représentant le hash du mot de passe du
      *                     Producteur.
      */
-
     public Producteur(String siret, String proprietaire, String adresseProd, String numTelProd,
             String gpsProd, String mdpProd) {
+                this.siret = siret;
+                this.proprietaire = proprietaire;
+                this.adresseProd = adresseProd;
+                this.numTelProd = numTelProd;
+                this.gpsProd = gpsProd;
+                this.mdpProd = mdpProd;
     }
 
     /**

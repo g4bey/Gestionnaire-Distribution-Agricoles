@@ -3,7 +3,6 @@ package modele;
 /**
  * Objet métier représentant un Administrateur.
  */
-
 public class Administrateur {
     private int idAdministrateur;
 
@@ -22,6 +21,7 @@ public class Administrateur {
     public String getMdpAdmin() {
         return mdpAdmin;
     }
+    
 
     public void setIdAdministrateur(int idAdministrateur) {
         this.idAdministrateur = idAdministrateur;
@@ -42,8 +42,10 @@ public class Administrateur {
      * @param pseudo           String représentant l'Administrateur.
      * @param mdpAdmin         String représentant l'Administrateur.
      */
-
     public Administrateur(int idAdministrateur, String pseudo, String mdpAdmin) {
+        this.idAdministrateur = idAdministrateur;
+        this.pseudo = pseudo;
+        this.mdpAdmin = mdpAdmin;
     }
 
     /**
@@ -52,7 +54,8 @@ public class Administrateur {
      * @param pseudo   String représentant l'Administrateur.
      * @param mdpAdmin String représentant l'Administrateur.
      */
-
     public Administrateur(String pseudo, String mdpAdmin) {
+        this.pseudo = pseudo;
+        this.mdpAdmin = mdpAdmin;
     }
 }

@@ -101,9 +101,16 @@ public class Commande {
      * @param tournee      Tournee représentant la tournée à laquelle appartient la
      *                     Commande.
      */
-
     public Commande(int idCommande, String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin,
             Tournee tournee, Producteur producteur, Client client) {
+            this.idCommande = idCommande;
+            this.libelle = libelle;
+            this.poids = poids;
+            this.horaireDebut = horaireDebut;
+            this.horaireFin = horaireFin;
+            this.tournee = tournee;
+            this.producteur = producteur;
+            this.client = client;
     }
 
     /**
@@ -119,8 +126,14 @@ public class Commande {
      * @param tournee      Tournee représentant la tournée à laquelle appartient la
      *                     Commande.
      */
-
     public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin, Tournee tournee,
             Producteur producteur, Client client) {
+                this.libelle = libelle;
+                this.poids = poids;
+                this.horaireDebut = horaireDebut;
+                this.horaireFin = horaireFin;
+                this.tournee = tournee;
+                this.producteur = producteur;
+                this.client = client;
     }
 }
