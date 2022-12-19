@@ -1,8 +1,10 @@
 package DAO;
 
 import modele.Administrateur;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,6 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      * @param id id de type int, représente l'id de l'objet Administrateur demandé.
      * @returns Une instance d'Administrateur.
      */
-
     @Override
     public Administrateur get(int id) {
         try {
@@ -25,8 +26,9 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            if (rs.next())
+            if (rs.next()) {
                 return new Administrateur(id, rs.getString("pseudo"), rs.getString("mdpAdmin"));
+            }
 
             return null;
         } catch (SQLException e) {
@@ -40,16 +42,19 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      * 
      * @returns Une liste d'instances d'Administrateur.
      */
-
     @Override
     public List<Administrateur> getAll() {
         ArrayList<Administrateur> administrateurs = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Administrateur");
 
-            while (rs.next())
-                administrateurs.add(new Administrateur(rs.getInt("idAdministrateur"), rs.getString("pseudo"),
-                        rs.getString("mdpAdmin")));
+            while (rs.next()) {
+                administrateurs.add(new Administrateur(
+                    rs.getInt("idAdministrateur"), 
+                    rs.getString("pseudo"),
+                    rs.getString("mdpAdmin"))
+                );
+            }
 
             return administrateurs;
         } catch (SQLException e) {
@@ -63,20 +68,20 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      * 
      * @param t l'instance Administrateur de l'objet à ajouter.
      */
-
     @Override
     public void add(Administrateur t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Administrateur VALUES (NULL, ?, ?)");
-            pstmt.setString(1, t.getPseudo());
-            pstmt.setString(2, t.getMdpAdmin());
+            pstmt = conn.prepareStatement("INSERT INTO Administrateur VALUES (NULL, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, t.getMdpAdmin());
+            pstmt.setString(2, t.getPseudo());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
-            if (rs.next())
-                t.setIdAdministrateur(rs.getInt("idAdministrateur"));
-
+            if (rs.next()) {
+                long id = ((BigInteger)rs.getObject(1)).longValue();
+                t.setIdAdministrateur((int)id);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,12 +92,12 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      * 
      * @param t l'instance Administrateur de l'objet à mettre à jour.
      */
-
     @Override
     public void update(Administrateur t) {
         try {
             pstmt = conn.prepareStatement(
-                    "UPDATE Administrateur SET pseudo = ?, mdpAdmin = ? WHERE idAdministrateur = ?");
+                    "UPDATE Administrateur SET pseudo = ?, mdpAdmin = ? WHERE idAdministrateur = ?"
+            );
             pstmt.setString(1, t.getPseudo());
             pstmt.setString(2, t.getMdpAdmin());
             pstmt.setInt(1, t.getIdAdministrateur());

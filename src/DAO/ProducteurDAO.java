@@ -1,6 +1,7 @@
 package DAO;
 
 import modele.Producteur;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ public class ProducteurDAO extends DAO<Producteur> {
      * @param id id de type int, représente l'id de l'objet Producteur demandé.
      * @returns Une instance de Producteur.
      */
-
     @Override
     public Producteur get(int id) {
         try {
@@ -44,20 +44,24 @@ public class ProducteurDAO extends DAO<Producteur> {
      * 
      * @returns Une liste d'instances de Producteur.
      */
-
     @Override
     public List<Producteur> getAll() {
         ArrayList<Producteur> producteurs = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Producteur");
 
-            while (rs.next())
+            while (rs.next()) {
                 producteurs.add(
-                        new Producteur(rs.getInt("idProducteur"), rs.getString("siret"), rs.getString("proprietaire"),
-                                rs.getString("adresseProd"),
-                                rs.getString("numTelProd"),
-                                rs.getString("gpsProd"),
-                                rs.getString("mdpProd")));
+                        new Producteur(
+                            rs.getInt("idProducteur"), 
+                            rs.getString("siret"), 
+                            rs.getString("proprietaire"),
+                            rs.getString("adresseProd"),
+                            rs.getString("numTelProd"),
+                            rs.getString("gpsProd"),
+                            rs.getString("mdpProd"))
+                        );
+            }
 
             return producteurs;
         } catch (SQLException e) {
@@ -71,7 +75,6 @@ public class ProducteurDAO extends DAO<Producteur> {
      * 
      * @param t l'instance Producteur de l'objet à ajouter.
      */
-
     @Override
     public void add(Producteur t) {
         try {
@@ -86,8 +89,10 @@ public class ProducteurDAO extends DAO<Producteur> {
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
-            if (rs.next())
-                t.setIdProducteur(rs.getInt("idProducteur"));
+            if (rs.next()) {
+                long id = ((BigInteger)rs.getObject(1)).longValue();
+                t.setIdProducteur((int)id);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,7 +104,6 @@ public class ProducteurDAO extends DAO<Producteur> {
      * 
      * @param t l'instance Producteur de l'objet à mettre à jour.
      */
-
     @Override
     public void update(Producteur t) {
         try {
@@ -123,7 +127,6 @@ public class ProducteurDAO extends DAO<Producteur> {
      * 
      * @param id int représentant l'id de Producteur à supprimer.
      */
-
     @Override
     public void delete(int id) {
         try {
@@ -141,7 +144,6 @@ public class ProducteurDAO extends DAO<Producteur> {
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
      */
-
     public ProducteurDAO(Connection conn) {
         super(conn);
     }

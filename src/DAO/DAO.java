@@ -22,7 +22,6 @@ public abstract class DAO<T> {
      * 
      * @param conn une Connection représentant la connexion à la base de données.
      */
-
     public DAO(Connection conn) {
         this.conn = conn;
         try {
@@ -38,7 +37,6 @@ public abstract class DAO<T> {
      * @param id id de type int, représente l'id de l'objet T demandé.
      * @returns Une instance de T.
      */
-
     public abstract T get(int id);
 
     /**
@@ -46,7 +44,6 @@ public abstract class DAO<T> {
      * 
      * @returns Une liste d'instances de T.
      */
-
     public abstract List<T> getAll();
 
     /**
@@ -54,7 +51,6 @@ public abstract class DAO<T> {
      * 
      * @param t l'instance T de l'objet à ajouter.
      */
-
     public abstract void add(T t);
 
     /**
@@ -62,7 +58,6 @@ public abstract class DAO<T> {
      * 
      * @param t l'instance T de l'objet à mettre à jour.
      */
-
     public abstract void update(T t);
 
     /**
@@ -70,6 +65,5 @@ public abstract class DAO<T> {
      * 
      * @param id int représentant l'id de T à supprimer.
      */
-
     public abstract void delete(int id);
 }

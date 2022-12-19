@@ -1,6 +1,7 @@
 package DAO;
 
 import modele.Commande;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ public class CommandeDAO extends DAO<Commande> {
      * @param id id de type int, représente l'id de l'objet Commande demandé.
      * @returns Une instance de Commande.
      */
-
     @Override
     public Commande get(int id) {
         try {
@@ -30,9 +30,15 @@ public class CommandeDAO extends DAO<Commande> {
                 ProducteurDAO pDAO = new ProducteurDAO(conn);
                 ClientDAO clDAO = new ClientDAO(conn);
 
-                return new Commande(id, rs.getString("libelle"), rs.getFloat("poids"), rs.getTimestamp("horaireDebut"),
-                        rs.getTimestamp("horaireFin"), tDAO.get(rs.getInt("idTournee")),
-                        pDAO.get(rs.getInt("idProducteur")), clDAO.get(rs.getInt("idClient")));
+                return new Commande(id, 
+                    rs.getString("libelle"), 
+                    rs.getFloat("poids"), 
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"), 
+                    tDAO.get(rs.getInt("idTournee")),
+                    pDAO.get(rs.getInt("idProducteur")), 
+                    clDAO.get(rs.getInt("idClient"))
+                );
             }
 
             return null;
@@ -59,10 +65,16 @@ public class CommandeDAO extends DAO<Commande> {
             ClientDAO clDAO = new ClientDAO(conn);
 
             while (rs.next()) {
-                commandes.add(new Commande(rs.getInt("idCommande"), rs.getString("libelle"), rs.getFloat("poids"),
-                        rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
-                        tDAO.get(rs.getInt("idTournee")), pDAO.get(rs.getInt("idProducteur")),
-                        clDAO.get(rs.getInt("idClient"))));
+                commandes.add(new Commande(
+                    rs.getInt("idCommande"), 
+                    rs.getString("libelle"), 
+                    rs.getFloat("poids"),
+                    rs.getTimestamp("horaireDebut"), 
+                    rs.getTimestamp("horaireFin"),
+                    tDAO.get(rs.getInt("idTournee")), 
+                    pDAO.get(rs.getInt("idProducteur")),
+                    clDAO.get(rs.getInt("idClient")))
+                );
             }
 
             return null;
@@ -85,8 +97,9 @@ public class CommandeDAO extends DAO<Commande> {
         ArrayList<Commande> commandes = new ArrayList<>();
 
         for (Commande commande : getAll()) {
-            if (commande.getTournee().getIdTournee() == idTournee)
+            if (commande.getTournee().getIdTournee() == idTournee) {
                 commandes.add(commande);
+            }
         }
 
         return commandes;
@@ -113,8 +126,10 @@ public class CommandeDAO extends DAO<Commande> {
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
-            if (rs.next())
-                t.setIdCommande(rs.getInt("idCommande"));
+            if (rs.next()) {
+                long id = ((BigInteger)rs.getObject(1)).longValue();
+                t.setIdCommande((int)id);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,7 +141,6 @@ public class CommandeDAO extends DAO<Commande> {
      * 
      * @param t l'instance Commande de l'objet à mettre à jour.
      */
-
     @Override
     public void update(Commande t) {
         try {
@@ -151,7 +165,6 @@ public class CommandeDAO extends DAO<Commande> {
      * 
      * @param id int représentant l'id de Commande à supprimer.
      */
-
     @Override
     public void delete(int id) {
         try {
@@ -169,7 +182,6 @@ public class CommandeDAO extends DAO<Commande> {
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
      */
-
     public CommandeDAO(Connection conn) {
         super(conn);
     }

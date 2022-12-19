@@ -1,6 +1,7 @@
 package DAO;
 
 import modele.Vehicule;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * @param id id de type int, représente l'id de l'objet Vehicule demandé.
      * @returns Une instance de Vehicule.
      */
-
     @Override
     public Vehicule get(int id) {
         try {
@@ -28,8 +28,12 @@ public class VehiculeDAO extends DAO<Vehicule> {
             if (rs.next()) {
                 ProducteurDAO pDAO = new ProducteurDAO(conn);
 
-                return new Vehicule(id, rs.getString("numImmat"), rs.getFloat("poidsMax"), rs.getString("libelle"),
-                        pDAO.get(rs.getInt("idProducteur")));
+                return new Vehicule(id, 
+                    rs.getString("numImmat"), 
+                    rs.getFloat("poidsMax"),
+                    rs.getString("libelle"),
+                    pDAO.get(rs.getInt("idProducteur"))
+                );
             }
 
             return null;
@@ -44,7 +48,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * 
      * @returns Une liste d'instances de Vehicule.
      */
-
     @Override
     public List<Vehicule> getAll() {
         ArrayList<Vehicule> vehicules = new ArrayList<>();
@@ -54,8 +57,13 @@ public class VehiculeDAO extends DAO<Vehicule> {
             ProducteurDAO pDAO = new ProducteurDAO(conn);
 
             while (rs.next())
-                vehicules.add(new Vehicule(rs.getInt("idVehicule"), rs.getString("numImmat"), rs.getFloat("poidsMax"),
-                        rs.getString("libelle"), pDAO.get(rs.getInt("idProducteur"))));
+                vehicules.add(new Vehicule(
+                    rs.getInt("idVehicule"), 
+                    rs.getString("numImmat"), 
+                    rs.getFloat("poidsMax"),
+                    rs.getString("libelle"), 
+                    pDAO.get(rs.getInt("idProducteur")))
+                );
 
             return vehicules;
         } catch (SQLException e) {
@@ -69,7 +77,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * 
      * @param t l'instance Vehicule de l'objet à ajouter.
      */
-
     @Override
     public void add(Vehicule t) {
         try {
@@ -81,9 +88,11 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
-
-            if (rs.next())
-                t.setIdVehicule(rs.getInt("idVehicule"));
+            
+            if (rs.next()) {
+                long id = ((BigInteger)rs.getObject(1)).longValue();
+                t.setIdVehicule((int)id);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,7 +104,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * 
      * @param t l'instance Vehicule de l'objet à mettre à jour.
      */
-
     @Override
     public void update(Vehicule t) {
         try {
@@ -118,7 +126,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * 
      * @param id int représentant l'id de Vehicule à supprimer.
      */
-
     @Override
     public void delete(int id) {
         try {
@@ -136,7 +143,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
      */
-
     public VehiculeDAO(Connection conn) {
         super(conn);
     }

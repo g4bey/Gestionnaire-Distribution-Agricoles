@@ -2,8 +2,7 @@ package DAO;
 
 import modele.Commande;
 import modele.Tournee;
-import modele.Vehicule;
-
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ public class TourneeDAO extends DAO<Tournee> {
      * @param id id de type int, représente l'id de l'objet Tournee demandé.
      * @returns Une instance de Tournee.
      */
-
     @Override
     public Tournee get(int id) {
         try {
@@ -47,7 +45,6 @@ public class TourneeDAO extends DAO<Tournee> {
      * 
      * @returns Une liste d'instances de Tournee.
      */
-
     @Override
     public List<Tournee> getAll() {
         ArrayList<Tournee> tournees = new ArrayList<>();
@@ -57,10 +54,17 @@ public class TourneeDAO extends DAO<Tournee> {
             VehiculeDAO vDAO = new VehiculeDAO(conn);
             CommandeDAO coDAO = new CommandeDAO(conn);
 
-            while (rs.next())
-                tournees.add(new Tournee(rs.getInt("idTournee"), rs.getTimestamp("horaireDebut"),
-                        rs.getTimestamp("horaireFin"), rs.getFloat("poids"), rs.getString("libelle"),
-                        vDAO.get(rs.getInt("idVehicule")), coDAO.getAllByIdTournee(rs.getInt("idTournee"))));
+            while (rs.next()) {
+                tournees.add(new Tournee(
+                    rs.getInt("idTournee"), 
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"), 
+                    rs.getFloat("poids"), 
+                    rs.getString("libelle"),
+                    vDAO.get(rs.getInt("idVehicule")), 
+                    coDAO.getAllByIdTournee(rs.getInt("idTournee")))
+                );
+            }
 
             return null;
         } catch (SQLException e) {
@@ -74,7 +78,6 @@ public class TourneeDAO extends DAO<Tournee> {
      * 
      * @param t l'instance Tournee de l'objet à ajouter.
      */
-
     @Override
     public void add(Tournee t) {
         try {
@@ -87,14 +90,16 @@ public class TourneeDAO extends DAO<Tournee> {
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
-
+            
             if (rs.next()) {
-                t.setIdTournee(rs.getInt("idTournee"));
+                long id = ((BigInteger)rs.getObject(1)).longValue();
+                t.setIdTournee((int)id);
 
                 CommandeDAO coDAO = new CommandeDAO(conn);
 
-                for (Commande commande : t.getCommandes())
+                for (Commande commande : t.getCommandes()) {
                     coDAO.add(commande);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -106,7 +111,6 @@ public class TourneeDAO extends DAO<Tournee> {
      * 
      * @param t l'instance Tournee de l'objet à mettre à jour.
      */
-
     @Override
     public void update(Tournee t) {
         try {
@@ -122,8 +126,9 @@ public class TourneeDAO extends DAO<Tournee> {
 
             CommandeDAO coDAO = new CommandeDAO(conn);
 
-            for (Commande commande : t.getCommandes())
+            for (Commande commande : t.getCommandes()) {
                 coDAO.update(commande);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -134,7 +139,6 @@ public class TourneeDAO extends DAO<Tournee> {
      * 
      * @param id int représentant l'id de Tournee à supprimer.
      */
-
     @Override
     public void delete(int id) {
         try {
@@ -152,7 +156,6 @@ public class TourneeDAO extends DAO<Tournee> {
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
      */
-
     public TourneeDAO(Connection conn) {
         super(conn);
     }

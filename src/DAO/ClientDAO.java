@@ -1,7 +1,7 @@
 package DAO;
 
 import modele.Client;
-
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ public class ClientDAO extends DAO<Client> {
      * @param id id de type int, représente l'id de l'objet Client demandé.
      * @returns Une instance de Client.
      */
-
     @Override
     public Client get(int id) {
         try {
@@ -26,10 +25,14 @@ public class ClientDAO extends DAO<Client> {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            if (rs.next())
-                return new Client(id, rs.getString("nomClient"), rs.getString("adresseClient"),
-                        rs.getString("gpsClient"),
-                        rs.getString("numTelClient"));
+            if (rs.next()) {
+                return new Client(id, 
+                    rs.getString("nomClient"), 
+                    rs.getString("adresseClient"),
+                    rs.getString("gpsClient"),
+                    rs.getString("numTelClient")
+                    );
+            }
 
             return null;
         } catch (SQLException e) {
@@ -43,16 +46,21 @@ public class ClientDAO extends DAO<Client> {
      * 
      * @returns Une liste d'instances de Client.
      */
-
     @Override
     public List<Client> getAll() {
         ArrayList<Client> clients = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Client");
 
-            while (rs.next())
-                clients.add(new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
-                        rs.getString("gpsClient"), rs.getString("numTelClient")));
+            while (rs.next()) {
+                clients.add(new Client(
+                    rs.getInt("idClient"), 
+                    rs.getString("nomClient"), 
+                    rs.getString("adresseClient"),
+                    rs.getString("gpsClient"), 
+                    rs.getString("numTelClient"))
+                );
+             }
 
             return clients;
         } catch (SQLException e) {
@@ -66,7 +74,6 @@ public class ClientDAO extends DAO<Client> {
      * 
      * @param t l'instance Client de l'objet à ajouter.
      */
-
     @Override
     public void add(Client t) {
         try {
@@ -79,8 +86,10 @@ public class ClientDAO extends DAO<Client> {
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
-            if (rs.next())
-                t.setIdClient(rs.getInt("idClient"));
+            if (rs.next()) {
+                long id = ((BigInteger)rs.getObject(1)).longValue();
+                t.setIdClient((int)id);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,7 +101,6 @@ public class ClientDAO extends DAO<Client> {
      * 
      * @param t l'instance Client de l'objet à mettre à jour.
      */
-
     @Override
     public void update(Client t) {
         try {
@@ -115,7 +123,6 @@ public class ClientDAO extends DAO<Client> {
      * 
      * @param id int représentant l'id de Client à supprimer.
      */
-
     @Override
     public void delete(int id) {
         try {
@@ -133,7 +140,6 @@ public class ClientDAO extends DAO<Client> {
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
      */
-
     public ClientDAO(Connection conn) {
         super(conn);
     }
