@@ -53,7 +53,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
     public List<Vehicule> getAll() {
         ArrayList<Vehicule> vehicules = new ArrayList<>();
         try {
-            rs = stmt.executeQuery("SELECT * FROM Client");
+            rs = stmt.executeQuery("SELECT * FROM Vehicule");
 
             ProducteurDAO pDAO = new ProducteurDAO(conn);
 
