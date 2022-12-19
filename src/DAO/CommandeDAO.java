@@ -149,7 +149,7 @@ public class CommandeDAO extends DAO<Commande> {
             pstmt.setInt(5, t.getTournee().getIdTournee());
             pstmt.setInt(6, t.getProducteur().getIdProducteur());
             pstmt.setInt(7, t.getClient().getIdClient());
-            pstmt.setInt(7, t.getIdCommande());
+            pstmt.setInt(8, t.getIdCommande());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

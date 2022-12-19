@@ -99,7 +99,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             );
             pstmt.setString(1, t.getPseudo());
             pstmt.setString(2, t.getMdpAdmin());
-            pstmt.setInt(1, t.getIdAdministrateur());
+            pstmt.setInt(3, t.getIdAdministrateur());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

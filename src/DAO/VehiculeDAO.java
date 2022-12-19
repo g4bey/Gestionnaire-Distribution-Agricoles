@@ -16,7 +16,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * Récupère dans la base de données l'instance de Vehicule demandée.
      * 
      * @param id id de type int, représente l'id de l'objet Vehicule demandé.
-     * @returns Une instance de Vehicule.
+     * @return Une instance de Vehicule.
      */
     @Override
     public Vehicule get(int id) {
@@ -46,7 +46,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Récupère dans la base de données toutes les instances de Vehicule.
      * 
-     * @returns Une liste d'instances de Vehicule.
+     * @return Une liste d'instances de Vehicule.
      */
     @Override
     public List<Vehicule> getAll() {
@@ -113,7 +113,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
             pstmt.setString(2, t.getLibelle());
             pstmt.setString(3, t.getNumImmat());
             pstmt.setInt(4, t.getProducteur().getIdProducteur());
-            pstmt.setInt(1, t.getIdVehicule());
+            pstmt.setInt(5, t.getIdVehicule());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

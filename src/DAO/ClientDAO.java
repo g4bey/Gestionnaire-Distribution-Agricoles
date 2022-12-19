@@ -109,7 +109,7 @@ public class ClientDAO extends DAO<Client> {
             pstmt.setString(2, t.getAdresseClient());
             pstmt.setString(3, t.getGpsClient());
             pstmt.setString(4, t.getNumTelClient());
-            pstmt.setInt(1, t.getIdClient());
+            pstmt.setInt(5, t.getIdClient());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
