@@ -42,7 +42,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="closeConsultClientBtn" layoutX="380.0" layoutY="220.0" mnemonicParsing="false" text="Quitter" />
+      <Button fx:id="closeConsultClientBtn" layoutX="380.0" layoutY="220.0" mnemonicParsing="false" onAction="#closePopup" text="Quitter" />
       <ImageView fitHeight="65.0" fitWidth="119.0" layoutX="20.0" layoutY="3.0">
          <image>
             <Image url="@../ressources/pictures/1751148-ff5722.png" />

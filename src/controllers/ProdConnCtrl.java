@@ -39,24 +39,34 @@ public class ProdConnCtrl {
     
     /**
      * Méthode pour revenir sur la page d'accueil.
-     * @param event
-	 * @throws IOException 
+     * @param event ActionEvent
      */
-    public void switchToHomePage(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/src/views/homePage.fxml"));
-    	scene = new Scene(root);
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setScene(scene);
-    	stage.show();
+    public void switchToHomePage(ActionEvent event) {
+    	loadView(event, "/src/views/homePage.fxml");
     }
     
     /**
      * Méthode pour connecter l'utilisateur.
-     * @param event
-     * @throws IOException 
+     * @param event ActionEvent
      */
-    public void loginProd(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/src/views/prodSelectMenu.fxml"));
+    public void loginProd(ActionEvent event) {
+    	loadView(event, "/src/views/prodSelectMenu.fxml");
+    }
+    
+    /**
+     * Méthode qui charge une vue passée en paramètre.
+     * @param event MouseEvent
+     * @param url String 
+     */
+    
+    public void loadView(ActionEvent event, String url) {
+    	try {
+            root = FXMLLoader.load(getClass().getResource(url));
+        }
+    	catch (IOException e) {
+			// TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     	scene = new Scene(root);
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setScene(scene);

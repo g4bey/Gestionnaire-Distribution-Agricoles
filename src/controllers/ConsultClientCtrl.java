@@ -3,33 +3,25 @@ package src.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
-* Contrôleur permettant l'ajout d'un Client.
+* Contrôleur permettant l'aperçu Client.
 */
 
-public class AddClientCtrl {
+public class ConsultClientCtrl {
 	
     @FXML
-	private TextField clientNameField;
-	
+    private Text clientNameText;
+    
     @FXML
-	private TextField clientAddressField;
-
+    private Text clientAddressText;
+    
     @FXML
-	private TextField clientPhoneField;
+    private Text clientPhoneText;
     
     private Stage stage;
-    
-    /**
-     * Méthode qui valide l'ajout d'un client.
-     * @param event ActionEvent
-     */
-    public void addClient(ActionEvent event) {
-    	closePopup(event);
-    }
     
     /**
      * Méthode qui permet de fermer la vue popup.
@@ -39,4 +31,6 @@ public class AddClientCtrl {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.close();
     }
+    
+    
 }

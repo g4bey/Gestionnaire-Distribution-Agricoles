@@ -35,8 +35,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="validateAddClient" layoutX="320.0" layoutY="349.0" mnemonicParsing="false" text="Valider" />
-      <Button fx:id="cancelAddClient" layoutX="86.0" layoutY="349.0" mnemonicParsing="false" text="Annuler" />
+      <Button fx:id="validateAddClient" layoutX="320.0" layoutY="349.0" mnemonicParsing="false" onAction="#addClient" text="Valider" />
+      <Button fx:id="cancelAddClient" layoutX="86.0" layoutY="349.0" mnemonicParsing="false" onAction="#closePopup" text="Annuler" />
       <Line endX="347.8000183105469" layoutX="109.0" layoutY="76.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
       <Line endX="-117.10003662109375" endY="-117.0" layoutX="267.0" layoutY="114.0" startX="-117.10002136230469" startY="-39.50000762939453" />
       <ImageView fitHeight="58.0" fitWidth="122.0" layoutX="14.0" layoutY="7.0">

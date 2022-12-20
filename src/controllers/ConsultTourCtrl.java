@@ -1,4 +1,4 @@
-package controllers;
+package src.controllers;
 
 
 
@@ -6,5 +6,5 @@ package controllers;
 * Contrôleur permettant l'aperçu Tournee.
 */
 
-public class ApercuTourneeCtrl {
+public class ConsultTourCtrl {
 }

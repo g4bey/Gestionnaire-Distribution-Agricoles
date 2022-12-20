@@ -5,14 +5,14 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import src.controllers.HomePageCtrl;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class GDA extends Application {
     /**
-     * @param args
+     * Méthode main du projet GDA.
+     * @param args String[]
      */
 
     public static void main(String[] args) {

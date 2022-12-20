@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.ConsultCommCtrl">
    <children>
       <Text layoutX="342.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commande:">
          <font>
@@ -53,7 +53,7 @@
       </Text>
       <Line endX="586.0" endY="7.62939453125E-6" layoutX="297.0" layoutY="84.0" startX="-297.0" startY="7.62939453125E-6" />
       <Line endX="-105.69998168945312" endY="-64.0999984741211" layoutX="283.0" layoutY="65.0" startX="-105.69998168945312" startY="18.50000762939453" />
-      <Button fx:id="closeConsultCommBtn" layoutX="722.0" layoutY="513.0" mnemonicParsing="false" text="Quitter" />
+      <Button fx:id="closeConsultCommBtn" layoutX="722.0" layoutY="513.0" mnemonicParsing="false" onAction="#closePopup" text="Quitter" />
       <Text layoutX="39.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créneau fin:">
          <font>
             <Font size="20.0" />
