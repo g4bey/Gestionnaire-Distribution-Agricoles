@@ -19,10 +19,10 @@
 **Structure:**
 
     .
-    ├── Genie Logiciel        # Partie liée au génie logiciel      
+    ├── Genie Logiciel        # Partie liée au génie logiciel
     ├── Rapports              # Rapports envoyées
-    ├── Set-up                # Script de mise en route du projet    
-    ├── src                   # Racine du projet               
+    ├── Set-up                # Script de mise en route du projet
+    ├── src                   # Racine du projet           
     ├── README.md             # Informations sur le projet
     └── resumé-reunions.md    # Résumé des réunions de groupe
     
@@ -30,10 +30,10 @@
 **Focus sur src:**
 
     src
-    ├── DAO                   # Accesseur aux données    
+    ├── DAO                   # Accesseur aux données
     ├── controllers           # Contrôleurs (lien entre modele et vue)
     ├── modele                # Objets-Métier
-    ├── ressources            # Configurations et fichiers utilisés par le logiciel. 
+    ├── ressources            # Configurations et fichiers utilisés par le logiciel.
     ├── exceptions            # Exceptions dérivant d'Exception
     ├── tests                 # Tests des classes, rangés intuitivement.
     ├── views                 # Vues (interface graphique)
@@ -69,13 +69,16 @@ La configuration du checkstyle pour les IDE se trouve dans /src/ressources/check
 **Outils:**
 - JDK 19
 - JavaFX & FXML
-- MySQL & JDBC
-- JUnit 5
+- MySQL 10.2 (preconfiguré par XAMPP)
+- JDBC 
+- JUnit 5.8.1 & JUnit4
+- Scnene Builder
 
 **Collaborateurs:**
 + LAGASSE Adrian: @Alpha-Lin
 + MSIAH Romain: @Romain9
 + REMY Léo: @KeziahOnuru
-+ BERTHEL Gabriel: @PhobosWolf
++ BERTHEL Gabriel: @g4bey
 
 [Consulter l'historique des réunions](https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/resum%C3%A9-reunions.md)
+
