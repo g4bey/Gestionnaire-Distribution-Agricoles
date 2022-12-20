@@ -167,6 +167,29 @@ public class TourneeDAO extends DAO<Tournee> {
         }
     }
 
+    public ArrayList<Tournee> tourneeByVehicule(Vehicule t) throws SQLException {
+        ArrayList<Tournee> tournees = new ArrayList<>();
+
+        pstmt = conn.prepareStatement(
+                "SELECT * FROM Tournee WHERE idVehicule = ?"
+        );
+        pstmt.setInt(1, t.getIdVehicule());
+        rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            tournees.add(new Tournee(
+                    rs.getInt("idTournee"),
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"),
+                    rs.getFloat("poids"),
+                    rs.getString("libelle"),
+                    t)
+            );
+        }
+
+        return tournees;
+    }
+
     /**
      * Retour une liste de tournée associée a un vehicle.
      *
