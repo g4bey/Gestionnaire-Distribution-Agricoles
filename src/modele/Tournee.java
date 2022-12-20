@@ -111,14 +111,13 @@ public class Tournee {
      *                     la Tournee.
      */
     public Tournee(int idTournee, Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle,
-            Vehicule vehicule, List<Commande> commandes) {
+            Vehicule vehicule) {
         this.idTournee = idTournee;
         this.horaireDebut = horaireDebut;
         this.horaireFin = horaireFin;
         this.poids = poids;
         this.libelle = libelle;
         this.vehicule = vehicule;
-        this.commandes = commandes;
     }
 
     /**
@@ -131,14 +130,12 @@ public class Tournee {
      * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
      *                     la Tournee.
      */
-    public Tournee(Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle, Vehicule vehicule,
-            List<Commande> commandes) {
+    public Tournee(Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle, Vehicule vehicule) {
         this.horaireDebut = horaireDebut;
         this.horaireFin = horaireFin;
         this.poids = poids;
         this.libelle = libelle;
         this.vehicule = vehicule;
-        this.commandes = commandes;
     }
 
     /**

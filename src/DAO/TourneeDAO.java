@@ -29,8 +29,7 @@ public class TourneeDAO extends DAO<Tournee> {
             if (rs.next()) {
                 return new Tournee(id, rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
                         rs.getFloat("poids"), rs.getString("libelle"),
-                        new VehiculeDAO(conn).get(rs.getInt("idVehicule")),
-                        new CommandeDAO(conn).getAllByIdTournee(id));
+                        new VehiculeDAO(conn).get(rs.getInt("idVehicule")));
             }
 
             return null;
@@ -52,18 +51,15 @@ public class TourneeDAO extends DAO<Tournee> {
             rs = stmt.executeQuery("SELECT * FROM Tournee");
 
             VehiculeDAO vDAO = new VehiculeDAO(conn);
-            CommandeDAO coDAO = new CommandeDAO(conn);
 
             while (rs.next()) {
                 tournees.add(new Tournee(
-                    rs.getInt("idTournee"), 
-                    rs.getTimestamp("horaireDebut"),
-                    rs.getTimestamp("horaireFin"), 
-                    rs.getFloat("poids"), 
-                    rs.getString("libelle"),
-                    vDAO.get(rs.getInt("idVehicule")), 
-                    coDAO.getAllByIdTournee(rs.getInt("idTournee")))
-                );
+                        rs.getInt("idTournee"),
+                        rs.getTimestamp("horaireDebut"),
+                        rs.getTimestamp("horaireFin"),
+                        rs.getFloat("poids"),
+                        rs.getString("libelle"),
+                        vDAO.get(rs.getInt("idVehicule"))));
             }
 
             return tournees;
@@ -81,7 +77,8 @@ public class TourneeDAO extends DAO<Tournee> {
     @Override
     public void add(Tournee t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Tournee VALUES (NULL, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt = conn.prepareStatement("INSERT INTO Tournee VALUES (NULL, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
             pstmt.setTimestamp(1, t.getHoraireDebut());
             pstmt.setTimestamp(2, t.getHoraireFin());
             pstmt.setFloat(3, t.getPoids());
@@ -90,10 +87,10 @@ public class TourneeDAO extends DAO<Tournee> {
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
-            
+
             if (rs.next()) {
-                long id = ((BigInteger)rs.getObject(1)).longValue();
-                t.setIdTournee((int)id);
+                long id = ((BigInteger) rs.getObject(1)).longValue();
+                t.setIdTournee((int) id);
 
                 CommandeDAO coDAO = new CommandeDAO(conn);
 

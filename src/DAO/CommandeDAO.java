@@ -30,15 +30,14 @@ public class CommandeDAO extends DAO<Commande> {
                 ProducteurDAO pDAO = new ProducteurDAO(conn);
                 ClientDAO clDAO = new ClientDAO(conn);
 
-                return new Commande(id, 
-                    rs.getString("libelle"), 
-                    rs.getFloat("poids"), 
-                    rs.getTimestamp("horaireDebut"),
-                    rs.getTimestamp("horaireFin"), 
-                    tDAO.get(rs.getInt("idTournee")),
-                    pDAO.get(rs.getInt("idProducteur")), 
-                    clDAO.get(rs.getInt("idClient"))
-                );
+                return new Commande(id,
+                        rs.getString("libelle"),
+                        rs.getFloat("poids"),
+                        rs.getTimestamp("horaireDebut"),
+                        rs.getTimestamp("horaireFin"),
+                        tDAO.get(rs.getInt("idTournee")),
+                        pDAO.get(rs.getInt("idProducteur")),
+                        clDAO.get(rs.getInt("idClient")));
             }
 
             return null;
@@ -65,15 +64,14 @@ public class CommandeDAO extends DAO<Commande> {
 
             while (rs.next()) {
                 commandes.add(new Commande(
-                    rs.getInt("idCommande"), 
-                    rs.getString("libelle"), 
-                    rs.getFloat("poids"),
-                    rs.getTimestamp("horaireDebut"), 
-                    rs.getTimestamp("horaireFin"),
-                    tDAO.get(rs.getInt("idTournee")), 
-                    pDAO.get(rs.getInt("idProducteur")),
-                    clDAO.get(rs.getInt("idClient")))
-                );
+                        rs.getInt("idCommande"),
+                        rs.getString("libelle"),
+                        rs.getFloat("poids"),
+                        rs.getTimestamp("horaireDebut"),
+                        rs.getTimestamp("horaireFin"),
+                        tDAO.get(rs.getInt("idTournee")),
+                        pDAO.get(rs.getInt("idProducteur")),
+                        clDAO.get(rs.getInt("idClient"))));
             }
 
             return commandes;
@@ -84,26 +82,6 @@ public class CommandeDAO extends DAO<Commande> {
     }
 
     /**
-     * Récupère dans la base de données toutes les instances de Commande appartenant
-     * à la Tournee correspond à l'id.
-     * 
-     * @param idTournee de type int, représente l'id de la Tournee auquelle appartient
-     *           la Commande.
-     * @return Une liste d'instances de Commande.
-     */
-    public List<Commande> getAllByIdTournee(int idTournee) {
-        ArrayList<Commande> commandes = new ArrayList<>();
-
-        for (Commande commande : getAll()) {
-            if (commande.getTournee().getIdTournee() == idTournee) {
-                commandes.add(commande);
-            }
-        }
-
-        return commandes;
-    }
-
-    /**
      * Ajoute dans la base de données une instance de Commande.
      * 
      * @param t l'instance Commande de l'objet à ajouter.
@@ -111,7 +89,8 @@ public class CommandeDAO extends DAO<Commande> {
     @Override
     public void add(Commande t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Commande VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt = conn.prepareStatement("INSERT INTO Commande VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getLibelle());
             pstmt.setFloat(2, t.getPoids());
             pstmt.setTimestamp(3, t.getHoraireDebut());
@@ -124,8 +103,8 @@ public class CommandeDAO extends DAO<Commande> {
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
-                long id = ((BigInteger)rs.getObject(1)).longValue();
-                t.setIdCommande((int)id);
+                long id = ((BigInteger) rs.getObject(1)).longValue();
+                t.setIdCommande((int) id);
             }
 
         } catch (SQLException e) {
