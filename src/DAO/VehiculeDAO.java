@@ -1,9 +1,9 @@
 package DAO;
 
+import modele.Tournee;
 import modele.Vehicule;
 import java.math.BigInteger;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,7 +37,11 @@ public class VehiculeDAO extends DAO<Vehicule> {
                     pDAO.get(rs.getInt("idProducteur"))
                 );
 
-                chargeListeTournee(vehicule);
+                // On charge la liste de tournée
+                TourneeDAO tourneeDAO =  new TourneeDAO(conn);
+                for(Tournee tournee : tourneeDAO.getTourneeByVehicule(vehicule)) {
+                    vehicule.addTournee(tournee);
+                }
 
                 return vehicule;
             }
@@ -71,7 +75,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
                         pDAO.get(rs.getInt("idProducteur"))
                 );
 
-                chargeListeTournee(vehicule);
                 vehicules.add(vehicule);
             }
 
@@ -126,7 +129,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
             pstmt.setInt(5, t.getIdVehicule());
 
             pstmt.executeUpdate();
-            updateListeTournee(t);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -148,36 +150,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Methode permettant de charger la liste de tournee associee à un vehicle.
-     * @param t Vehicule le Vehicule contenant la liste de tournee.
-     */
-    public void chargeListeTournee(Vehicule t) throws SQLException {
-        TourneeDAO tourneeDAO = new TourneeDAO(conn);
-        pstmt = conn.prepareStatement(
-                "SELECT idTournee FROM Tournee WHERE idVehicule = ?"
-        );
-        pstmt.setInt(1, t.getIdVehicule());
-        ResultSet rsTournee = pstmt.executeQuery();
-
-        // On charge le tableau pour chaaue ID tournee.
-        while(rsTournee.next()) {
-            t.addTournee(
-                    tourneeDAO.get(rsTournee.getInt("idTournee"))
-            );
-        }
-    }
-
-    /**
-     * Mise à jour de la liste de tournee associée à un vehicle.
-     * Ici, on supprime le tableau et on le recharge.
-     * @param t Vehicule le Vehicule contenant la liste de tournee.
-     */
-    public void updateListeTournee(Vehicule t) throws SQLException {
-        t.getTournees().forEach(t::removeTournee);
-        chargeListeTournee(t);
     }
 
     /**

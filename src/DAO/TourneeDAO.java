@@ -2,6 +2,8 @@ package DAO;
 
 import modele.Commande;
 import modele.Tournee;
+import modele.Vehicule;
+
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -93,10 +95,15 @@ public class TourneeDAO extends DAO<Tournee> {
                 t.setIdTournee((int) id);
 
                 CommandeDAO coDAO = new CommandeDAO(conn);
-
                 for (Commande commande : t.getCommandes()) {
                     coDAO.add(commande);
                 }
+
+                // On met a jour la liste de tournees dans vehicule.
+                if (t.getVehicule() != null) {
+                    t.getVehicule().addTournee(t);
+                }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,6 +134,12 @@ public class TourneeDAO extends DAO<Tournee> {
             for (Commande commande : t.getCommandes()) {
                 coDAO.update(commande);
             }
+
+            // On met à jour la liste de tournees dans vehicule.
+            if (!t.getVehicule().getTournees().contains(t)) {
+                t.getVehicule().addTournee(t);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -143,10 +156,45 @@ public class TourneeDAO extends DAO<Tournee> {
             pstmt = conn.prepareStatement("DELETE FROM Tournee WHERE idTournee = ?");
             pstmt.setInt(1, t.getIdTournee());
 
+            // On met à jour la liste de tournees dans vehicule.
+            if (t.getVehicule() != null) {
+                t.getVehicule().removeTournee(t);
+            }
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Retour une liste de tournée associée a un vehicle.
+     *
+     * @param t le vehicule qui doit etre associe à la tournée
+     * @return tournees un ArrayList<> contenant les tournees associés au vehicle
+     * @throws SQLException
+     */
+    public ArrayList<Tournee> getTourneeByVehicule(Vehicule t) throws SQLException {
+        ArrayList<Tournee> tournees = new ArrayList<>();
+
+        pstmt = conn.prepareStatement(
+                "SELECT * FROM Tournee WHERE idVehicule = ?"
+        );
+        pstmt.setInt(1, t.getIdVehicule());
+        rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            tournees.add(new Tournee(
+                    rs.getInt("idTournee"),
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"),
+                    rs.getFloat("poids"),
+                    rs.getString("libelle"),
+                    t)
+            );
+        }
+
+        return tournees;
     }
 
     /**
