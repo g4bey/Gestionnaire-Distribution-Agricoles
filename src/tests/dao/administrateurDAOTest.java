@@ -125,7 +125,7 @@ public class administrateurDAOTest {
         int idAdmin = ADMIN_A.getIdAdministrateur();
 
         // Apres suppression, un get idAdmin doit etre null.
-        adminDAO.delete(idAdmin);
+        adminDAO.delete(ADMIN_A);
         assertNull(adminDAO.get(idAdmin));
     }
 

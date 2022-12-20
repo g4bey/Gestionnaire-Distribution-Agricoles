@@ -170,7 +170,7 @@ public class vehiculeDAOTest {
         int idVehicule = VEHICULE_A.getIdVehicule();
 
         // Apres suppression, l'ID devrait etre null.
-        vehiculeDAO.delete(idVehicule);
+        vehiculeDAO.delete(VEHICULE_A);
         assertNull(vehiculeDAO.get(idVehicule));
     }
 
