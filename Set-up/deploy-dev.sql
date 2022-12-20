@@ -13,7 +13,7 @@ USE GDADev;
 #------------------------------------------------------------
 
 CREATE TABLE Producteur(
-                           idProducteur Int  Auto_increment  NOT NULL ,
+                           idProducteur Int UNSIGNED  Auto_increment  NOT NULL ,
                            proprietaire Varchar (50) NOT NULL ,
                            adresseProd  Varchar (50) NOT NULL ,
                            numTelProd   Varchar (12) NOT NULL ,
@@ -30,15 +30,15 @@ CREATE TABLE Producteur(
 #------------------------------------------------------------
 
 CREATE TABLE Vehicule(
-                         idVehicule   Int  Auto_increment  NOT NULL ,
-                         poidsMax     Float NOT NULL ,
+                         idVehicule   Int UNSIGNED  Auto_increment  NOT NULL ,
+                         poidsMax     Float UNSIGNED NOT NULL ,
                          libelle      Varchar (50) NOT NULL ,
                          numImmat     Char (7) NOT NULL ,
-                         idProducteur Int NOT NULL
+                         idProducteur Int UNSIGNED NOT NULL
     ,CONSTRAINT Vehicule_AK UNIQUE (numImmat)
     ,CONSTRAINT Vehicule_PK PRIMARY KEY (idVehicule)
 
-    ,CONSTRAINT Vehicule_Producteur_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur)
+    ,CONSTRAINT Vehicule_Producteur_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 
@@ -47,15 +47,15 @@ CREATE TABLE Vehicule(
 #------------------------------------------------------------
 
 CREATE TABLE Tournee(
-                        idTournee    Int  Auto_increment  NOT NULL ,
+                        idTournee    Int UNSIGNED  Auto_increment  NOT NULL ,
                         horaireDebut TimeStamp NOT NULL ,
                         horaireFin   TimeStamp NOT NULL ,
-                        poids        Float NOT NULL ,
+                        poids        Float UNSIGNED NOT NULL ,
                         libelle      Varchar (50) NOT NULL ,
-                        idVehicule   Int NOT NULL
+                        idVehicule   Int UNSIGNED NOT NULL
     ,CONSTRAINT Tournee_PK PRIMARY KEY (idTournee)
 
-    ,CONSTRAINT Tournee_Vehicule_FK FOREIGN KEY (idVehicule) REFERENCES Vehicule(idVehicule)
+    ,CONSTRAINT Tournee_Vehicule_FK FOREIGN KEY (idVehicule) REFERENCES Vehicule(idVehicule) ON DELETE SET 0
 )ENGINE=InnoDB;
 
 
@@ -64,7 +64,7 @@ CREATE TABLE Tournee(
 #------------------------------------------------------------
 
 CREATE TABLE Administrateur(
-                               idAdministrateur Int  Auto_increment  NOT NULL ,
+                               idAdministrateur Int UNSIGNED  Auto_increment  NOT NULL ,
                                mdpAdmin         Char (100) NOT NULL ,
                                pseudo           Varchar (50) NOT NULL
     ,CONSTRAINT Administrateur_AK UNIQUE (pseudo)
@@ -77,7 +77,7 @@ CREATE TABLE Administrateur(
 #------------------------------------------------------------
 
 CREATE TABLE Client(
-                       idClient      Int  Auto_increment  NOT NULL ,
+                       idClient      Int UNSIGNED  Auto_increment  NOT NULL ,
                        nomClient     Varchar (50) NOT NULL ,
                        adresseClient Varchar (50) NOT NULL ,
                        gpsClient     Char (19) NOT NULL ,
@@ -91,21 +91,24 @@ CREATE TABLE Client(
 #------------------------------------------------------------
 
 CREATE TABLE Commande(
-                         idCommande   Int  Auto_increment  NOT NULL ,
+                         idCommande   Int UNSIGNED  Auto_increment  NOT NULL ,
                          libelle      Varchar (50) NOT NULL ,
-                         poids        Float NOT NULL ,
+                         poids        Float UNSIGNED NOT NULL ,
                          horaireDebut TimeStamp NOT NULL ,
                          horaireFin   TimeStamp NOT NULL ,
-                         idTournee    Int ,
-                         idProducteur Int NOT NULL ,
-                         idClient     Int NOT NULL
+                         idTournee    Int UNSIGNED ,
+                         idProducteur Int UNSIGNED NOT NULL ,
+                         idClient     Int UNSIGNED NOT NULL
     ,CONSTRAINT Commande_PK PRIMARY KEY (idCommande)
 
-    ,CONSTRAINT Commande_Tournee_FK FOREIGN KEY (idTournee) REFERENCES Tournee(idTournee)
-    ,CONSTRAINT Commande_Producteur0_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur)
+    ,CONSTRAINT Commande_Tournee_FK FOREIGN KEY (idTournee) REFERENCES Tournee(idTournee) ON DELETE SET NULL
+    ,CONSTRAINT Commande_Producteur0_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur) ON DELETE CASCADE
     ,CONSTRAINT Commande_Client1_FK FOREIGN KEY (idClient) REFERENCES Client(idClient)
 )ENGINE=InnoDB;
 
+
+-- Insertion du véhicule supprimé
+INSERT INTO Vehicule VALUES (0, 0, 'Véhicule supprimé', 0000000, 0);
 
 -- Insertion de l'administrateur initial
 INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('null', 'Admin');
