@@ -54,14 +54,13 @@ public class ProducteurDAO extends DAO<Producteur> {
             while (rs.next()) {
                 producteurs.add(
                         new Producteur(
-                            rs.getInt("idProducteur"), 
-                            rs.getString("siret"), 
-                            rs.getString("proprietaire"),
-                            rs.getString("adresseProd"),
-                            rs.getString("numTelProd"),
-                            rs.getString("gpsProd"),
-                            rs.getString("mdpProd"))
-                        );
+                                rs.getInt("idProducteur"),
+                                rs.getString("siret"),
+                                rs.getString("proprietaire"),
+                                rs.getString("adresseProd"),
+                                rs.getString("numTelProd"),
+                                rs.getString("gpsProd"),
+                                rs.getString("mdpProd")));
             }
 
             return producteurs;
@@ -79,7 +78,8 @@ public class ProducteurDAO extends DAO<Producteur> {
     @Override
     public void add(Producteur t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Producteur VALUES (NULL, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt = conn.prepareStatement("INSERT INTO Producteur VALUES (NULL, ?, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getProprietaire());
             pstmt.setString(2, t.getAdresseProd());
             pstmt.setString(3, t.getNumTelProd());
@@ -91,8 +91,8 @@ public class ProducteurDAO extends DAO<Producteur> {
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
-                long id = ((BigInteger)rs.getObject(1)).longValue();
-                t.setIdProducteur((int)id);
+                long id = ((BigInteger) rs.getObject(1)).longValue();
+                t.setIdProducteur((int) id);
             }
 
         } catch (SQLException e) {
@@ -125,15 +125,18 @@ public class ProducteurDAO extends DAO<Producteur> {
     }
 
     /**
-     * Supprime de la base de données l'instance de Producteur associée à l'id.
+     * Supprime de la base de données une instance de Producteur.
      * 
-     * @param t Producteur représentant le Producteur à supprimer.
+     * @param prd Producteur représentant le Producteur à supprimer.
      */
     @Override
-    public void delete(Producteur t) {
+    public void delete(Producteur prd) {
         try {
+            TourneeDAO tDAO = new TourneeDAO(conn);
+            prd.getCommandes().stream().map(t -> t.getTournee()).distinct().forEach(t -> tDAO.delete(t));
+
             pstmt = conn.prepareStatement("DELETE FROM Producteur WHERE idProducteur = ?");
-            pstmt.setInt(1, t.getIdProducteur());
+            pstmt.setInt(1, prd.getIdProducteur());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
