@@ -8,12 +8,13 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests de la classe DAO.AdministrateurDAO.
@@ -85,9 +86,7 @@ public class administrateurDAOTest {
         // Demander un administrateur d'ID associé à l'ADMIN_A
         // doit aboutir à une égalité d'attributs.
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
-        assertEquals(ADMIN_A.getIdAdministrateur(), adminRetour.getIdAdministrateur());
-        assertEquals(ADMIN_A.getMdpAdmin(), adminRetour.getMdpAdmin());
-        assertEquals(ADMIN_A.getPseudo(), adminRetour.getPseudo());
+        assertTrue(adminRetour.equals(ADMIN_A));
 
         Administrateur adminNull = adminDAO.get(5);
         assertNull(adminNull);
@@ -147,8 +146,7 @@ public class administrateurDAOTest {
         // On créer un autre object de meme ID pour s'assurer que les attributs
         // sont identique. Cela induit qu'ils sont modifés en BDD.
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
-        assertEquals(adminRetour.getPseudo(), ADMIN_A.getPseudo());
-        assertEquals(adminRetour.getMdpAdmin(), ADMIN_A.getMdpAdmin());
+        assertTrue(adminRetour.equals(ADMIN_A));
     }
 
 }

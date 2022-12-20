@@ -16,8 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests de la classe DAO.AdministrateurDAO.
@@ -122,10 +121,7 @@ public class vehiculeDAOTest {
         // Demander un véhicule d'ID associé au VEHICULE_A
         // Doit nécessairement aboutir à une égalité d'attributs
         Vehicule vehiculeRetour = vehiculeDAO.get(VEHICULE_A.getIdVehicule());
-        assertEquals(VEHICULE_A.getIdVehicule(), vehiculeRetour.getIdVehicule());
-        assertEquals(VEHICULE_A.getPoidsMax(), vehiculeRetour.getPoidsMax());
-        assertEquals(VEHICULE_A.getLibelle(), vehiculeRetour.getLibelle());
-        assertEquals(VEHICULE_A.getNumImmat(), vehiculeRetour.getNumImmat());
+        assertTrue(VEHICULE_A.equals(vehiculeRetour));
 
         // L'ID du producteur associé au véhicule correspondre au producteur associé initialement.
         Producteur producteur = vehiculeRetour.getProducteur();
@@ -201,13 +197,7 @@ public class vehiculeDAOTest {
         // On créer un autre object de meme ID pour s'assurer que les attributs
         // sont identiques. Cela induit qu'ils sont modifés en BDD.
         Vehicule vehiculeRetour = vehiculeDAO.get(VEHICULE_A.getIdVehicule());
-        assertEquals(vehiculeRetour.getLibelle(), VEHICULE_A.getLibelle());
-        assertEquals(vehiculeRetour.getPoidsMax(), VEHICULE_A.getPoidsMax());
-        assertEquals(vehiculeRetour.getNumImmat(), VEHICULE_A.getNumImmat());
-        assertEquals(
-                vehiculeRetour.getProducteur().getIdProducteur(),
-                VEHICULE_A.getProducteur().getIdProducteur()
-        );
+        assertTrue(vehiculeRetour.equals(VEHICULE_A));
     }
 
 }
