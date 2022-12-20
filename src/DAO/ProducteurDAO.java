@@ -80,12 +80,12 @@ public class ProducteurDAO extends DAO<Producteur> {
     public void add(Producteur t) {
         try {
             pstmt = conn.prepareStatement("INSERT INTO Producteur VALUES (NULL, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, t.getSiret());
-            pstmt.setString(2, t.getProprietaire());
-            pstmt.setString(3, t.getAdresseProd());
-            pstmt.setString(4, t.getNumTelProd());
-            pstmt.setString(5, t.getGpsProd());
-            pstmt.setString(6, t.getMdpProd());
+            pstmt.setString(1, t.getProprietaire());
+            pstmt.setString(2, t.getAdresseProd());
+            pstmt.setString(3, t.getNumTelProd());
+            pstmt.setString(4, t.getGpsProd());
+            pstmt.setString(5, t.getMdpProd());
+            pstmt.setString(6, t.getSiret());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
