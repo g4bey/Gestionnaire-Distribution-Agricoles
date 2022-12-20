@@ -1,8 +1,10 @@
 package tests.dao;
 
 import DAO.ProducteurDAO;
+import DAO.TourneeDAO;
 import DAO.VehiculeDAO;
 import modele.Producteur;
+import modele.Tournee;
 import modele.Vehicule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -199,5 +202,35 @@ public class VehiculeDAOTest {
         Vehicule vehiculeRetour = vehiculeDAO.get(VEHICULE_A.getIdVehicule());
         assertTrue(vehiculeRetour.equals(VEHICULE_A));
     }
+
+    /**
+     * On s'assure que les tournees sont bien propagés.
+     * D'abord dans les objets existants puis dans les objets nouvelles crées.
+     */
+    @Test
+    @DisplayName("Test propagation ajout tournee")
+    public void propagationTournee() {
+        vehiculeDAO.add(VEHICULE_A);
+
+        // On creer deux tournees
+        Tournee tournee = new Tournee(new Timestamp(1000), new Timestamp(1000), 10F, "D", VEHICULE_A);
+        Tournee tournee2 = new Tournee(new Timestamp(1000), new Timestamp(2000), 12F, "F", VEHICULE_A);
+
+        // On les ajoute en base.
+        TourneeDAO tourneeDAO = new TourneeDAO(conn);
+        tourneeDAO.add(tournee);
+        tourneeDAO.add(tournee2);
+
+        // On vérifie qu'elles sont bien propagés
+        assertEquals(2, VEHICULE_A.getTournees().size());
+        assertTrue(tournee.equals(VEHICULE_A.getTournees().get(0)));
+
+        // On s'assure qu'on a les bonnes valeurs dans les objets.
+        Vehicule vehiculeRetour = vehiculeDAO.get(VEHICULE_A.getIdVehicule());
+        assertTrue(vehiculeRetour.getTournees().get(1).equals(VEHICULE_A.getTournees().get(1)));
+        assertTrue(vehiculeRetour.getTournees().get(0).equals(VEHICULE_A.getTournees().get(0)));
+
+    }
+
 
 }
