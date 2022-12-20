@@ -176,7 +176,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * @param t Vehicule le Vehicule contenant la liste de tournee.
      */
     public void updateListeTournee(Vehicule t) throws SQLException {
-        t.getTournees().forEach(tournee -> tournee.setIdTournee(0));
+        t.getTournees().forEach(t::removeTournee);
         chargeListeTournee(t);
     }
 
