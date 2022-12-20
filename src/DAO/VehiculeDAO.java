@@ -3,6 +3,7 @@ package DAO;
 import modele.Vehicule;
 import java.math.BigInteger;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,12 +30,16 @@ public class VehiculeDAO extends DAO<Vehicule> {
             if (rs.next()) {
                 ProducteurDAO pDAO = new ProducteurDAO(conn);
 
-                return new Vehicule(id, 
+                Vehicule vehicule = new Vehicule(id,
                     rs.getString("numImmat"), 
                     rs.getFloat("poidsMax"),
                     rs.getString("libelle"),
                     pDAO.get(rs.getInt("idProducteur"))
                 );
+
+                chargeListeTournee(vehicule);
+
+                return vehicule;
             }
 
             return null;
@@ -57,14 +62,18 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
             ProducteurDAO pDAO = new ProducteurDAO(conn);
 
-            while (rs.next())
-                vehicules.add(new Vehicule(
-                    rs.getInt("idVehicule"), 
-                    rs.getString("numImmat"), 
-                    rs.getFloat("poidsMax"),
-                    rs.getString("libelle"), 
-                    pDAO.get(rs.getInt("idProducteur")))
+            while (rs.next()) {
+                Vehicule vehicule = new Vehicule(
+                        rs.getInt("idVehicule"),
+                        rs.getString("numImmat"),
+                        rs.getFloat("poidsMax"),
+                        rs.getString("libelle"),
+                        pDAO.get(rs.getInt("idProducteur"))
                 );
+
+                chargeListeTournee(vehicule);
+                vehicules.add(vehicule);
+            }
 
             return vehicules;
         } catch (SQLException e) {
@@ -117,6 +126,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
             pstmt.setInt(5, t.getIdVehicule());
 
             pstmt.executeUpdate();
+            updateListeTournee(t);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -134,9 +144,40 @@ public class VehiculeDAO extends DAO<Vehicule> {
             pstmt.setInt(1, t.getIdVehicule());
 
             pstmt.executeUpdate();
+            t.getTournees().forEach(tournee -> t.setIdVehicule(0));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Methode permettant de charger la liste de tournee associee à un vehicle.
+     * @param t Vehicule le Vehicule contenant la liste de tournee.
+     */
+    public void chargeListeTournee(Vehicule t) throws SQLException {
+        TourneeDAO tourneeDAO = new TourneeDAO(conn);
+        pstmt = conn.prepareStatement(
+                "SELECT idTournee FROM Tournee WHERE idVehicule = ?"
+        );
+        pstmt.setInt(1, t.getIdVehicule());
+        ResultSet rsTournee = pstmt.executeQuery();
+
+        // On charge le tableau pour chaaue ID tournee.
+        while(rsTournee.next()) {
+            t.addTournee(
+                    tourneeDAO.get(rsTournee.getInt("idTournee"))
+            );
+        }
+    }
+
+    /**
+     * Mise à jour de la liste de tournee associée à un vehicle.
+     * Ici, on supprime le tableau et on le recharge.
+     * @param t Vehicule le Vehicule contenant la liste de tournee.
+     */
+    public void updateListeTournee(Vehicule t) throws SQLException {
+        t.getTournees().forEach(tournee -> tournee.setIdTournee(0));
+        chargeListeTournee(t);
     }
 
     /**
