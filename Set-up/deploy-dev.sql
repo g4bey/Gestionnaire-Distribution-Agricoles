@@ -2,6 +2,7 @@
 DROP DATABASE IF EXISTS GDADev;
 CREATE DATABASE IF NOT EXISTS GDADev;
 USE GDADev;
+SET GLOBAL SQL_MODE='ALLOW_INVALID_DATES';
 
 #------------------------------------------------------------
 #        Script MySQL.

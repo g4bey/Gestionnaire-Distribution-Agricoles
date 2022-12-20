@@ -2,6 +2,7 @@
 DROP DATABASE IF EXISTS GDAProd;
 CREATE DATABASE IF NOT EXISTS GDAProd;
 USE GDAProd;
+SET GLOBAL SQL_MODE='ALLOW_INVALID_DATES';
 
 #------------------------------------------------------------
 #        Script MySQL.

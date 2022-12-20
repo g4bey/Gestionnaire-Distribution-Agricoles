@@ -2,7 +2,7 @@
 DROP DATABASE IF EXISTS GDATest;
 CREATE DATABASE IF NOT EXISTS GDATest;
 USE GDATest;
-SET SQL_MODE='ALLOW_INVALID_DATES';
+SET GLOBAL SQL_MODE='ALLOW_INVALID_DATES';
 
 #------------------------------------------------------------
 #        Script MySQL.
