@@ -116,9 +116,9 @@ public class CommandeDAO extends DAO<Commande> {
             pstmt.setFloat(2, t.getPoids());
             pstmt.setTimestamp(3, t.getHoraireDebut());
             pstmt.setTimestamp(4, t.getHoraireFin());
-            pstmt.setInt(4, t.getTournee().getIdTournee());
-            pstmt.setInt(5, t.getProducteur().getIdProducteur());
-            pstmt.setInt(6, t.getClient().getIdClient());
+            pstmt.setInt(5, t.getTournee().getIdTournee());
+            pstmt.setInt(6, t.getProducteur().getIdProducteur());
+            pstmt.setInt(7, t.getClient().getIdClient());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
