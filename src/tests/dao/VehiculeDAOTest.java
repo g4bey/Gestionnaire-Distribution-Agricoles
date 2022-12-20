@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests de la classe DAO.AdministrateurDAO.
  */
-public class vehiculeDAOTest {
+public class VehiculeDAOTest {
 
     static private Connection conn;
     static private VehiculeDAO vehiculeDAO;
