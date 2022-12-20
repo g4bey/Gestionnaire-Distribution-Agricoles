@@ -77,7 +77,7 @@ public class ClientDAO extends DAO<Client> {
     @Override
     public void add(Client t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Client VALUES (NULL, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO Client VALUES (NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getNomClient());
             pstmt.setString(2, t.getAdresseClient());
             pstmt.setString(3, t.getGpsClient());
@@ -105,7 +105,7 @@ public class ClientDAO extends DAO<Client> {
     public void update(Client t) {
         try {
             pstmt = conn.prepareStatement(
-                    "UPDATE Client SET nomClient = ?, adresseClient = ?, gpsClient = ?, numTelClient = ? WHERE idClient = ?", Statement.RETURN_GENERATED_KEYS);
+                    "UPDATE Client SET nomClient = ?, adresseClient = ?, gpsClient = ?, numTelClient = ? WHERE idClient = ?");
             pstmt.setString(1, t.getNomClient());
             pstmt.setString(2, t.getAdresseClient());
             pstmt.setString(3, t.getGpsClient());

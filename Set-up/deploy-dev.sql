@@ -24,7 +24,6 @@ CREATE TABLE Producteur(
     ,CONSTRAINT Producteur_PK PRIMARY KEY (idProducteur)
 )ENGINE=InnoDB;
 
-
 #------------------------------------------------------------
 # Table: Vehicule
 #------------------------------------------------------------
@@ -41,7 +40,6 @@ CREATE TABLE Vehicule(
     ,CONSTRAINT Vehicule_Producteur_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-
 #------------------------------------------------------------
 # Table: Tournee
 #------------------------------------------------------------
@@ -52,11 +50,11 @@ CREATE TABLE Tournee(
                         horaireFin   TimeStamp NOT NULL ,
                         poids        Float UNSIGNED NOT NULL ,
                         libelle      Varchar (50) NOT NULL ,
-                        idVehicule   Int UNSIGNED NOT NULL
+                        idVehicule   Int UNSIGNED
     ,CONSTRAINT Tournee_PK PRIMARY KEY (idTournee)
 
-    ,CONSTRAINT Tournee_Vehicule_FK FOREIGN KEY (idVehicule) REFERENCES Vehicule(idVehicule) ON DELETE SET 0
-)ENGINE=InnoDB;
+    ,CONSTRAINT Tournee_Vehicule_FK FOREIGN KEY (idVehicule) REFERENCES Vehicule(idVehicule) ON DELETE SET NULL
+        )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
@@ -105,10 +103,6 @@ CREATE TABLE Commande(
     ,CONSTRAINT Commande_Producteur0_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur) ON DELETE CASCADE
     ,CONSTRAINT Commande_Client1_FK FOREIGN KEY (idClient) REFERENCES Client(idClient)
 )ENGINE=InnoDB;
-
-
--- Insertion du véhicule supprimé
-INSERT INTO Vehicule VALUES (0, 0, 'Véhicule supprimé', 0000000, 0);
 
 -- Insertion de l'administrateur initial
 INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('null', 'Admin');
