@@ -125,13 +125,13 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Supprime de la base de données l'instance de Vehicule associée à l'id.
      * 
-     * @param id int représentant l'id de Vehicule à supprimer.
+     * @param t Vehicule représentant le Vehicule à supprimer.
      */
     @Override
-    public void delete(int id) {
+    public void delete(Vehicule t) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Vehicule WHERE idVehicule = ?");
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, t.getIdVehicule());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

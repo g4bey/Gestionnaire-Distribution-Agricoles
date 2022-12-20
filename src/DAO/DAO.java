@@ -35,14 +35,14 @@ public abstract class DAO<T> {
      * Récupère dans la base de données l'instance de T demandée.
      * 
      * @param id id de type int, représente l'id de l'objet T demandé.
-     * @returns Une instance de T.
+     * @return Une instance de T.
      */
     public abstract T get(int id);
 
     /**
      * Récupère dans la base de données toutes les instances de T.
      * 
-     * @returns Une liste d'instances de T.
+     * @return Une liste d'instances de T.
      */
     public abstract List<T> getAll();
 
@@ -63,7 +63,7 @@ public abstract class DAO<T> {
     /**
      * Supprime de la base de données l'instance de T associée à l'id.
      * 
-     * @param id int représentant l'id de T à supprimer.
+     * @param t l'instance de de l'objet T à supprimer.
      */
-    public abstract void delete(int id);
+    public abstract void delete(T t);
 }

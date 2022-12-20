@@ -121,13 +121,13 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Supprime de la base de données l'instance de Client associée à l'id.
      * 
-     * @param id int représentant l'id de Client à supprimer.
+     * @param t Client représentant le Client à supprimer.
      */
     @Override
-    public void delete(int id) {
+    public void delete(Client t) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Client WHERE idClient = ?");
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, t.getIdClient());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

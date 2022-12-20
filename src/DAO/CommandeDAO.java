@@ -161,13 +161,13 @@ public class CommandeDAO extends DAO<Commande> {
     /**
      * Supprime de la base de données l'instance de Commande associée à l'id.
      * 
-     * @param id int représentant l'id de Commande à supprimer.
+     * @param t Commande représentant la Commande à supprimer.
      */
     @Override
-    public void delete(int id) {
+    public void delete(Commande t) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Commande WHERE idCommande = ?");
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, t.getIdCommande());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

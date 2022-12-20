@@ -138,13 +138,13 @@ public class TourneeDAO extends DAO<Tournee> {
     /**
      * Supprime de la base de données l'instance de Tournee associée à l'id.
      * 
-     * @param id int représentant l'id de Tournee à supprimer.
+     * @param t Tournee représentant la Tournee à supprimer.
      */
     @Override
-    public void delete(int id) {
+    public void delete(Tournee t) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Tournee WHERE idTournee = ?");
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, t.getIdTournee());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

@@ -127,13 +127,13 @@ public class ProducteurDAO extends DAO<Producteur> {
     /**
      * Supprime de la base de données l'instance de Producteur associée à l'id.
      * 
-     * @param id int représentant l'id de Producteur à supprimer.
+     * @param t Producteur représentant le Producteur à supprimer.
      */
     @Override
-    public void delete(int id) {
+    public void delete(Producteur t) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Producteur WHERE idProducteur = ?");
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, t.getIdProducteur());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

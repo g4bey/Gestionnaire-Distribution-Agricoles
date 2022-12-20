@@ -110,13 +110,13 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     /**
      * Supprime de la base de données l'instance de Administrateur associée à l'id.
      * 
-     * @param id int représentant l'id d'Administrateur à supprimer.
+     * @param t Administrateur représentant l'Administrateur à supprimer.
      */
     @Override
-    public void delete(int id) {
+    public void delete(Administrateur t) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Administrateur WHERE idAdministrateur = ?");
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, t.getIdAdministrateur());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
