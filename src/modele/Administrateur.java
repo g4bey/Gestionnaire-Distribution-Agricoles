@@ -21,7 +21,6 @@ public class Administrateur {
     public String getMdpAdmin() {
         return mdpAdmin;
     }
-    
 
     public void setIdAdministrateur(int idAdministrateur) {
         this.idAdministrateur = idAdministrateur;
@@ -33,6 +32,25 @@ public class Administrateur {
 
     public void setMdpAdmin(String mdpAdmin) {
         this.mdpAdmin = mdpAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return ("Information Administrateur :\nId : " + idAdministrateur)
+                .concat("\nPseudo : ").concat(pseudo)
+                .concat("\nHash du mdp : ").concat(mdpAdmin);
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances d'Administeur
+     * 
+     * @param adm l'Administrateur à comparer
+     * @return un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Administrateur adm) {
+        return idAdministrateur == adm.idAdministrateur
+                && pseudo.equals(adm.pseudo)
+                && mdpAdmin.equals(adm.mdpAdmin);
     }
 
     /**

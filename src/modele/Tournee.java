@@ -74,6 +74,31 @@ public class Tournee {
         this.libelle = libelle;
     }
 
+    @Override
+    public String toString() {
+        return ("Information Tournee :\nId : " + idTournee)
+                .concat("Horaire début : " + horaireDebut)
+                .concat("Horaire fin : " + horaireFin)
+                .concat("Poids : " + poids)
+                .concat("Libellé : ").concat(libelle)
+                .concat("Véhicule : ").concat(vehicule.getNumImmat());
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances de Tournee
+     * 
+     * @param trn le Tournee à comparer
+     * @return un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Tournee trn) {
+        return idTournee == trn.idTournee
+                && horaireDebut.equals(trn.horaireDebut)
+                && horaireFin.equals(trn.horaireFin)
+                && Float.compare(poids, trn.poids) == 0
+                && libelle.equals(trn.libelle)
+                && vehicule.equals(trn.vehicule);
+    }
+
     /**
      * Constructeur de Tournee.
      * 
@@ -87,13 +112,13 @@ public class Tournee {
      */
     public Tournee(int idTournee, Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle,
             Vehicule vehicule, List<Commande> commandes) {
-                this.idTournee = idTournee;
-                this.horaireDebut = horaireDebut;
-                this.horaireFin = horaireFin;
-                this.poids = poids;
-                this.libelle = libelle;
-                this.vehicule = vehicule;
-                this.commandes = commandes;
+        this.idTournee = idTournee;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.poids = poids;
+        this.libelle = libelle;
+        this.vehicule = vehicule;
+        this.commandes = commandes;
     }
 
     /**
@@ -108,12 +133,12 @@ public class Tournee {
      */
     public Tournee(Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle, Vehicule vehicule,
             List<Commande> commandes) {
-                this.horaireDebut = horaireDebut;
-                this.horaireFin = horaireFin;
-                this.poids = poids;
-                this.libelle = libelle;
-                this.vehicule = vehicule;
-                this.commandes = commandes;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.poids = poids;
+        this.libelle = libelle;
+        this.vehicule = vehicule;
+        this.commandes = commandes;
     }
 
     /**

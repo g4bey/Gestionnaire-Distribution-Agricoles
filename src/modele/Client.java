@@ -54,6 +54,29 @@ public class Client {
         this.numTelClient = numTelClient;
     }
 
+    @Override
+    public String toString() {
+        return ("Informtion Client :\nId : " + idClient)
+                .concat("\nNom : ").concat(nomClient)
+                .concat("\nadresse : ").concat(adresseClient)
+                .concat("GPS : ").concat(gpsClient)
+                .concat("Numéro téléphone : ").concat(numTelClient);
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances Client
+     * 
+     * @param clt le Client à comparer
+     * @return un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Client clt) {
+        return idClient == clt.idClient
+                && nomClient.equals(clt.nomClient)
+                && adresseClient.equals(clt.adresseClient)
+                && gpsClient.equals(clt.gpsClient)
+                && numTelClient.equals(clt.numTelClient);
+    }
+
     /**
      * Constructeur de Client.
      * 

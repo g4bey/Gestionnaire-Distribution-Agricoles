@@ -63,6 +63,29 @@ public class Vehicule {
         this.producteur = producteur;
     }
 
+    @Override
+    public String toString() {
+        return ("Information Vehicule :\nId : " + idVehicule)
+                .concat("Immatriculation : ").concat(numImmat)
+                .concat("Poids max : " + poidsMax)
+                .concat("Libellé : ").concat(libelle)
+                .concat("Producteur : ").concat(producteur.getProprietaire());
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances de Vechicule
+     * 
+     * @param vh le Vechiule à comparer
+     * @return un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Vehicule vh) {
+        return idVehicule == vh.idVehicule
+                && numImmat.equals(vh.numImmat)
+                && Float.compare(poidsMax, vh.poidsMax) == 0
+                && libelle.equals(vh.libelle)
+                && producteur.equals(vh.producteur);
+    }
+
     /**
      * Constructeur de Vehicule.
      * 

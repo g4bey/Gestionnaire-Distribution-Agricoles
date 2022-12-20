@@ -87,6 +87,34 @@ public class Commande {
         this.tournee = tournee;
     }
 
+    @Override
+    public String toString() {
+        return ("Information Commande :\nId : " + idCommande)
+                .concat("Poids : " + poids)
+                .concat("Horaire début : " + horaireDebut)
+                .concat("Horaire fin : " + horaireFin)
+                .concat("Tournée : ").concat(tournee.getLibelle())
+                .concat("Producteur : ").concat(producteur.getSiret())
+                .concat("Client : ").concat(client.getNomClient());
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances de Commande
+     * 
+     * @param cmd la Commande à comparer
+     * @return un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Commande cmd) {
+        return idCommande == cmd.idCommande
+                && libelle.equals(cmd.libelle)
+                && Float.compare(poids, cmd.poids) == 0
+                && horaireDebut.equals(cmd.horaireDebut)
+                && horaireFin.equals(cmd.horaireFin)
+                && tournee.equals(cmd.tournee)
+                && producteur.equals(cmd.producteur)
+                && client.equals(cmd.client);
+    }
+
     /**
      * Constructeur de Commande.
      * 
@@ -103,14 +131,14 @@ public class Commande {
      */
     public Commande(int idCommande, String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin,
             Tournee tournee, Producteur producteur, Client client) {
-            this.idCommande = idCommande;
-            this.libelle = libelle;
-            this.poids = poids;
-            this.horaireDebut = horaireDebut;
-            this.horaireFin = horaireFin;
-            this.tournee = tournee;
-            this.producteur = producteur;
-            this.client = client;
+        this.idCommande = idCommande;
+        this.libelle = libelle;
+        this.poids = poids;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.tournee = tournee;
+        this.producteur = producteur;
+        this.client = client;
     }
 
     /**
@@ -128,12 +156,12 @@ public class Commande {
      */
     public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin, Tournee tournee,
             Producteur producteur, Client client) {
-                this.libelle = libelle;
-                this.poids = poids;
-                this.horaireDebut = horaireDebut;
-                this.horaireFin = horaireFin;
-                this.tournee = tournee;
-                this.producteur = producteur;
-                this.client = client;
+        this.libelle = libelle;
+        this.poids = poids;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.tournee = tournee;
+        this.producteur = producteur;
+        this.client = client;
     }
 }

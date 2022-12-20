@@ -94,6 +94,34 @@ public class Producteur {
         this.mdpProd = mdpProd;
     }
 
+    @Override
+    public String toString() {
+        return ("Information Producteur :\nId : " + idProducteur)
+                .concat("SIRET : ").concat(siret)
+                .concat("Propriétaire : ").concat(proprietaire)
+                .concat("Adresse : ").concat(adresseProd)
+                .concat("Numéro téléphone : ").concat(numTelProd)
+                .concat("GPS : ").concat(gpsProd)
+                .concat("Hash du mdp : ").concat(mdpProd);
+
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances de Producteur
+     * 
+     * @param prd le Producteur à comparer
+     * @return un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Producteur prd) {
+        return idProducteur == prd.idProducteur
+                && siret.equals(prd.siret)
+                && proprietaire.equals(prd.proprietaire)
+                && adresseProd.equals(prd.adresseProd)
+                && numTelProd.equals(prd.numTelProd)
+                && gpsProd.equals(prd.gpsProd)
+                && mdpProd.equals(prd.mdpProd);
+    }
+
     /**
      * Constructeur de Producteur.
      * 
@@ -108,13 +136,13 @@ public class Producteur {
      */
     public Producteur(int idProducteur, String siret, String proprietaire, String adresseProd, String numTelProd,
             String gpsProd, String mdpProd) {
-                this.idProducteur = idProducteur;
-                this.siret = siret;
-                this.proprietaire = proprietaire;
-                this.adresseProd = adresseProd;
-                this.numTelProd = numTelProd;
-                this.gpsProd = gpsProd;
-                this.mdpProd = mdpProd;
+        this.idProducteur = idProducteur;
+        this.siret = siret;
+        this.proprietaire = proprietaire;
+        this.adresseProd = adresseProd;
+        this.numTelProd = numTelProd;
+        this.gpsProd = gpsProd;
+        this.mdpProd = mdpProd;
     }
 
     /**
@@ -130,12 +158,12 @@ public class Producteur {
      */
     public Producteur(String siret, String proprietaire, String adresseProd, String numTelProd,
             String gpsProd, String mdpProd) {
-                this.siret = siret;
-                this.proprietaire = proprietaire;
-                this.adresseProd = adresseProd;
-                this.numTelProd = numTelProd;
-                this.gpsProd = gpsProd;
-                this.mdpProd = mdpProd;
+        this.siret = siret;
+        this.proprietaire = proprietaire;
+        this.adresseProd = adresseProd;
+        this.numTelProd = numTelProd;
+        this.gpsProd = gpsProd;
+        this.mdpProd = mdpProd;
     }
 
     /**
