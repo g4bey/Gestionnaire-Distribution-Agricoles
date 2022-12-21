@@ -86,63 +86,6 @@ public class CommandeDAO extends DAO<Commande> {
     }
 
     /**
-     * Retour une liste de commandes associée à une tournée.
-     * On prend le producteur en parametre pour conserver les références.
-     *
-     * @param prd le Producteur
-     * @param tournees ArrayList<Tournee> du procteur.
-     * @return ArrayList<Commande> la liste de commande associée à un producteur.
-     * @throws SQLException
-     */
-    public ArrayList<Commande> getCommandeByProducteurTournee(Producteur prd, ArrayList<Tournee> tournees)
-            throws SQLException {
-        ArrayList<Commande> commandes = new ArrayList<>();
-
-        // On récupère toutes les commandes associées aux tournées
-        for (Tournee tournee : tournees) {
-            pstmt = conn.prepareStatement(
-                    "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idTournee = ?");
-            pstmt.setInt(1, tournee.getIdTournee());
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                commandes.add(new Commande(
-                        rs.getInt("idCommande"),
-                        rs.getString("libelle"),
-                        rs.getFloat("poids"),
-                        rs.getTimestamp("horaireDebut"),
-                        rs.getTimestamp("horaireFin"),
-                        tournee,
-                        prd,
-                        new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
-                                rs.getString("gpsClient"), rs.getString("numTelClient"))));
-            }
-        }
-
-        // On récupère toutes les commandes qui n'ont pas de tournées mais qui sont
-        // associées au Producteur
-        pstmt = conn.prepareStatement(
-                "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idProducteur = ? AND idTournee IS NULL");
-        pstmt.setInt(1, prd.getIdProducteur());
-        rs = pstmt.executeQuery();
-
-        while (rs.next()) {
-            commandes.add(new Commande(
-                    rs.getInt("idCommande"),
-                    rs.getString("libelle"),
-                    rs.getFloat("poids"),
-                    rs.getTimestamp("horaireDebut"),
-                    rs.getTimestamp("horaireFin"),
-                    null,
-                    prd,
-                    new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
-                            rs.getString("gpsClient"), rs.getString("numTelClient"))));
-        }
-
-        return commandes;
-    }
-
-    /**
      * Ajoute dans la base de données une instance de Commande.
      * 
      * @param t l'instance Commande de l'objet à ajouter.
@@ -223,6 +166,64 @@ public class CommandeDAO extends DAO<Commande> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Retour une liste de commandes associée à une tournée.
+     * On prend le producteur en parametre pour conserver les références.
+     * <p>
+     * TO-DO: Refactorings.
+     * @param prd le Producteur
+     * @param tournees ArrayList<Tournee> du producteur.
+     * @return ArrayList<Commande> la liste de commande associée à un producteur.
+     * @throws SQLException
+     */
+    public ArrayList<Commande> getCommandeByProducteurTournee(Producteur prd, ArrayList<Tournee> tournees)
+            throws SQLException {
+        ArrayList<Commande> commandes = new ArrayList<>();
+
+        // On récupère toutes les commandes associées aux tournées
+        for (Tournee tournee : tournees) {
+            pstmt = conn.prepareStatement(
+                    "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idTournee = ?");
+            pstmt.setInt(1, tournee.getIdTournee());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                commandes.add(new Commande(
+                        rs.getInt("idCommande"),
+                        rs.getString("libelle"),
+                        rs.getFloat("poids"),
+                        rs.getTimestamp("horaireDebut"),
+                        rs.getTimestamp("horaireFin"),
+                        tournee,
+                        prd,
+                        new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
+                                rs.getString("gpsClient"), rs.getString("numTelClient"))));
+            }
+        }
+
+        // On récupère toutes les commandes qui n'ont pas de tournées mais qui sont
+        // associées au Producteur
+        pstmt = conn.prepareStatement(
+                "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idProducteur = ? AND idTournee IS NULL");
+        pstmt.setInt(1, prd.getIdProducteur());
+        rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            commandes.add(new Commande(
+                    rs.getInt("idCommande"),
+                    rs.getString("libelle"),
+                    rs.getFloat("poids"),
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"),
+                    null,
+                    prd,
+                    new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
+                            rs.getString("gpsClient"), rs.getString("numTelClient"))));
+        }
+
+        return commandes;
     }
 
     /**
