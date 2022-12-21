@@ -105,14 +105,16 @@ public class Commande {
      * @return un booléen représentant l'égalité entre les 2 instances
      */
     public boolean equals(Commande cmd) {
-        return idCommande == cmd.idCommande
+        return (idCommande == cmd.idCommande)
                 && libelle.equals(cmd.libelle)
                 && Float.compare(poids, cmd.poids) == 0
                 && horaireDebut.equals(cmd.horaireDebut)
                 && horaireFin.equals(cmd.horaireFin)
-                && tournee.equals(cmd.tournee)
                 && producteur.equals(cmd.producteur)
-                && client.equals(cmd.client);
+                && client.equals(cmd.client)
+                && cmd.tournee != null ? tournee.equals(cmd.tournee) : tournee == null;
+                // les tournée peuvent etre nul lorsqu'on créer une commande.
+                // si l'une est nul et pas l'autre, c'est false par default.
     }
 
     /**
@@ -161,6 +163,29 @@ public class Commande {
         this.horaireDebut = horaireDebut;
         this.horaireFin = horaireFin;
         this.tournee = tournee;
+        this.producteur = producteur;
+        this.client = client;
+    }
+
+    /**
+     * Constructeur de Commande lors qu'on la crée,
+     * en effet, elle n'est associée à une commande.
+     *
+     * @param libelle      String représentant le libellé de la Commande.
+     * @param poids        float représentant le poids de la commande.
+     * @param horaireDebut String représentant l'horaire de début de la Commande.
+     * @param horaireFin   String représentant l'horaire de fin de la Commande.
+     * @param producteur   Producteur représentant le producteur qui effectue la
+     *                     Commande.
+     * @param client       Client représentant le client qui a passé la Commande.
+     */
+    public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin,
+                    Producteur producteur, Client client) {
+        this.libelle = libelle;
+        this.poids = poids;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.tournee = null;
         this.producteur = producteur;
         this.client = client;
     }
