@@ -137,34 +137,6 @@ public class ClientDAO extends DAO<Client> {
     }
 
     /**
-     * Renvoie un client par son ID.
-     *
-     * @param idClient int l'id du client
-     * @return Client le client associé a l'ID fourni.
-     */
-    public Client getClientById(int idClient) {
-        try {
-            pstmt = conn.prepareStatement("SELECT * FROM Client WHERE idClient = ?");
-            pstmt.setInt(1, idClient);
-            pstmt.executeQuery();
-
-            if (rs.first()) {
-                return new Client(
-                        rs.getInt("idClient"),
-                        rs.getString("nomClient"),
-                        rs.getString("adresseClient"),
-                        rs.getString("gpsClient"),
-                        rs.getString("numTelClient")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
      * Constructeur de ClientDAO.
      *
      * @param conn Une Connection représentant la connexion à la base de données.

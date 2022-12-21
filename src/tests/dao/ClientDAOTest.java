@@ -19,11 +19,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests de la classe DAO.ClientDAOTest.
+ * Tests de la classe DAO.ClientDAO.
  */
 public class ClientDAOTest {
 
@@ -88,4 +89,91 @@ public class ClientDAOTest {
         clientDAO.add(CLIENT_A);
         assertEquals(1, CLIENT_A.getIdClient());
     }
+
+    /**
+     * On insère CLIENT_A en base.
+     * <p>
+     * Ensuite, on demande un client ayant pour ID l'iD de CLIENT_A.
+     * <p>
+     * Enfin, on s'assure qu'un ID inexistant renvoie bien null.
+     */
+    @Test
+    @DisplayName("Test de la methode get")
+    public void getTest() {
+        clientDAO.add(CLIENT_A);
+
+        // Demander un client d'ID associé à CLIENT_A
+        // Doit nécessairement aboutir à une égalité d'attributs
+        Client clientRetour = clientDAO.get(CLIENT_A.getIdClient());
+        assertTrue(CLIENT_A.equals(clientRetour));
+
+        // Cet ID n'existe pas.
+        Client clientNull = clientDAO.get(5);
+        assertNull(clientNull);
+    }
+
+    /**
+     * Insérons CLIENT_A et CLIENT_B en base.
+     * Ces derniers auront comme ID 1 et 2.
+     * <p>
+     * L'on vérifie qu'il y a bien 2 elements dans le tableau retourné.
+     * Puis l'on vérifie que ces éléments ont les bons ID.
+     */
+    @Test
+    @DisplayName("Test la methode getAll")
+    public void getAllTest() {
+        clientDAO.add(CLIENT_A);
+        clientDAO.add(CLIENT_B);
+
+        // L'on devrait avoir deux clients d'ID 1 et 2 dans le tableau.
+        List<Client> clientList = clientDAO.getAll();
+        assertEquals(2, clientList.size());
+        assertEquals(1, clientList.get(0).getIdClient());
+        assertEquals(2, clientList.get(1).getIdClient());
+    }
+
+    /**
+     * On insère le CLIENT_A en base.
+     * Ensuite, on récupère son ID.
+     * <p>
+     * Enfin, on supprime le client correspondant à cet ID.
+     * Puis, on vérifie que demander cet ID renvoie bien null.
+     */
+    @Test
+    @DisplayName("Test la methode delete")
+    public void deleteTest() {
+        clientDAO.add(CLIENT_A);
+        int idClient = CLIENT_A.getIdClient();
+
+        // Apres suppression, l'ID devrait être null.
+        clientDAO.delete(CLIENT_A);
+        assertNull(clientDAO.get(idClient));
+    }
+
+    /**
+     * On ajoute CLIENT_A en base et modifie tous ses attributs,
+     * puis on update ce client.
+     * <p>
+     * Enfin, on crée un autre objet avec le même ID pour s'assurer
+     * que les attributs sont égaux.
+     */
+    @Test
+    @DisplayName("Test la methode update")
+    public void updateTest() {
+       // On ajoute puis met à jour la TOURNEE_A
+        // On change aussi le producteur
+        clientDAO.add(CLIENT_A);
+        CLIENT_A.setNomClient("Fabrice");
+        CLIENT_A.setAdresseClient("8 allée des margin:auto");
+        CLIENT_A.setGpsClient("423");
+        CLIENT_A.setNumTelClient("0646219187");
+        clientDAO.update(CLIENT_A);
+
+        // On crée un autre objet de même ID pour s'assurer que les attributs
+        // sont identiques. Cela induit qu'ils sont modifiés en BDD.
+        Client clientRetour = clientDAO.get(CLIENT_A.getIdClient());
+        assertTrue(clientRetour.equals(CLIENT_A));
+    }
+
+
 }

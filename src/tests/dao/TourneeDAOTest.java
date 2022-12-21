@@ -119,11 +119,11 @@ public class TourneeDAOTest {
     }
 
     /**
-     * On insère TOURNEE en base.
+     * On insère TOURNEE_A en base.
      * <p>
-     * Ensuite, on demande une tournée ayant pour ID l'iD de TOURNEE.
+     * Ensuite, on demande une tournée ayant pour ID l'iD de TOURNEE_A.
      * <p>
-     * Puis l'on vérifie que l'attribut véhicule est bien le véhicule dans TOURNEE.
+     * Puis l'on vérifie que l'attribut véhicule est bien le véhicule dans TOURNEE_A.
      * <p>
      * Enfin,on s'assure qu'un ID inexistant renvoie bien null.
      */
@@ -132,7 +132,7 @@ public class TourneeDAOTest {
     public void getTest() {
         tourneeDAO.add(TOURNEE_A);
 
-        // Demander une tournée d'ID associé à TOURNEE
+        // Demander une tournée d'ID associé à TOURNEE_A
         // Doit nécessairement aboutir à une égalité d'attributs
         Tournee tourneeRetour = tourneeDAO.get(TOURNEE_A.getIdTournee());
         assertTrue(TOURNEE_A.equals(tourneeRetour));
@@ -148,7 +148,7 @@ public class TourneeDAOTest {
 
     /**
      * Insérons TOURNEE_A et TOURNEE_B en base.
-     * Ces derniers auront comme ID 1 et 2.
+     * Ces dernières auront comme ID 1 et 2.
      * <p>
      * L'on vérifie qu'il y a bien 2 elements dans le tableau retourné.
      * Puis l'on vérifie que ces éléments ont les bons ID.
@@ -159,7 +159,7 @@ public class TourneeDAOTest {
         tourneeDAO.add(TOURNEE_A);
         tourneeDAO.add(TOURNEE_B);
 
-        // L'on devrait avoir deux vehicules d'ID 1 et 2 dans le tableau.
+        // L'on devrait avoir deux tournées d'ID 1 et 2 dans le tableau.
         List<Tournee> tourneeList = tourneeDAO.getAll();
         assertEquals(2, tourneeList.size());
         assertEquals(1, tourneeList.get(0).getIdTournee());
@@ -179,7 +179,7 @@ public class TourneeDAOTest {
         tourneeDAO.add(TOURNEE_A);
         int idTournee = TOURNEE_A.getIdTournee();
 
-        // Apres suppression, l'ID devrait etre null.
+        // Apres suppression, l'ID devrait être null.
         tourneeDAO.delete(TOURNEE_A);
         assertNull(tourneeDAO.get(idTournee));
     }
@@ -208,8 +208,8 @@ public class TourneeDAOTest {
         TOURNEE_A.setVehicule(vehiculeB);
         tourneeDAO.update(TOURNEE_A);
 
-        // On créer un autre object de meme ID pour s'assurer que les attributs
-        // sont identiques. Cela induit qu'ils sont modifés en BDD.
+        // On crée un autre objet de même ID pour s'assurer que les attributs
+        // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Tournee tourneeRetour = tourneeDAO.get(TOURNEE_A.getIdTournee());
         assertTrue(tourneeRetour.equals(TOURNEE_A));
     }
