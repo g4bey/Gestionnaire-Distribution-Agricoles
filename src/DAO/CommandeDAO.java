@@ -122,7 +122,7 @@ public class CommandeDAO extends DAO<Commande> {
         // On récupère toutes les commandes qui n'ont pas de tournées mais qui sont
         // associées au Producteur
         pstmt = conn.prepareStatement(
-                "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idProducteur = ? AND idTournee = NULL");
+                "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idProducteur = ? AND idTournee IS NULL");
         pstmt.setInt(1, prd.getIdProducteur());
         rs = pstmt.executeQuery();
 
