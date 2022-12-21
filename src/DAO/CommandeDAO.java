@@ -214,6 +214,39 @@ public class CommandeDAO extends DAO<Commande> {
     }
 
     /**
+     * Retour une liste de commandes associée à une tournée.
+     *
+     * @param t le Tournee qui doit etre associe à la commande.
+     * @return tournees un ArrayList<> contenant les tournees associés au vehicle
+     * @throws SQLException
+     */
+    public ArrayList<Commande> getCommandeByTournee(Tournee t) throws SQLException {
+        ArrayList<Commande> commandes = new ArrayList<>();
+
+        pstmt = conn.prepareStatement(
+                "SELECT * FROM Commande WHERE idTournee = ?");
+        pstmt.setInt(1, t.getIdTournee());
+        rs = pstmt.executeQuery();
+
+        ProducteurDAO producteurDAO = new ProducteurDAO(conn);
+        ClientDAO clientDAO = new ClientDAO(conn);
+
+        while (rs.next()) {
+            commandes.add(new Commande(
+                    rs.getInt("idCommande"),
+                    rs.getString("libelle"),
+                    rs.getFloat("poids"),
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"),
+                    t,
+                    producteurDAO.getProducteurById(rs.getInt("idProducteur")),
+                    clientDAO.getClientById(rs.getInt("idProducteur"))));
+        }
+
+        return commandes;
+    }
+
+    /**
      * Constructeur de CommandeDAO.
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
