@@ -219,7 +219,7 @@ public class CommandeDAO extends DAO<Commande> {
                     rs.getTimestamp("horaireFin"),
                     null,
                     prd,
-                    new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
+                    new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
                             rs.getString("gpsClient"), rs.getString("numTelClient"))));
         }
 
