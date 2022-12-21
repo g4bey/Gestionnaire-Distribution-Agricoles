@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="879.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="879.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.ConsultTourCtrl">
    <children>
       <Text layoutX="477.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournée:">
          <font>
@@ -54,7 +54,7 @@
       </Text>
       <Line endX="760.0" endY="7.62939453125E-6" layoutX="297.0" layoutY="84.0" startX="-297.0" startY="7.62939453125E-6" />
       <Line endX="-105.69998168945312" endY="-64.0999984741211" layoutX="283.0" layoutY="65.0" startX="-105.69998168945312" startY="18.50000762939453" />
-      <Button fx:id="closeConsultTourBtn" layoutX="931.0" layoutY="824.0" mnemonicParsing="false" text="Quitter" />
+      <Button fx:id="closeConsultTourBtn" layoutX="931.0" layoutY="824.0" mnemonicParsing="false" onAction="#closeConsultTour" text="Quitter" />
       <Text layoutX="40.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations générales:">
          <font>
             <Font size="25.0" />

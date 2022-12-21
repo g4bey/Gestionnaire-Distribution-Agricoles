@@ -1,15 +1,18 @@
 package src.controllers;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import src.utility.ControllersUtils;
 
 /**
-* Contrôleur permettant l'ajout d'un Producteur.
+* Contrôleur permettant la modification d'un Producteur.
 */
-public class AddProdCtrl {
+public class ModifyProdCtrl implements Initializable {
 	
     @FXML
 	private TextField prodSiretField;
@@ -29,22 +32,25 @@ public class AddProdCtrl {
     @FXML
 	private TextField confirmPasswordField;
     
-    @FXML
-    private Text formErrorText;
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+    }
     
 	/**
-	* Méthode qui valide l'ajout d'un producteur.
+	* Méthode qui valide la modification d'un producteur.
 	* @param event ActionEvent
 	*/
-    public void validateAddProd(ActionEvent event) {
+    public void validateModifyProd(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-    * Méthode qui permet de fermer la vue d'ajout d'un producteur.
+    * Méthode qui permet de fermer la vue de modification d'un producteur.
     * @param event ActionEvent
     */
-    public void cancelAddProd(ActionEvent event) {
+    public void cancelModifyProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
 }

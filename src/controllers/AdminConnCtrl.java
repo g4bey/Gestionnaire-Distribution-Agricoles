@@ -1,22 +1,20 @@
 package src.controllers;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.text.Text;
+import src.utility.ControllersUtils;
 
 /**
 * Contrôleur permettant la connexion d'un Administrateur.
 */
-
-public class AdminConnCtrl {
+public class AdminConnCtrl implements Initializable {
 	
     @FXML
     private TextField adminLoginField;
@@ -30,33 +28,31 @@ public class AdminConnCtrl {
     @FXML
     private Button cancelAdminConn;
     
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    @FXML
+    private Text formErrorText;
+    
+    private ControllersUtils util;
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+        util = new ControllersUtils();
+    }
     
     /**
-     * Méthode pour revenir sur la page d'accueil.
-     * @param event
-	 * @throws IOException 
-     */
-    public void switchToHomePage(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/src/views/homePage.fxml"));
-    	scene = new Scene(root);
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setScene(scene);
-    	stage.show();
+    * Méthode pour annuler la connexion de l'utilisateur
+    * et revenir sur la page d'accueil.
+    * @param event ActionEvent
+    */
+    public void cancelAdminConn(ActionEvent event) {
+    	util.loadView(event, "/src/views/homePage.fxml");
     }
     
 	/**
-     * Méthode pour connecter l'utilisateur.
-     * @param event
-	 * @throws IOException 
-     */
-    public void loginAdmin(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/src/views/adminSelectMenu.fxml"));
-    	scene = new Scene(root);
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setScene(scene);
-    	stage.show();
+    * Méthode pour connecter l'utilisateur.
+    * @param event ActionEvent
+    */
+    public void validateAdminConn(ActionEvent event) {
+    	util.loadView(event, "/src/views/adminSelectMenu.fxml");
     }
 }

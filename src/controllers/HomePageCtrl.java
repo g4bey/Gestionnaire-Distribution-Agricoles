@@ -1,21 +1,18 @@
 package src.controllers;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import src.utility.ControllersUtils;
 
 /**
 * Contrôleur de la page d'accueil.
 */
-
-public class HomePageCtrl {
+public class HomePageCtrl implements Initializable {
 	
     @FXML
     private Button adminConnBtn;
@@ -23,35 +20,27 @@ public class HomePageCtrl {
     @FXML
     private Button prodConnBtn;
     
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    private ControllersUtils util;
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+        util = new ControllersUtils();
+    }
 	
     /**
-     * Méthode qui permet de changer vers la vue de connexion des administrateur.
-     * @param ActionEvent event
-     * @throws IOException 
-     */
-    
-    public void switchToAdminConn(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/src/views/adminConn.fxml"));
-    	scene = new Scene(root);
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setScene(scene);
-    	stage.show();
+    * Méthode qui permet de changer vers la vue de connexion des administrateur.
+    * @param ActionEvent event
+    */
+    public void switchToAdminConn(ActionEvent event) {
+    	util.loadView(event, "/src/views/adminConn.fxml");
     }
     
     /**
-     * Méthode qui permet de changer vers la vue de connexion des producteurs.
-     * @param ActionEvent event
-     * @throws IOException 
-     */
-    
-    public void switchToProdConn(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("/src/views/prodConn.fxml"));
-    	scene = new Scene(root);
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setScene(scene);
-    	stage.show();
+    * Méthode qui permet de changer vers la vue de connexion des producteurs.
+    * @param ActionEvent event
+    */
+    public void switchToProdConn(ActionEvent event) {
+    	util.loadView(event, "/src/views/prodConn.fxml");
     }
 }

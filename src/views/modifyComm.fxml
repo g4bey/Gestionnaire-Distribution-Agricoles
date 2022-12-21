@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.ModifyCommCtrl">
    <children>
       <Line endX="374.0000305175781" layoutX="109.0" layoutY="78.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
       <Line endX="-117.10003662109375" endY="-117.0" layoutX="284.0" layoutY="117.0" startX="-117.10002136230469" startY="-39.50000762939453" />
@@ -57,8 +57,8 @@
          </font>
       </Label>
       <ChoiceBox fx:id="clientChoiceBox" layoutX="222.0" layoutY="336.0" prefWidth="150.0" />
-      <Button fx:id="validateModifyComm" layoutX="373.0" layoutY="437.0" mnemonicParsing="false" text="Valider" />
-      <Button fx:id="cancelModifyComm" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" text="Annuler" />
+      <Button fx:id="validateModifyComm" layoutX="373.0" layoutY="437.0" mnemonicParsing="false" onAction="#validateModifyComm" text="Valider" />
+      <Button fx:id="cancelModifyComm" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" onAction="#cancelModifyComm" text="Annuler" />
       <ImageView fitHeight="66.0" fitWidth="135.0" layoutX="14.0" layoutY="6.0">
          <image>
             <Image url="@../ressources/pictures/1751148-ff5722.png" />

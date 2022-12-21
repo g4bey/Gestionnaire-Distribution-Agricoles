@@ -7,9 +7,9 @@ import javafx.scene.text.Text;
 import src.utility.ControllersUtils;
 
 /**
-* Contrôleur permettant l'ajout d'un Vehicule.
+* Contrôleur permettant la modification d'un Vehicule.
 */
-public class AddVehiculeCtrl {
+public class ModifyVehicleCtrl {
 
     @FXML
     private TextField vehicleImmatField;
@@ -24,18 +24,19 @@ public class AddVehiculeCtrl {
     private Text formErrorText;
     
 	/**
-	* Méthode qui valide l'ajout d'un véhicule.
+	* Méthode qui valide la modification d'un véhicule.
 	* @param event ActionEvent
 	*/
-    public void validateAddVehicle(ActionEvent event) {
+    public void validateModifyVehicle(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-    * Méthode qui permet de fermer la vue d'ajout d'un véhicule.
+    * Méthode qui permet de fermer la vue
+    * de modification d'un véhicule.
     * @param event ActionEvent
     */
-    public void cancelAddVehicle(ActionEvent event) {
+    public void cancelModifyVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
 }

@@ -31,8 +31,8 @@
       </Label>
       <Line endX="499.0" endY="-1.1444091796875E-5" layoutX="100.0" layoutY="66.0" startX="-100.0" />
       <Line endX="-93.10711669921875" endY="-89.70712280273438" layoutX="223.0" layoutY="155.0" startX="-93.10711669921875" startY="-155.0" />
-      <Button fx:id="validateAdminConn" layoutX="449.0" layoutY="284.0" mnemonicParsing="false" onAction="#loginAdmin" text="Valider" />
-      <Button fx:id="cancelAdminConn" layoutX="88.0" layoutY="284.0" mnemonicParsing="false" onAction="#switchToHomePage" text="Annuler" />
+      <Button fx:id="validateAdminConn" layoutX="449.0" layoutY="284.0" mnemonicParsing="false" onAction="#validateAdminConn" text="Valider" />
+      <Button fx:id="cancelAdminConn" layoutX="88.0" layoutY="284.0" mnemonicParsing="false" onAction="#cancelAdminConn" text="Annuler" />
       <ImageView fitHeight="58.0" fitWidth="110.0" layoutX="7.0" layoutY="4.0">
          <image>
             <Image url="@../ressources/pictures/1751148-ff5722.png" />
