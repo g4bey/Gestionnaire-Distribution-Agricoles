@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -111,11 +112,12 @@ public class CommandeDAOTest {
     }
 
     /**
-     * L'on insert VEHICULE_A en base.
+     * L'on insert COMMANDE_A en base.
      * <p>
-     * Ensuite le demande un vehicule ayant pour ID l'iD du VEHICULE_A.
+     * Ensuite le demande une commande ayant pour ID l'ID de COMMANDE_A.
      * <p>
-     * Puis l'on vérifie que l'attribut producteur est bien le producteur dans VEHICULE_A.
+     * Puis l'on vérifie que l'attribut producteur est bien le producteur dans COMMANDE_A.
+     * De meme pour l'attribut client.
      * <p>
      * Enfin l'on assure qu'un ID inexistant renvoi bien null.
      */
@@ -124,7 +126,7 @@ public class CommandeDAOTest {
     public void getTest() {
         commandeDAO.add(COMMANDE_A);
 
-        // Demander un véhicule d'ID associé a la COMMANDE_A
+        // Demander un véhicule d'ID associé à la COMMANDE_A
         // Doit nécessairement aboutir à une égalité d'attributs
         Commande commandeRetour = commandeDAO.get(COMMANDE_A.getIdCommande());
         assertTrue(COMMANDE_A.equals(commandeRetour));
@@ -140,6 +142,26 @@ public class CommandeDAOTest {
         // Cet ID n'existe pas.
         Commande commandeNull = commandeDAO.get(5);
         assertNull(commandeNull);
+    }
+
+    /**
+     * Insérons COMMANDE_A et COMMANDE_B en base.
+     * Ces derniers auront comme ID 1 et 2.
+     * <p>
+     * L'on vérifie qu'il y a bien 2 elements dans le tableau retourné.
+     * Puis l'on vérifie que ces elements ont les bons ID.
+     */
+    @Test
+    @DisplayName("Test la methode getAll")
+    public void getAllTest() {
+        commandeDAO.add(COMMANDE_A);
+        commandeDAO.add(COMMANDE_B);
+
+        // L'on devrait avoir deux vehicules d'ID 1 et 2 dans le tableau.
+        List<Commande> commandeListe = commandeDAO.getAll();
+        assertEquals(2, commandeListe.size());
+        assertEquals(1, commandeListe.get(0).getIdCommande());
+        assertEquals(2, commandeListe.get(1).getIdCommande());
     }
 
 
