@@ -1,7 +1,6 @@
 package DAO;
 
 import modele.Commande;
-import modele.Producteur;
 import modele.Tournee;
 import modele.Vehicule;
 
@@ -166,10 +165,10 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Retour une liste de tournée associée a un Vehicle.
+     * Retour une liste de tournée associée àa un Vehicle.
      *
      * @param t le Vehicule qui doit etre associe à la tournée
-     * @return tournees un ArrayList<> contenant les tournees associés au Vehicle
+     * @return tournees un ArrayList<> contenant les tournées associés au Vehicle
      * @throws SQLException
      */
     public ArrayList<Tournee> getTourneeByVehicule(Vehicule t) throws SQLException {
@@ -194,10 +193,10 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Retour une liste de tournée associée a un Producteur.
+     * Retour une liste de tournée associée a un véhicule.
      *
-     * @param t le Producteur qui doit etre associe à la tournée
-     * @return tournees un ArrayList<> contenant les tournees associés au Producteur
+     * @param vehicules le éhicules qui doit etre associe à la tournée
+     * @return ArrayList<Tournee> contenant les tournées associées aux véhicules
      * @throws SQLException
      */
     public ArrayList<Tournee> getTourneeByVehicules(ArrayList<Vehicule> vehicules)

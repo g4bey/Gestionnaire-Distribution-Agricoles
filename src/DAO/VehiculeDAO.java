@@ -54,10 +54,11 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
-     * Retour une liste de tournée associée a un Producteur.
+     * Retour une liste de tournée associée à une tournée.
      *
-     * @param t le Producteur qui doit etre associe à la tournée
-     * @return tournees un ArrayList<> contenant les tournees associés au Producteur
+     * @param prd le Producteur qui doit etre associe à la tournée
+     * @param idTournee l'id de la tournée.
+     * @return Vehicule le véhicule associé à un une tournée.
      * @throws SQLException
      */
     public Vehicule getVehiculeByIdTournee(int idTournee, Producteur prd) throws SQLException {
@@ -112,8 +113,8 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Retour une liste de tournée associée a un Producteur.
      *
-     * @param t le Producteur qui doit etre associe à la tournée
-     * @return tournees un ArrayList<> contenant les tournees associés au Producteur
+     * @param prd le Producteur qui doit etre associe au véhicule.
+     * @return tournees un ArrayList<> contenant les tournées associés au Producteur
      * @throws SQLException
      */
     public ArrayList<Vehicule> getVehiculeByProducteur(Producteur prd) throws SQLException {
@@ -201,35 +202,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Renvoie un véhicule associé à un producteur.
-     *
-     * @param t Producteur le producteur concerné
-     * @return Vehicule le vehicule du producteur
-     */
-    public Vehicule getVehiculeByProducteur(Producteur t) {
-        try {
-            pstmt = conn.prepareStatement("SELECT * FROM Vehicule WHERE idProducteur = ?");
-            pstmt.setInt(1, t.getIdProducteur());
-            pstmt.executeQuery();
-
-            // Si le vehicule existe.
-            if (rs.first()) {
-                return new Vehicule(
-                        rs.getInt("idVehicule"),
-                        rs.getString("numImmat"),
-                        rs.getFloat("poidsMax"),
-                        rs.getString("libelle"),
-                        t
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     /**
