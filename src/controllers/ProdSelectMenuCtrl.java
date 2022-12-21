@@ -1,28 +1,24 @@
 package src.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import src.modele.Vehicule;
+import src.utility.ControllersUtils;
+import src.modele.Tournee;
+import src.modele.Commande;
 
 /**
 * Contrôleur permettant la consultation d'un Producteur.
 */
-
 public class ProdSelectMenuCtrl implements Initializable {
     @FXML
 	private Label prodNameLabel;
@@ -40,7 +36,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     private Button deleteCommBtn;
 	
     @FXML
-	private ListView<String> commListView;
+	private ListView<Commande> commListView;
 	
     @FXML
 	private Button addTourBtn;
@@ -52,7 +48,7 @@ public class ProdSelectMenuCtrl implements Initializable {
 	private Button deleteTourBtn;
 	
     @FXML
-	private ListView<String> tourListView;
+	private ListView<Tournee> tourListView;
 	
     @FXML
 	private Button addVehicleBtn;
@@ -64,28 +60,21 @@ public class ProdSelectMenuCtrl implements Initializable {
 	private Button deleteVehicleBtn;
 	
     @FXML
-	private ListView<String> vehicleListView;
+	private ListView<Vehicule> vehicleListView;
     
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
+    private ControllersUtils util;
 	
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub   
+    	util = new ControllersUtils();
     	
-        modifyCommBtn.setDisable(false);
-        deleteCommBtn.setDisable(false);
-        modifyTourBtn.setDisable(false);
+    	modifyCommBtn.setDisable(false);
+    	modifyTourBtn.setDisable(false);
+    	modifyVehicleBtn.setDisable(false);
+    	deleteCommBtn.setDisable(false);
     	deleteTourBtn.setDisable(false);
-        modifyVehicleBtn.setDisable(false);
-        deleteVehicleBtn.setDisable(false);
-        
-        commListView.getItems().add("truc");
-        tourListView.getItems().add("machin");
-        vehicleListView.getItems().add("muche");
-        
-        
+    	deleteVehicleBtn.setDisable(false);
     }
     
     /**
@@ -93,16 +82,15 @@ public class ProdSelectMenuCtrl implements Initializable {
      * @param event
      */
     public void userProfile(MouseEvent event) {
-    	loadView(event, "/src/views/prodProfile.fxml");
+    	util.loadPopup(event, "/src/views/prodProfile.fxml");
     }
 	
     /**
      * Méthode qui ouvre une popup pour l'ajout d'une commande.
      * @param event ActionEvent
      */
-    
-    public void addComm(ActionEvent event) {
-    	loadView(event, "/src/views/addComm.fxml");
+    public void popupAddComm(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/addComm.fxml");
     }
     
     /**
@@ -110,9 +98,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * sélectionnée dans la ListView commListView.
      * @param event ActionEvent
      */
-    
-    public void modifyComm(ActionEvent event) {
-    	loadView(event, "/src/views/modifyComm.fxml");
+    public void popupModifyComm(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/modifyComm.fxml");
     }
     
     /**
@@ -120,9 +107,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * de la suppression d'une commande sélectionnée dans la ListView commListView.
      * @param event ActionEvent
      */
-    
-    public void deleteComm(ActionEvent event) {
-    	loadView(event, "/src/views/deleteComm.fxml");
+    public void popupDeleteComm(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/deleteComm.fxml");
     }
     
     /**
@@ -130,10 +116,9 @@ public class ProdSelectMenuCtrl implements Initializable {
      * consulter une commande double-cliquée dans la ListView commListView.
      * @param event MouseEvent
      */
-    
-    public void consultComm(MouseEvent event) {
+    public void popupConsultComm(MouseEvent event) {
         if (event.getClickCount() >= 2) {
-            loadView(event, "/src/views/consultCommV1.fxml");
+            util.loadPopup(event, "/src/views/consultCommV1.fxml");
         }
     }
     
@@ -141,9 +126,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * Méthode qui ouvre une popup pour l'ajout d'une tournée.
      * @param event ActionEvent
      */
-    
-    public void addTour(ActionEvent event) {
-    	loadView(event, "/src/views/addTour.fxml");
+    public void popupAddTour(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/addTour.fxml");
     }
     
     /**
@@ -151,9 +135,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * sélectionnée dans la ListView tourListView.
      * @param event ActionEvent
      */
-    
-    public void modifyTour(ActionEvent event) {
-    	loadView(event, "/src/views/modifyTour.fxml");
+    public void popupModifyTour(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/modifyTour.fxml");
     }
     
     /**
@@ -161,9 +144,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * de la suppression d'une tournée sélectionnée dans la ListView commListView.
      * @param event ActionEvent
      */
-    
-    public void deleteTour(ActionEvent event) {
-    	loadView(event, "/src/views/deleteTour.fxml");
+    public void popupDeleteTour(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/deleteTour.fxml");
     }
     
     /**
@@ -171,10 +153,9 @@ public class ProdSelectMenuCtrl implements Initializable {
      * consulter une tournée double-cliquée dans la ListView tourListView.
      * @param event MouseEvent
      */
-    
-    public void consultTour(MouseEvent event) {
+    public void popupConsultTour(MouseEvent event) {
         if (event.getClickCount() >= 2) {
-            loadView(event, "/src/views/consultTour.fxml");
+            util.loadPopup(event, "/src/views/consultTour.fxml");
         }
     }
     
@@ -182,9 +163,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * Méthode qui ouvre une popup pour l'ajout d'un véhicule.
      * @param event ActionEvent
      */
-    
-    public void addVehicle(ActionEvent event) {
-    	loadView(event, "/src/views/addVehicle.fxml");
+    public void popupAddVehicle(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/addVehicle.fxml");
     }
     
     /**
@@ -192,9 +172,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * sélectionné dans la ListView vehicleListView.
      * @param event ActionEvent
      */
-    
-    public void modifyVehicle(ActionEvent event) {
-    	loadView(event, "/src/views/modifyVehicle.fxml");
+    public void popupModifyVehicle(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/modifyVehicle.fxml");
     }
     
     /**
@@ -202,9 +181,8 @@ public class ProdSelectMenuCtrl implements Initializable {
      * de la suppression d'un véhicule sélectionné dans la ListView vehicleListView.
      * @param event ActionEvent
      */
-    
-    public void deleteVehicle(ActionEvent event) {
-    	loadView(event, "/src/views/deleteVehicle.fxml");
+    public void popupDeleteVehicle(ActionEvent event) {
+    	util.loadPopup(event, "/src/views/deleteVehicle.fxml");
     }
     
     /**
@@ -212,54 +190,9 @@ public class ProdSelectMenuCtrl implements Initializable {
      * consulter un véhicule double-cliqué dans la ListView vehicleListView.
      * @param event
      */
-    
-    public void consultVehicle(MouseEvent event) {
+    public void popupConsultVehicle(MouseEvent event) {
     	if (event.getClickCount() >= 2) {
-            loadView(event, "/src/views/consultVehicle.fxml");
+            util.loadPopup(event, "/src/views/consultVehicle.fxml");
         }
-    }
-    
-    /**
-     * Méthode qui charge une vue passée en paramètre.
-     * @param event ActionEvent
-     * @param url String
-     */
-    
-    public void loadView(ActionEvent event, String url) {
-    	try {
-	    root = FXMLLoader.load(getClass().getResource(url));
-        } 
-    	catch (IOException e) {
-			// TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    	scene = new Scene(root);
-    	stage = new Stage();
-    	stage.setScene(scene);
-    	stage.initOwner((Stage)((Node)event.getSource()).getScene().getWindow());
-    	stage.initModality(Modality.WINDOW_MODAL);
-    	stage.show();
-    }
-    
-    /**
-     * Méthode qui charge une vue passée en paramètre.
-     * @param event MouseEvent
-     * @param url String 
-     */
-    
-    public void loadView(MouseEvent event, String url) {
-    	try {
-    	    root = FXMLLoader.load(getClass().getResource(url));
-        } 
-        catch (IOException e) {
-    			// TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.initOwner((Stage)((Node)event.getSource()).getScene().getWindow());
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.show();
     }
 }

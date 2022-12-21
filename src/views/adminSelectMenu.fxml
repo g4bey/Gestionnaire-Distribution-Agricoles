@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
@@ -25,7 +27,7 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addAdminBtn" layoutX="440.0" layoutY="159.0" mnemonicParsing="false" onAction="#addAdmin" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addAdminBtn" layoutX="440.0" layoutY="159.0" mnemonicParsing="false" onAction="#popupAddAdmin" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -44,14 +46,20 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addProdBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#addProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addProdBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyProdBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#modifyProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
-                        <Button fx:id="deleteProdBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
-                        <ListView fx:id="prodListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#consultProd" prefHeight="200.0" prefWidth="401.0" />
+                        <Button fx:id="modifyProdBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="deleteProdBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <ListView fx:id="prodListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultProd" prefHeight="200.0" prefWidth="401.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -65,14 +73,20 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addClientBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#addClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addClientBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyClientBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#modifyClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
-                        <Button fx:id="deleteClientBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
-                        <ListView fx:id="clientListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#consultClient" prefHeight="200.0" prefWidth="401.0" />
+                        <Button fx:id="modifyClientBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="deleteClientBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <ListView fx:id="clientListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultClient" prefHeight="200.0" prefWidth="401.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -93,5 +107,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
+      <ImageView fitHeight="36.0" fitWidth="82.0" layoutX="27.0" layoutY="5.0">
+         <image>
+            <Image url="@../ressources/pictures/1751148-ff5722.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

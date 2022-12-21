@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.ConsultProdCtrl">
    <children>
       <Text layoutX="222.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Producteur:">
          <font>
@@ -72,7 +72,7 @@
       <Line endX="270.0" layoutX="297.0" layoutY="213.0" startX="-270.0" />
       <Line endX="298.0" endY="7.62939453125E-6" layoutX="296.0" layoutY="57.0" startX="-297.0" startY="7.62939453125E-6" />
       <Line endX="-105.69998168945312" endY="-64.0999984741211" layoutX="261.0" layoutY="65.0" startX="-105.69998168945312" startY="-10.599998474121094" />
-      <Button fx:id="closeConsultProdBtn" layoutX="467.0" layoutY="746.0" mnemonicParsing="false" onAction="#closePopup" text="Quitter" />
+      <Button fx:id="closeConsultProdBtn" layoutX="467.0" layoutY="746.0" mnemonicParsing="false" onAction="#closeConsultProd" text="Quitter" />
       <ImageView fitHeight="53.0" fitWidth="107.0" layoutX="14.0" layoutY="1.0">
          <image>
             <Image url="@../ressources/pictures/1751148-ff5722.png" />

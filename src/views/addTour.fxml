@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.AddTourneeCtrl">
    <children>
       <Line endX="374.0000305175781" layoutX="109.0" layoutY="78.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
       <Line endX="-117.10003662109375" endY="-117.0" layoutX="284.0" layoutY="117.0" startX="-117.10002136230469" startY="-39.50000762939453" />
@@ -33,8 +33,8 @@
       </Label>
       <TextField fx:id="tourLabelField" layoutX="223.0" layoutY="115.0" />
       <ChoiceBox fx:id="vehicleChoiceBox" layoutX="223.0" layoutY="155.0" prefWidth="150.0" />
-      <Button fx:id="validateAddTour" layoutX="373.0" layoutY="648.0" mnemonicParsing="false" onAction="#addTour" text="Valider" />
-      <Button fx:id="cancelAddTour" layoutX="57.0" layoutY="648.0" mnemonicParsing="false" onAction="#closePopup" text="Annuler" />
+      <Button fx:id="validateAddTour" layoutX="373.0" layoutY="648.0" mnemonicParsing="false" onAction="#validateAddTour" text="Valider" />
+      <Button fx:id="cancelAddTour" layoutX="57.0" layoutY="648.0" mnemonicParsing="false" onAction="#cancelAddTournee" text="Annuler" />
       <Line endX="350.0" layoutX="107.0" layoutY="252.0" startX="-80.0" startY="-7.62939453125E-6" />
       <Line endX="350.0" layoutX="107.0" layoutY="422.0" startX="-80.0" startY="-7.62939453125E-6" />
       <ScrollPane layoutX="48.0" layoutY="273.0" prefHeight="79.0" prefWidth="387.0">

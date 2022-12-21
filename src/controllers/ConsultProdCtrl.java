@@ -2,18 +2,16 @@ package src.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import src.modele.Vehicule;
+import src.utility.ControllersUtils;
 import src.modele.Tournee;
 import src.modele.Commande;
 
 /**
 * Contrôleur permettant l'aperçu Producteur.
 */
-
 public class ConsultProdCtrl {
 
     @FXML
@@ -37,14 +35,12 @@ public class ConsultProdCtrl {
     @FXML
     private ListView<Vehicule> prodVehicleListView;
     
-    private Stage stage;
-    
     /**
-     * Méthode qui permet de fermer la vue popup.
+     * Méthode qui permet de fermer la vue de consultation
+     * des informations d'un producteur.
      * @param event ActionEvent
      */
-    public void closePopup(ActionEvent event) {
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.close();
+    public void closeConsultProd(ActionEvent event) {
+    	ControllersUtils.closePopup(event);
     }
 }

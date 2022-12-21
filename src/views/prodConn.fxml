@@ -31,8 +31,8 @@
       <TextField fx:id="prodPasswordField" layoutX="306.0" layoutY="175.0" />
       <Line endX="499.0" endY="-1.1444091796875E-5" layoutX="100.0" layoutY="64.0" startX="-100.0" />
       <Line endX="-93.10710144042969" endY="-96.70710754394531" layoutX="228.0" layoutY="160.0" startX="-93.10711669921875" startY="-160.0" />
-      <Button fx:id="validateProdConn" layoutX="430.0" layoutY="281.0" mnemonicParsing="false" onAction="#loginProd" text="Valider" />
-      <Button fx:id="cancelProdConn" layoutX="103.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchToHomePage" text="Annuler" />
+      <Button fx:id="validateProdConn" layoutX="430.0" layoutY="281.0" mnemonicParsing="false" onAction="#validateProdConn" text="Valider" />
+      <Button fx:id="cancelProdConn" layoutX="103.0" layoutY="281.0" mnemonicParsing="false" onAction="#cancelProdConn" text="Annuler" />
       <ImageView fitHeight="57.0" fitWidth="118.0" layoutX="6.0" layoutY="3.0">
          <image>
             <Image url="@../ressources/pictures/1751148-ff5722.png" />

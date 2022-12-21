@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.AddVehiculeCtrl">
    <children>
       <Line endX="374.0000305175781" layoutX="109.0" layoutY="78.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
       <Line endX="-117.10003662109375" endY="-117.0" layoutX="284.0" layoutY="117.0" startX="-117.10002136230469" startY="-39.50000762939453" />
@@ -36,8 +36,8 @@
       </Label>
       <TextField fx:id="vehicleImmatField" layoutX="256.0" layoutY="121.0" />
       <TextField fx:id="vehicleCapacityField" layoutX="256.0" layoutY="205.0" />
-      <Button fx:id="validateAddVehicle" layoutX="365.0" layoutY="297.0" mnemonicParsing="false" onAction="#addVehicle" text="Valider" />
-      <Button fx:id="cancelAddVehicle" layoutX="57.0" layoutY="297.0" mnemonicParsing="false" onAction="#closePopup" text="Annuler" />
+      <Button fx:id="validateAddVehicle" layoutX="365.0" layoutY="297.0" mnemonicParsing="false" onAction="#validateAddVehicle" text="Valider" />
+      <Button fx:id="cancelAddVehicle" layoutX="57.0" layoutY="297.0" mnemonicParsing="false" onAction="#cancelAddVehicle" text="Annuler" />
       <TextField fx:id="vehicleLabelField" layoutX="256.0" layoutY="161.0" />
       <ImageView fitHeight="63.0" fitWidth="135.0" layoutX="18.0" layoutY="7.0">
          <image>

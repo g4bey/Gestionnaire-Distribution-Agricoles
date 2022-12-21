@@ -6,40 +6,36 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import src.modele.Tournee;
 import src.utility.ControllersUtils;
 
 /**
-* Contrôleur permettant l'aperçu d'un Vehicule.
+* Contrôleur permettant la suppression d'un Vehicule.
 */
-public class ConsultVehicleCtrl implements Initializable {
+public class DeleteVehicleCtrl implements Initializable {
 
     @FXML
     private Text vehicleLabelText;
-    
-    @FXML
-    private Text vehicleImmatText;
-    
-    @FXML
-    private Text vehicleCapacityText;
-    
-    @FXML
-    private ListView<Tournee> tourListView;
-    
+
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
     }
-	
-	/**
-     * Méthode qui ferme la vue de consultation
-     * des informations d'un véhicule.
+    
+    /**
+     * Méthode qui valide la suppression du véhicule.
      * @param event ActionEvent
      */
-    public void closeConsultVehicle(ActionEvent event) {
+    public void validateDeleteVehicle(ActionEvent event) {
+    	ControllersUtils.closePopup(event);
+    }
+    
+    /**
+     * Méthode qui annule la suppression du véhicule.
+     * @param event ActionEvent
+     */
+    public void cancelDeleteVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
 }

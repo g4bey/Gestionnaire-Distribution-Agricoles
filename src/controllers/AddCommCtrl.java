@@ -2,17 +2,16 @@ package src.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.text.Text;
 import src.modele.Client;
+import src.utility.ControllersUtils;
 
 /**
 * Contrôleur permettant l'ajout d'une Commande.
 */
-
 public class AddCommCtrl {
 	
     @FXML
@@ -33,22 +32,22 @@ public class AddCommCtrl {
     @FXML
     private ChoiceBox<Client> clientChoiceBox;
     
-    private Stage stage;
+    @FXML
+    private Text formErrorText;
     
     /**
      * Méthode qui valide l'ajout d'une commande.
      * @param event ActionEvent
      */
-    public void addComm(ActionEvent event) {
-    	closePopup(event);
+    public void validateAddComm(ActionEvent event) {
+    	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui permet de fermer la vue popup.
+     * Méthode qui permet de fermer la vue d'ajout d'une commande.
      * @param event ActionEvent
      */
-    public void closePopup(ActionEvent event) {
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.close();
+    public void cancelAddComm(ActionEvent event) {
+    	ControllersUtils.closePopup(event);
     }
 }

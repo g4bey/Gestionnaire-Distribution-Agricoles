@@ -27,14 +27,20 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addCommBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#addComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addCommBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyCommBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#modifyComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
-                        <Button fx:id="deleteCommBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
-                        <ListView fx:id="commListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#consultComm" prefHeight="202.0" prefWidth="402.0" />
+                        <Button fx:id="modifyCommBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="deleteCommBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <ListView fx:id="commListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultComm" prefHeight="202.0" prefWidth="402.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -47,14 +53,20 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addTourBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#addTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addTourBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyTourBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#modifyTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
-                        <Button fx:id="deleteTourBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
-                        <ListView fx:id="tourListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#consultTour" prefHeight="202.0" prefWidth="402.0" />
+                        <Button fx:id="modifyTourBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="deleteTourBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <ListView fx:id="tourListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultTour" prefHeight="202.0" prefWidth="402.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -67,13 +79,19 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addVehicleBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#addVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addVehicleBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
-                        <Button fx:id="modifyVehicleBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#modifyVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier" />
-                        <Button fx:id="deleteVehicleBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer" />
-                        <ListView fx:id="vehicleListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#consultVehicle" prefHeight="202.0" prefWidth="402.0" />
+                        <Button fx:id="modifyVehicleBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="deleteVehicleBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <ListView fx:id="vehicleListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultVehicle" prefHeight="202.0" prefWidth="402.0" />
                      </children>
                   </AnchorPane>
             </content>
