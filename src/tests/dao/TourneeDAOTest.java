@@ -224,8 +224,8 @@ public class TourneeDAOTest {
         Client client = new Client("Pedro", "31 rue NullPointerException 37000 TOURS", "", "0634117279");
 
         // On crée deux commandes
-        Commande commande1 = new Commande("commande1", 31F, new Timestamp(345000), new Timestamp(370000), PRODUCTEUR, client);
-        Commande commande2 = new Commande("commande2", 12F, new Timestamp(12000), new Timestamp(12500), PRODUCTEUR, client);
+        Commande commande1 = new Commande("commande1", 31F, new Timestamp(30000), new Timestamp(370000), PRODUCTEUR, client);
+        Commande commande2 = new Commande("commande2", 12F, new Timestamp(12000), new Timestamp(12000), PRODUCTEUR, client);
 
         // On les ajoute en base.
         CommandeDAO commandeDAO = new CommandeDAO(conn);
