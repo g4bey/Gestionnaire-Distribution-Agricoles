@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,7 +86,7 @@ public class CommandeDAOTest {
 
         COMMANDE_B = new Commande(
                 "Commande 2",
-                32.4F,
+                34F,
                 new Timestamp(900000),
                 new Timestamp(1000000),
                 null,
@@ -285,8 +286,118 @@ public class CommandeDAOTest {
         assertTrue(COMMANDE_A.getTournee().getCommandes().equals(tournee.getCommandes()));
     }
 
+    /**
+     * On vérifie que getCommandesByTournee renvoi bien une liste de commande
+     * identique à ce qui est insere dans une tourée.
+     *
+     * @throws SQLException
+     */
+    @Test
+    @DisplayName("Test la methode getCommandesByTournee")
+    public void getCommandesByTourneeTest() throws SQLException {
+        commandeDAO.add(COMMANDE_A);
+        commandeDAO.add(COMMANDE_B);
 
+        // On créer un nouveau vehicule
+        VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
+        Vehicule vehicule = new Vehicule(
+                "193", 40F,
+                "patrick", PRODUCTEUR_DEMO
+        );
+        vehiculeDAO.add(vehicule);
 
+        // On creer la tournee
+        TourneeDAO tourneeDAO = new TourneeDAO(conn);
+        Tournee tournee = new Tournee(
+                new Timestamp(100000), new Timestamp(80000),
+                40F, "text", vehicule
+        );
+        tourneeDAO.add(tournee);
 
+        // On ajoute des commandes à la tournee.
+        tournee.addCommande(COMMANDE_A);
+        tournee.addCommande(COMMANDE_B);
+        tourneeDAO.update(tournee);
 
+        // On creer une liste de commandes temoin
+        ArrayList<Commande> commandesTemoin = new ArrayList<>();
+        commandesTemoin.add(COMMANDE_A);
+        commandesTemoin.add(COMMANDE_B);
+
+        // On recupere la liste de commandes
+        ArrayList<Commande> commandes = commandeDAO.getCommandesByTournee(PRODUCTEUR_DEMO, tournee);
+        assertTrue(commandes.get(0).equals(COMMANDE_A));
+        assertTrue(commandes.get(1).equals(COMMANDE_B));
+        assertTrue(commandes.size() == 2);
+    }
+
+    /**
+     * On vérifie que getCommandesByProducteurTournees renvoi bien une liste de commande
+     * identique à ce qui est inséré dans une tournée.
+     * <p>
+     * Ici, une commande ne peut pas etre dans une tournée.
+     *
+     * @throws SQLException
+     */
+    @Test
+    @DisplayName("Test la methode getCommandesByTournee")
+    public void getCommandesByProducteurTournees() throws SQLException {
+        commandeDAO.add(COMMANDE_A);
+        commandeDAO.add(COMMANDE_B);
+
+        // On créer un nouveau vehicule
+        VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
+        Vehicule vehicule = new Vehicule(
+                "193", 40F,
+                "patrick", PRODUCTEUR_DEMO
+        );
+        vehiculeDAO.add(vehicule);
+
+        // On creer la tournee
+        TourneeDAO tourneeDAO = new TourneeDAO(conn);
+        Tournee tournee = new Tournee(
+                new Timestamp(100000), new Timestamp(80000),
+                40F, "text", vehicule
+        );
+        tourneeDAO.add(tournee);
+
+        // On ajoute des commandes à la tournee.
+        tournee.addCommande(COMMANDE_A);
+        tourneeDAO.update(tournee);
+
+        // On creer une autre tournee.
+        Tournee tourneeBis = new Tournee(
+                new Timestamp(1000000), new Timestamp(9000000),
+                420F, "text2", vehicule
+        );
+        tourneeDAO.add(tourneeBis);
+
+        // On met ajoute les commandes dans cette tournee.
+        tourneeBis.addCommande(COMMANDE_B);
+        tourneeDAO.update(tourneeBis);
+
+        // On creer une commande qui n'est pas dans une tournee.
+        Commande commandeSeule = new Commande(
+                "Commande seule",
+                12F,
+                new Timestamp(300000),
+                new Timestamp(500000),
+                null,
+                PRODUCTEUR_DEMO,
+                CLIENT_DEMO
+        );
+        commandeDAO.add(commandeSeule);
+
+        // On creer une liste de tournees
+        ArrayList<Tournee> tourneeListe = new ArrayList<>();
+        tourneeListe.add(tournee);
+        tourneeListe.add(tourneeBis);
+
+        // On recupere la liste de commandes et on y verifie les valeurs
+        ArrayList<Commande> commandes = commandeDAO.getCommandesByProducteursTournees(PRODUCTEUR_DEMO, tourneeListe);
+        assertTrue(commandes.get(0).equals(COMMANDE_A));
+        assertTrue(commandes.get(1).equals(COMMANDE_B));
+        assertTrue(commandes.get(2).equals(commandeSeule));
+        assertTrue(commandes.size() == 3);
+    }
 }

@@ -214,22 +214,21 @@ public class CommandeDAO extends DAO<Commande> {
     }
 
     /**
-     * Retour une liste de commandes associée à une tournée.
-     * On prend le producteur en parametre pour conserver les références.
+     * Retourne une liste de commande d'un producteur
+     * en lui associants ses tournées passées en parametre.
      * <p>
-     * 
      * @param prd      le Producteur
      * @param tournees ArrayList<Tournee> du producteur.
      * @return ArrayList<Commande> la liste de commande associée à un producteur.
      * @throws SQLException
      */
-    public ArrayList<Commande> getCommandesByProducteurTournees(Producteur prd, ArrayList<Tournee> tournees)
+    public ArrayList<Commande> getCommandesByProducteursTournees(Producteur prd, ArrayList<Tournee> tournees)
             throws SQLException {
         ArrayList<Commande> commandes = new ArrayList<>();
 
         // On récupère toutes les commandes associées aux tournées
         for (Tournee tournee : tournees) {
-            commandes = getCommandesByTournee(prd, tournee);
+            commandes.addAll(getCommandesByTournee(prd, tournee));
         }
 
         // On récupère toutes les commandes qui n'ont pas de tournées mais qui sont
