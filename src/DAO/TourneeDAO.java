@@ -205,7 +205,7 @@ public class TourneeDAO extends DAO<Tournee> {
      * @return ArrayList<Tournee> contenant les tournées associées aux véhicules
      * @throws SQLException
      */
-    public ArrayList<Tournee> getTourneeByVehicules(ArrayList<Vehicule> vehicules)
+    public ArrayList<Tournee> getTourneesByVehicules(ArrayList<Vehicule> vehicules)
             throws SQLException {
         ArrayList<Tournee> tournees = new ArrayList<>();
 

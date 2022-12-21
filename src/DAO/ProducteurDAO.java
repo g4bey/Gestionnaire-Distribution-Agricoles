@@ -37,13 +37,13 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("mdpProd"));
 
                 // On charge la liste de vehicule
-                ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculeByProducteur(prd);
+                ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
                 }
 
                 // On charge la liste de tournée
-                ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneeByVehicules(vehicules);
+                ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
                 for (Tournee tournee : tournees) {
                     prd.addTournee(tournee);
                 }

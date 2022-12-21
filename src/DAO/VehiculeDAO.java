@@ -117,7 +117,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * @return tournees un ArrayList<> contenant les tournées associés au Producteur
      * @throws SQLException
      */
-    public ArrayList<Vehicule> getVehiculeByProducteur(Producteur prd) throws SQLException {
+    public ArrayList<Vehicule> getVehiculesByProducteur(Producteur prd) throws SQLException {
         ArrayList<Vehicule> vehicules = new ArrayList<>();
 
         pstmt = conn.prepareStatement("SELECT * FROM Vehicule WHERE idProducteur = ?");
