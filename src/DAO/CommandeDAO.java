@@ -150,15 +150,15 @@ public class CommandeDAO extends DAO<Commande> {
     @Override
     public void add(Commande t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Commande VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)",
+            pstmt = conn.prepareStatement("INSERT INTO Commande VALUES (NULL, ?, ?, ?, ?, NULL, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getLibelle());
             pstmt.setFloat(2, t.getPoids());
             pstmt.setTimestamp(3, t.getHoraireDebut());
             pstmt.setTimestamp(4, t.getHoraireFin());
-            pstmt.setInt(5, t.getTournee().getIdTournee());
-            pstmt.setInt(6, t.getProducteur().getIdProducteur());
-            pstmt.setInt(7, t.getClient().getIdClient());
+            // A l'ajout d'une commande, l'id tournee est null.
+            pstmt.setInt(5, t.getProducteur().getIdProducteur());
+            pstmt.setInt(6, t.getClient().getIdClient());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
@@ -167,6 +167,9 @@ public class CommandeDAO extends DAO<Commande> {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 t.setIdCommande((int) id);
             }
+
+            // On ajoute la commande au producteur
+            t.getProducteur().addCommande(t);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -191,8 +194,13 @@ public class CommandeDAO extends DAO<Commande> {
             pstmt.setInt(6, t.getProducteur().getIdProducteur());
             pstmt.setInt(7, t.getClient().getIdClient());
             pstmt.setInt(8, t.getIdCommande());
-
             pstmt.executeUpdate();
+
+            // Si la commande n'est pas dans le tableau
+            if (!t.getProducteur().getCommandes().contains(t)) {
+                t.getProducteur().addCommande(t);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -208,8 +216,10 @@ public class CommandeDAO extends DAO<Commande> {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Commande WHERE idCommande = ?");
             pstmt.setInt(1, t.getIdCommande());
-
             pstmt.executeUpdate();
+
+            // On supprime la commande
+            t.getProducteur().removeCommande(t);
         } catch (SQLException e) {
             e.printStackTrace();
         }

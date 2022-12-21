@@ -85,7 +85,6 @@ public class TourneeDAO extends DAO<Tournee> {
             pstmt.setFloat(3, t.getPoids());
             pstmt.setString(4, t.getLibelle());
             pstmt.setInt(5, t.getVehicule().getIdVehicule());
-
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
@@ -98,11 +97,8 @@ public class TourneeDAO extends DAO<Tournee> {
                     coDAO.add(commande);
                 }
 
-                // On met a jour la liste de tournees dans vehicule.
-                if (t.getVehicule() != null) {
-                    t.getVehicule().addTournee(t);
-                }
-
+                // On met à jour la liste de tournees dans vehicule.
+                t.getVehicule().addTournee(t);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -125,7 +121,6 @@ public class TourneeDAO extends DAO<Tournee> {
             pstmt.setString(4, t.getLibelle());
             pstmt.setInt(5, t.getVehicule().getIdVehicule());
             pstmt.setInt(6, t.getIdTournee());
-
             pstmt.executeUpdate();
 
             CommandeDAO coDAO = new CommandeDAO(conn);
@@ -138,7 +133,6 @@ public class TourneeDAO extends DAO<Tournee> {
             if (!t.getVehicule().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -154,11 +148,10 @@ public class TourneeDAO extends DAO<Tournee> {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Tournee WHERE idTournee = ?");
             pstmt.setInt(1, t.getIdTournee());
+            pstmt.executeUpdate();
 
             // On met à jour la liste de tournees dans vehicule.
             t.getVehicule().removeTournee(t);
-
-            pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
