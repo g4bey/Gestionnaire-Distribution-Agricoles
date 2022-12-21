@@ -172,14 +172,13 @@ public class CommandeDAO extends DAO<Commande> {
      * Retour une liste de commandes associée à une tournée.
      * On prend le producteur en parametre pour conserver les références.
      * <p>
-     * TO-DO: Refactorings.
-     * @param prd le Producteur
+     * 
+     * @param prd      le Producteur
      * @param tournees ArrayList<Tournee> du producteur.
-     * @return ArrayList<Commande> la liste de commande associée à un producteur.
+     * @return ArrayList<Commande> la liste de commande associée à une Tournee.
      * @throws SQLException
      */
-    public ArrayList<Commande> getCommandeByProducteurTournee(Producteur prd, ArrayList<Tournee> tournees)
-            throws SQLException {
+    public ArrayList<Commande> getCommandesByTournee(Producteur prd, ArrayList<Tournee> tournees) throws SQLException {
         ArrayList<Commande> commandes = new ArrayList<>();
 
         // On récupère toutes les commandes associées aux tournées
@@ -202,6 +201,23 @@ public class CommandeDAO extends DAO<Commande> {
                                 rs.getString("gpsClient"), rs.getString("numTelClient"))));
             }
         }
+
+        return commandes;
+    }
+
+    /**
+     * Retour une liste de commandes associée à une tournée.
+     * On prend le producteur en parametre pour conserver les références.
+     * <p>
+     * 
+     * @param prd      le Producteur
+     * @param tournees ArrayList<Tournee> du producteur.
+     * @return ArrayList<Commande> la liste de commande associée à un producteur.
+     * @throws SQLException
+     */
+    public ArrayList<Commande> getCommandeByProducteurTournee(Producteur prd, ArrayList<Tournee> tournees)
+            throws SQLException {
+        ArrayList<Commande> commandes = getCommandesByTournee(prd, tournees);
 
         // On récupère toutes les commandes qui n'ont pas de tournées mais qui sont
         // associées au Producteur
