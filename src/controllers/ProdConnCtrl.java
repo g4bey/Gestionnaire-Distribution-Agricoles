@@ -39,17 +39,17 @@ public class ProdConnCtrl implements Initializable {
     }
     
     /**
-     * Méthode pour revenir sur la page d'accueil.
-     * @param event ActionEvent
-     */
+    * Méthode pour revenir sur la page d'accueil.
+    * @param event ActionEvent
+    */
     public void validateProdConn(ActionEvent event) {
     	util.loadView(event, "/src/views/prodSelectMenu.fxml");
     }
     
     /**
-     * Méthode pour connecter l'utilisateur.
-     * @param event ActionEvent
-     */
+    * Méthode pour connecter l'utilisateur.
+    * @param event ActionEvent
+    */
     public void cancelProdConn(ActionEvent event) {
     	util.loadView(event, "/src/views/homePage.fxml");
     }

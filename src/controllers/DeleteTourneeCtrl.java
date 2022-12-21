@@ -24,17 +24,17 @@ public class DeleteTourneeCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui valide la suppression de la tournée.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide la suppression de la tournée.
+    * @param event ActionEvent
+    */
     public void validateDeleteTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui annule la suppression de la tournée.
-     * @param event ActionEvent
-     */
+    * Méthode qui annule la suppression de la tournée.
+    * @param event ActionEvent
+    */
     public void cancelDeleteTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

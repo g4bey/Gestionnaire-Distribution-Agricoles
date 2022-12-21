@@ -24,17 +24,17 @@ public class AddVehiculeCtrl {
     private Text formErrorText;
     
 	/**
-	 * Méthode qui valide l'ajout d'un véhicule.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide l'ajout d'un véhicule.
+	* @param event ActionEvent
+	*/
     public void validateAddVehicle(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-     * Méthode qui permet de fermer la vue d'ajout d'un véhicule.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue d'ajout d'un véhicule.
+    * @param event ActionEvent
+    */
     public void cancelAddVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

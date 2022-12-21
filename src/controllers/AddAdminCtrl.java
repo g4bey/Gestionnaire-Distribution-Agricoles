@@ -24,17 +24,17 @@ public class AddAdminCtrl {
     private Text formErrorText;
 	
 	/**
-	 * Méthode qui valide l'ajout d'un administrateur.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide l'ajout d'un administrateur.
+	* @param event ActionEvent
+	*/
     public void validateAddAdmin(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'un administrateur.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue d'ajout d'un administrateur.
+    * @param event ActionEvent
+    */
     public void cancelAddAdmin(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

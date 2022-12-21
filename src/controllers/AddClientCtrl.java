@@ -24,17 +24,17 @@ public class AddClientCtrl {
     private Text formErrorText;
     
     /**
-     * Méthode qui valide l'ajout d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide l'ajout d'un client.
+    * @param event ActionEvent
+    */
     public void validateAddClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue d'ajout d'un client.
+    * @param event ActionEvent
+    */
     public void cancelAddClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

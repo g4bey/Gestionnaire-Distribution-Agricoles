@@ -36,10 +36,10 @@ public class ConsultProdCtrl {
     private ListView<Vehicule> prodVehicleListView;
     
     /**
-     * Méthode qui permet de fermer la vue de consultation
-     * des informations d'un producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue de consultation
+    * des informations d'un producteur.
+    * @param event ActionEvent
+    */
     public void closeConsultProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

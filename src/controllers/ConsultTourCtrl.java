@@ -50,10 +50,10 @@ public class ConsultTourCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui ferme la vue de consultation
-     * des informations d'une tournée.
-     * @param event ActionEvent
-     */
+    * Méthode qui ferme la vue de consultation
+    * des informations d'une tournée.
+    * @param event ActionEvent
+    */
     public void closeConsultTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

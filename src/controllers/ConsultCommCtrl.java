@@ -49,10 +49,10 @@ public class ConsultCommCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui permet de fermer la vue de consultation
-     * des informations d'une commande.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue de consultation
+    * des informations d'une commande.
+    * @param event ActionEvent
+    */
     public void closeConsultComm(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

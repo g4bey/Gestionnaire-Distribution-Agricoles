@@ -14,9 +14,9 @@ public class AdminProfileCtrl {
     private Text adminLoginLabel;
     
     /**
-     * Méthode qui permet de fermer la vue du profile.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue du profile.
+    * @param event ActionEvent
+    */
     public void closeAdminProfile(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

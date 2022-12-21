@@ -7,8 +7,8 @@ import javafx.scene.text.Text;
 import src.utility.ControllersUtils;
 
 /**
- * Contrôleur permettant la modification d'un Vehicule.
- */
+* Contrôleur permettant la modification d'un Vehicule.
+*/
 public class ModifyVehicleCtrl {
 
     @FXML
@@ -24,18 +24,18 @@ public class ModifyVehicleCtrl {
     private Text formErrorText;
     
 	/**
-	 * Méthode qui valide la modification d'un véhicule.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide la modification d'un véhicule.
+	* @param event ActionEvent
+	*/
     public void validateModifyVehicle(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-     * Méthode qui permet de fermer la vue
-     * de modification d'un véhicule.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue
+    * de modification d'un véhicule.
+    * @param event ActionEvent
+    */
     public void cancelModifyVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

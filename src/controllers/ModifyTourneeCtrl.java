@@ -27,18 +27,18 @@ public class ModifyTourneeCtrl {
     private Label datetimeLabel;
     
 	/**
-	 * Méthode qui valide la modification d'une tournée.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide la modification d'une tournée.
+	* @param event ActionEvent
+	*/
     public void validateModifyTour(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-     * Méthode qui permet de fermer la vue 
-     * de modification d'une tournée.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue 
+    * de modification d'une tournée.
+    * @param event ActionEvent
+    */
     public void cancelModifyTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

@@ -24,17 +24,17 @@ public class DeleteCommCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui valide la suppression de la commande.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide la suppression de la commande.
+    * @param event ActionEvent
+    */
     public void validateDeleteComm(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui annule la suppression de la commande.
-     * @param event ActionEvent
-     */
+    * Méthode qui annule la suppression de la commande.
+    * @param event ActionEvent
+    */
     public void cancelDeleteComm(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

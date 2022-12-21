@@ -78,44 +78,44 @@ public class ProdSelectMenuCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
-     * @param event
-     */
+    * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
+    * @param event
+    */
     public void userProfile(MouseEvent event) {
     	util.loadPopup(event, "/src/views/prodProfile.fxml");
     }
 	
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'une commande.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour l'ajout d'une commande.
+    * @param event ActionEvent
+    */
     public void popupAddComm(ActionEvent event) {
     	util.loadPopup(event, "/src/views/addComm.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour la modification d'une commande
-     * sélectionnée dans la ListView commListView.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour la modification d'une commande
+    * sélectionnée dans la ListView commListView.
+    * @param event ActionEvent
+    */
     public void popupModifyComm(ActionEvent event) {
     	util.loadPopup(event, "/src/views/modifyComm.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'une commande sélectionnée dans la ListView commListView.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour demander la confirmation
+    * de la suppression d'une commande sélectionnée dans la ListView commListView.
+    * @param event ActionEvent
+    */
     public void popupDeleteComm(ActionEvent event) {
     	util.loadPopup(event, "/src/views/deleteComm.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup permettant de 
-     * consulter une commande double-cliquée dans la ListView commListView.
-     * @param event MouseEvent
-     */
+    * Méthode qui ouvre une popup permettant de 
+    * consulter une commande double-cliquée dans la ListView commListView.
+    * @param event MouseEvent
+    */
     public void popupConsultComm(MouseEvent event) {
         if (event.getClickCount() >= 2) {
             util.loadPopup(event, "/src/views/consultCommV1.fxml");
@@ -123,36 +123,36 @@ public class ProdSelectMenuCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'une tournée.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour l'ajout d'une tournée.
+    * @param event ActionEvent
+    */
     public void popupAddTour(ActionEvent event) {
     	util.loadPopup(event, "/src/views/addTour.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour la modification d'une tournée
-     * sélectionnée dans la ListView tourListView.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour la modification d'une tournée
+    * sélectionnée dans la ListView tourListView.
+    * @param event ActionEvent
+    */
     public void popupModifyTour(ActionEvent event) {
     	util.loadPopup(event, "/src/views/modifyTour.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'une tournée sélectionnée dans la ListView commListView.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour demander la confirmation
+    * de la suppression d'une tournée sélectionnée dans la ListView commListView.
+    * @param event ActionEvent
+    */
     public void popupDeleteTour(ActionEvent event) {
     	util.loadPopup(event, "/src/views/deleteTour.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup permettant de 
-     * consulter une tournée double-cliquée dans la ListView tourListView.
-     * @param event MouseEvent
-     */
+    * Méthode qui ouvre une popup permettant de 
+    * consulter une tournée double-cliquée dans la ListView tourListView.
+    * @param event MouseEvent
+    */
     public void popupConsultTour(MouseEvent event) {
         if (event.getClickCount() >= 2) {
             util.loadPopup(event, "/src/views/consultTour.fxml");
@@ -160,36 +160,36 @@ public class ProdSelectMenuCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un véhicule.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour l'ajout d'un véhicule.
+    * @param event ActionEvent
+    */
     public void popupAddVehicle(ActionEvent event) {
     	util.loadPopup(event, "/src/views/addVehicle.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour la modification d'un véhicule
-     * sélectionné dans la ListView vehicleListView.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour la modification d'un véhicule
+    * sélectionné dans la ListView vehicleListView.
+    * @param event ActionEvent
+    */
     public void popupModifyVehicle(ActionEvent event) {
     	util.loadPopup(event, "/src/views/modifyVehicle.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'un véhicule sélectionné dans la ListView vehicleListView.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour demander la confirmation
+    * de la suppression d'un véhicule sélectionné dans la ListView vehicleListView.
+    * @param event ActionEvent
+    */
     public void popupDeleteVehicle(ActionEvent event) {
     	util.loadPopup(event, "/src/views/deleteVehicle.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup permettant de 
-     * consulter un véhicule double-cliqué dans la ListView vehicleListView.
-     * @param event
-     */
+    * Méthode qui ouvre une popup permettant de 
+    * consulter un véhicule double-cliqué dans la ListView vehicleListView.
+    * @param event
+    */
     public void popupConsultVehicle(MouseEvent event) {
     	if (event.getClickCount() >= 2) {
             util.loadPopup(event, "/src/views/consultVehicle.fxml");

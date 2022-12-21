@@ -24,17 +24,17 @@ public class DeleteClientCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui valide la suppression du client.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide la suppression du client.
+    * @param event ActionEvent
+    */
     public void validateDeleteClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui annule la suppression du client.
-     * @param event ActionEvent
-     */
+    * Méthode qui annule la suppression du client.
+    * @param event ActionEvent
+    */
     public void cancelDeleteClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

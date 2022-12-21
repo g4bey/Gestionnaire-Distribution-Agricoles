@@ -70,51 +70,51 @@ public class AdminSelectMenuCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
-     * @param event MouseEvent
-     */
+    * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
+    * @param event MouseEvent
+    */
     public void userProfile(MouseEvent event) {
     	util.loadPopup(event, "/src/views/adminProfile.fxml");
     }
 	
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un administrateur.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour l'ajout d'un administrateur.
+    * @param event ActionEvent
+    */
     public void popupAddAdmin(ActionEvent event) {
     	util.loadPopup(event, "/src/views/addAdmin.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour l'ajout d'un producteur.
+    * @param event ActionEvent
+    */
     public void popupAddProd(ActionEvent event) {
     	util.loadPopup(event, "/src/views/addProd.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour la modification d'un producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour la modification d'un producteur.
+    * @param event ActionEvent
+    */
     public void popupModifyProd(ActionEvent event) {
     	util.loadPopup(event, "/src/views/modifyProd.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'un producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour demander la confirmation
+    * de la suppression d'un producteur.
+    * @param event ActionEvent
+    */
     public void popupDeleteProd(ActionEvent event) {
     	util.loadPopup(event, "/src/views/deleteProd.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup permettant de 
-     * consulter un producteur double-cliqué dans la ListView prodListView.
-     * @param event MouseEvent
-     */
+    * Méthode qui ouvre une popup permettant de 
+    * consulter un producteur double-cliqué dans la ListView prodListView.
+    * @param event MouseEvent
+    */
     public void popupConsultProd(MouseEvent event) {
         if (event.getClickCount() >= 2) {
             util.loadPopup(event, "/src/views/consultProd.fxml");
@@ -122,35 +122,35 @@ public class AdminSelectMenuCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour l'ajout d'un client.
+    * @param event ActionEvent
+    */
     public void popupAddClient(ActionEvent event) {
     	util.loadPopup(event, "/src/views/addClient.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour la modification d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour la modification d'un client.
+    * @param event ActionEvent
+    */
     public void popupModifyClient(ActionEvent event) {
     	util.loadPopup(event, "/src/views/modifyClient.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui ouvre une popup pour demander la confirmation
+    * de la suppression d'un client.
+    * @param event ActionEvent
+    */
     public void popupDeleteClient(ActionEvent event) {
     	util.loadPopup(event, "/src/views/deleteClient.fxml");
     }
     
     /**
-     * Méthode qui ouvre une popup permettant de 
-     * consulter un client double-cliqué dans la ListView clientListView.
-     * @param event MouseEvent
-     */
+    * Méthode qui ouvre une popup permettant de 
+    * consulter un client double-cliqué dans la ListView clientListView.
+    * @param event MouseEvent
+    */
     public void popupConsultClient(MouseEvent event) {
     	if (event.getClickCount() >= 2) {
             util.loadPopup(event, "/src/views/consultClient.fxml");

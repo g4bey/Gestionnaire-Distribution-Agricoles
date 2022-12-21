@@ -40,18 +40,18 @@ public class AdminConnCtrl implements Initializable {
     }
     
     /**
-     * Méthode pour annuler la connexion de l'utilisateur
-     * et revenir sur la page d'accueil.
-     * @param event ActionEvent
-     */
+    * Méthode pour annuler la connexion de l'utilisateur
+    * et revenir sur la page d'accueil.
+    * @param event ActionEvent
+    */
     public void cancelAdminConn(ActionEvent event) {
     	util.loadView(event, "/src/views/homePage.fxml");
     }
     
 	/**
-     * Méthode pour connecter l'utilisateur.
-     * @param event ActionEvent
-     */
+    * Méthode pour connecter l'utilisateur.
+    * @param event ActionEvent
+    */
     public void validateAdminConn(ActionEvent event) {
     	util.loadView(event, "/src/views/adminSelectMenu.fxml");
     }

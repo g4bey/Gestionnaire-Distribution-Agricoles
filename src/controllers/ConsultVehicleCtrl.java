@@ -35,10 +35,10 @@ public class ConsultVehicleCtrl implements Initializable {
     }
 	
 	/**
-     * Méthode qui ferme la vue de consultation
-     * des informations d'un véhicule.
-     * @param event ActionEvent
-     */
+    * Méthode qui ferme la vue de consultation
+    * des informations d'un véhicule.
+    * @param event ActionEvent
+    */
     public void closeConsultVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

@@ -30,17 +30,17 @@ public class ModifyClientCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui valide la modification d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide la modification d'un client.
+    * @param event ActionEvent
+    */
     public void validateModifyClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui ferme la vue de modification d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui ferme la vue de modification d'un client.
+    * @param event ActionEvent
+    */
     public void cancelModifyClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

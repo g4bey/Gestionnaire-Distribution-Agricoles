@@ -33,17 +33,17 @@ public class AddProdCtrl {
     private Text formErrorText;
     
 	/**
-	 * Méthode qui valide l'ajout d'un producteur.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide l'ajout d'un producteur.
+	* @param event ActionEvent
+	*/
     public void validateAddProd(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-     * Méthode qui permet de fermer la vue d'ajout d'un producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue d'ajout d'un producteur.
+    * @param event ActionEvent
+    */
     public void cancelAddProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

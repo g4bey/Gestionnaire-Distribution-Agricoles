@@ -24,17 +24,17 @@ public class DeleteProdCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui valide la suppression du producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide la suppression du producteur.
+    * @param event ActionEvent
+    */
     public void validateDeleteProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui annule la suppression du producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui annule la suppression du producteur.
+    * @param event ActionEvent
+    */
     public void cancelDeleteProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

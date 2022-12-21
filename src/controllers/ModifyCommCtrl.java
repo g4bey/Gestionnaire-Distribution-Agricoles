@@ -42,17 +42,17 @@ public class ModifyCommCtrl implements Initializable {
     }
 	
 	/**
-	 * Méthode qui valide la modification de la commande.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide la modification de la commande.
+	* @param event ActionEvent
+	*/
     public void validateModifyComm(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
     
     /**
-	 * Méthode qui ferme la vue de modification de la commande.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui ferme la vue de modification de la commande.
+	* @param event ActionEvent
+	*/
     public void cancelModifyComm(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }

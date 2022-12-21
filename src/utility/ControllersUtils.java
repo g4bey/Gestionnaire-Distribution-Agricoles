@@ -12,23 +12,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Classe utilitaire pour les contrôleurs.
- *
- */
+* Classe utilitaire pour les contrôleurs.
+*
+*/
 public class ControllersUtils {
 
-	
     private static Parent root;
     private static Stage stage;
     private static Scene scene;
     
-    
     /**
-     * Méthode qui charge une vue passée en paramètre.
-     * @param event MouseEvent
-     * @param path String Chemin vers la vue
-     */
-    
+    * Méthode qui charge une vue passée en paramètre.
+    * @param event MouseEvent
+    * @param path String Chemin vers la vue
+    */
     public void loadView(ActionEvent event, String path) {
     	try {
             root = FXMLLoader.load(getClass().getResource(path));
@@ -44,11 +41,10 @@ public class ControllersUtils {
     }
     
     /**
-     * Méthode qui charge une vue passée en paramètre.
-     * @param event MouseEvent
-     * @param path String Chemin vers la vue
-     */
-    
+    * Méthode qui charge une vue passée en paramètre.
+    * @param event MouseEvent
+    * @param path String Chemin vers la vue
+    */
     public void loadView(MouseEvent event, String path) {
     	try {
             root = FXMLLoader.load(getClass().getResource(path));
@@ -71,7 +67,6 @@ public class ControllersUtils {
     public void loadPopup(ActionEvent event, String path) {
     	try {
     	    root = FXMLLoader.load(getClass().getResource(path));
-    	    
         } 
         catch (IOException e) {
     			// TODO Auto-generated catch block
@@ -86,10 +81,10 @@ public class ControllersUtils {
     }
     
     /**
-     * Méthode qui charge une vue popup passée en paramètre.
-     * @param event MouseEvent
-     * @param path String Chemin vers la vue
-     */
+    * Méthode qui charge une vue popup passée en paramètre.
+    * @param event MouseEvent
+    * @param path String Chemin vers la vue
+    */
     public void loadPopup(MouseEvent event, String path) {
         try {
      	    root = FXMLLoader.load(getClass().getResource(path));
@@ -107,11 +102,10 @@ public class ControllersUtils {
     }
 	
 	/**
-     * Méthode qui permet de fermer la vue popup.
-     * @param event ActionEvent
-     * @param stage Stage la fenêtre à fermer.
-     */
-	
+    * Méthode qui permet de fermer la vue popup.
+    * @param event ActionEvent
+    * @param stage Stage la fenêtre à fermer.
+    */
     public static void closePopup(ActionEvent event) {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.close();

@@ -29,17 +29,17 @@ public class HomePageCtrl implements Initializable {
     }
 	
     /**
-     * Méthode qui permet de changer vers la vue de connexion des administrateur.
-     * @param ActionEvent event
-     */
+    * Méthode qui permet de changer vers la vue de connexion des administrateur.
+    * @param ActionEvent event
+    */
     public void switchToAdminConn(ActionEvent event) {
     	util.loadView(event, "/src/views/adminConn.fxml");
     }
     
     /**
-     * Méthode qui permet de changer vers la vue de connexion des producteurs.
-     * @param ActionEvent event
-     */
+    * Méthode qui permet de changer vers la vue de connexion des producteurs.
+    * @param ActionEvent event
+    */
     public void switchToProdConn(ActionEvent event) {
     	util.loadView(event, "/src/views/prodConn.fxml");
     }

@@ -39,17 +39,17 @@ public class ModifyProdCtrl implements Initializable {
     }
     
 	/**
-	 * Méthode qui valide la modification d'un producteur.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide la modification d'un producteur.
+	* @param event ActionEvent
+	*/
     public void validateModifyProd(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-     * Méthode qui permet de fermer la vue de modification d'un producteur.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue de modification d'un producteur.
+    * @param event ActionEvent
+    */
     public void cancelModifyProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

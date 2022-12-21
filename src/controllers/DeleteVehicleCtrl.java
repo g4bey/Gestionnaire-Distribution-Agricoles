@@ -24,17 +24,17 @@ public class DeleteVehicleCtrl implements Initializable {
     }
     
     /**
-     * Méthode qui valide la suppression du véhicule.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide la suppression du véhicule.
+    * @param event ActionEvent
+    */
     public void validateDeleteVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui annule la suppression du véhicule.
-     * @param event ActionEvent
-     */
+    * Méthode qui annule la suppression du véhicule.
+    * @param event ActionEvent
+    */
     public void cancelDeleteVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

@@ -20,10 +20,10 @@ public class ConsultClientCtrl {
     private Text clientPhoneText;
     
     /**
-     * Méthode qui permet de fermer la vue de consultation 
-     * des informations d'un client.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue de consultation 
+    * des informations d'un client.
+    * @param event ActionEvent
+    */
     public void closeConsultClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

@@ -36,17 +36,17 @@ public class AddCommCtrl {
     private Text formErrorText;
     
     /**
-     * Méthode qui valide l'ajout d'une commande.
-     * @param event ActionEvent
-     */
+    * Méthode qui valide l'ajout d'une commande.
+    * @param event ActionEvent
+    */
     public void validateAddComm(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
     
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'une commande.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue d'ajout d'une commande.
+    * @param event ActionEvent
+    */
     public void cancelAddComm(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

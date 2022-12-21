@@ -31,17 +31,17 @@ public class AddTourneeCtrl {
     private Text formErrorText;
     
 	/**
-	 * Méthode qui valide l'ajout d'une tournée.
-	 * @param event ActionEvent
-	 */
+	* Méthode qui valide l'ajout d'une tournée.
+	* @param event ActionEvent
+	*/
     public void validateAddTour(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-     * Méthode qui permet de fermer la vue d'ajout d'une tournée.
-     * @param event ActionEvent
-     */
+    * Méthode qui permet de fermer la vue d'ajout d'une tournée.
+    * @param event ActionEvent
+    */
     public void cancelAddTournee(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }

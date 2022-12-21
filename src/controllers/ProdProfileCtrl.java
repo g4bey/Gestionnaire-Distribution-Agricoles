@@ -32,10 +32,10 @@ public class ProdProfileCtrl implements Initializable {
 		
     }
     
-	/**
-	 * Méthode qui permet de fermer la vue du profile.
-	 * @param event ActionEvent
-	 */
+    /**
+	* Méthode qui permet de fermer la vue du profile.
+	* @param event ActionEvent
+	*/
     public void closeProdProfile(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
