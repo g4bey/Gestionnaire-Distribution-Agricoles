@@ -13,10 +13,10 @@ import src.utility.ControllersUtils;
 public class AddClientCtrl {
 	
     @FXML
-	private TextField clientNameField;
+    private TextField clientNameField;
 	
     @FXML
-	private TextField addressNumField;
+    private TextField addressNumField;
     
     @FXML
     private ChoiceBox<String> pathTypeChoiceBox;
@@ -31,7 +31,7 @@ public class AddClientCtrl {
     private TextField postcodeField;
 
     @FXML
-	private TextField clientPhoneField;
+    private TextField clientPhoneField;
     
     @FXML
     private Text formErrorText;
