@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -248,5 +249,67 @@ public class TourneeDAOTest {
         Tournee tourneeRetour = tourneeDAO.get(TOURNEE_A.getIdTournee());
         assertTrue(tourneeRetour.getCommandes().get(1).equals(TOURNEE_A.getCommandes().get(1)));
         assertTrue(tourneeRetour.getCommandes().get(0).equals(TOURNEE_A.getCommandes().get(0)));
+    }
+
+    /**
+     * On s'assure que les tournées concernées par un véhicule peuvent bien être retrouvées à partir de celui-ci
+     * @throws SQLException
+     */
+    @Test
+    @DisplayName("Test de la méthode getTourneesByVehicule")
+    public void getTourneesByVehiculeTest() throws SQLException {
+        Producteur producteurC = new Producteur("Dédé", "Jean-Louis", "23 rue de la grosse grange", "", "", "");
+        Vehicule vehiculeC = new Vehicule("450677", 57F, "PELLETEUSE", producteurC);
+        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission", vehiculeC);
+
+        producteurDAO.add(producteurC);
+        vehiculeDAO.add(vehiculeC);
+        tourneeDAO.add(TOURNEE_A);
+        tourneeDAO.add(TOURNEE_B);
+        tourneeDAO.add(tourneeC);
+
+        // On vérifie que seules les tournées liées au véhicule sont retournées
+        ArrayList<Tournee> tournees = tourneeDAO.getTourneesByVehicule(VEHICULE);
+        assertEquals(2, tournees.size());
+
+        // On vérifie les valeurs des tournées
+        assertTrue(TOURNEE_A.equals(tournees.get(0)));
+        assertTrue(TOURNEE_B.equals(tournees.get(1)));
+    }
+
+    /**
+     * On s'assure que les tournées concernées par une liste de véhicules peuvent bien être
+     * retrouvées à partir de celle-ci
+     * @throws SQLException
+     */
+    @Test
+    @DisplayName("Test de la méthode getTourneesByVehicules")
+    public void getTourneesByVehiculesTest() throws SQLException {
+        Producteur producteurC = new Producteur("DDDDDDD", "Jean-Louis", "23 rue de la grosse grange", "", "", "");
+        Vehicule vehiculeC = new Vehicule("4506", 57F, "PELLETEUSE", producteurC);
+        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission", vehiculeC);
+        Vehicule vehiculeD = new Vehicule("23814", 45F, "TRACTEUR", PRODUCTEUR);
+        Tournee tourneeD = new Tournee(new Timestamp(13000), new Timestamp(47000), 20F, "Transfert de lingitos", VEHICULE);
+
+        producteurDAO.add(producteurC);
+        vehiculeDAO.add(vehiculeC);
+        vehiculeDAO.add(vehiculeD);
+        tourneeDAO.add(TOURNEE_A);
+        tourneeDAO.add(TOURNEE_B);
+        tourneeDAO.add(tourneeC);
+        tourneeDAO.add(tourneeD);
+
+        ArrayList<Vehicule> vehicules = new ArrayList<>();
+        vehicules.add(VEHICULE);
+        vehicules.add(vehiculeD);
+
+        // On vérifie que seules les tournées liées à la liste de véhicules sont retournées
+        ArrayList<Tournee> tournees = tourneeDAO.getTourneesByVehicules(vehicules);
+        assertEquals(3, tournees.size());
+
+        // On vérifie les valeurs des tournées
+        assertTrue(TOURNEE_A.equals(tournees.get(0)));
+        assertTrue(TOURNEE_B.equals(tournees.get(1)));
+        assertTrue(tourneeD.equals(tournees.get(2)));
     }
 }

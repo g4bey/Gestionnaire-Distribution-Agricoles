@@ -175,7 +175,7 @@ public class TourneeDAO extends DAO<Tournee> {
      * @return tournees un ArrayList<> contenant les tournées associés au Vehicle
      * @throws SQLException
      */
-    public ArrayList<Tournee> getTourneeByVehicule(Vehicule t) throws SQLException {
+    public ArrayList<Tournee> getTourneesByVehicule(Vehicule t) throws SQLException {
         ArrayList<Tournee> tournees = new ArrayList<>();
 
         pstmt = conn.prepareStatement(

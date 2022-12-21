@@ -39,7 +39,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
                 // On charge la liste de tournée
                 TourneeDAO tourneeDAO = new TourneeDAO(conn);
-                for (Tournee tournee : tourneeDAO.getTourneeByVehicule(vehicule)) {
+                for (Tournee tournee : tourneeDAO.getTourneesByVehicule(vehicule)) {
                     vehicule.addTournee(tournee);
                 }
 
