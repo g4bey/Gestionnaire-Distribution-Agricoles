@@ -164,6 +164,23 @@ public class CommandeDAOTest {
         assertEquals(2, commandeListe.get(1).getIdCommande());
     }
 
+    /**
+     * On insère le COMMANDE_A en base.
+     * Ensuite, on récupère son ID.
+     * <p>
+     * Enfin, on supprime la commande correspondant à cet ID.
+     * Puis on vérifie que demander cet ID renvoie bien null.
+     */
+    @Test
+    @DisplayName("Test la methode delete")
+    public void deleteTest() {
+        commandeDAO.add(COMMANDE_A);
+        int idCommande = COMMANDE_A.getIdCommande();
+
+        // Apres suppression, l'ID devrait être null.
+        commandeDAO.delete(COMMANDE_A);
+        assertNull(commandeDAO.get(idCommande));
+    }
 
 
 }

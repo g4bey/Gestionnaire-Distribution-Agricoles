@@ -168,7 +168,12 @@ public class CommandeDAO extends DAO<Commande> {
 
             // On supprime la commande
             t.getProducteur().removeCommande(t);
-            t.getTournee().removeCommande(t);
+
+            // Si la commande est dans une tournee, on la supprime.
+            if (t.getTournee() != null) {
+                t.getTournee().removeCommande(t);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
