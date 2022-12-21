@@ -1,5 +1,6 @@
 package DAO;
 
+import modele.Producteur;
 import modele.Tournee;
 import modele.Vehicule;
 import java.math.BigInteger;
@@ -150,6 +151,35 @@ public class VehiculeDAO extends DAO<Vehicule> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Renvoie un véhicule associé à un producteur.
+     *
+     * @param t Producteur le producteur concerné
+     * @return Vehicule le vehicule du producteur
+     */
+    public Vehicule getVehiculeByProducteur(Producteur t) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Vehicule WHERE idProducteur = ?");
+            pstmt.setInt(1, t.getIdProducteur());
+            pstmt.executeQuery();
+
+            // Si le vehicule existe.
+            if (rs.first()) {
+                return new Vehicule(
+                        rs.getInt("idVehicule"),
+                        rs.getString("numImmat"),
+                        rs.getFloat("poidsMax"),
+                        rs.getString("libelle"),
+                        t
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
