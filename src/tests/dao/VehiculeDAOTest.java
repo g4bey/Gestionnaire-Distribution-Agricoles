@@ -22,7 +22,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests de la classe DAO.AdministrateurDAO.
+ * Tests de la classe DAO.VehiculeDAO.
  */
 public class VehiculeDAOTest {
 
