@@ -44,6 +44,8 @@ public class CommandeDAOTest {
      * Instantiation de la connection avant TOUS les tests.
      * On injecte la connection dans le DAO commande.
      * <p>
+     * On vide toutes les tables afin de prédire les résultats.
+     * <p>
      * @throws SQLException
      * @throws IOException
      * @throws ClassNotFoundException
@@ -52,6 +54,12 @@ public class CommandeDAOTest {
     public static void setup() throws SQLException, IOException, ClassNotFoundException {
         conn = DatabaseConnection.getInstance("testing");
         commandeDAO = new CommandeDAO(conn);
+
+        truncateTable("Commande");
+        truncateTable("Client");
+        truncateTable("Tournee");
+        truncateTable("Vehicule");
+        truncateTable("Producteur");
     }
 
     /**
