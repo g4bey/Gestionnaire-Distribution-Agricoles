@@ -63,6 +63,8 @@ public class TourneeDAOTest {
         vehiculeDAO = new VehiculeDAO(conn);
         tourneeDAO = new TourneeDAO(conn);
 
+        truncateTable("Commande");
+        truncateTable("Client");
         truncateTable("Tournee");
         truncateTable("Vehicule");
         truncateTable("Producteur");
@@ -88,7 +90,7 @@ public class TourneeDAOTest {
     }
 
     /**
-     * On crée une tournée.
+     * On crée deux tournées.
      * On pense aussi à reset l'auto-increment de la table Tournee apres l'avoir vidée.
      * <p>
      * @throws SQLException
@@ -102,7 +104,7 @@ public class TourneeDAOTest {
     }
 
     /**
-     * Vérifions que l'ID de TOURNEE: 0 avant insertion,
+     * Vérifions que l'ID de TOURNEE_A: 0 avant insertion,
      * est bien mise à jour suite à l'ajout en base.
      * <p>
      * Si l'ajout est effectif, cet ID sera 1.

@@ -48,7 +48,7 @@ public class VehiculeDAOTest {
 
     /**
      * On crée une connection puis instancie les DAO.
-     * On vide ensuite la table producteur pour prédire les résultats.
+     * On vide ensuite toutes les tables pour prédire les résultats.
      * <p>
      * Avant d'exécuter les tests, on crée un producteur puis on l'insère en base.
      * Évidemment, l'auto_increment.
@@ -62,6 +62,9 @@ public class VehiculeDAOTest {
         vehiculeDAO = new VehiculeDAO(conn);
         prodDAO = new ProducteurDAO(conn);
 
+        truncateTable("Commande");
+        truncateTable("Client");
+        truncateTable("Tournee");
         truncateTable("Vehicule");
         truncateTable("Producteur");
 

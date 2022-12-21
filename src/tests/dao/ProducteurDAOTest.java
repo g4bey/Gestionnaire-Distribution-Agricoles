@@ -48,7 +48,7 @@ public class ProducteurDAOTest {
 
     /**
      * On créer une connection, puis l'instancie les DAO.
-     * L'on vide ensuite la table producteur pour prédire les résultats.
+     * L'on vide ensuite toutes les tables pour prédire les résultats.
      * <p>
      * Avant d'exécuter les tests, on crée un producteur, puis on l'insère en base.
      * Évidemment, l'auto_increment.
@@ -64,6 +64,10 @@ public class ProducteurDAOTest {
         conn = DatabaseConnection.getInstance("testing");
         prodDAO = new ProducteurDAO(conn);
 
+        truncateTable("Commande");
+        truncateTable("Client");
+        truncateTable("Tournee");
+        truncateTable("Vehicule");
         truncateTable("Producteur");
     }
 
