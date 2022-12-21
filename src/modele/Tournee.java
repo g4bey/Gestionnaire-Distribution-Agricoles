@@ -144,6 +144,7 @@ public class Tournee {
      * @param commande L'objet Tournee à ajouter
      */
     public void addCommande(Commande commande) {
+        commande.setTournee(this);
         this.commandes.add(commande);
     }
 
@@ -153,6 +154,7 @@ public class Tournee {
      * @param commande L'objet Commande à supprimer
      */
     public void removeCommande(Commande commande) {
+        commande.setTournee(null);
         this.commandes.remove(commande);
     }
 }

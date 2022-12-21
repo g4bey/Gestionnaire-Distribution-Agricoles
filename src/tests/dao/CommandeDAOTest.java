@@ -1,8 +1,6 @@
 package tests.dao;
 
-import DAO.ClientDAO;
-import DAO.CommandeDAO;
-import DAO.ProducteurDAO;
+import DAO.*;
 import modele.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -181,6 +179,114 @@ public class CommandeDAOTest {
         commandeDAO.delete(COMMANDE_A);
         assertNull(commandeDAO.get(idCommande));
     }
+
+    /**
+     * On commence par créer et ajouter une commande en base.
+     * Ensuite, l'on modifie tous les attributs, y compris les references.
+     * puis on update ce véhicule, y compris le producteur.
+     * <p>
+     * Enfin, on crée un autre objet avec le même ID pour s'assurer
+     * que les attributs sont égaux.
+     */
+    @Test
+    @DisplayName("Test la methode update")
+    public void updateTest() {
+        commandeDAO.add(COMMANDE_A);
+
+        // On créer un client
+        ClientDAO clientDAO = new ClientDAO(conn);
+        Client client = new Client(
+                "Jean", "Charles",
+                "20,40", "000394985"
+        );
+        clientDAO.add(client);
+
+        // On créer un nouveau producteur
+        ProducteurDAO producteurDAO = new ProducteurDAO(conn);
+        Producteur producteur = new Producteur(
+                "123123", "Bastien",
+                "12 rue de la vilardiere",
+                "04049484", "30,2",
+                "mdp"
+        );
+        producteurDAO.add(producteur);
+
+        // On créer un nouveau vehicule
+        VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
+        Vehicule vehicule = new Vehicule(
+                "193", 40F,
+                "patrick", producteur
+        );
+        vehiculeDAO.add(vehicule);
+
+        // On l'ajoute à une tournee.
+        TourneeDAO tourneeDAO = new TourneeDAO(conn);
+        Tournee tournee = new Tournee(
+                new Timestamp(90000), new Timestamp(80000),
+                40F, "text", vehicule
+        );
+        tourneeDAO.add(tournee);
+
+        // On ajoute puis met à jour le COMMANDE_A
+        // L'on change producteur clients et tournee.
+        COMMANDE_A.setProducteur(producteur);
+        COMMANDE_A.setLibelle("Lib2");
+        COMMANDE_A.setClient(client);
+        COMMANDE_A.setTournee(tournee);
+        COMMANDE_A.setHoraireFin(new Timestamp(70000));
+        COMMANDE_A.setHoraireDebut(new Timestamp(50000));
+        COMMANDE_A.setPoids(40F);
+        commandeDAO.update(COMMANDE_A);
+
+        // On crée un autre object de meme ID pour s'assurer que les attributs
+        // sont identiques. Cela induit qu'ils sont modifés en BDD.
+        Commande commandeRetour = commandeDAO.get(COMMANDE_A.getIdCommande());
+        assertTrue(commandeRetour.equals(COMMANDE_A));
+    }
+
+    /**
+     * On essaye de s'assurer que les références sont propagées.
+     * Par exemple en ajouter des commandes dans les tournées,
+     * les commandes déja existantes auront des liens vers les nouvelles commandes
+     * via le tablea de tournée.
+     */
+    @Test
+    @DisplayName("Test la methode update et propgation")
+    public void propagationTest() {
+        commandeDAO.add(COMMANDE_A);
+        commandeDAO.add(COMMANDE_B);
+
+        // On créer un nouveau vehicule
+        VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
+        Vehicule vehicule = new Vehicule(
+                "193", 40F,
+                "patrick", PRODUCTEUR_DEMO
+        );
+        vehiculeDAO.add(vehicule);
+
+        // On l'ajoute à une tournee.
+        TourneeDAO tourneeDAO = new TourneeDAO(conn);
+        Tournee tournee = new Tournee(
+                new Timestamp(90000), new Timestamp(80000),
+                40F, "text", vehicule
+        );
+        tourneeDAO.add(tournee);
+
+        // On ajoute des commandes dans la tournee
+        tournee.addCommande(COMMANDE_B);
+        tournee.addCommande(COMMANDE_A);
+        tourneeDAO.update(tournee);
+
+        // On s'assure que les valeurs sont bien propagées
+        assertTrue(COMMANDE_A.getTournee().getVehicule().equals(vehicule));
+        assertTrue(COMMANDE_A.getTournee().getCommandes().contains(COMMANDE_B));
+        assertTrue(COMMANDE_A.getClient().equals(CLIENT_DEMO));
+        assertTrue(COMMANDE_A.getTournee().equals(tournee));
+        assertTrue(COMMANDE_A.getTournee().getCommandes().equals(tournee.getCommandes()));
+    }
+
+
+
 
 
 }
