@@ -186,9 +186,10 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Retour une liste de tournée associée a un véhicule.
+     * Retourne une liste de tournée associée à une liste de véhicules, pour récupérer à partir
+     * de la liste de véhicules d'un producteur sa liste de tournées.
      *
-     * @param vehicules le éhicules qui doit etre associe à la tournée
+     * @param vehicules les véhicules qui doivent etre associés à la tournée
      * @return ArrayList<Tournee> contenant les tournées associées aux véhicules
      * @throws SQLException
      */

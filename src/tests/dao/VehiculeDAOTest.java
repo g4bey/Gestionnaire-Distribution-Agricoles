@@ -79,8 +79,8 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * L'on créer deux véhicules puis l'on les insère en base.
-     * L'on pense aussi à reset l'auto-incremente de la table Vehicule apres l'avoir vidée.
+     * On crée deux véhicules.
+     * On pense aussi à reset l'auto-increment de la table Vehicule apres l'avoir vidée.
      * <p>
      * @throws SQLException
      */
@@ -108,7 +108,7 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * L'on insert VEHICULE_A en base.
+     * On insère VEHICULE_A en base.
      * <p>
      * Ensuite le demande un vehicule ayant pour ID l'iD du VEHICULE_A.
      * <p>
@@ -174,12 +174,12 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * On commence par créer et ajout un nouveau producteur en base.
-     * Ensuite l'on ajout VEHICULE_A en base pour modifier tous ses attributs,
-     * puis l'on update ce vehicule, y compris le producteur.
+     * On commence par créer et ajouter un nouveau producteur en base.
+     * Ensuite, on ajoute VEHICULE_A en base et modifie tous ses attributs,
+     * puis on update ce véhicule, y compris le producteur.
      * <p>
-     * Enfin l'on créer un autre objet avec le meme ID pour s'assurer
-     * que les attributs sont egaux.
+     * Enfin, on crée un autre objet avec le même ID pour s'assurer
+     * que les attributs sont égaux.
      */
     @Test
     @DisplayName("Test la methode update")
@@ -221,7 +221,7 @@ public class VehiculeDAOTest {
         tourneeDAO.add(tournee);
         tourneeDAO.add(tournee2);
 
-        // On vérifie qu'elles sont bien propagés
+        // On vérifie qu'elles sont bien propagées
         assertEquals(2, VEHICULE_A.getTournees().size());
         assertTrue(tournee.equals(VEHICULE_A.getTournees().get(0)));
 
@@ -232,5 +232,28 @@ public class VehiculeDAOTest {
 
     }
 
+    @Test
+    @DisplayName("Test de la méthode getVehiculeByProducteur")
+    public void getVehiculeByProducteurTest() throws SQLException {
+        Producteur producteur = new Producteur("siretProd", "José", "33 rue de la pêche à la mouche", "", "", "");
+        Vehicule vehiculeC = new Vehicule("3445", 61F, "CAMION", producteur);
+
+        vehiculeDAO.add(VEHICULE_A);
+        vehiculeDAO.add(VEHICULE_B);
+        prodDAO.add(producteur);
+        vehiculeDAO.add(vehiculeC);
+
+        // On vérifie que l'on ne récupère que les véhicules du producteur EXEMPLE_PROD
+        List<Vehicule> vehiculeList = vehiculeDAO.getVehiculeByProducteur(EXEMPLE_PROD);
+        assertEquals(2, vehiculeList.size());
+        assertEquals(1, vehiculeList.get(0).getIdVehicule());
+        assertEquals(2, vehiculeList.get(1).getIdVehicule());
+    }
+
+    @Test
+    @DisplayName("Test de la méthode getVehiculeByIdTournee")
+    public void getVehiculeByIdTournee() {
+
+    }
 
 }

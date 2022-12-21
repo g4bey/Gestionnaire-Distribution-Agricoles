@@ -144,6 +144,11 @@ public class CommandeDAO extends DAO<Commande> {
                 t.getProducteur().addCommande(t);
             }
 
+            // Si la commande n'est pas dans le tableau et que sa tournée n'est pas null
+            if (t.getTournee() != null && !t.getTournee().getCommandes().contains(t)) {
+                t.getTournee().addCommande(t);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -163,6 +168,7 @@ public class CommandeDAO extends DAO<Commande> {
 
             // On supprime la commande
             t.getProducteur().removeCommande(t);
+            t.getTournee().removeCommande(t);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -198,7 +204,7 @@ public class CommandeDAO extends DAO<Commande> {
                         rs.getTimestamp("horaireFin"),
                         tournee,
                         prd,
-                        new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
+                        new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
                                 rs.getString("gpsClient"), rs.getString("numTelClient"))));
             }
         }
