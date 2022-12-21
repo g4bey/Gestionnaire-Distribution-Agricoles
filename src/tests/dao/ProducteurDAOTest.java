@@ -2,19 +2,23 @@ package tests.dao;
 
 import DAO.ProducteurDAO;
 import modele.Producteur;
+import modele.Vehicule;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utility.DatabaseConnection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests de la classe DAO.prodDAO.
@@ -25,6 +29,8 @@ public class ProducteurDAOTest {
     static private ProducteurDAO prodDAO;
     static private Producteur PRODUCTEUR_A;
     static private Producteur PRODUCTEUR_B;
+    static private Vehicule VEHICULE_A;
+    static private Vehicule VEHICULE_B;
 
     /**
      * Simule un TRUNCATE de la table table.
@@ -77,7 +83,12 @@ public class ProducteurDAOTest {
         PRODUCTEUR_B = new Producteur("73282932000075", "Patrick", "13 rue du Poulpe", "0612934563",
                 "48.37760650.8082932", "hashMDP2");
 
+        VEHICULE_A = new Vehicule("AA229AA", 32, "véhicule principal", PRODUCTEUR_A);
+
         truncateTable("Producteur");
+        truncateTable("Vehicule");
+
+        PRODUCTEUR_A.addVehicule(VEHICULE_A);
     }
 
     /**
@@ -108,6 +119,8 @@ public class ProducteurDAOTest {
     @Test
     @DisplayName("Test de la methode get")
     public void getTest() {
+        // On ajoute un nouveau Vehicule
+        VEHICULE_B = new Vehicule("AA230AA", 62, "véhicule secondaire", PRODUCTEUR_A);
         prodDAO.add(PRODUCTEUR_A);
 
         // Demander un producteur d'ID associé au PRODUCTEUR_A
@@ -169,6 +182,8 @@ public class ProducteurDAOTest {
     @Test
     @DisplayName("Test la methode update")
     public void updateTest() {
+        PRODUCTEUR_A.addVehicule(VEHICULE_B);
+
         // On ajoute puis met à jour le PRODUCTEUR_A
         // L'on change aussi le producteur
         prodDAO.add(PRODUCTEUR_A);
