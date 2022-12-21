@@ -1,5 +1,6 @@
 package DAO;
 
+import modele.Producteur;
 import modele.Tournee;
 import modele.Vehicule;
 import java.math.BigInteger;
@@ -31,15 +32,14 @@ public class VehiculeDAO extends DAO<Vehicule> {
                 ProducteurDAO pDAO = new ProducteurDAO(conn);
 
                 Vehicule vehicule = new Vehicule(id,
-                    rs.getString("numImmat"), 
-                    rs.getFloat("poidsMax"),
-                    rs.getString("libelle"),
-                    pDAO.get(rs.getInt("idProducteur"))
-                );
+                        rs.getString("numImmat"),
+                        rs.getFloat("poidsMax"),
+                        rs.getString("libelle"),
+                        pDAO.get(rs.getInt("idProducteur")));
 
                 // On charge la liste de tournée
-                TourneeDAO tourneeDAO =  new TourneeDAO(conn);
-                for(Tournee tournee : tourneeDAO.getTourneeByVehicule(vehicule)) {
+                TourneeDAO tourneeDAO = new TourneeDAO(conn);
+                for (Tournee tournee : tourneeDAO.getTourneeByVehicule(vehicule)) {
                     vehicule.addTournee(tournee);
                 }
 
@@ -51,6 +51,31 @@ public class VehiculeDAO extends DAO<Vehicule> {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Retour une liste de tournée associée a un Producteur.
+     *
+     * @param t le Producteur qui doit etre associe à la tournée
+     * @return tournees un ArrayList<> contenant les tournees associés au Producteur
+     * @throws SQLException
+     */
+    public Vehicule getVehiculeByIdTournee(int idTournee, Producteur prd) throws SQLException {
+        pstmt = conn.prepareStatement(
+                "SELECT idVehicule, numImmat, poidsMax, V.libelle FROM Vehicule V JOIN Tournee USING(idVehicule) WHERE idTournee = ?");
+        pstmt.setInt(1, idTournee);
+        rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            return new Vehicule(
+                    rs.getInt("idVehicule"),
+                    rs.getString("numImmat"),
+                    rs.getFloat("poidsMax"),
+                    rs.getString("V.libelle"),
+                    prd);
+        }
+
+        return null;
     }
 
     /**
@@ -72,8 +97,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
                         rs.getString("numImmat"),
                         rs.getFloat("poidsMax"),
                         rs.getString("libelle"),
-                        pDAO.get(rs.getInt("idProducteur"))
-                );
+                        pDAO.get(rs.getInt("idProducteur")));
 
                 vehicules.add(vehicule);
             }
@@ -86,6 +110,32 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
+     * Retour une liste de tournée associée a un Producteur.
+     *
+     * @param t le Producteur qui doit etre associe à la tournée
+     * @return tournees un ArrayList<> contenant les tournees associés au Producteur
+     * @throws SQLException
+     */
+    public ArrayList<Vehicule> getVehiculeByProducteur(Producteur prd) throws SQLException {
+        ArrayList<Vehicule> vehicules = new ArrayList<>();
+
+        pstmt = conn.prepareStatement("SELECT * FROM Vehicule WHERE idProducteur = ?");
+        pstmt.setInt(1, prd.getIdProducteur());
+        rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            vehicules.add(new Vehicule(
+                    rs.getInt("idVehicule"),
+                    rs.getString("numImmat"),
+                    rs.getFloat("poidsMax"),
+                    rs.getString("libelle"),
+                    prd));
+        }
+
+        return vehicules;
+    }
+
+    /**
      * Ajoute dans la base de données une instance de Vehicule.
      * 
      * @param t l'instance Vehicule de l'objet à ajouter.
@@ -93,7 +143,8 @@ public class VehiculeDAO extends DAO<Vehicule> {
     @Override
     public void add(Vehicule t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Vehicule VALUES (NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt = conn.prepareStatement("INSERT INTO Vehicule VALUES (NULL, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
             pstmt.setFloat(1, t.getPoidsMax());
             pstmt.setString(2, t.getLibelle());
             pstmt.setString(3, t.getNumImmat());
@@ -101,10 +152,10 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
-            
+
             if (rs.next()) {
-                long id = ((BigInteger)rs.getObject(1)).longValue();
-                t.setIdVehicule((int)id);
+                long id = ((BigInteger) rs.getObject(1)).longValue();
+                t.setIdVehicule((int) id);
             }
 
         } catch (SQLException e) {

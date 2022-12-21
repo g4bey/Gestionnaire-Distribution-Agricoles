@@ -1,6 +1,6 @@
 package modele;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Objet métier représentant un Producteur.
@@ -20,11 +20,11 @@ public class Producteur {
 
     private String mdpProd;
 
-    private List<Vehicule> vehicules = new ArrayList<>();
+    private ArrayList<Vehicule> vehicules = new ArrayList<>();
 
-    private List<Commande> commandes = new ArrayList<>();
+    private ArrayList<Commande> commandes = new ArrayList<>();
 
-    private List<Tournee> tournees = new ArrayList<>();
+    private ArrayList<Tournee> tournees = new ArrayList<>();
 
     public int getIdProducteur() {
         return idProducteur;
@@ -54,15 +54,15 @@ public class Producteur {
         return mdpProd;
     }
 
-    public List<Vehicule> getVehicules() {
+    public ArrayList<Vehicule> getVehicules() {
         return vehicules;
     }
 
-    public List<Commande> getCommandes() {
+    public ArrayList<Commande> getCommandes() {
         return commandes;
     }
 
-    public List<Tournee> getTournees() {
+    public ArrayList<Tournee> getTournees() {
         return tournees;
     }
 

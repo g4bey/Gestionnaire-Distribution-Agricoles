@@ -1,6 +1,10 @@
 package DAO;
 
+import modele.Client;
 import modele.Commande;
+import modele.Producteur;
+import modele.Tournee;
+
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -79,6 +83,61 @@ public class CommandeDAO extends DAO<Commande> {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Retour une liste de tournée associée a un Producteur.
+     *
+     * @param t le Producteur qui doit etre associe à la tournée
+     * @return tournees un ArrayList<> contenant les tournees associés au Producteur
+     * @throws SQLException
+     */
+    public ArrayList<Commande> getCommandeByProducteurTournee(Producteur prd, ArrayList<Tournee> tournees)
+            throws SQLException {
+        ArrayList<Commande> commandes = new ArrayList<>();
+
+        // On récupère toutes les commandes associées aux tournées
+        for (Tournee tournee : tournees) {
+            pstmt = conn.prepareStatement(
+                    "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idTournee = ?");
+            pstmt.setInt(1, tournee.getIdTournee());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                commandes.add(new Commande(
+                        rs.getInt("idCommande"),
+                        rs.getString("libelle"),
+                        rs.getFloat("poids"),
+                        rs.getTimestamp("horaireDebut"),
+                        rs.getTimestamp("horaireFin"),
+                        tournee,
+                        prd,
+                        new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
+                                rs.getString("gpsClient"), rs.getString("numTelClient"))));
+            }
+        }
+
+        // On récupère toutes les commandes qui n'ont pas de tournées mais qui sont
+        // associées au Producteur
+        pstmt = conn.prepareStatement(
+                "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idProducteur = ? AND idTournee = NULL");
+        pstmt.setInt(1, prd.getIdProducteur());
+        rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            commandes.add(new Commande(
+                    rs.getInt("idCommande"),
+                    rs.getString("libelle"),
+                    rs.getFloat("poids"),
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"),
+                    null,
+                    prd,
+                    new Client(rs.getInt("C.idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
+                            rs.getString("gpsClient"), rs.getString("numTelClient"))));
+        }
+
+        return commandes;
     }
 
     /**

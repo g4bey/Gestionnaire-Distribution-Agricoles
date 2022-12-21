@@ -1,6 +1,7 @@
 package DAO;
 
 import modele.Commande;
+import modele.Producteur;
 import modele.Tournee;
 import modele.Vehicule;
 
@@ -9,7 +10,6 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Représente le DAO des tournées.
@@ -47,7 +47,7 @@ public class TourneeDAO extends DAO<Tournee> {
      * @return Une liste d'instances de Tournee.
      */
     @Override
-    public List<Tournee> getAll() {
+    public ArrayList<Tournee> getAll() {
         ArrayList<Tournee> tournees = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Tournee");
@@ -157,9 +157,7 @@ public class TourneeDAO extends DAO<Tournee> {
             pstmt.setInt(1, t.getIdTournee());
 
             // On met à jour la liste de tournees dans vehicule.
-            if (t.getVehicule() != null) {
-                t.getVehicule().removeTournee(t);
-            }
+            t.getVehicule().removeTournee(t);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -167,42 +165,18 @@ public class TourneeDAO extends DAO<Tournee> {
         }
     }
 
-    public ArrayList<Tournee> tourneeByVehicule(Vehicule t) throws SQLException {
-        ArrayList<Tournee> tournees = new ArrayList<>();
-
-        pstmt = conn.prepareStatement(
-                "SELECT * FROM Tournee WHERE idVehicule = ?"
-        );
-        pstmt.setInt(1, t.getIdVehicule());
-        rs = pstmt.executeQuery();
-
-        while (rs.next()) {
-            tournees.add(new Tournee(
-                    rs.getInt("idTournee"),
-                    rs.getTimestamp("horaireDebut"),
-                    rs.getTimestamp("horaireFin"),
-                    rs.getFloat("poids"),
-                    rs.getString("libelle"),
-                    t)
-            );
-        }
-
-        return tournees;
-    }
-
     /**
-     * Retour une liste de tournée associée a un vehicle.
+     * Retour une liste de tournée associée a un Vehicle.
      *
-     * @param t le vehicule qui doit etre associe à la tournée
-     * @return tournees un ArrayList<> contenant les tournees associés au vehicle
+     * @param t le Vehicule qui doit etre associe à la tournée
+     * @return tournees un ArrayList<> contenant les tournees associés au Vehicle
      * @throws SQLException
      */
     public ArrayList<Tournee> getTourneeByVehicule(Vehicule t) throws SQLException {
         ArrayList<Tournee> tournees = new ArrayList<>();
 
         pstmt = conn.prepareStatement(
-                "SELECT * FROM Tournee WHERE idVehicule = ?"
-        );
+                "SELECT * FROM Tournee WHERE idVehicule = ?");
         pstmt.setInt(1, t.getIdVehicule());
         rs = pstmt.executeQuery();
 
@@ -213,8 +187,37 @@ public class TourneeDAO extends DAO<Tournee> {
                     rs.getTimestamp("horaireFin"),
                     rs.getFloat("poids"),
                     rs.getString("libelle"),
-                    t)
-            );
+                    t));
+        }
+
+        return tournees;
+    }
+
+    /**
+     * Retour une liste de tournée associée a un Producteur.
+     *
+     * @param t le Producteur qui doit etre associe à la tournée
+     * @return tournees un ArrayList<> contenant les tournees associés au Producteur
+     * @throws SQLException
+     */
+    public ArrayList<Tournee> getTourneeByVehicules(ArrayList<Vehicule> vehicules)
+            throws SQLException {
+        ArrayList<Tournee> tournees = new ArrayList<>();
+
+        for (Vehicule vehicule : vehicules) {
+            pstmt = conn.prepareStatement("SELECT * FROM Tournee WHERE idVehicule = ?");
+            pstmt.setInt(1, vehicule.getIdVehicule());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                tournees.add(new Tournee(
+                        rs.getInt("idTournee"),
+                        rs.getTimestamp("horaireDebut"),
+                        rs.getTimestamp("horaireFin"),
+                        rs.getFloat("poids"),
+                        rs.getString("libelle"),
+                        vehicule));
+            }
         }
 
         return tournees;

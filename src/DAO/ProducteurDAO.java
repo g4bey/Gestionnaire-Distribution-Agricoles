@@ -1,6 +1,10 @@
 package DAO;
 
+import modele.Commande;
 import modele.Producteur;
+import modele.Tournee;
+import modele.Vehicule;
+
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -26,11 +30,30 @@ public class ProducteurDAO extends DAO<Producteur> {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return new Producteur(id, rs.getString("siret"), rs.getString("proprietaire"),
+                Producteur prd = new Producteur(id, rs.getString("siret"), rs.getString("proprietaire"),
                         rs.getString("adresseProd"),
                         rs.getString("numTelProd"),
                         rs.getString("gpsProd"),
                         rs.getString("mdpProd"));
+
+                // On charge la liste de vehicule
+                ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculeByProducteur(prd);
+                for (Vehicule vehicule : vehicules) {
+                    prd.addVehicule(vehicule);
+                }
+
+                // On charge la liste de tournée
+                ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneeByVehicules(vehicules);
+                for (Tournee tournee : tournees) {
+                    prd.addTournee(tournee);
+                }
+
+                // On charge la liste de commande
+                for (Commande commande : new CommandeDAO(conn).getCommandeByProducteurTournee(prd, tournees)) {
+                    prd.addCommande(commande);
+                }
+
+                return prd;
             }
 
             return null;
