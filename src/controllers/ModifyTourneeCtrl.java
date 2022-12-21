@@ -2,8 +2,12 @@ package src.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import src.modele.Commande;
+import src.modele.Vehicule;
 import src.utility.ControllersUtils;
 
 /**
@@ -13,6 +17,15 @@ public class ModifyTourneeCtrl {
 
     @FXML
 	private TextField tourLabelField;
+    
+    @FXML
+    private ChoiceBox<Vehicule> vehicleChoiceBox;
+    
+    @FXML
+    private ListView<Commande> commListView;
+    
+    @FXML
+    private ChoiceBox<Commande> commChoiceBox;
 
     @FXML
     private Label maxWeightLabel;
