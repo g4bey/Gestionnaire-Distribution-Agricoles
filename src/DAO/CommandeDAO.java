@@ -184,28 +184,25 @@ public class CommandeDAO extends DAO<Commande> {
      * @return ArrayList<Commande> la liste de commande associée à une Tournee.
      * @throws SQLException
      */
-    public ArrayList<Commande> getCommandesByTournee(Producteur prd, ArrayList<Tournee> tournees) throws SQLException {
+    public ArrayList<Commande> getCommandesByTournee(Producteur prd, Tournee tournee) throws SQLException {
         ArrayList<Commande> commandes = new ArrayList<>();
 
-        // On récupère toutes les commandes associées aux tournées
-        for (Tournee tournee : tournees) {
-            pstmt = conn.prepareStatement(
-                    "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idTournee = ?");
-            pstmt.setInt(1, tournee.getIdTournee());
-            rs = pstmt.executeQuery();
+        pstmt = conn.prepareStatement(
+                "SELECT * FROM Commande JOIN Client USING(idClient) WHERE idTournee = ?");
+        pstmt.setInt(1, tournee.getIdTournee());
+        rs = pstmt.executeQuery();
 
-            while (rs.next()) {
-                commandes.add(new Commande(
-                        rs.getInt("idCommande"),
-                        rs.getString("libelle"),
-                        rs.getFloat("poids"),
-                        rs.getTimestamp("horaireDebut"),
-                        rs.getTimestamp("horaireFin"),
-                        tournee,
-                        prd,
-                        new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
-                                rs.getString("gpsClient"), rs.getString("numTelClient"))));
-            }
+        while (rs.next()) {
+            commandes.add(new Commande(
+                    rs.getInt("idCommande"),
+                    rs.getString("libelle"),
+                    rs.getFloat("poids"),
+                    rs.getTimestamp("horaireDebut"),
+                    rs.getTimestamp("horaireFin"),
+                    tournee,
+                    prd,
+                    new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
+                            rs.getString("gpsClient"), rs.getString("numTelClient"))));
         }
 
         return commandes;
@@ -221,9 +218,14 @@ public class CommandeDAO extends DAO<Commande> {
      * @return ArrayList<Commande> la liste de commande associée à un producteur.
      * @throws SQLException
      */
-    public ArrayList<Commande> getCommandeByProducteurTournee(Producteur prd, ArrayList<Tournee> tournees)
+    public ArrayList<Commande> getCommandesByProducteurTournees(Producteur prd, ArrayList<Tournee> tournees)
             throws SQLException {
-        ArrayList<Commande> commandes = getCommandesByTournee(prd, tournees);
+        ArrayList<Commande> commandes = new ArrayList<>();
+
+        // On récupère toutes les commandes associées aux tournées
+        for (Tournee tournee : tournees) {
+            commandes = getCommandesByTournee(prd, tournee);
+        }
 
         // On récupère toutes les commandes qui n'ont pas de tournées mais qui sont
         // associées au Producteur

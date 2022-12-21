@@ -49,7 +49,7 @@ public class ProducteurDAO extends DAO<Producteur> {
                 }
 
                 // On charge la liste de commande
-                for (Commande commande : new CommandeDAO(conn).getCommandeByProducteurTournee(prd, tournees)) {
+                for (Commande commande : new CommandeDAO(conn).getCommandesByProducteurTournees(prd, tournees)) {
                     prd.addCommande(commande);
                 }
 

@@ -28,9 +28,20 @@ public class TourneeDAO extends DAO<Tournee> {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return new Tournee(id, rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
+                Vehicule vh = new VehiculeDAO(conn).get(rs.getInt("idVehicule"));
+
+                Tournee tournee = new Tournee(id, rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
                         rs.getFloat("poids"), rs.getString("libelle"),
-                        new VehiculeDAO(conn).get(rs.getInt("idVehicule")));
+                        vh);
+
+                // On charge la liste des commandes
+                ArrayList<Commande> commandes = new CommandeDAO(conn).getCommandesByTournee(vh.getProducteur(),
+                        tournee);
+                for (Commande commande : commandes) {
+                    tournee.addCommande(commande);
+                }
+
+                return tournee;
             }
 
             return null;
@@ -186,7 +197,8 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Retourne une liste de tournée associée à une liste de véhicules, pour récupérer à partir
+     * Retourne une liste de tournée associée à une liste de véhicules, pour
+     * récupérer à partir
      * de la liste de véhicules d'un producteur sa liste de tournées.
      *
      * @param vehicules les véhicules qui doivent etre associés à la tournée
