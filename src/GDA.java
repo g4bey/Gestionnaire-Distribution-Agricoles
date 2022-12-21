@@ -10,11 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class GDA extends Application {
+	
     /**
-     * Méthode main du projet GDA.
-     * @param args String[]
-     */
-
+    * Méthode main du projet GDA.
+    * @param args String[]
+    */
     public static void main(String[] args) {
     	launch(args);
     }
@@ -31,5 +31,4 @@ public class GDA extends Application {
     	primaryStage.setScene(scene);
     	primaryStage.show();
     }
-    
 }

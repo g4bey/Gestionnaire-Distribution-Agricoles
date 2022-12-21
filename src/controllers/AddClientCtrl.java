@@ -2,6 +2,7 @@ package src.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import src.utility.ControllersUtils;
@@ -15,7 +16,19 @@ public class AddClientCtrl {
 	private TextField clientNameField;
 	
     @FXML
-	private TextField clientAddressField;
+	private TextField addressNumField;
+    
+    @FXML
+    private ChoiceBox<String> pathTypeChoiceBox;
+    
+    @FXML
+    private TextField pathNameField;
+    
+    @FXML
+    private TextField townNameField;
+    
+    @FXML
+    private TextField postcodeField;
 
     @FXML
 	private TextField clientPhoneField;

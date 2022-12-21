@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import src.utility.ControllersUtils;
 
@@ -21,7 +22,19 @@ public class ModifyProdCtrl implements Initializable {
 	private TextField propNameField;
 	
     @FXML
-	private TextField prodAddressField;
+   	private TextField addressNumField;
+       
+    @FXML
+    private ChoiceBox<String> pathTypeChoiceBox;
+       
+    @FXML
+    private TextField pathNameField;
+       
+    @FXML
+    private TextField townNameField;
+       
+    @FXML
+    private TextField postcodeField;
 	
     @FXML
 	private TextField prodPhoneField;
