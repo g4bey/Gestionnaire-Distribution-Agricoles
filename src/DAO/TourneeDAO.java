@@ -107,9 +107,11 @@ public class TourneeDAO extends DAO<Tournee> {
                 for (Commande commande : t.getCommandes()) {
                     coDAO.add(commande);
                 }
-
                 // On met à jour la liste de tournees dans vehicule.
                 t.getVehicule().addTournee(t);
+
+                // On met a jour la liste de tournees dans producteur
+                t.getVehicule().getProducteur().addTournee(t);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -144,6 +146,11 @@ public class TourneeDAO extends DAO<Tournee> {
             if (!t.getVehicule().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
             }
+
+            // On met à jour la liste de tournees dans producteur.
+            if (!t.getVehicule().getProducteur().getTournees().contains(t)) {
+                t.getVehicule().addTournee(t);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -163,6 +170,9 @@ public class TourneeDAO extends DAO<Tournee> {
 
             // On met à jour la liste de tournees dans vehicule.
             t.getVehicule().removeTournee(t);
+
+            // On supprime de la liste de tournees dans producteur
+            t.getVehicule().getProducteur().removeTournee(t);
         } catch (SQLException e) {
             e.printStackTrace();
         }
