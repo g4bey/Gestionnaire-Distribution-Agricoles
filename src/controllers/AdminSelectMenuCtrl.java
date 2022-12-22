@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,10 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import src.modele.Administrateur;
-import src.modele.Producteur;
-import src.utility.ControllersUtils;
-import src.modele.Client;
+import modele.Administrateur;
+import modele.Producteur;
+import utility.ControllersUtils;
+import modele.Client;
 
 /**
 * Contrôleur permettant la consultation Administrateur.
@@ -74,7 +74,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event MouseEvent
     */
     public void userProfile(MouseEvent event) {
-    	util.loadPopup(event, "/src/views/adminProfile.fxml");
+    	util.loadPopup(event, "/views/adminProfile.fxml");
     }
 	
     /**
@@ -82,7 +82,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupAddAdmin(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/addAdmin.fxml");
+    	util.loadPopup(event, "/views/addAdmin.fxml");
     }
     
     /**
@@ -90,7 +90,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupAddProd(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/addProd.fxml");
+    	util.loadPopup(event, "/views/addProd.fxml");
     }
     
     /**
@@ -98,7 +98,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyProd(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/modifyProd.fxml");
+    	util.loadPopup(event, "/views/modifyProd.fxml");
     }
     
     /**
@@ -107,7 +107,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteProd(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/deleteProd.fxml");
+    	util.loadPopup(event, "/views/deleteProd.fxml");
     }
     
     /**
@@ -117,7 +117,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     */
     public void popupConsultProd(MouseEvent event) {
         if (event.getClickCount() >= 2) {
-            util.loadPopup(event, "/src/views/consultProd.fxml");
+            util.loadPopup(event, "/views/consultProd.fxml");
         }
     }
     
@@ -126,7 +126,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupAddClient(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/addClient.fxml");
+    	util.loadPopup(event, "/views/addClient.fxml");
     }
     
     /**
@@ -134,7 +134,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyClient(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/modifyClient.fxml");
+    	util.loadPopup(event, "/views/modifyClient.fxml");
     }
     
     /**
@@ -143,7 +143,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteClient(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/deleteClient.fxml");
+    	util.loadPopup(event, "/views/deleteClient.fxml");
     }
     
     /**
@@ -153,7 +153,7 @@ public class AdminSelectMenuCtrl implements Initializable {
     */
     public void popupConsultClient(MouseEvent event) {
     	if (event.getClickCount() >= 2) {
-            util.loadPopup(event, "/src/views/consultClient.fxml");
+            util.loadPopup(event, "/views/consultClient.fxml");
         }
     }
 }

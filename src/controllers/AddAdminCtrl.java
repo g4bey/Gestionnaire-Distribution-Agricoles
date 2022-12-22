@@ -1,10 +1,10 @@
-package src.controllers;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import src.utility.ControllersUtils;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant l'ajout d'un Administrateur.

@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import src.utility.ControllersUtils;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant l'aperçu Commande.

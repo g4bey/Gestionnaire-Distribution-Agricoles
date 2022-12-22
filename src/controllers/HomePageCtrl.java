@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import src.utility.ControllersUtils;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur de la page d'accueil.
@@ -33,7 +33,7 @@ public class HomePageCtrl implements Initializable {
     * @param ActionEvent event
     */
     public void switchToAdminConn(ActionEvent event) {
-    	util.loadView(event, "/src/views/adminConn.fxml");
+    	util.loadView(event, "/views/adminConn.fxml");
     }
     
     /**
@@ -41,6 +41,6 @@ public class HomePageCtrl implements Initializable {
     * @param ActionEvent event
     */
     public void switchToProdConn(ActionEvent event) {
-    	util.loadView(event, "/src/views/prodConn.fxml");
+    	util.loadView(event, "/views/prodConn.fxml");
     }
 }

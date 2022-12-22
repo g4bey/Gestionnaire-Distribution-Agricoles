@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,9 +6,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import src.modele.Commande;
-import src.modele.Vehicule;
-import src.utility.ControllersUtils;
+import modele.Commande;
+import modele.Vehicule;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant la modification d'une Tournee.

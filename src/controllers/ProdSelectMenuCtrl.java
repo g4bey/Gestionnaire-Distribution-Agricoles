@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,10 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import src.modele.Vehicule;
-import src.utility.ControllersUtils;
-import src.modele.Tournee;
-import src.modele.Commande;
+import modele.Vehicule;
+import utility.ControllersUtils;
+import modele.Tournee;
+import modele.Commande;
 
 /**
 * Contrôleur permettant la consultation d'un Producteur.
@@ -82,7 +82,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event
     */
     public void userProfile(MouseEvent event) {
-    	util.loadPopup(event, "/src/views/prodProfile.fxml");
+    	util.loadPopup(event, "/views/prodProfile.fxml");
     }
 	
     /**
@@ -90,7 +90,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupAddComm(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/addComm.fxml");
+    	util.loadPopup(event, "/views/addComm.fxml");
     }
     
     /**
@@ -99,7 +99,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyComm(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/modifyComm.fxml");
+    	util.loadPopup(event, "/views/modifyComm.fxml");
     }
     
     /**
@@ -108,7 +108,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteComm(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/deleteComm.fxml");
+    	util.loadPopup(event, "/views/deleteComm.fxml");
     }
     
     /**
@@ -118,7 +118,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     */
     public void popupConsultComm(MouseEvent event) {
         if (event.getClickCount() >= 2) {
-            util.loadPopup(event, "/src/views/consultCommV1.fxml");
+            util.loadPopup(event, "/views/consultCommV1.fxml");
         }
     }
     
@@ -127,7 +127,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupAddTour(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/addTour.fxml");
+    	util.loadPopup(event, "/views/addTour.fxml");
     }
     
     /**
@@ -136,7 +136,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyTour(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/modifyTour.fxml");
+    	util.loadPopup(event, "/views/modifyTour.fxml");
     }
     
     /**
@@ -145,7 +145,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteTour(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/deleteTour.fxml");
+    	util.loadPopup(event, "/views/deleteTour.fxml");
     }
     
     /**
@@ -155,7 +155,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     */
     public void popupConsultTour(MouseEvent event) {
         if (event.getClickCount() >= 2) {
-            util.loadPopup(event, "/src/views/consultTour.fxml");
+            util.loadPopup(event, "/views/consultTour.fxml");
         }
     }
     
@@ -164,7 +164,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupAddVehicle(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/addVehicle.fxml");
+    	util.loadPopup(event, "/views/addVehicle.fxml");
     }
     
     /**
@@ -173,7 +173,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyVehicle(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/modifyVehicle.fxml");
+    	util.loadPopup(event, "/views/modifyVehicle.fxml");
     }
     
     /**
@@ -182,7 +182,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteVehicle(ActionEvent event) {
-    	util.loadPopup(event, "/src/views/deleteVehicle.fxml");
+    	util.loadPopup(event, "/views/deleteVehicle.fxml");
     }
     
     /**
@@ -192,7 +192,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     */
     public void popupConsultVehicle(MouseEvent event) {
     	if (event.getClickCount() >= 2) {
-            util.loadPopup(event, "/src/views/consultVehicle.fxml");
+            util.loadPopup(event, "/views/consultVehicle.fxml");
         }
     }
 }

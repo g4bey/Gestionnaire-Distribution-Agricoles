@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,8 +6,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import src.modele.Client;
-import src.utility.ControllersUtils;
+import modele.Client;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant l'ajout d'une Commande.

@@ -1,13 +1,13 @@
-package src.controllers;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import src.modele.Vehicule;
-import src.utility.ControllersUtils;
-import src.modele.Tournee;
-import src.modele.Commande;
+import modele.Vehicule;
+import utility.ControllersUtils;
+import modele.Tournee;
+import modele.Commande;
 
 /**
 * Contrôleur permettant l'aperçu Producteur.
