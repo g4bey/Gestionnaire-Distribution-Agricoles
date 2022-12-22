@@ -10,10 +10,10 @@ import utility.ValidateurDonnee;
 public class ValidateurDonneeTest {
 
     /*
-     * Permet d'assurer que le siret respecte le bon format.
+     * Permet d'assurer que le SIRET respecte le bon format.
      */
     @Test
-    @DisplayName("Validation du siret")
+    @DisplayName("Validation du SIRET")
     public void valideSiretTest() {
         assertTrue(ValidateurDonnee.valideSiret("12341234123412"));
         assertFalse(ValidateurDonnee.valideSiret("A2341234123412"));
@@ -24,10 +24,10 @@ public class ValidateurDonneeTest {
 
     /*
      * Permet d'assurer que le numéro de téléphone suit le bon format.
-     * Ici, l'on ne prend en compte que les numéros nationaux, +33 compris.
+     * Ici, on ne prend en compte que les numéros nationaux, +33 compris.
      */
     @Test
-    @DisplayName("Validation du numero de telephone au format francais")
+    @DisplayName("Validation du numéro de téléphone au format français")
     public void valideTelephoneTest() {
         assertTrue(ValidateurDonnee.valideTelephone("0628050505"));
         assertTrue(ValidateurDonnee.valideTelephone("+33628050505"));
@@ -43,10 +43,10 @@ public class ValidateurDonneeTest {
     }
 
     /*
-     * Permet d'assurer qu'un poids puisse bien être convertit en double.
+     * Permet d'assurer qu'un poids puisse bien être converti en double.
      */
     @Test
-    @DisplayName("Validation d'un poids sous forme de string.")
+    @DisplayName("Validation d'un poids sous forme de String.")
     public void validePoidsTest() {
         assertFalse(ValidateurDonnee.validePoids("banane"));
         assertFalse(ValidateurDonnee.validePoids("d43"));
@@ -56,11 +56,11 @@ public class ValidateurDonneeTest {
     }
 
     /*
-     * Permet d'assurer qu'un poids fournit est bien strictement inférieur au
-     * maximum fournit..
+     * Permet d'assurer qu'un poids fourni est bien strictement inférieur au
+     * maximum fourni...
      */
     @Test
-    @DisplayName("Validation d'un poids inferieur à un poids max.")
+    @DisplayName("Validation d'un poids inférieur à un poids max.")
     public void validePoidsMaxTest() {
         assertTrue(ValidateurDonnee.validePoids("42", 50));
         assertTrue(ValidateurDonnee.validePoids("42", 42));
@@ -68,7 +68,7 @@ public class ValidateurDonneeTest {
     }
 
     @Test
-    @DisplayName("Permet de valider un date")
+    @DisplayName("Permet de valider une date")
     public void valideDateTest() {
         fail("Not implemented");
     }
@@ -76,11 +76,11 @@ public class ValidateurDonneeTest {
     /**
      * Un nom peut contenir tirets, espaces et apostrophes.
      * Cependant, il ne peut finir ainsi. Un nom ne pas être vide.
-     * 
-     * L'on definit une taille max dans la fonction de validation.
+     * <p>
+     * On définit une taille maximum dans la fonction de validation.
      */
     @Test
-    @DisplayName("Vérification du format des noms, et limite de caracteres.")
+    @DisplayName("Vérification du format des noms, et limite de caractères.")
     public void valideNomTest() {
         assertTrue(ValidateurDonnee.valideNom("O", 15));
         assertTrue(ValidateurDonnee.valideNom("Jéâêîôûàèùan", 50));
@@ -97,10 +97,10 @@ public class ValidateurDonneeTest {
 
     /**
      * Validation d'un pseudonyme.
-     * On accept tirets underscore et valeurs alphanumériques.
+     * On accepte tirets, underscore et valeurs alphanumériques.
      * Un pseudo ne peut être vide.
-     * 
-     * L'on definit une taille max dans la fonction de validation.
+     * <p>
+     * L'on définit une taille maximum dans la fonction de validation.
      */
     @Test
     @DisplayName("Validation d'un pseudonyme")
@@ -115,10 +115,10 @@ public class ValidateurDonneeTest {
     /**
      * Regex trouvée en ligne.
      * https://regex101.com/r/VGjLx1/1
-     * 
-     * Elle en compte les formats anciens / recents.
+     * <p>
+     * Elle prend en compte les formats anciens / recents.
      * Néanmoins, ici, on demandera obligatoirement un tiret entre les groupes,
-     * par soucis d'homogénéité.
+     * par souci d'homogénéité.
      */
     @Test
     @DisplayName("Validation Immatricuation")

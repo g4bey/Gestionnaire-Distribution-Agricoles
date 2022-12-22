@@ -30,4 +30,5 @@ hs_err_pid*
 /Gestionnaire-Distribution-Agricoles.iml
 /.idea/
 .vscode/settings.json
+/out/
 /bin/

@@ -3,46 +3,77 @@ package modele;
 /**
  * Objet métier représentant un Administrateur.
  */
-
-public class Administrateur extends ModeleConcret {
+public class Administrateur {
     private int idAdministrateur;
 
     private String pseudo;
 
     private String mdpAdmin;
 
-    private int getIdAdministrateur() {
+    public int getIdAdministrateur() {
         return idAdministrateur;
     }
 
-    private String getPseudo() {
+    public String getPseudo() {
         return pseudo;
     }
 
-    private String getMdpAdmin() {
+    public String getMdpAdmin() {
         return mdpAdmin;
     }
 
-    private void setIdAdministrateur(int idAdministrateur) {
+    public void setIdAdministrateur(int idAdministrateur) {
         this.idAdministrateur = idAdministrateur;
     }
 
-    private void setPseudo(String pseudo) {
+    public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
 
-    private void setMdpAdmin(String mdpAdmin) {
+    public void setMdpAdmin(String mdpAdmin) {
+        this.mdpAdmin = mdpAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return ("Information Administrateur :\nId : " + idAdministrateur)
+                .concat("\nPseudo : ").concat(pseudo)
+                .concat("\nHash du mdp : ").concat(mdpAdmin);
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances d'Administrateur
+     * 
+     * @param adm L'Administrateur à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Administrateur adm) {
+        return idAdministrateur == adm.idAdministrateur
+                && pseudo.equals(adm.pseudo)
+                && mdpAdmin.equals(adm.mdpAdmin);
+    }
+
+    /**
+     * Constructeur d'Administrateur.
+     * 
+     * @param idAdministrateur Int représentant l'Administrateur.
+     * @param pseudo           String représentant l'Administrateur.
+     * @param mdpAdmin         String représentant l'Administrateur.
+     */
+    public Administrateur(int idAdministrateur, String pseudo, String mdpAdmin) {
+        this.idAdministrateur = idAdministrateur;
+        this.pseudo = pseudo;
         this.mdpAdmin = mdpAdmin;
     }
 
     /**
      * Constructeur d'Administrateur.
      * 
-     * @param idAdministrateur int représentant l'Administrateur.
-     * @param pseudo           String représentant l'Administrateur.
-     * @param mdpAdmin         String représentant l'Administrateur.
+     * @param pseudo   String représentant l'Administrateur.
+     * @param mdpAdmin String représentant l'Administrateur.
      */
-
-    public Administrateur(int idAdministrateur, String pseudo, String mdpAdmin) {
+    public Administrateur(String pseudo, String mdpAdmin) {
+        this.pseudo = pseudo;
+        this.mdpAdmin = mdpAdmin;
     }
 }

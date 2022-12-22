@@ -30,14 +30,14 @@ public class DatabaseConnectionTest {
     }
 
     /**
-     * Nous vérifions que le singleton renvoie bien une instance lors que
+     * Nous vérifions que le Singleton renvoie bien une Instance lors que
      * getInstance est invoqué pour la premiere fois.
      *
      *  @throws IOException
      *  @throws ClassNotFoundException
      */
     @Test
-    @DisplayName("Premiere connection valide")
+    @DisplayName("Première Connection valide")
     void connectionValide() throws IOException, ClassNotFoundException {
         try {
             Connection conn = DatabaseConnection.getInstance("testing");
@@ -51,18 +51,17 @@ public class DatabaseConnectionTest {
      * Nous vérifions qu'un environnement inexistant du fichier de configuration
      * génère bien une erreur IOException.
      *
-     *  @throws IOException
      *  @throws ClassNotFoundException
      */
     @Test
     @DisplayName("Chargeur d'attribut fonctionnel")
-    void chargeurAttributFonctionnel() throws IOException, ClassNotFoundException {
+    void chargeurAttributFonctionnel() throws ClassNotFoundException {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getInstance("existePas");
             fail("Connection qui ne devrait pas exister.");
         } catch (SQLException e) {
-            fail("Problem avec le constructeur.");
+            fail("Problème avec le constructeur.");
         } catch (IOException e) {
             assertNull(conn);
         } // end try catch
@@ -70,13 +69,10 @@ public class DatabaseConnectionTest {
 
     /**
      * Nous cherchons à tester l'unicité de la connection.
-     * Le singleton doit renvoyer une instance si elle existe deja.
-     *
-     *  @throws IOException
-     *  @throws ClassNotFoundException
+     * Le Singleton doit renvoyer une Instance si elle existe deja.
      */
     @Test
-    @DisplayName("Singleton retournant une et une seule connection")
+    @DisplayName("Singleton retournant une et une seule Connection")
     void singletonFonctionnel() throws IOException, ClassNotFoundException {
         Connection conn;
         Connection conn2;
@@ -85,13 +81,13 @@ public class DatabaseConnectionTest {
             conn2 = DatabaseConnection.getInstance("testing");
             assertEquals(conn, conn2);
         } catch (SQLException e) {
-            fail("Le singleton ne renvoi pas un unique connection");
+            fail("Le Singleton ne renvoie pas une unique Connection");
         } // end try catch
     }
 
     /**
-     * Fermeture de la connection apres les tests.
-     *
+     * Fermeture de la Connection apres les tests.
+     * 
      * @throws SQLException
      */
     @AfterAll

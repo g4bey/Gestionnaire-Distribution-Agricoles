@@ -1,106 +1,192 @@
 package modele;
 
+import java.sql.Timestamp;
+
 /**
- * Objet métier représentant une commande.
+ * Objet métier représentant une Commande.
  */
 
-public class Commande extends ModeleConcret {
+public class Commande {
     private int idCommande;
 
     private String libelle;
 
     private float poids;
 
-    private String horaireDebut;
+    private Timestamp horaireDebut;
 
-    private String horaireFin;
+    private Timestamp horaireFin;
+
+    private Tournee tournee;
 
     private Producteur producteur;
 
     private Client client;
 
-    private Tournee tournee;
-
-    private int getIdCommande() {
+    public int getIdCommande() {
         return idCommande;
     }
 
-    private String getLibelle() {
+    public String getLibelle() {
         return libelle;
     }
 
-    private float getPoids() {
+    public float getPoids() {
         return poids;
     }
 
-    private String getHoraireDebut() {
+    public Timestamp getHoraireDebut() {
         return horaireDebut;
     }
 
-    private String getHoraireFin() {
+    public Timestamp getHoraireFin() {
         return horaireFin;
     }
 
-    private Producteur getProducteur() {
+    public Producteur getProducteur() {
         return producteur;
     }
 
-    private Client getClient() {
+    public Client getClient() {
         return client;
     }
 
-    private Tournee getTournee() {
+    public Tournee getTournee() {
         return tournee;
     }
 
-    private void setIdCommande(int idCommande) {
+    public void setIdCommande(int idCommande) {
         this.idCommande = idCommande;
     }
 
-    private void setLibelle(String libelle) {
+    public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
 
-    private void setPoids(float poids) {
+    public void setPoids(float poids) {
         this.poids = poids;
     }
 
-    private void setHoraireDebut(String horaireDebut) {
+    public void setHoraireDebut(Timestamp horaireDebut) {
         this.horaireDebut = horaireDebut;
     }
 
-    private void setHoraireFin(String horaireFin) {
+    public void setHoraireFin(Timestamp horaireFin) {
         this.horaireFin = horaireFin;
     }
 
-    private void setProducteur(Producteur producteur) {
+    public void setProducteur(Producteur producteur) {
         this.producteur = producteur;
     }
 
-    private void setClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
-    private void setTournee(Tournee tournee) {
+    public void setTournee(Tournee tournee) {
         this.tournee = tournee;
+    }
+
+    @Override
+    public String toString() {
+        return ("Information Commande :\nId : " + idCommande)
+                .concat("Poids : " + poids)
+                .concat("Horaire début : " + horaireDebut)
+                .concat("Horaire fin : " + horaireFin)
+                .concat("Tournée : ").concat(tournee.getLibelle())
+                .concat("Producteur : ").concat(producteur.getSiret())
+                .concat("Client : ").concat(client.getNomClient());
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances de Commande
+     * 
+     * @param cmd La Commande à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Commande cmd) {
+        return (idCommande == cmd.idCommande)
+                && libelle.equals(cmd.libelle)
+                && Float.compare(poids, cmd.poids) == 0
+                && horaireDebut.equals(cmd.horaireDebut)
+                && horaireFin.equals(cmd.horaireFin)
+                && producteur.equals(cmd.producteur)
+                && client.equals(cmd.client)
+                && cmd.tournee != null ? tournee.equals(cmd.tournee) : tournee == null;
+        // Les Tournées peuvent être null lorsqu'on crée une Commande.
+        // Si l'une est null et pas l'autre, c'est false par défaut.
     }
 
     /**
      * Constructeur de Commande.
      * 
-     * @param idCommande   int représentant l'id de la Commande.
+     * @param idCommande   Int représentant l'id de la Commande.
      * @param libelle      String représentant le libellé de la Commande.
      * @param poids        float représentant le poids de la commande.
-     * @param horaireDebut String représentant l'horaire de début de la Commande.
-     * @param horaireFin   String représentant l'horaire de fin de la Commande.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
      * @param producteur   Producteur représentant le producteur qui effectue la
      *                     Commande.
      * @param client       Client représentant le client qui a passé la Commande.
-     * @param tournee      Tournee représentant la tournée à laquelle appartient la
+     * @param tournee      Tournée représentant la tournée à laquelle appartient la
      *                     Commande.
      */
+    public Commande(int idCommande, String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin,
+            Tournee tournee, Producteur producteur, Client client) {
+        this.idCommande = idCommande;
+        this.libelle = libelle;
+        this.poids = poids;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.tournee = tournee;
+        this.producteur = producteur;
+        this.client = client;
+    }
 
-    public Commande(int idCommande, String libelle, float poids, String horaireDebut, String horaireFin,
-            Producteur producteur, Client client, Tournee tournee) {
+    /**
+     * Constructeur de Commande.
+     * 
+     * @param libelle      String représentant le libellé de la Commande.
+     * @param poids        Float représentant le poids de la commande.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
+     * @param producteur   Producteur représentant le producteur qui effectue la
+     *                     Commande.
+     * @param client       Client représentant le client qui a passé la Commande.
+     * @param tournee      Tournée représentant la tournée à laquelle appartient la
+     *                     Commande.
+     */
+    public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin, Tournee tournee,
+            Producteur producteur, Client client) {
+        this.libelle = libelle;
+        this.poids = poids;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.tournee = tournee;
+        this.producteur = producteur;
+        this.client = client;
+    }
+
+    /**
+     * Constructeur de Commande lors qu'on la crée.
+     * En effet, elle n'est pas encore associée à une Tournée.
+     *
+     * @param libelle      String représentant le libellé de la Commande.
+     * @param poids        Float représentant le poids de la Commande.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
+     * @param producteur   Producteur représentant le producteur qui effectue la
+     *                     Commande.
+     * @param client       Client représentant le client qui a passé la Commande.
+     */
+    public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin, Producteur producteur,
+            Client client) {
+        this.libelle = libelle;
+        this.poids = poids;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.tournee = null;
+        this.producteur = producteur;
+        this.client = client;
     }
 }

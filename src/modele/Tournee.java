@@ -1,82 +1,160 @@
 package modele;
 
-import java.util.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  * Objet métier représentant une Tournée.
  */
 
-public class Tournee extends ModeleConcret {
+public class Tournee {
     private int idTournee;
 
-    private String horaireDebut;
+    private Timestamp horaireDebut;
 
-    private String horaireFin;
+    private Timestamp horaireFin;
 
     private float poids;
 
+    private String libelle;
+
     private Vehicule vehicule;
 
-    private List<Commande> commandes = new ArrayList<>();
+    private ArrayList<Commande> commandes = new ArrayList<>();
 
-    private int getIdTournee() {
+    public int getIdTournee() {
         return idTournee;
     }
 
-    private String getHoraireDebut() {
+    public Timestamp getHoraireDebut() {
         return horaireDebut;
     }
 
-    private String getHoraireFin() {
+    public Timestamp getHoraireFin() {
         return horaireFin;
     }
 
-    private float getPoids() {
+    public float getPoids() {
         return poids;
     }
 
-    private Vehicule getVehicule() {
+    public Vehicule getVehicule() {
         return vehicule;
     }
 
-    private List<Commande> getCommandes() {
+    public ArrayList<Commande> getCommandes() {
         return commandes;
     }
 
-    private void setIdTournee(int idTournee) {
+    public void setIdTournee(int idTournee) {
         this.idTournee = idTournee;
     }
 
-    private void setHoraireDebut(String horaireDebut) {
+    public void setHoraireDebut(Timestamp horaireDebut) {
         this.horaireDebut = horaireDebut;
     }
 
-    private void setHoraireFin(String horaireFin) {
+    public void setHoraireFin(Timestamp horaireFin) {
         this.horaireFin = horaireFin;
     }
 
-    private void setPoids(float poids) {
+    public void setPoids(float poids) {
         this.poids = poids;
     }
 
-    private void setVehicule(Vehicule vehicule) {
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    @Override
+    public String toString() {
+        return ("Information Tournee :\nId : " + idTournee)
+                .concat("Horaire début : " + horaireDebut)
+                .concat("Horaire fin : " + horaireFin)
+                .concat("Poids : " + poids)
+                .concat("Libellé : ").concat(libelle)
+                .concat("Véhicule : ").concat(vehicule.getNumImmat());
+    }
+
+    /**
+     * Compare au niveau des attributs l'égalité entre 2 instances de Tourn2e
+     * 
+     * @param trn La Tournée à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
+     */
+    public boolean equals(Tournee trn) {
+        return idTournee == trn.idTournee
+                && horaireDebut.equals(trn.horaireDebut)
+                && horaireFin.equals(trn.horaireFin)
+                && Float.compare(poids, trn.poids) == 0
+                && libelle.equals(trn.libelle)
+                && vehicule.equals(trn.vehicule);
+    }
+
+    /**
+     * Constructeur de Tournée.
+     * 
+     * @param idTournee    Int représentant l'id de la Tournée.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournée.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournée.
+     * @param poids        Float représentant le poids total de la Tournée.
+     * @param libelle      String représentant le libellé de la Tournée.
+     * @param vehicule     Véhicule représentant le véhicule utilisé pour effectuer
+     *                     la Tournée.
+     */
+    public Tournee(int idTournee, Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle,
+            Vehicule vehicule) {
+        this.idTournee = idTournee;
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.poids = poids;
+        this.libelle = libelle;
         this.vehicule = vehicule;
     }
 
     /**
-     * Constructeur de Tournee.
+     * Constructeur de Tournée.
      * 
-     * @param idTournee    int représentant l'id de la Tournee.
-     * @param horaireDebut String représentant l'horaire de début de la Tournee.
-     * @param horaireFin   String représentant l'horaire de fin de la Tournee.
-     * @param poids        float représentant le poids total de la Tournee.
-     * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
-     *                     la Tournee.
-     * @param commandes    ArrayList<Commande> représentant les commandes composant
-     *                     la Tournee.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournée.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournée.
+     * @param poids        Float représentant le poids total de la Tournée.
+     * @param libelle      String représentant le libellé de la Tournée.
+     * @param vehicule     Véhicule représentant le véhicule utilisé pour effectuer
+     *                     la Tournée.
      */
+    public Tournee(Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle, Vehicule vehicule) {
+        this.horaireDebut = horaireDebut;
+        this.horaireFin = horaireFin;
+        this.poids = poids;
+        this.libelle = libelle;
+        this.vehicule = vehicule;
+    }
 
-    public Tournee(int idTournee, String horaireDebut, String horaireFin, float poids, Vehicule vehicule,
-            List<Commande> commandes) {
+    /**
+     * Permet d'ajouter une commande à la liste de Commandes de la Tournée
+     * 
+     * @param commande L'objet Tournee à ajouter
+     */
+    public void addCommande(Commande commande) {
+        commande.setTournee(this);
+        this.commandes.add(commande);
+    }
+
+    /**
+     * Permet de supprimer une Commande de la liste de Commandes de la Tournée
+     * 
+     * @param commande L'objet Commande à supprimer
+     */
+    public void removeCommande(Commande commande) {
+        commande.setTournee(null);
+        this.commandes.remove(commande);
     }
 }
