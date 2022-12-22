@@ -15,7 +15,7 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Récupère dans la base de données l'instance de Client demandée.
      * 
-     * @param id id de type int, représente l'id de l'objet Client demandé.
+     * @param id Id de type int, représente l'id de l'objet Client demandé.
      * @return Une instance de Client.
      */
     @Override
@@ -70,7 +70,7 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Ajoute dans la base de données une instance de Client.
      * 
-     * @param clt l'instance Client de l'objet à ajouter.
+     * @param clt L'instance Client de l'objet à ajouter.
      */
     @Override
     public void add(Client clt) {
@@ -98,7 +98,7 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Met à jour dans la base de données une instance de Client.
      * 
-     * @param clt l'instance Client de l'objet à mettre à jour.
+     * @param clt L'instance Client de l'objet à mettre à jour.
      */
     @Override
     public void update(Client clt) {

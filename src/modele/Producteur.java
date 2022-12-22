@@ -109,8 +109,8 @@ public class Producteur {
     /**
      * Compare au niveau des attributs l'égalité entre 2 instances de Producteur
      * 
-     * @param prd le Producteur à comparer
-     * @return un booléen représentant l'égalité entre les 2 instances
+     * @param prd Le Producteur à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
      */
     public boolean equals(Producteur prd) {
         return idProducteur == prd.idProducteur
@@ -125,7 +125,7 @@ public class Producteur {
     /**
      * Constructeur de Producteur.
      * 
-     * @param idProducteur int représentant l'id du Producteur.
+     * @param idProducteur Int représentant l'id du Producteur.
      * @param siret        String représentant le siret du Producteur.
      * @param proprietaire String représentant le nom et prénom du propriétaire.
      * @param adresseProd  String représentant l'adresse du Producteur.
@@ -169,7 +169,7 @@ public class Producteur {
     /**
      * Permet d'ajouter un véhicule à la liste de véhicules du producteur
      * 
-     * @param vehicule L'objet Vehicule à ajouter
+     * @param vehicule L'objet Véhicule à ajouter
      */
     public void addVehicule(Vehicule vehicule) {
         this.vehicules.add(vehicule);
@@ -178,14 +178,14 @@ public class Producteur {
     /**
      * Permet de supprimer un véhicule de la liste de véhicules du producteur
      * 
-     * @param vehicule L'objet Vehicule à supprimer
+     * @param vehicule L'objet Véhicule à supprimer
      */
     public void removeVehicule(Vehicule vehicule) {
         this.vehicules.remove(vehicule);
     }
 
     /**
-     * Permet d'ajouter une commande à la liste de commandes du producteur
+     * Permet d'ajouter une Commande à la liste de Commandes du Producteur
      * 
      * @param commande L'objet Commande à ajouter
      */
@@ -194,7 +194,7 @@ public class Producteur {
     }
 
     /**
-     * Permet de supprimer une commande de la liste de commandes du producteur
+     * Permet de supprimer une Commande de la liste de Commandes du Producteur
      * 
      * @param commande L'objet Commande à supprimer
      */
@@ -203,7 +203,7 @@ public class Producteur {
     }
 
     /**
-     * Permet d'ajouter une tournée à la liste de Tournées du producteur
+     * Permet d'ajouter une Tournée à la liste de Tournées du Producteur
      * 
      * @param tournee L'objet Tournee à ajouter
      */
@@ -212,9 +212,9 @@ public class Producteur {
     }
 
     /**
-     * Permet de supprimer une tournée de la liste de Tournées du producteur
+     * Permet de supprimer une Tournée de la liste de Tournées du Producteur
      * 
-     * @param tournee L'objet Tournee à supprimer
+     * @param tournee L'objet Tournée à supprimer
      */
     public void removeTournee(Tournee tournee) {
         this.tournees.remove(tournee);

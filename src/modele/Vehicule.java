@@ -73,10 +73,10 @@ public class Vehicule {
     }
 
     /**
-     * Compare au niveau des attributs l'égalité entre 2 instances de Vechicule
+     * Compare au niveau des attributs l'égalité entre 2 instances de Véhicule
      * 
-     * @param vh le Vechiule à comparer
-     * @return un booléen représentant l'égalité entre les 2 instances
+     * @param vh Le Véhicule à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
      */
     public boolean equals(Vehicule vh) {
         return idVehicule == vh.idVehicule
@@ -87,16 +87,16 @@ public class Vehicule {
     }
 
     /**
-     * Constructeur de Vehicule.
+     * Constructeur de Véhicule.
      * 
-     * @param idVehicule int représentant l'id du Vehicule.
+     * @param idVehicule Int représentant l'id du Véhicule.
      * @param numImmat   String représentant le numéro d'immatriculation du
-     *                   Vehicule.
-     * @param libelle    String représentant le libellé du Vehicule.
-     * @param poidsMax   float représentant le poids maximum que le Vehicule peut
+     *                   Véhicule.
+     * @param libelle    String représentant le libellé du Véhicule.
+     * @param poidsMax   Float représentant le poids maximum que le Véhicule peut
      *                   accepter.
      * @param producteur Producteur représentant le producteur utilisant le
-     *                   Vehicule.
+     *                   Véhicule.
      */
     public Vehicule(int idVehicule, String numImmat, float poidsMax, String libelle, Producteur producteur) {
         this.tournees = new ArrayList<>();
@@ -108,15 +108,15 @@ public class Vehicule {
     }
 
     /**
-     * Constructeur de Vehicule.
+     * Constructeur de Véhicule.
      * 
      * @param numImmat   String représentant le numéro d'immatriculation du
-     *                   Vehicule.
-     * @param libelle    String représentant le libellé du Vehicule.
-     * @param poidsMax   float représentant le poids maximum que le Vehicule peut
+     *                   Véhicule.
+     * @param libelle    String représentant le libellé du Véhicule.
+     * @param poidsMax   Float représentant le poids maximum que le Véhicule peut
      *                   accepter.
      * @param producteur Producteur représentant le producteur utilisant le
-     *                   Vehicule.
+     *                   Véhicule.
      */
     public Vehicule(String numImmat, float poidsMax, String libelle, Producteur producteur) {
         this.tournees = new ArrayList<>();
@@ -127,18 +127,18 @@ public class Vehicule {
     }
 
     /**
-     * Permet d'ajouter une tournée à la liste de tournées du véhicule
+     * Permet d'ajouter une Tournée à la liste de Tournées du Véhicule
      * 
-     * @param tournee L'objet Tournee à ajouter
+     * @param tournee L'objet Tournée à ajouter
      */
     public void addTournee(Tournee tournee) {
         this.tournees.add(tournee);
     }
 
     /**
-     * Permet de supprimer une tournée de la liste de tournées du véhicule
+     * Permet de supprimer une Tournée de la liste de Tournées du Véhicule
      * 
-     * @param tournee L'objet Tournee à supprimer
+     * @param tournee L'objet Tournée à supprimer
      */
     public void removeTournee(Tournee tournee) {
         this.tournees.remove(tournee);

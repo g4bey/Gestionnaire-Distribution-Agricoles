@@ -6,10 +6,7 @@ import DAO.VehiculeDAO;
 import modele.Producteur;
 import modele.Tournee;
 import modele.Vehicule;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import utility.DatabaseConnection;
 
 import java.io.IOException;
@@ -39,7 +36,7 @@ public class VehiculeDAOTest {
      * <p>
      * 
      * @throws SQLException
-     * @param table la table que l'on souhaite TRUNCATE.
+     * @param table Le nom de la table que l'on souhaite TRUNCATE.
      */
     private static void truncateTable(String table) throws SQLException {
         Statement st = conn.createStatement();
@@ -48,10 +45,10 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * On crée une connection puis instancie les DAO.
+     * On crée une Connection puis instancie les DAO.
      * On vide ensuite toutes les tables pour prédire les résultats.
      * <p>
-     * Avant d'exécuter les tests, on crée un producteur puis on l'insère en base.
+     * Avant d'exécuter les tests, on crée un Producteur, puis on l'insère en base.
      * Évidemment, l'auto_increment.
      * 
      * @throws SQLException
@@ -81,8 +78,8 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * On crée deux véhicules.
-     * On pense aussi à reset l'auto-increment de la table Vehicule apres l'avoir
+     * On crée deux Véhicules.
+     * On pense aussi à reset l'auto-increment de la table Véhicule apres l'avoir
      * vidée.
      * <p>
      * 
@@ -97,15 +94,15 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * Vérifions que l'ID de VEHICULE_A: 0 avant insertion,
+     * Vérifions que l'ID de VEHICULE_A : 0 avant insertion,
      * est bien mis à jour suite à l'ajout en base.
      * <p>
      * Si l'ajout est effectif, cet ID sera 1.
      */
     @Test
-    @DisplayName("Test de la methode add")
+    @DisplayName("Test de la méthode add")
     public void addTest() {
-        // Apres ajout, l'ID doit devenir 1 et non 0.
+        // Après ajout, l'ID doit devenir 1 et non 0.
         assertEquals(0, VEHICULE_A.getIdVehicule());
         vehiculeDAO.add(VEHICULE_A);
         assertEquals(1, VEHICULE_A.getIdVehicule());
@@ -114,24 +111,24 @@ public class VehiculeDAOTest {
     /**
      * On insère VEHICULE_A en base.
      * <p>
-     * Ensuite, on demande un vehicule ayant pour ID l'iD du VEHICULE_A.
+     * Ensuite, on demande un Véhicule ayant pour ID l'iD du VEHICULE_A.
      * <p>
-     * Puis, on vérifie que l'attribut producteur est bien le producteur dans
+     * Puis, on vérifie que l'attribut producteur est bien le Producteur dans
      * VEHICULE_A.
      * <p>
      * Enfin, on assure qu'un ID inexistant renvoie bien null.
      */
     @Test
-    @DisplayName("Test de la methode get")
+    @DisplayName("Test de la méthode get")
     public void getTest() {
         vehiculeDAO.add(VEHICULE_A);
 
-        // Demander un véhicule d'ID associé au VEHICULE_A
+        // Demander un Véhicule d'ID associé au VEHICULE_A
         // Doit nécessairement aboutir à une égalité d'attributs
         Vehicule vehiculeRetour = vehiculeDAO.get(VEHICULE_A.getIdVehicule());
         assertTrue(VEHICULE_A.equals(vehiculeRetour));
 
-        // L'ID du producteur associé au véhicule correspondre au producteur associé
+        // L'ID du producteur associé au Véhicule doit correspondre au Producteur associé
         // initialement.
         Producteur producteur = vehiculeRetour.getProducteur();
         assertEquals(producteur.getIdProducteur(), EXEMPLE_PROD.getIdProducteur());
@@ -145,16 +142,16 @@ public class VehiculeDAOTest {
      * Insérons VEHICULE_A et VEHICULE_B en base.
      * Ces derniers auront comme ID 1 et 2.
      * <p>
-     * On vérifie qu'il y a bien 2 elements dans le tableau retourné.
-     * Puis on vérifie que ces elements ont les bons ID.
+     * On vérifie qu'il y a bien 2 éléments dans le tableau retourné.
+     * Puis on vérifie que ces éléments ont les bons ID.
      */
     @Test
-    @DisplayName("Test la methode getAll")
+    @DisplayName("Test la méthode getAll")
     public void getAllTest() {
         vehiculeDAO.add(VEHICULE_A);
         vehiculeDAO.add(VEHICULE_B);
 
-        // On devrait avoir deux véhicules d'ID 1 et 2 dans le tableau.
+        // On devrait avoir deux Véhicules d'ID 1 et 2 dans le tableau.
         ArrayList<Vehicule> vehiculeList = vehiculeDAO.getAll();
         assertEquals(2, vehiculeList.size());
         assertEquals(1, vehiculeList.get(0).getIdVehicule());
@@ -165,37 +162,37 @@ public class VehiculeDAOTest {
      * On insère le VEHICULE_A en base.
      * Ensuite, on récupère son ID.
      * <p>
-     * Enfin, on supprime le véhicule correspondant à cet ID.
+     * Enfin, on supprime le Véhicule correspondant à cet ID.
      * Puis on vérifie que demander cet ID renvoie bien null.
      */
     @Test
-    @DisplayName("Test la methode delete")
+    @DisplayName("Test la méthode delete")
     public void deleteTest() {
         vehiculeDAO.add(VEHICULE_A);
         int idVehicule = VEHICULE_A.getIdVehicule();
 
-        // Apres suppression, l'ID devrait être null.
+        // Après suppression, l'ID devrait être null.
         vehiculeDAO.delete(VEHICULE_A);
         assertNull(vehiculeDAO.get(idVehicule));
     }
 
     /**
-     * On commence par créer et ajouter un nouveau producteur en base.
+     * On commence par créer et ajouter un nouveau Producteur en base.
      * Ensuite, on ajoute VEHICULE_A en base et modifie tous ses attributs,
-     * puis on update ce véhicule, y compris le producteur.
+     * puis on update ce véhicule, y compris le Producteur.
      * <p>
      * Enfin, on crée un autre objet avec le même ID pour s'assurer
      * que les attributs sont égaux.
      */
     @Test
-    @DisplayName("Test la methode update")
+    @DisplayName("Test la méthode update")
     public void updateTest() {
-        // On ajoute un nouveau producteur
+        // On ajoute un nouveau Producteur
         Producteur prodB = new Producteur("A", "A", "A", "A", "A", "A");
         prodDAO.add(prodB);
 
         // On ajoute puis met à jour le VEHICULE_A
-        // L'on change aussi le producteur
+        // On change aussi le Producteur
         vehiculeDAO.add(VEHICULE_A);
         VEHICULE_A.setLibelle("AAAA");
         VEHICULE_A.setNumImmat("1111");
@@ -203,22 +200,22 @@ public class VehiculeDAOTest {
         VEHICULE_A.setProducteur(prodB);
         vehiculeDAO.update(VEHICULE_A);
 
-        // On crée un autre object de meme ID pour s'assurer que les attributs
-        // sont identiques. Cela induit qu'ils sont modifés en BDD.
+        // On crée un autre object de même ID pour s'assurer que les attributs
+        // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Vehicule vehiculeRetour = vehiculeDAO.get(VEHICULE_A.getIdVehicule());
         assertTrue(vehiculeRetour.equals(VEHICULE_A));
     }
 
     /**
-     * On s'assure que les tournées sont bien propagées.
+     * On s'assure que les Tournées sont bien propagées.
      * D'abord dans les objets existants puis dans les objets nouvellement créés.
      */
     @Test
-    @DisplayName("Test propagation ajout tournee")
+    @DisplayName("Test propagation ajout Tournée")
     public void propagationTournee() {
         vehiculeDAO.add(VEHICULE_A);
 
-        // On crée deux tournees
+        // On crée deux Tournées
         Tournee tournee = new Tournee(new Timestamp(1000), new Timestamp(1000), 10F, "D", VEHICULE_A);
         Tournee tournee2 = new Tournee(new Timestamp(1000), new Timestamp(2000), 12F, "F", VEHICULE_A);
 
@@ -239,9 +236,8 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * Insérons un producteur et un véhicule et vérifions que l'on ne récupère que
-     * les véhicules
-     * du producteur entré en paramètre
+     * Insérons un Producteur et un Véhicule, et vérifions que l'on ne récupère que
+     * les Véhicules du Producteur entré en paramètre
      * 
      * @throws SQLException
      */
@@ -256,7 +252,7 @@ public class VehiculeDAOTest {
         prodDAO.add(producteur);
         vehiculeDAO.add(vehiculeC);
 
-        // On vérifie que l'on ne récupère que les véhicules du producteur EXEMPLE_PROD
+        // On vérifie que l'on ne récupère que les Véhicules du Producteur EXEMPLE_PROD
         ArrayList<Vehicule> vehiculeList = vehiculeDAO.getVehiculesByProducteur(EXEMPLE_PROD);
         assertEquals(2, vehiculeList.size());
         assertEquals(1, vehiculeList.get(0).getIdVehicule());
@@ -264,9 +260,8 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * Insérons une tournée et vérifions que le véhicule renvoyé par la méthode est
-     * bien celui
-     * réalisant la tournée entrée en paramètre
+     * Insérons une Tournée et vérifions que le Véhicule renvoyé par la méthode est
+     * bien celui réalisant la Tournée entrée en paramètre
      * 
      * @throws SQLException
      */
@@ -284,6 +279,16 @@ public class VehiculeDAOTest {
         // On vérifie que l'on retrouve bien VEHICULE_A
         Vehicule vehiculeRetour = vehiculeDAO.getVehiculeByIdTournee(tournee.getIdTournee(), EXEMPLE_PROD);
         assertTrue(VEHICULE_A.equals(vehiculeRetour));
+    }
+
+    /**
+     * Fermeture de la Connection apres les tests.
+     *
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
     }
 
 }

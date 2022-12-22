@@ -10,15 +10,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Représente le DAO des véhicules.
+ * Représente le DAO des Véhicules.
  */
 
 public class VehiculeDAO extends DAO<Vehicule> {
+
     /**
-     * Récupère dans la base de données l'instance de Vehicule demandée.
+     * Récupère dans la base de données l'instance de Véhicule demandée.
      * 
-     * @param id id de type int, représente l'id de l'objet Vehicule demandé.
-     * @return Une instance de Vehicule.
+     * @param id Id de type int, représente l'id de l'objet Véhicule demandé.
+     * @return Une instance de Véhicule.
      */
     @Override
     public Vehicule get(int id) {
@@ -36,7 +37,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
                         rs.getString("libelle"),
                         pDAO.get(rs.getInt("idProducteur")));
 
-                // On charge la liste de tournée
+                // On charge la liste de Tournées
                 TourneeDAO tourneeDAO = new TourneeDAO(conn);
                 for (Tournee tournee : tourneeDAO.getTourneesByVehicule(vehicule)) {
                     vehicule.addTournee(tournee);
@@ -53,11 +54,11 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
-     * Retour une liste de tournée associée à une tournée.
+     * Retour une liste de Véhicules associée à une Tournée.
      *
-     * @param prd       le Producteur qui doit etre associe à la tournée
-     * @param idTournee l'id de la tournée.
-     * @return Vehicule le véhicule associé à un une tournée.
+     * @param prd Le Producteur qui doit être associé à la Tournée
+     * @param idTournee L'id de la Tournée.
+     * @return Le Véhicule associé à une Tournée.
      * @throws SQLException
      */
     public Vehicule getVehiculeByIdTournee(int idTournee, Producteur prd) throws SQLException {
@@ -79,9 +80,9 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
-     * Récupère dans la base de données toutes les instances de Vehicule.
+     * Récupère dans la base de données toutes les instances de Véhicule.
      * 
-     * @return Une liste d'instances de Vehicule.
+     * @return Une liste d'instances de Véhicule.
      */
     @Override
     public ArrayList<Vehicule> getAll() {
@@ -110,9 +111,9 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
-     * Retour une liste de véhicules associés à un Producteur.
+     * Retourne une liste de Véhicules associés à un Producteur.
      *
-     * @param prd le Producteur qui doit être associé au Vehicule.
+     * @param prd le Producteur qui doit être associé au Véhicule.
      * @return vehicules - ArrayList<> contenant les véhicules associés au
      *         Producteur
      * @throws SQLException
@@ -137,9 +138,9 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
-     * Ajoute dans la base de données une instance de Vehicule.
+     * Ajoute dans la base de données une instance de Véhicule.
      * 
-     * @param vh l'instance Vehicule de l'objet à ajouter.
+     * @param vh l'instance Véhicule de l'objet à ajouter.
      */
     @Override
     public void add(Vehicule vh) {
@@ -158,7 +159,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 vh.setIdVehicule((int) id);
             }
-            vh.getProducteur().addVehicule(vh); // Ajout pour tester
+            vh.getProducteur().addVehicule(vh);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -166,9 +167,9 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
-     * Met à jour dans la base de données une instance de Vehicule.
+     * Met à jour dans la base de données une instance de Véhicule.
      * 
-     * @param vh l'instance Vehicule de l'objet à mettre à jour.
+     * @param vh L'instance Véhicule de l'objet à mettre à jour.
      */
     @Override
     public void update(Vehicule vh) {
@@ -185,16 +186,16 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
             if (!vh.getProducteur().getVehicules().contains(vh)) {
                 vh.getProducteur().addVehicule(vh);
-            } // Ajout pour tester
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Supprime de la base de données l'instance de Vehicule associée à l'id.
+     * Supprime de la base de données l'instance de Véhicule associée à l'id.
      * 
-     * @param vh Vehicule représentant le Vehicule à supprimer.
+     * @param vh Véhicule représentant le Véhicule à supprimer.
      */
     @Override
     public void delete(Vehicule vh) {

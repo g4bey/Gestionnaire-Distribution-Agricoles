@@ -1,9 +1,6 @@
 package tests.dao;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import DAO.ClientDAO;
 import DAO.CommandeDAO;
@@ -46,7 +43,7 @@ public class TourneeDAOTest {
      * <p>
      * 
      * @throws SQLException
-     * @param table la table que l'on souhaite TRUNCATE.
+     * @param table Le nom de la table que l'on souhaite TRUNCATE.
      */
     private static void truncateTable(String table) throws SQLException {
         Statement st = conn.createStatement();
@@ -55,11 +52,11 @@ public class TourneeDAOTest {
     }
 
     /**
-     * On crée une connection puis instancie les DAO.
+     * On crée une Connection puis instancie les DAO.
      * On vide ensuite les tables Tournee, Vehicule et Producteur pour prédire les
      * résultats.
      * <p>
-     * Avant d'exécuter les tests, on crée un producteur et un véhicule puis on les
+     * Avant d'exécuter les tests, on crée un Producteur et un Véhicule, puis on les
      * insère en base.
      * Évidemment, l'auto_increment
      * 
@@ -101,8 +98,8 @@ public class TourneeDAOTest {
     }
 
     /**
-     * On crée deux tournées.
-     * On pense aussi à reset l'auto-increment de la table Tournee apres l'avoir
+     * On crée deux Tournées.
+     * On pense aussi à reset l'auto-increment de la table Tournée apres l'avoir
      * vidée.
      * <p>
      * 
@@ -119,13 +116,13 @@ public class TourneeDAOTest {
     }
 
     /**
-     * Vérifions que l'ID de TOURNEE_A: 0 avant insertion,
-     * est bien mise à jour suite à l'ajout en base.
+     * Vérifions que l'ID de TOURNEE_A : 0 avant insertion,
+     * est bien mis à jour suite à l'ajout en base.
      * <p>
      * Si l'ajout est effectif, cet ID sera 1.
      */
     @Test
-    @DisplayName("Test de la methode add")
+    @DisplayName("Test de la méthode add")
     public void addTest() {
         // Apres ajout, l'ID doit devenir 1 et non 0.
         assertEquals(0, TOURNEE_A.getIdTournee());
@@ -136,15 +133,15 @@ public class TourneeDAOTest {
     /**
      * On insère TOURNEE_A en base.
      * <p>
-     * Ensuite, on demande une tournée ayant pour ID l'iD de TOURNEE_A.
+     * Ensuite, on demande une Tournée ayant pour ID l'iD de TOURNEE_A.
      * <p>
-     * Puis l'on vérifie que l'attribut véhicule est bien le véhicule dans
+     * Puis l'on vérifie que l'attribut vehicule est bien le Véhicule dans
      * TOURNEE_A.
      * <p>
-     * Enfin,on s'assure qu'un ID inexistant renvoie bien null.
+     * Enfin, on s'assure qu'un ID inexistant renvoie bien null.
      */
     @Test
-    @DisplayName("Test de la methode get")
+    @DisplayName("Test de la méthode get")
     public void getTest() {
         tourneeDAO.add(TOURNEE_A);
 
@@ -153,7 +150,7 @@ public class TourneeDAOTest {
         Tournee tourneeRetour = tourneeDAO.get(TOURNEE_A.getIdTournee());
         assertTrue(TOURNEE_A.equals(tourneeRetour));
 
-        // L'ID du véhicule associé à la tournée doit correspondre au véhicule associé
+        // L'ID du Véhicule associé à la Tournée doit correspondre au Véhicule associé
         // initialement.
         Vehicule vehicule = tourneeRetour.getVehicule();
         assertEquals(vehicule.getIdVehicule(), VEHICULE.getIdVehicule());
@@ -167,16 +164,16 @@ public class TourneeDAOTest {
      * Insérons TOURNEE_A et TOURNEE_B en base.
      * Ces dernières auront comme ID 1 et 2.
      * <p>
-     * L'on vérifie qu'il y a bien 2 elements dans le tableau retourné.
-     * Puis l'on vérifie que ces éléments ont les bons ID.
+     * On vérifie qu'il y a bien 2 éléments dans le tableau retourné.
+     * Puis on vérifie que ces éléments ont les bons ID.
      */
     @Test
-    @DisplayName("Test la methode getAll")
+    @DisplayName("Test la méthode getAll")
     public void getAllTest() {
         tourneeDAO.add(TOURNEE_A);
         tourneeDAO.add(TOURNEE_B);
 
-        // L'on devrait avoir deux tournées d'ID 1 et 2 dans le tableau.
+        // On devrait avoir deux Tournées d'ID 1 et 2 dans le tableau.
         ArrayList<Tournee> tourneeList = tourneeDAO.getAll();
         assertEquals(2, tourneeList.size());
         assertEquals(1, tourneeList.get(0).getIdTournee());
@@ -187,37 +184,37 @@ public class TourneeDAOTest {
      * On insère la TOURNEE_A en base.
      * Ensuite, on récupère son ID.
      * <p>
-     * Enfin, on supprime la tournée correspondant à cet ID.
+     * Enfin, on supprime la Tournée correspondant à cet ID.
      * Puis, on vérifie que demander cet ID renvoie bien null.
      */
     @Test
-    @DisplayName("Test la methode delete")
+    @DisplayName("Test la méthode delete")
     public void deleteTest() {
         tourneeDAO.add(TOURNEE_A);
         int idTournee = TOURNEE_A.getIdTournee();
 
-        // Apres suppression, l'ID devrait être null.
+        // Après suppression, l'ID devrait être null.
         tourneeDAO.delete(TOURNEE_A);
         assertNull(tourneeDAO.get(idTournee));
     }
 
     /**
-     * On commence par créer et ajouter un nouveau véhicule en base.
+     * On commence par créer et ajouter un nouveau Véhicule en base.
      * Ensuite, on ajoute TOURNEE_A en base et modifie tous ses attributs,
-     * puis on update cette tournée, y compris le véhicule.
+     * puis on update cette Tournée, y compris le Véhicule.
      * <p>
      * Enfin, on crée un autre objet avec le même ID pour s'assurer
      * que les attributs sont égaux.
      */
     @Test
-    @DisplayName("Test la methode update")
+    @DisplayName("Test la méthode update")
     public void updateTest() {
-        // On ajoute un nouveau véhicule
+        // On ajoute un nouveau Véhicule
         Vehicule vehiculeB = new Vehicule("1337", 50F, "VOITURE", PRODUCTEUR);
         vehiculeDAO.add(vehiculeB);
 
         // On ajoute puis met à jour la TOURNEE_A
-        // On change aussi le producteur
+        // On change aussi le Producteur
         tourneeDAO.add(TOURNEE_A);
         TOURNEE_A.setHoraireDebut(new Timestamp(25000));
         TOURNEE_A.setHoraireFin(new Timestamp(35000));
@@ -233,18 +230,18 @@ public class TourneeDAOTest {
     }
 
     /**
-     * On s'assure que les commandes sont bien propagées.
-     * D'abord dans les objets existants puis dans les objets nouvellement créés.
+     * On s'assure que les Commandes sont bien propagées,
+     * d'abord dans les objets existants puis dans les objets nouvellement créés.
      */
     @Test
     @DisplayName("Test propagation update commande")
     public void propagationCommande() {
         tourneeDAO.add(TOURNEE_A);
 
-        // On crée un client
+        // On crée un Client
         Client client = new Client("Pedro", "31 rue NullPointerException 37000 TOURS", "", "0634117279");
 
-        // On crée deux commandes
+        // On crée deux Commandes
         Commande commande1 = new Commande("commande1", 31F, new Timestamp(30000), new Timestamp(370000), PRODUCTEUR,
                 client);
         Commande commande2 = new Commande("commande2", 12F, new Timestamp(12000), new Timestamp(12000), PRODUCTEUR,
@@ -272,19 +269,19 @@ public class TourneeDAOTest {
         assertTrue(tourneeRetour.getCommandes().get(1).equals(TOURNEE_A.getCommandes().get(1)));
         assertTrue(tourneeRetour.getCommandes().get(0).equals(TOURNEE_A.getCommandes().get(0)));
 
-        // On verifie que les commandes ne sont plus associes a la tournee dans les
+        // On vérifie que les commandes ne sont plus associées à la Tournée dans les
         // objets
         tourneeDAO.delete(TOURNEE_A);
         assertNull(commande1.getTournee());
         assertNull(commande2.getTournee());
 
-        // On verifie que les commandes ne sont plus associes a la tournee en base.
+        // On vérifie que les Commandes ne sont plus associées à la Tournée en base.
         assertNull(commandeDAO.get(commande1.getIdCommande()).getTournee());
         assertNull(commandeDAO.get(commande2.getIdCommande()).getTournee());
     }
 
     /**
-     * On s'assure que les tournées concernées par un véhicule peuvent bien être
+     * On s'assure que les Tournées concernées par un Véhicule peuvent bien être
      * retrouvées à partir de celui-ci
      * 
      * @throws SQLException
@@ -303,19 +300,18 @@ public class TourneeDAOTest {
         tourneeDAO.add(TOURNEE_B);
         tourneeDAO.add(tourneeC);
 
-        // On vérifie que seules les tournées liées au véhicule sont retournées
+        // On vérifie que seules les Tournées liées au Véhicule sont retournées
         ArrayList<Tournee> tournees = tourneeDAO.getTourneesByVehicule(VEHICULE);
         assertEquals(2, tournees.size());
 
-        // On vérifie les valeurs des tournées
+        // On vérifie les valeurs des Tournées
         assertTrue(TOURNEE_A.equals(tournees.get(0)));
         assertTrue(TOURNEE_B.equals(tournees.get(1)));
     }
 
     /**
-     * On s'assure que les tournées concernées par une liste de véhicules peuvent
-     * bien être
-     * retrouvées à partir de celle-ci
+     * On s'assure que les Tournées concernées par une liste de Véhicules peuvent
+     * bien être retrouvées à partir de celle-ci
      * 
      * @throws SQLException
      */
@@ -342,14 +338,24 @@ public class TourneeDAOTest {
         vehicules.add(VEHICULE);
         vehicules.add(vehiculeD);
 
-        // On vérifie que seules les tournées liées à la liste de véhicules sont
+        // On vérifie que seules les Tournées liées à la liste de Véhicules sont
         // retournées
         ArrayList<Tournee> tournees = tourneeDAO.getTourneesByVehicules(vehicules);
         assertEquals(3, tournees.size());
 
-        // On vérifie les valeurs des tournées
+        // On vérifie les valeurs des Tournées
         assertTrue(TOURNEE_A.equals(tournees.get(0)));
         assertTrue(TOURNEE_B.equals(tournees.get(1)));
         assertTrue(tourneeD.equals(tournees.get(2)));
+    }
+
+    /**
+     * Fermeture de la Connection apres les tests.
+     *
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
     }
 }

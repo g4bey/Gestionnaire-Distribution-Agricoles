@@ -2,17 +2,13 @@ package tests.dao;
 
 import DAO.AdministrateurDAO;
 import modele.Administrateur;
+import org.junit.jupiter.api.*;
 import utility.DatabaseConnection;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,8 +23,8 @@ public class AdministrateurDAOTest {
     static private Administrateur ADMIN_B;
 
     /**
-     * Instantiation de la connection avant TOUS les tests.
-     * On injecte la connection dans le DAO administrateur.
+     * Instantiation de la Connection avant TOUS les tests.
+     * On injecte la Connection dans le DAO Administrateur.
      * <p>
      * 
      * @throws SQLException
@@ -42,8 +38,8 @@ public class AdministrateurDAOTest {
     }
 
     /**
-     * Avant CHAQUE test, on réinitialise les objects metier administrateurs témoin.
-     * Ensuite l'on vide la table Administrateur afin de pouvoir prédire les
+     * Avant CHAQUE test, on réinitialise les objets métier Administrateur témoins.
+     * Ensuite, on vide la table Administrateur afin de pouvoir prédire les
      * résultats.
      * <p>
      * 
@@ -59,35 +55,35 @@ public class AdministrateurDAOTest {
     }
 
     /**
-     * On vérifie que ADMIN_A a pour ID: 0 (null)
-     * Ensuite l'on insert cet administrateur en base.
+     * On vérifie que ADMIN_A a pour ID : 0 (null)
+     * Ensuite, on insère cet Administrateur en base.
      * <p>
-     * Enfin, l'on vérifie que l'ID est bien update,
+     * Enfin, on vérifie que l'ID est bien update
      * et que ce dernier est 1.
      */
     @Test
-    @DisplayName("Test de la methode add")
+    @DisplayName("Test de la méthode add")
     public void addTest() {
-        // Apres ajout, l'ID doit devenir 1 et non 0.
+        // Après ajout, l'ID doit devenir 1 et non 0.
         assertEquals(0, ADMIN_A.getIdAdministrateur());
         adminDAO.add(ADMIN_A);
         assertEquals(1, ADMIN_A.getIdAdministrateur());
     }
 
     /**
-     * L'on insert l'ADMIN_A en base.
-     * Ensuite l'on demande un admin qui a pour id l'id d'ADMIN_A.
+     * On insère l'ADMIN_A en base.
+     * Ensuite, on demande un Administrateur qui a pour id l'id d'ADMIN_A.
      * <p>
-     * Enfin l'on vérifie que les attributs sont strictement identiques.
-     * Puis l'on vérifie qu'un ID inexistant renvoi bien un null.
+     * Enfin, on vérifie que les attributs sont strictement identiques.
+     * Puis on vérifie qu'un ID inexistant renvoie bien un null.
      */
     @Test
-    @DisplayName("Test de la methode get")
+    @DisplayName("Test de la méthode get")
     public void getTest() {
         adminDAO.add(ADMIN_A);
 
-        // Demander un administrateur d'ID associé à l'ADMIN_A
-        // doit aboutir à une égalité d'attributs.
+        // Demander un Administrateur d'ID associé à l'ADMIN_A.
+        // Doit aboutir à une égalité d'attributs.
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
         assertTrue(adminRetour.equals(ADMIN_A));
 
@@ -96,18 +92,18 @@ public class AdministrateurDAOTest {
     }
 
     /**
-     * L'on insert ADMIN_A et ADMIN_B en base.
-     * Ainsi, l'on 2 admins en base, d'id 1 et 2 respectivement.
+     * On insère ADMIN_A et ADMIN_B en base.
+     * Ainsi, on 2 Administrateurs en base, d'id 1 et 2 respectivement.
      * <p>
-     * Enfin, l'on vérifie que la liste contient bien uniquement ces elements.
+     * Enfin, on vérifie que la liste contient bien uniquement ces éléments.
      */
     @Test
-    @DisplayName("Test la methode getAll")
+    @DisplayName("Test la méthode getAll")
     public void getAllTest() {
         adminDAO.add(ADMIN_A);
         adminDAO.add(ADMIN_B);
 
-        // Dans la liste, il doit y avoir 2 admins d'ID 1 et 2.
+        // Dans la liste, il doit y avoir 2 Administrateurs d'ID 1 et 2.
         ArrayList<Administrateur> adminList = adminDAO.getAll();
         assertEquals(2, adminList.size());
         assertEquals(1, adminList.get(0).getIdAdministrateur());
@@ -115,41 +111,50 @@ public class AdministrateurDAOTest {
     }
 
     /**
-     * L'on insert ADMIN_A en base, il aura l'ID 1.
-     * L'on stock son ID avant de le delete.
+     * On insère ADMIN_A en base, il aura l'ID 1.
+     * On stocke son ID avant de le delete.
      * <p>
-     * Enfin, l'on vérifie que l'ADMIN ayant pour ID 1 n'existe plus.
+     * Enfin, on vérifie que l'ADMIN ayant pour ID 1 n'existe plus.
      */
     @Test
-    @DisplayName("Test la methode delete")
+    @DisplayName("Test la méthode delete")
     public void deleteTest() {
         adminDAO.add(ADMIN_A);
         int idAdmin = ADMIN_A.getIdAdministrateur();
 
-        // Apres suppression, un get idAdmin doit etre null.
+        // Après suppression, un getIdAdmin doit être null.
         adminDAO.delete(ADMIN_A);
         assertNull(adminDAO.get(idAdmin));
     }
 
     /**
-     * L'on insert ADMIN_A, ensuite l'on modifie mot de passe et pseudo.
-     * Nous effectuons l'update de cet object, avant de charger
-     * un object avec l'ID d'ADMIN_A.
+     * On insère ADMIN_A, ensuite on modifie mot de passe et pseudo.
+     * Nous effectuons l'update de cet objet, avant de charger
+     * un objet avec l'ID d'ADMIN_A.
      * <p>
      * Enfin, nous vérifions que ses attributs sont bien identiques, donc modifiés.
      */
     @Test
-    @DisplayName("Test la methode update")
+    @DisplayName("Test la méthode update")
     public void updateTest() {
         adminDAO.add(ADMIN_A);
         ADMIN_A.setPseudo("Update");
         ADMIN_A.setMdpAdmin("UpdateMDP");
         adminDAO.update(ADMIN_A);
 
-        // On créer un autre object de meme ID pour s'assurer que les attributs
-        // sont identique. Cela induit qu'ils sont modifés en BDD.
+        // On crée un autre object de meme ID pour s'assurer que les attributs
+        // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
         assertTrue(adminRetour.equals(ADMIN_A));
     }
 
+    /**
+     * Fermeture de la Connection apres les tests.
+     *
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
+    }
 }

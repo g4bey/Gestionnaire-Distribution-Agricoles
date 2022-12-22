@@ -3,7 +3,7 @@ package modele;
 import java.sql.Timestamp;
 
 /**
- * Objet métier représentant une commande.
+ * Objet métier représentant une Commande.
  */
 
 public class Commande {
@@ -101,8 +101,8 @@ public class Commande {
     /**
      * Compare au niveau des attributs l'égalité entre 2 instances de Commande
      * 
-     * @param cmd la Commande à comparer
-     * @return un booléen représentant l'égalité entre les 2 instances
+     * @param cmd La Commande à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
      */
     public boolean equals(Commande cmd) {
         return (idCommande == cmd.idCommande)
@@ -113,14 +113,14 @@ public class Commande {
                 && producteur.equals(cmd.producteur)
                 && client.equals(cmd.client)
                 && cmd.tournee != null ? tournee.equals(cmd.tournee) : tournee == null;
-        // les tournée peuvent etre nul lorsqu'on créer une commande.
-        // si l'une est nul et pas l'autre, c'est false par default.
+        // Les Tournées peuvent être null lorsqu'on crée une Commande.
+        // Si l'une est null et pas l'autre, c'est false par défaut.
     }
 
     /**
      * Constructeur de Commande.
      * 
-     * @param idCommande   int représentant l'id de la Commande.
+     * @param idCommande   Int représentant l'id de la Commande.
      * @param libelle      String représentant le libellé de la Commande.
      * @param poids        float représentant le poids de la commande.
      * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
@@ -128,7 +128,7 @@ public class Commande {
      * @param producteur   Producteur représentant le producteur qui effectue la
      *                     Commande.
      * @param client       Client représentant le client qui a passé la Commande.
-     * @param tournee      Tournee représentant la tournée à laquelle appartient la
+     * @param tournee      Tournée représentant la tournée à laquelle appartient la
      *                     Commande.
      */
     public Commande(int idCommande, String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin,
@@ -147,13 +147,13 @@ public class Commande {
      * Constructeur de Commande.
      * 
      * @param libelle      String représentant le libellé de la Commande.
-     * @param poids        float représentant le poids de la commande.
+     * @param poids        Float représentant le poids de la commande.
      * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
      * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
      * @param producteur   Producteur représentant le producteur qui effectue la
      *                     Commande.
      * @param client       Client représentant le client qui a passé la Commande.
-     * @param tournee      Tournee représentant la tournée à laquelle appartient la
+     * @param tournee      Tournée représentant la tournée à laquelle appartient la
      *                     Commande.
      */
     public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin, Tournee tournee,
@@ -168,11 +168,11 @@ public class Commande {
     }
 
     /**
-     * Constructeur de Commande lors qu'on la crée,
-     * en effet, elle n'est associée à une commande.
+     * Constructeur de Commande lors qu'on la crée.
+     * En effet, elle n'est pas encore associée à une Tournée.
      *
      * @param libelle      String représentant le libellé de la Commande.
-     * @param poids        float représentant le poids de la commande.
+     * @param poids        Float représentant le poids de la Commande.
      * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
      * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
      * @param producteur   Producteur représentant le producteur qui effectue la

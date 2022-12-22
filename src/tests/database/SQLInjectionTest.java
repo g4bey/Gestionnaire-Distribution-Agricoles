@@ -13,7 +13,7 @@ import java.sql.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * L'on veut s'assurer que les preparedStatement protege bien des injections
+ * On veut s'assurer que les preparedStatements protègent bien des injections
  * SQL.
  */
 public class SQLInjectionTest {
@@ -21,7 +21,7 @@ public class SQLInjectionTest {
     private Connection conn;
 
     /**
-     * Base de donnée par défaut, utile pour connaitre les valeurs en avance.
+     * Base de données par défaut, utile pour connaître les valeurs en avance.
      */
     @BeforeEach
     public void init() throws SQLException, IOException, ClassNotFoundException {
@@ -37,12 +37,12 @@ public class SQLInjectionTest {
 
     /**
      * Injection SQL de premier ordre.
-     * La requete devient... SELECT * FROM users WHERE username = user2
+     * La requête devient... SELECT * FROM users WHERE username = user2
      * <p>
-     * L'on vérifie qu'il n'y a aucun retour.
+     * On vérifie qu'il n'y a aucun retour.
      */
     @Test
-    @DisplayName("Protection Injection SQL de Premiere Ordre")
+    @DisplayName("Protection Injection SQL de Premier Ordre")
     public void executeQueryFirstOrder() throws SQLException {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         PreparedStatement pst = conn.prepareStatement(sql);
@@ -54,19 +54,19 @@ public class SQLInjectionTest {
     }
 
     /**
-     * Vérifions que les preparedStatement protègent des injections SQL de second
+     * Vérifions que les preparedStatements protègent des injections SQL de second
      * ordre.
-     * L'on veut deux utilisateurs en base : user2'-- et user2
+     * On veut deux utilisateurs en base : user2'-- et user2
      * <p>
-     * Lors de l'update, apres WHERE username = ...
-     * '-- clos la requete et met le reste en commentaire.
+     * Lors de l'update, après WHERE username = ...
+     * '-- clôt la requête et met le reste en commentaire.
      * <p>
-     * Enfin l'on vérifie que le changement n'est pas effectif.
+     * Enfin, on vérifie que le changement n'est pas effectif.
      */
     @Test
     @DisplayName("Protection Injection SQL de Second Ordre")
     public void secondOrderSQLInjectionPrepared() throws SQLException {
-        // On inject "user2'—" em base.
+        // On injecte "user2'—" em base.
         String requete1 = "INSERT INTO `users` (`id`, `username`, `email`, `password`)"
                 + " VALUES (null, ?, 'default@gmail.com', ?)";
         PreparedStatement pst = conn.prepareStatement(requete1);
@@ -84,7 +84,7 @@ public class SQLInjectionTest {
         pst2.executeUpdate();
         pst2.close();
 
-        // Verifions que le mot de passe est toujours AncienPassword
+        // Vérifions que le mot de passe est toujours AncienPassword
         String requete3 = "SELECT password FROM users WHERE username = 'user2'";
         Statement st = conn.createStatement();
         st.executeQuery(requete3);
@@ -97,7 +97,7 @@ public class SQLInjectionTest {
     }
 
     /**
-     * Fermeture de la connection apres les tests.
+     * Fermeture de la Connection apres les tests.
      * 
      * @throws SQLException
      */

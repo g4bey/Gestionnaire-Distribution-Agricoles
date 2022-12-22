@@ -12,13 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Représente le DAO des producteurs.
+ * Représente le DAO des Producteurs.
  */
 public class ProducteurDAO extends DAO<Producteur> {
     /**
      * Récupère dans la base de données l'instance de Producteur demandée.
      * 
-     * @param id id de type int, représente l'id de l'objet Producteur demandé.
+     * @param id Id de type int, représente l'id de l'objet Producteur demandé.
      * @return Une instance de Producteur.
      */
     @Override
@@ -35,19 +35,19 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("gpsProd"),
                         rs.getString("mdpProd"));
 
-                // On charge la liste de vehicule
+                // On charge la liste de Véhicules
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
                 }
 
-                // On charge la liste de tournée
+                // On charge la liste de Tournées
                 ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
                 for (Tournee tournee : tournees) {
                     prd.addTournee(tournee);
                 }
 
-                // On charge la liste de commande
+                // On charge la liste de Commandes
                 for (Commande commande : new CommandeDAO(conn).getCommandesByProducteurTournees(prd, tournees)) {
                     prd.addCommande(commande);
                 }
@@ -125,7 +125,7 @@ public class ProducteurDAO extends DAO<Producteur> {
     /**
      * Met à jour dans la base de données une instance de Producteur.
      * 
-     * @param prd l'instance Producteur de l'objet à mettre à jour.
+     * @param prd L'instance Producteur de l'objet à mettre à jour.
      */
     @Override
     public void update(Producteur prd) {

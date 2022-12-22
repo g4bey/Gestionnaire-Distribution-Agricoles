@@ -2,10 +2,7 @@ package tests.dao;
 
 import DAO.ClientDAO;
 import modele.Client;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import utility.DatabaseConnection;
 
 import java.io.IOException;
@@ -32,7 +29,7 @@ public class ClientDAOTest {
      * <p>
      * 
      * @throws SQLException
-     * @param table la table que l'on souhaite TRUNCATE.
+     * @param table Le nom de la table que l'on souhaite TRUNCATE.
      */
     private static void truncateTable(String table) throws SQLException {
         Statement st = conn.createStatement();
@@ -41,7 +38,7 @@ public class ClientDAOTest {
     }
 
     /**
-     * On crée une connection puis instancie les DAO.
+     * On crée une Connection puis instancie les DAO.
      * On vide ensuite la table Client pour prédire les résultats.
      * 
      * @throws SQLException
@@ -57,7 +54,7 @@ public class ClientDAOTest {
     }
 
     /**
-     * On crée deux clients.
+     * On crée deux Clients.
      * On pense aussi à reset l'auto-increment de la table Client apres l'avoir
      * vidée.
      * <p>
@@ -73,15 +70,15 @@ public class ClientDAOTest {
     }
 
     /**
-     * Vérifions que l'ID de CLIENT_A: 0 avant insertion,
-     * est bien mise à jour suite à l'ajout en base.
+     * Vérifions que l'ID de CLIENT_A : 0 avant insertion,
+     * est bien mis à jour suite à l'ajout en base.
      * <p>
      * Si l'ajout est effectif, cet ID sera 1.
      */
     @Test
-    @DisplayName("Test de la methode add")
+    @DisplayName("Test de la méthode add")
     public void addTest() {
-        // Apres ajout, l'ID doit devenir 1 et non 0.
+        // Après ajout, l'ID doit devenir 1 et non 0.
         assertEquals(0, CLIENT_A.getIdClient());
         clientDAO.add(CLIENT_A);
         assertEquals(1, CLIENT_A.getIdClient());
@@ -90,12 +87,12 @@ public class ClientDAOTest {
     /**
      * On insère CLIENT_A en base.
      * <p>
-     * Ensuite, on demande un client ayant pour ID l'iD de CLIENT_A.
+     * Ensuite, on demande un Client ayant pour ID l'iD de CLIENT_A.
      * <p>
      * Enfin, on s'assure qu'un ID inexistant renvoie bien null.
      */
     @Test
-    @DisplayName("Test de la methode get")
+    @DisplayName("Test de la méthode get")
     public void getTest() {
         clientDAO.add(CLIENT_A);
 
@@ -113,16 +110,16 @@ public class ClientDAOTest {
      * Insérons CLIENT_A et CLIENT_B en base.
      * Ces derniers auront comme ID 1 et 2.
      * <p>
-     * L'on vérifie qu'il y a bien 2 elements dans le tableau retourné.
-     * Puis l'on vérifie que ces éléments ont les bons ID.
+     * On vérifie qu'il y a bien 2 éléments dans le tableau retourné.
+     * Puis on vérifie que ces éléments ont les bons ID.
      */
     @Test
-    @DisplayName("Test la methode getAll")
+    @DisplayName("Test la méthode getAll")
     public void getAllTest() {
         clientDAO.add(CLIENT_A);
         clientDAO.add(CLIENT_B);
 
-        // L'on devrait avoir deux clients d'ID 1 et 2 dans le tableau.
+        // On devrait avoir deux Clients d'ID 1 et 2 dans le tableau.
         ArrayList<Client> clientList = clientDAO.getAll();
         assertEquals(2, clientList.size());
         assertEquals(1, clientList.get(0).getIdClient());
@@ -133,32 +130,31 @@ public class ClientDAOTest {
      * On insère le CLIENT_A en base.
      * Ensuite, on récupère son ID.
      * <p>
-     * Enfin, on supprime le client correspondant à cet ID.
+     * Enfin, on supprime le Client correspondant à cet ID.
      * Puis, on vérifie que demander cet ID renvoie bien null.
      */
     @Test
-    @DisplayName("Test la methode delete")
+    @DisplayName("Test la méthode delete")
     public void deleteTest() {
         clientDAO.add(CLIENT_A);
         int idClient = CLIENT_A.getIdClient();
 
-        // Apres suppression, l'ID devrait être null.
+        // Après suppression, l'ID devrait être null.
         clientDAO.delete(CLIENT_A);
         assertNull(clientDAO.get(idClient));
     }
 
     /**
      * On ajoute CLIENT_A en base et modifie tous ses attributs,
-     * puis on update ce client.
+     * puis on update ce Client.
      * <p>
      * Enfin, on crée un autre objet avec le même ID pour s'assurer
      * que les attributs sont égaux.
      */
     @Test
-    @DisplayName("Test la methode update")
+    @DisplayName("Test la méthode update")
     public void updateTest() {
-        // On ajoute puis met à jour la TOURNEE_A
-        // On change aussi le producteur
+        // On ajoute puis met à jour le CLIENT_A
         clientDAO.add(CLIENT_A);
         CLIENT_A.setNomClient("Fabrice");
         CLIENT_A.setAdresseClient("8 allée des margin:auto");
@@ -172,4 +168,13 @@ public class ClientDAOTest {
         assertTrue(clientRetour.equals(CLIENT_A));
     }
 
+    /**
+     * Fermeture de la Connection apres les tests.
+     *
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
+    }
 }

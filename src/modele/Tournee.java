@@ -85,10 +85,10 @@ public class Tournee {
     }
 
     /**
-     * Compare au niveau des attributs l'égalité entre 2 instances de Tournee
+     * Compare au niveau des attributs l'égalité entre 2 instances de Tourn2e
      * 
-     * @param trn le Tournee à comparer
-     * @return un booléen représentant l'égalité entre les 2 instances
+     * @param trn La Tournée à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
      */
     public boolean equals(Tournee trn) {
         return idTournee == trn.idTournee
@@ -100,15 +100,15 @@ public class Tournee {
     }
 
     /**
-     * Constructeur de Tournee.
+     * Constructeur de Tournée.
      * 
-     * @param idTournee    int représentant l'id de la Tournee.
-     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournee.
-     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournee.
-     * @param poids        float représentant le poids total de la Tournee.
-     * @param libelle      String représentant le libellé de la Tournee.
-     * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
-     *                     la Tournee.
+     * @param idTournee    Int représentant l'id de la Tournée.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournée.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournée.
+     * @param poids        Float représentant le poids total de la Tournée.
+     * @param libelle      String représentant le libellé de la Tournée.
+     * @param vehicule     Véhicule représentant le véhicule utilisé pour effectuer
+     *                     la Tournée.
      */
     public Tournee(int idTournee, Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle,
             Vehicule vehicule) {
@@ -121,14 +121,14 @@ public class Tournee {
     }
 
     /**
-     * Constructeur de Tournee.
+     * Constructeur de Tournée.
      * 
-     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournee.
-     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournee.
-     * @param poids        float représentant le poids total de la Tournee.
-     * @param libelle      String représentant le libellé de la Tournee.
-     * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
-     *                     la Tournee.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournée.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournée.
+     * @param poids        Float représentant le poids total de la Tournée.
+     * @param libelle      String représentant le libellé de la Tournée.
+     * @param vehicule     Véhicule représentant le véhicule utilisé pour effectuer
+     *                     la Tournée.
      */
     public Tournee(Timestamp horaireDebut, Timestamp horaireFin, float poids, String libelle, Vehicule vehicule) {
         this.horaireDebut = horaireDebut;
@@ -139,7 +139,7 @@ public class Tournee {
     }
 
     /**
-     * Permet d'ajouter une commande à la liste de commandes de la Tournee
+     * Permet d'ajouter une commande à la liste de Commandes de la Tournée
      * 
      * @param commande L'objet Tournee à ajouter
      */
@@ -149,7 +149,7 @@ public class Tournee {
     }
 
     /**
-     * Permet de supprimer une commande de la liste de commandes de la Tournee
+     * Permet de supprimer une Commande de la liste de Commandes de la Tournée
      * 
      * @param commande L'objet Commande à supprimer
      */

@@ -19,7 +19,7 @@ public abstract class DAO<T> {
     /**
      * Constructeur de DAO.
      * 
-     * @param conn une Connection représentant la connexion à la base de données.
+     * @param conn Une Connection représentant la connexion à la base de données.
      */
     public DAO(Connection conn) {
         this.conn = conn;
@@ -33,7 +33,7 @@ public abstract class DAO<T> {
     /**
      * Récupère dans la base de données l'instance de T demandée.
      * 
-     * @param id id de type int, représente l'id de l'objet T demandé.
+     * @param id Id de type int, représente l'id de l'objet T demandé.
      * @return Une instance de T.
      */
     public abstract T get(int id);
@@ -48,21 +48,21 @@ public abstract class DAO<T> {
     /**
      * Ajoute dans la base de données une instance de T.
      * 
-     * @param t l'instance T de l'objet à ajouter.
+     * @param t L'instance T de l'objet à ajouter.
      */
     public abstract void add(T t);
 
     /**
      * Met à jour dans la base de données une instance de T.
      * 
-     * @param t l'instance T de l'objet à mettre à jour.
+     * @param t L'instance T de l'objet à mettre à jour.
      */
     public abstract void update(T t);
 
     /**
      * Supprime de la base de données l'instance de T associée à l'id.
      * 
-     * @param t l'instance de de l'objet T à supprimer.
+     * @param t L'instance T de l'objet à supprimer.
      */
     public abstract void delete(T t);
 }

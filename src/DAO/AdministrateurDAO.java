@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * Représente le DAO des administrateurs.
+ * Représente le DAO des Administrateurs.
  */
 public class AdministrateurDAO extends DAO<Administrateur> {
     /**
      * Récupère dans la base de données l'instance d'Administrateur demandée.
      * 
-     * @param id id de type int, représente l'id de l'objet Administrateur demandé.
+     * @param id Id de type int, représente l'id de l'objet Administrateur demandé.
      * @return Une instance d'Administrateur.
      */
     @Override
@@ -63,7 +63,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     /**
      * Ajoute dans la base de données une instance d'Administrateur.
      * 
-     * @param adm l'instance Administrateur de l'objet à ajouter.
+     * @param adm L'instance Administrateur de l'objet à ajouter.
      */
     @Override
     public void add(Administrateur adm) {
@@ -88,7 +88,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     /**
      * Met à jour dans la base de données une instance d'Administrateur.
      * 
-     * @param adm l'instance Administrateur de l'objet à mettre à jour.
+     * @param adm L'instance Administrateur de l'objet à mettre à jour.
      */
     @Override
     public void update(Administrateur adm) {
@@ -106,7 +106,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     }
 
     /**
-     * Supprime de la base de données l'instance de Administrateur associée à l'id.
+     * Supprime de la base de données l'instance d'Administrateur associée à l'id.
      * 
      * @param adm Administrateur représentant l'Administrateur à supprimer.
      */
@@ -123,7 +123,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     }
 
     /**
-     * Constructeur de AdministrateurDAO.
+     * Constructeur d'AdministrateurDAO.
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
      */

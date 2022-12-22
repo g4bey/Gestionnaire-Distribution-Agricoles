@@ -11,14 +11,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Représente le DAO des tournées.
+ * Représente le DAO des Tournées.
  */
 public class TourneeDAO extends DAO<Tournee> {
     /**
-     * Récupère dans la base de données l'instance de Tournee demandée.
+     * Récupère dans la base de données l'instance de Tournée demandée.
      * 
-     * @param id id de type int, représente l'id de l'objet Tournee demandé.
-     * @return Une instance de Tournee.
+     * @param id Id de type int, représente l'id de l'objet Tournée demandé.
+     * @return Une instance de Tournée.
      */
     @Override
     public Tournee get(int id) {
@@ -34,7 +34,7 @@ public class TourneeDAO extends DAO<Tournee> {
                         rs.getFloat("poids"), rs.getString("libelle"),
                         vh);
 
-                // On charge la liste des commandes
+                // On charge la liste des Commandes
                 ArrayList<Commande> commandes = new CommandeDAO(conn).getCommandesByTournee(vh.getProducteur(),
                         tournee);
                 for (Commande commande : commandes) {
@@ -52,9 +52,9 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Récupère dans la base de données toutes les instances de Tournee.
+     * Récupère dans la base de données toutes les instances de Tournée.
      * 
-     * @return Une liste d'instances de Tournee.
+     * @return Une liste d'instances de Tournée.
      */
     @Override
     public ArrayList<Tournee> getAll() {
@@ -82,9 +82,9 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Ajoute dans la base de données une instance de Tournee.
+     * Ajoute dans la base de données une instance de Tournée.
      * 
-     * @param t l'instance Tournee de l'objet à ajouter.
+     * @param t L'instance Tournée de l'objet à ajouter.
      */
     @Override
     public void add(Tournee t) {
@@ -107,10 +107,10 @@ public class TourneeDAO extends DAO<Tournee> {
                 for (Commande commande : t.getCommandes()) {
                     coDAO.add(commande);
                 }
-                // On met à jour la liste de tournees dans vehicule.
+                // On met à jour la liste de Tournées dans Véhicule.
                 t.getVehicule().addTournee(t);
 
-                // On met a jour la liste de tournees dans producteur
+                // On met à jour la liste de Tournées dans Producteur
                 t.getVehicule().getProducteur().addTournee(t);
             }
         } catch (SQLException e) {
@@ -119,9 +119,9 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Met à jour dans la base de données une instance de Tournee.
+     * Met à jour dans la base de données une instance de Tournée.
      * 
-     * @param t l'instance Tournee de l'objet à mettre à jour.
+     * @param t L'instance Tournée de l'objet à mettre à jour.
      */
     @Override
     public void update(Tournee t) {
@@ -142,12 +142,12 @@ public class TourneeDAO extends DAO<Tournee> {
                 coDAO.update(commande);
             }
 
-            // On met à jour la liste de tournees dans vehicule.
+            // On met à jour la liste de Tournées dans Véhicule.
             if (!t.getVehicule().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
             }
 
-            // On met à jour la liste de tournees dans producteur.
+            // On met à jour la liste de Tournees dans Producteur.
             if (!t.getVehicule().getProducteur().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
             }
@@ -157,9 +157,9 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Supprime de la base de données l'instance de Tournee associée à l'id.
+     * Supprime de la base de données l'instance de Tournée associée à l'id.
      * 
-     * @param t Tournee représentant la Tournee à supprimer.
+     * @param t Tournée représentant la Tournée à supprimer.
      */
     @Override
     public void delete(Tournee t) {
@@ -168,17 +168,17 @@ public class TourneeDAO extends DAO<Tournee> {
             pstmt.setInt(1, t.getIdTournee());
             pstmt.executeUpdate();
 
-            // On met à jour la liste de tournees dans vehicule.
+            // On met à jour la liste de Tournées dans Véhicule.
             t.getVehicule().removeTournee(t);
 
             CommandeDAO commandeDAO = new CommandeDAO(conn);
-            // On met les tournées à null.
+            // On met les Tournées à null.
             t.getCommandes().forEach(c -> {
                 c.setTournee(null);
                 commandeDAO.update(c);
             });
 
-            // On supprime de la liste de tournees dans producteur
+            // On supprime de la liste de Tournées dans Producteur
             t.getVehicule().getProducteur().removeTournee(t);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -186,10 +186,10 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Retour une liste de tournées associées à un Vehicle.
+     * Retour une liste de Tournées associées à un Véhicle.
      *
-     * @param vh le Vehicule qui doit etre associé à la tournée
-     * @return un ArrayList<> contenant les tournées associées au Vehicle
+     * @param vh Le Véhicule qui doit être associé à la Tournée
+     * @return Un ArrayList<> contenant les Tournées associées au Véhicule
      * @throws SQLException
      */
     public ArrayList<Tournee> getTourneesByVehicule(Vehicule vh) throws SQLException {
@@ -214,12 +214,12 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Retourne une liste de tournées associées à une liste de véhicules, pour
-     * récupérer à partir de la liste de véhicules d'un Producteur sa liste de
-     * tournées.
+     * Retourne une liste de Tournées associées à une liste de Véhicules, pour
+     * récupérer à partir de la liste de Véhicules d'un Producteur sa liste de
+     * Tournées.
      *
-     * @param vehicules les véhicules qui doivent etre associés à la Tournee
-     * @return ArrayList<Tournee> contenant les tournées associées aux véhicules
+     * @param vehicules Les Véhicules qui doivent être associés à la Tournée
+     * @return ArrayList<Tournee> contenant les Tournées associées aux Véhicules
      * @throws SQLException
      */
     public ArrayList<Tournee> getTourneesByVehicules(ArrayList<Vehicule> vehicules)

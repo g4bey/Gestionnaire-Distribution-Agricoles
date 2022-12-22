@@ -42,10 +42,10 @@ public class Administrateur {
     }
 
     /**
-     * Compare au niveau des attributs l'égalité entre 2 instances d'Administeur
+     * Compare au niveau des attributs l'égalité entre 2 instances d'Administrateur
      * 
-     * @param adm l'Administrateur à comparer
-     * @return un booléen représentant l'égalité entre les 2 instances
+     * @param adm L'Administrateur à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
      */
     public boolean equals(Administrateur adm) {
         return idAdministrateur == adm.idAdministrateur
@@ -56,7 +56,7 @@ public class Administrateur {
     /**
      * Constructeur d'Administrateur.
      * 
-     * @param idAdministrateur int représentant l'Administrateur.
+     * @param idAdministrateur Int représentant l'Administrateur.
      * @param pseudo           String représentant l'Administrateur.
      * @param mdpAdmin         String représentant l'Administrateur.
      */

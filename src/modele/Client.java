@@ -1,7 +1,7 @@
 package modele;
 
 /**
- * Objet métier représentant un client.
+ * Objet métier représentant un Client.
  */
 public class Client {
     private int idClient;
@@ -66,8 +66,8 @@ public class Client {
     /**
      * Compare au niveau des attributs l'égalité entre 2 instances Client
      * 
-     * @param clt le Client à comparer
-     * @return un booléen représentant l'égalité entre les 2 instances
+     * @param clt Le Client à comparer
+     * @return Un booléen représentant l'égalité entre les 2 instances
      */
     public boolean equals(Client clt) {
         return idClient == clt.idClient
@@ -80,7 +80,7 @@ public class Client {
     /**
      * Constructeur de Client.
      * 
-     * @param idClient      int représentant l'id du Client.
+     * @param idClient      Int représentant l'id du Client.
      * @param nomClient     String représentant le nom du Client.
      * @param adresseClient String représentant l'adresse du Client.
      * @param gpsClient     String représentant les coordonnées GPS du Client.

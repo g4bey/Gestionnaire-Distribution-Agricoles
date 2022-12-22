@@ -1,9 +1,6 @@
 package tests.dao;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import DAO.ClientDAO;
 import DAO.CommandeDAO;
@@ -27,7 +24,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests de la classe DAO.prodDAO.
+ * Tests de la classe DAO.ProducteurDAO.
  */
 public class ProducteurDAOTest {
 
@@ -39,11 +36,11 @@ public class ProducteurDAOTest {
 
     /**
      * Simule un TRUNCATE de la table table.
-     * D'abord l'on supprime tous, puis l'on RESET l'auto_increment.
+     * D'abord on supprime tout, puis on RESET l'auto_increment.
      * <p>
      * 
      * @throws SQLException
-     * @param table la table que l'on souhaite TRUNCATE.
+     * @param table Le nom de la table que l'on souhaite TRUNCATE.
      */
     private static void truncateTable(String table) throws SQLException {
         Statement st = conn.createStatement();
@@ -52,13 +49,13 @@ public class ProducteurDAOTest {
     }
 
     /**
-     * On créer une connection, puis l'instancie les DAO.
-     * L'on vide ensuite toutes les tables pour prédire les résultats.
+     * On crée une Connection, puis instancie les DAO.
+     * On vide ensuite toutes les tables pour prédire les résultats.
      * <p>
-     * Avant d'exécuter les tests, on crée un producteur, puis on l'insère en base.
+     * Avant d'exécuter les tests, on crée un Producteur puis on l'insère en base.
      * Évidemment, l'auto_increment.
      * <p>
-     * Enfin, on ajoute un producteur en base.
+     * Enfin, on ajoute un Producteur en base.
      * 
      * @throws SQLException
      * @throws IOException
@@ -77,10 +74,8 @@ public class ProducteurDAOTest {
     }
 
     /**
-     * L'on créer deux producteurs puis l'on les insère en base.
-     * L'on pense aussi à reset l'auto-incremente de la table Producteur apres
-     * l'avoir
-     * vidée.
+     * On crée deux Producteurs puis l'on les insère en base.
+     * On pense aussi à reset l'auto-increment de la table Producteur après l'avoir vidée.
      * <p>
      * 
      * @throws SQLException
@@ -101,36 +96,36 @@ public class ProducteurDAOTest {
     }
 
     /**
-     * Vérifions que l'ID de PRODUCTEUR_A: 0 avant insertion,
-     * est bien mise à jour suite à l'ajout en base.
+     * Vérifions que l'ID de PRODUCTEUR_A : 0 avant insertion,
+     * est bien mis à jour suite à l'ajout en base.
      * <p>
      * Si l'ajout est effectif, cet ID sera 1.
      */
     @Test
-    @DisplayName("Test de la methode add")
+    @DisplayName("Test de la méthode add")
     public void addTest() {
-        // Apres ajout, l'ID doit devenir 1 et non 0.
+        // Après ajout, l'ID doit devenir 1 et non 0.
         assertEquals(0, PRODUCTEUR_A.getIdProducteur());
         prodDAO.add(PRODUCTEUR_A);
         assertEquals(1, PRODUCTEUR_A.getIdProducteur());
     }
 
     /**
-     * L'on insert PRODUCTEUR_A en base.
+     * On insère PRODUCTEUR_A en base.
      * <p>
-     * Ensuite le demande un Producteur ayant pour ID l'iD du PRODUCTEUR_A.
+     * Ensuite, on demande un Producteur ayant pour ID l'iD du PRODUCTEUR_A.
      * <p>
-     * Puis l'on vérifie que l'attribut producteur est bien le producteur dans
+     * Puis on vérifie que l'attribut producteur est bien le Producteur dans
      * PRODUCTEUR_A.
      * <p>
      * Enfin l'on assure qu'un ID inexistant renvoi bien null.
      */
     @Test
-    @DisplayName("Test de la methode get")
+    @DisplayName("Test de la méthode get")
     public void getTest() {
         prodDAO.add(PRODUCTEUR_A);
 
-        // Demander un producteur d'ID associé au PRODUCTEUR_A
+        // Demander un Producteur d'ID associé au PRODUCTEUR_A
         // Doit nécessairement aboutir à une égalité d'attributs
         Producteur ProducteurRetour = prodDAO.get(PRODUCTEUR_A.getIdProducteur());
         assertTrue(PRODUCTEUR_A.equals(ProducteurRetour));
@@ -144,16 +139,16 @@ public class ProducteurDAOTest {
      * Insérons PRODUCTEUR_A et PRODUCTEUR_B en base.
      * Ces derniers auront comme ID 1 et 2.
      * <p>
-     * L'on vérifie qu'il y a bien 2 elements dans le tableau retourné.
-     * Puis l'on vérifie que ces elements ont les bons ID.
+     * On vérifie qu'il y a bien 2 éléments dans le tableau retourné.
+     * Puis on vérifie que ces éléments ont les bons ID.
      */
     @Test
-    @DisplayName("Test la methode getAll")
+    @DisplayName("Test la méthode getAll")
     public void getAllTest() {
         prodDAO.add(PRODUCTEUR_A);
         prodDAO.add(PRODUCTEUR_B);
 
-        // L'on devrait avoir deux Producteurs d'ID 1 et 2 dans le tableau.
+        // On devrait avoir deux Producteurs d'ID 1 et 2 dans le tableau.
         ArrayList<Producteur> ProducteurList = prodDAO.getAll();
         assertEquals(2, ProducteurList.size());
         assertEquals(1, ProducteurList.get(0).getIdProducteur());
@@ -161,38 +156,38 @@ public class ProducteurDAOTest {
     }
 
     /**
-     * L'on insert le PRODUCTEUR_A en base.
-     * Ensuite l'on récupère son ID.
+     * On insère le PRODUCTEUR_A en base.
+     * Ensuite, on récupère son ID.
      * <p>
-     * Enfin l'on supprime le producteur correspondant à cet ID.
-     * Puis l'on vérifie que demander cet ID renvoi bien null.
+     * Enfin, on supprime le Producteur correspondant à cet ID.
+     * Puis on vérifie que demander cet ID renvoie bien null.
      */
     @Test
-    @DisplayName("Test la methode delete")
+    @DisplayName("Test la méthode delete")
     public void deleteTest() {
         prodDAO.add(PRODUCTEUR_A);
         int idProducteur = PRODUCTEUR_A.getIdProducteur();
 
-        // Apres suppression, l'ID devrait etre null.
+        // Après suppression, l'ID devrait être null.
         prodDAO.delete(PRODUCTEUR_A);
         assertNull(prodDAO.get(idProducteur));
     }
 
     /**
-     * On commence par créer et ajout un nouveau producteur en base.
-     * Ensuite l'on ajout PRODUCTEUR_A en base pour modifier tous ses attributs,
-     * puis l'on update ce Producteur, y compris le producteur.
+     * On commence par créer et ajouter un nouveau Producteur en base.
+     * Ensuite, on ajoute PRODUCTEUR_A en base pour modifier tous ses attributs,
+     * puis on update ce Producteur.
      * <p>
-     * Enfin l'on créer un autre objet avec le meme ID pour s'assurer
-     * que les attributs sont egaux.
+     * Enfin, on crée un autre objet avec le même ID pour s'assurer
+     * que les attributs sont égaux.
      */
     @Test
-    @DisplayName("Test la methode update")
+    @DisplayName("Test la méthode update")
     public void updateTest() {
         PRODUCTEUR_A.addVehicule(VEHICULE_A);
 
         // On ajoute puis met à jour le PRODUCTEUR_A
-        // L'on change aussi le producteur
+        // on change aussi le Producteur
         prodDAO.add(PRODUCTEUR_A);
         PRODUCTEUR_A.setAdresseProd("200 rue de Grandmont");
         PRODUCTEUR_A.setGpsProd("46.37760650.8082932");
@@ -202,8 +197,8 @@ public class ProducteurDAOTest {
         PRODUCTEUR_A.setSiret("73282932000076");
         prodDAO.update(PRODUCTEUR_A);
 
-        // On créer un autre object de meme ID pour s'assurer que les attributs
-        // sont identiques. Cela induit qu'ils sont modifés en BDD.
+        // On crée un autre objet de même ID pour s'assurer que les attributs
+        // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Producteur ProducteurRetour = prodDAO.get(PRODUCTEUR_A.getIdProducteur());
         assertTrue(ProducteurRetour.equals(PRODUCTEUR_A));
     }
@@ -217,22 +212,22 @@ public class ProducteurDAOTest {
     public void propagationTest() {
         prodDAO.add(PRODUCTEUR_A);
 
-        // On ajoute un client en base
+        // On ajoute un Client en base
         ClientDAO clientDAO = new ClientDAO(conn);
         Client client = new Client("Jean", "120 Rue", "123,987", "229938");
         clientDAO.add(client);
 
-        // On ajoute une commande en base
+        // On ajoute une Commande en base
         CommandeDAO commandeDAO = new CommandeDAO(conn);
         Commande commande = new Commande(
                 "Com", 20F, new Timestamp(10000), new Timestamp(20000),
                 PRODUCTEUR_A, client);
         commandeDAO.add(commande);
 
-        // On verifie que le producteur possede bien cette commande.
+        // On vérifie que le Producteur possède bien cette Commande.
         assertTrue(PRODUCTEUR_A.getCommandes().get(0).equals(commande));
 
-        // On insère une autre commande par le producteur.
+        // On insère une autre commande pour le Producteur.
         Commande commandeBis = new Commande(
                 "Com2", 20F, new Timestamp(100000), new Timestamp(200000),
                 PRODUCTEUR_A, client);
@@ -242,38 +237,47 @@ public class ProducteurDAOTest {
         // On constate que c'est bien dans l'objet.
         assertTrue(PRODUCTEUR_A.getCommandes().get(1).equals(commandeBis));
 
-        // On creer un nouveau vehicule
+        // On crée un nouveau Véhicule
         Vehicule vehicule = new Vehicule("9897-FF", 90F, "Vehi", PRODUCTEUR_A);
         VehiculeDAO vehiDAO = new VehiculeDAO(conn);
         vehiDAO.add(vehicule);
 
-        // On ajoute le vehicule au producteur.
+        // On ajoute le Véhicule au Producteur.
         PRODUCTEUR_A.addVehicule(vehicule);
         prodDAO.update(PRODUCTEUR_A);
 
-        // On s'assure qu'il possède bien ce vehicle.
+        // On s'assure qu'il possède bien ce Véhicule.
         assertTrue(PRODUCTEUR_A.getVehicules().contains(vehicule));
 
-        // On creer une nouvelle tournee
+        // On crée une nouvelle Tournée
         Tournee tournee = new Tournee(new Timestamp(100000), new Timestamp(100000), 30F, "Tournee", vehicule);
         TourneeDAO tourneeDAO = new TourneeDAO(conn);
         tourneeDAO.add(tournee);
 
-        // On verifie que le producteur a bien cette tournee.
+        // On vérifie que le Producteur a bien cette Tournée.
         assertTrue(PRODUCTEUR_A.getTournees().contains(tournee));
 
-        // On change de vehicule pour la tournee.
+        // On change de Véhicule pour la Tournée.
         vehiDAO.add(VEHICULE_A);
         tournee.setVehicule(VEHICULE_A);
         tourneeDAO.update(tournee);
 
-        // On constate que c'est update dans le tableau de tournee.
+        // On constate que c'est update dans le tableau de Tournée.
         assertTrue(PRODUCTEUR_A.getTournees().get(0).getVehicule().equals(VEHICULE_A));
 
-        // On supprime la tournee, et constate qu'elle n'est plus
-        // dans le tableau de tournee du producteur.
+        // On supprime la Tournée et constate qu'elle n'est plus
+        // dans le tableau de Tournée du Producteur.
         tourneeDAO.delete(tournee);
         assertFalse(PRODUCTEUR_A.getTournees().contains(tournee));
+    }
 
+    /**
+     * Fermeture de la Connection apres les tests.
+     *
+     * @throws SQLException
+     */
+    @AfterAll
+    public static void tearDown() throws SQLException {
+        DatabaseConnection.close("testing");
     }
 }
