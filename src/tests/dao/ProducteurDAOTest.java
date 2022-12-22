@@ -1,12 +1,20 @@
 package tests.dao;
 
-import DAO.*;
-import modele.*;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import DAO.ClientDAO;
+import DAO.CommandeDAO;
+import DAO.ProducteurDAO;
+import DAO.TourneeDAO;
+import DAO.VehiculeDAO;
+import modele.Client;
+import modele.Commande;
+import modele.Producteur;
+import modele.Tournee;
+import modele.Vehicule;
 import utility.DatabaseConnection;
 
 import java.io.IOException;
@@ -14,7 +22,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -149,7 +157,7 @@ public class ProducteurDAOTest {
         prodDAO.add(PRODUCTEUR_B);
 
         // L'on devrait avoir deux Producteurs d'ID 1 et 2 dans le tableau.
-        List<Producteur> ProducteurList = prodDAO.getAll();
+        ArrayList<Producteur> ProducteurList = prodDAO.getAll();
         assertEquals(2, ProducteurList.size());
         assertEquals(1, ProducteurList.get(0).getIdProducteur());
         assertEquals(2, ProducteurList.get(1).getIdProducteur());
@@ -221,8 +229,7 @@ public class ProducteurDAOTest {
         CommandeDAO commandeDAO = new CommandeDAO(conn);
         Commande commande = new Commande(
                 "Com", 20F, new Timestamp(10000), new Timestamp(20000),
-                PRODUCTEUR_A, client
-        );
+                PRODUCTEUR_A, client);
         commandeDAO.add(commande);
 
         // On verifie que le producteur possede bien cette commande.
@@ -231,8 +238,7 @@ public class ProducteurDAOTest {
         // On insère une autre commande par le producteur.
         Commande commandeBis = new Commande(
                 "Com2", 20F, new Timestamp(100000), new Timestamp(200000),
-                PRODUCTEUR_A, client
-        );
+                PRODUCTEUR_A, client);
         PRODUCTEUR_A.addCommande(commandeBis);
         prodDAO.update(PRODUCTEUR_A);
 

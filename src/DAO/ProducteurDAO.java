@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Représente le DAO des producteurs.
@@ -69,7 +68,7 @@ public class ProducteurDAO extends DAO<Producteur> {
      * @return Une liste d'instances de Producteur.
      */
     @Override
-    public List<Producteur> getAll() {
+    public ArrayList<Producteur> getAll() {
         ArrayList<Producteur> producteurs = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Producteur");

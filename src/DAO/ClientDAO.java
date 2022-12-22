@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Représente le DAO des clients.
@@ -27,12 +26,11 @@ public class ClientDAO extends DAO<Client> {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return new Client(id, 
-                    rs.getString("nomClient"), 
-                    rs.getString("adresseClient"),
-                    rs.getString("gpsClient"),
-                    rs.getString("numTelClient")
-                    );
+                return new Client(id,
+                        rs.getString("nomClient"),
+                        rs.getString("adresseClient"),
+                        rs.getString("gpsClient"),
+                        rs.getString("numTelClient"));
             }
 
             return null;
@@ -48,20 +46,19 @@ public class ClientDAO extends DAO<Client> {
      * @return Une liste d'instances de Client.
      */
     @Override
-    public List<Client> getAll() {
+    public ArrayList<Client> getAll() {
         ArrayList<Client> clients = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Client");
 
             while (rs.next()) {
                 clients.add(new Client(
-                    rs.getInt("idClient"), 
-                    rs.getString("nomClient"), 
-                    rs.getString("adresseClient"),
-                    rs.getString("gpsClient"), 
-                    rs.getString("numTelClient"))
-                );
-             }
+                        rs.getInt("idClient"),
+                        rs.getString("nomClient"),
+                        rs.getString("adresseClient"),
+                        rs.getString("gpsClient"),
+                        rs.getString("numTelClient")));
+            }
 
             return clients;
         } catch (SQLException e) {
@@ -78,7 +75,8 @@ public class ClientDAO extends DAO<Client> {
     @Override
     public void add(Client t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Client VALUES (NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt = conn.prepareStatement("INSERT INTO Client VALUES (NULL, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getNomClient());
             pstmt.setString(2, t.getAdresseClient());
             pstmt.setString(3, t.getGpsClient());
@@ -88,8 +86,8 @@ public class ClientDAO extends DAO<Client> {
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
-                long id = ((BigInteger)rs.getObject(1)).longValue();
-                t.setIdClient((int)id);
+                long id = ((BigInteger) rs.getObject(1)).longValue();
+                t.setIdClient((int) id);
             }
 
         } catch (SQLException e) {

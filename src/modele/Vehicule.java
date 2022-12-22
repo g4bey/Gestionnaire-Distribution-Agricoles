@@ -1,6 +1,6 @@
 package modele;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Objet métier représentant un Véhicule.
@@ -15,7 +15,7 @@ public class Vehicule {
 
     private String libelle;
 
-    private List<Tournee> tournees = new ArrayList<>();
+    private ArrayList<Tournee> tournees = new ArrayList<>();
 
     private Producteur producteur;
 
@@ -35,7 +35,7 @@ public class Vehicule {
         return libelle;
     }
 
-    public List<Tournee> getTournees() {
+    public ArrayList<Tournee> getTournees() {
         return tournees;
     }
 

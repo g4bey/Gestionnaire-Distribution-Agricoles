@@ -17,7 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,6 +37,7 @@ public class VehiculeDAOTest {
      * Simule un TRUNCATE de la table table.
      * D'abord on supprime tout, puis on RESET l'auto_increment.
      * <p>
+     * 
      * @throws SQLException
      * @param table la table que l'on souhaite TRUNCATE.
      */
@@ -52,6 +53,7 @@ public class VehiculeDAOTest {
      * <p>
      * Avant d'exécuter les tests, on crée un producteur puis on l'insère en base.
      * Évidemment, l'auto_increment.
+     * 
      * @throws SQLException
      * @throws IOException
      * @throws ClassNotFoundException
@@ -74,21 +76,22 @@ public class VehiculeDAOTest {
                 "adresseProd",
                 "numTel",
                 "gps",
-                "mdp"
-        );
+                "mdp");
         prodDAO.add(EXEMPLE_PROD);
     }
 
     /**
      * On crée deux véhicules.
-     * On pense aussi à reset l'auto-increment de la table Vehicule apres l'avoir vidée.
+     * On pense aussi à reset l'auto-increment de la table Vehicule apres l'avoir
+     * vidée.
      * <p>
+     * 
      * @throws SQLException
      */
     @BeforeEach
     public void init() throws SQLException {
-        VEHICULE_A = new Vehicule("AAAA", 30.5F, "Libelle",  EXEMPLE_PROD);
-        VEHICULE_B = new Vehicule("BBBB", 32.5F, "Libelle 2",  EXEMPLE_PROD);
+        VEHICULE_A = new Vehicule("AAAA", 30.5F, "Libelle", EXEMPLE_PROD);
+        VEHICULE_B = new Vehicule("BBBB", 32.5F, "Libelle 2", EXEMPLE_PROD);
 
         truncateTable("Vehicule");
     }
@@ -113,7 +116,8 @@ public class VehiculeDAOTest {
      * <p>
      * Ensuite, on demande un vehicule ayant pour ID l'iD du VEHICULE_A.
      * <p>
-     * Puis, on vérifie que l'attribut producteur est bien le producteur dans VEHICULE_A.
+     * Puis, on vérifie que l'attribut producteur est bien le producteur dans
+     * VEHICULE_A.
      * <p>
      * Enfin, on assure qu'un ID inexistant renvoie bien null.
      */
@@ -127,7 +131,8 @@ public class VehiculeDAOTest {
         Vehicule vehiculeRetour = vehiculeDAO.get(VEHICULE_A.getIdVehicule());
         assertTrue(VEHICULE_A.equals(vehiculeRetour));
 
-        // L'ID du producteur associé au véhicule correspondre au producteur associé initialement.
+        // L'ID du producteur associé au véhicule correspondre au producteur associé
+        // initialement.
         Producteur producteur = vehiculeRetour.getProducteur();
         assertEquals(producteur.getIdProducteur(), EXEMPLE_PROD.getIdProducteur());
 
@@ -150,7 +155,7 @@ public class VehiculeDAOTest {
         vehiculeDAO.add(VEHICULE_B);
 
         // On devrait avoir deux véhicules d'ID 1 et 2 dans le tableau.
-        List<Vehicule> vehiculeList = vehiculeDAO.getAll();
+        ArrayList<Vehicule> vehiculeList = vehiculeDAO.getAll();
         assertEquals(2, vehiculeList.size());
         assertEquals(1, vehiculeList.get(0).getIdVehicule());
         assertEquals(2, vehiculeList.get(1).getIdVehicule());
@@ -234,8 +239,10 @@ public class VehiculeDAOTest {
     }
 
     /**
-     * Insérons un producteur et un véhicule et vérifions que l'on ne récupère que les véhicules
+     * Insérons un producteur et un véhicule et vérifions que l'on ne récupère que
+     * les véhicules
      * du producteur entré en paramètre
+     * 
      * @throws SQLException
      */
     @Test
@@ -250,15 +257,17 @@ public class VehiculeDAOTest {
         vehiculeDAO.add(vehiculeC);
 
         // On vérifie que l'on ne récupère que les véhicules du producteur EXEMPLE_PROD
-        List<Vehicule> vehiculeList = vehiculeDAO.getVehiculesByProducteur(EXEMPLE_PROD);
+        ArrayList<Vehicule> vehiculeList = vehiculeDAO.getVehiculesByProducteur(EXEMPLE_PROD);
         assertEquals(2, vehiculeList.size());
         assertEquals(1, vehiculeList.get(0).getIdVehicule());
         assertEquals(2, vehiculeList.get(1).getIdVehicule());
     }
 
     /**
-     * Insérons une tournée et vérifions que le véhicule renvoyé par la méthode est bien celui
+     * Insérons une tournée et vérifions que le véhicule renvoyé par la méthode est
+     * bien celui
      * réalisant la tournée entrée en paramètre
+     * 
      * @throws SQLException
      */
     @Test
@@ -266,7 +275,8 @@ public class VehiculeDAOTest {
     public void getVehiculeByIdTourneeTest() throws SQLException {
         truncateTable("Tournee");
         TourneeDAO tourneeDAO = new TourneeDAO(conn);
-        Tournee tournee = new Tournee(new Timestamp(32000), new Timestamp(33000), 37F, "Livraison de patates", VEHICULE_A);
+        Tournee tournee = new Tournee(new Timestamp(32000), new Timestamp(33000), 37F, "Livraison de patates",
+                VEHICULE_A);
 
         vehiculeDAO.add(VEHICULE_A);
         tourneeDAO.add(tournee);

@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Représente le DAO des véhicules.
@@ -56,7 +55,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Retour une liste de tournée associée à une tournée.
      *
-     * @param prd le Producteur qui doit etre associe à la tournée
+     * @param prd       le Producteur qui doit etre associe à la tournée
      * @param idTournee l'id de la tournée.
      * @return Vehicule le véhicule associé à un une tournée.
      * @throws SQLException
@@ -85,7 +84,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
      * @return Une liste d'instances de Vehicule.
      */
     @Override
-    public List<Vehicule> getAll() {
+    public ArrayList<Vehicule> getAll() {
         ArrayList<Vehicule> vehicules = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Vehicule");
@@ -183,7 +182,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
             pstmt.executeUpdate();
 
-            if(!t.getProducteur().getVehicules().contains(t)) {
+            if (!t.getProducteur().getVehicules().contains(t)) {
                 t.getProducteur().addVehicule(t);
             } // Ajout pour tester
         } catch (SQLException e) {

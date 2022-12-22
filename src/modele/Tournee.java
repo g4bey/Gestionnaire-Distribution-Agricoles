@@ -1,7 +1,7 @@
 package modele;
 
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Objet métier représentant une Tournée.
@@ -20,7 +20,7 @@ public class Tournee {
 
     private Vehicule vehicule;
 
-    private List<Commande> commandes = new ArrayList<>();
+    private ArrayList<Commande> commandes = new ArrayList<>();
 
     public int getIdTournee() {
         return idTournee;
@@ -42,7 +42,7 @@ public class Tournee {
         return vehicule;
     }
 
-    public List<Commande> getCommandes() {
+    public ArrayList<Commande> getCommandes() {
         return commandes;
     }
 

@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Représente le DAO des administrateurs.
@@ -42,17 +41,16 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      * @return Une liste d'instances d'Administrateur.
      */
     @Override
-    public List<Administrateur> getAll() {
+    public ArrayList<Administrateur> getAll() {
         ArrayList<Administrateur> administrateurs = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Administrateur");
 
             while (rs.next()) {
                 administrateurs.add(new Administrateur(
-                    rs.getInt("idAdministrateur"), 
-                    rs.getString("pseudo"),
-                    rs.getString("mdpAdmin"))
-                );
+                        rs.getInt("idAdministrateur"),
+                        rs.getString("pseudo"),
+                        rs.getString("mdpAdmin")));
             }
 
             return administrateurs;
@@ -70,7 +68,8 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     @Override
     public void add(Administrateur t) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO Administrateur VALUES (NULL, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt = conn.prepareStatement("INSERT INTO Administrateur VALUES (NULL, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, t.getMdpAdmin());
             pstmt.setString(2, t.getPseudo());
 
@@ -78,8 +77,8 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
-                long id = ((BigInteger)rs.getObject(1)).longValue();
-                t.setIdAdministrateur((int)id);
+                long id = ((BigInteger) rs.getObject(1)).longValue();
+                t.setIdAdministrateur((int) id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,8 +94,7 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     public void update(Administrateur t) {
         try {
             pstmt = conn.prepareStatement(
-                    "UPDATE Administrateur SET pseudo = ?, mdpAdmin = ? WHERE idAdministrateur = ?"
-            );
+                    "UPDATE Administrateur SET pseudo = ?, mdpAdmin = ? WHERE idAdministrateur = ?");
             pstmt.setString(1, t.getPseudo());
             pstmt.setString(2, t.getMdpAdmin());
             pstmt.setInt(3, t.getIdAdministrateur());

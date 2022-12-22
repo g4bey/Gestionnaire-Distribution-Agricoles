@@ -1,13 +1,7 @@
 package tests.dao;
 
 import DAO.ClientDAO;
-import DAO.ProducteurDAO;
-import DAO.TourneeDAO;
-import DAO.VehiculeDAO;
 import modele.Client;
-import modele.Producteur;
-import modele.Tournee;
-import modele.Vehicule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,8 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,6 +30,7 @@ public class ClientDAOTest {
      * Simule un TRUNCATE de la table table.
      * D'abord on supprime tout, puis on RESET l'auto_increment.
      * <p>
+     * 
      * @throws SQLException
      * @param table la table que l'on souhaite TRUNCATE.
      */
@@ -49,6 +43,7 @@ public class ClientDAOTest {
     /**
      * On crée une connection puis instancie les DAO.
      * On vide ensuite la table Client pour prédire les résultats.
+     * 
      * @throws SQLException
      * @throws IOException
      * @throws ClassNotFoundException
@@ -63,14 +58,16 @@ public class ClientDAOTest {
 
     /**
      * On crée deux clients.
-     * On pense aussi à reset l'auto-increment de la table Client apres l'avoir vidée.
+     * On pense aussi à reset l'auto-increment de la table Client apres l'avoir
+     * vidée.
      * <p>
+     * 
      * @throws SQLException
      */
     @BeforeEach
     public void init() throws SQLException {
         CLIENT_A = new Client("Yann", "27 rue du rhododendron", "", "");
-        CLIENT_B = new Client ("Thierry", "97 avenue MySQL", "", "");
+        CLIENT_B = new Client("Thierry", "97 avenue MySQL", "", "");
 
         truncateTable("Client");
     }
@@ -126,7 +123,7 @@ public class ClientDAOTest {
         clientDAO.add(CLIENT_B);
 
         // L'on devrait avoir deux clients d'ID 1 et 2 dans le tableau.
-        List<Client> clientList = clientDAO.getAll();
+        ArrayList<Client> clientList = clientDAO.getAll();
         assertEquals(2, clientList.size());
         assertEquals(1, clientList.get(0).getIdClient());
         assertEquals(2, clientList.get(1).getIdClient());
@@ -160,7 +157,7 @@ public class ClientDAOTest {
     @Test
     @DisplayName("Test la methode update")
     public void updateTest() {
-       // On ajoute puis met à jour la TOURNEE_A
+        // On ajoute puis met à jour la TOURNEE_A
         // On change aussi le producteur
         clientDAO.add(CLIENT_A);
         CLIENT_A.setNomClient("Fabrice");
@@ -174,6 +171,5 @@ public class ClientDAOTest {
         Client clientRetour = clientDAO.get(CLIENT_A.getIdClient());
         assertTrue(clientRetour.equals(CLIENT_A));
     }
-
 
 }

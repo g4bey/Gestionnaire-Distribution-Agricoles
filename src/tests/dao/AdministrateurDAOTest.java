@@ -6,8 +6,8 @@ import utility.DatabaseConnection;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +30,7 @@ public class AdministrateurDAOTest {
      * Instantiation de la connection avant TOUS les tests.
      * On injecte la connection dans le DAO administrateur.
      * <p>
+     * 
      * @throws SQLException
      * @throws IOException
      * @throws ClassNotFoundException
@@ -42,8 +43,10 @@ public class AdministrateurDAOTest {
 
     /**
      * Avant CHAQUE test, on réinitialise les objects metier administrateurs témoin.
-     * Ensuite l'on vide la table Administrateur afin de pouvoir prédire les résultats.
+     * Ensuite l'on vide la table Administrateur afin de pouvoir prédire les
+     * résultats.
      * <p>
+     * 
      * @throws SQLException
      */
     @BeforeEach
@@ -105,7 +108,7 @@ public class AdministrateurDAOTest {
         adminDAO.add(ADMIN_B);
 
         // Dans la liste, il doit y avoir 2 admins d'ID 1 et 2.
-        List<Administrateur> adminList = adminDAO.getAll();
+        ArrayList<Administrateur> adminList = adminDAO.getAll();
         assertEquals(2, adminList.size());
         assertEquals(1, adminList.get(0).getIdAdministrateur());
         assertEquals(2, adminList.get(1).getIdAdministrateur());

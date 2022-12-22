@@ -1,11 +1,20 @@
 package tests.dao;
 
-import DAO.*;
-import modele.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import DAO.ClientDAO;
+import DAO.CommandeDAO;
+import DAO.ProducteurDAO;
+import DAO.TourneeDAO;
+import DAO.VehiculeDAO;
+import modele.Client;
+import modele.Commande;
+import modele.Producteur;
+import modele.Tournee;
+import modele.Vehicule;
 import utility.DatabaseConnection;
 
 import java.io.IOException;
@@ -14,7 +23,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,11 +40,11 @@ public class TourneeDAOTest {
     static private Tournee TOURNEE_A;
     static private Tournee TOURNEE_B;
 
-
     /**
      * Simule un TRUNCATE de la table table.
      * D'abord on supprime tout, puis on RESET l'auto_increment.
      * <p>
+     * 
      * @throws SQLException
      * @param table la table que l'on souhaite TRUNCATE.
      */
@@ -48,10 +56,13 @@ public class TourneeDAOTest {
 
     /**
      * On crée une connection puis instancie les DAO.
-     * On vide ensuite les tables Tournee, Vehicule et Producteur pour prédire les résultats.
+     * On vide ensuite les tables Tournee, Vehicule et Producteur pour prédire les
+     * résultats.
      * <p>
-     * Avant d'exécuter les tests, on crée un producteur et un véhicule puis on les insère en base.
+     * Avant d'exécuter les tests, on crée un producteur et un véhicule puis on les
+     * insère en base.
      * Évidemment, l'auto_increment
+     * 
      * @throws SQLException
      * @throws IOException
      * @throws ClassNotFoundException
@@ -70,35 +81,39 @@ public class TourneeDAOTest {
         truncateTable("Producteur");
 
         PRODUCTEUR = new Producteur(
-            "siret",
-            "proprietaire",
-            "adresseProd",
-            "numTel",
-            "gps",
-            "mdp");
+                "siret",
+                "proprietaire",
+                "adresseProd",
+                "numTel",
+                "gps",
+                "mdp");
 
         producteurDAO.add(PRODUCTEUR);
 
         VEHICULE = new Vehicule(
-            1,
-            "AAAA",
-            30.5F,
-            "Libelle",
-            PRODUCTEUR);
+                1,
+                "AAAA",
+                30.5F,
+                "Libelle",
+                PRODUCTEUR);
 
         vehiculeDAO.add(VEHICULE);
     }
 
     /**
      * On crée deux tournées.
-     * On pense aussi à reset l'auto-increment de la table Tournee apres l'avoir vidée.
+     * On pense aussi à reset l'auto-increment de la table Tournee apres l'avoir
+     * vidée.
      * <p>
+     * 
      * @throws SQLException
      */
     @BeforeEach
     public void init() throws SQLException {
-        TOURNEE_A = new Tournee(new Timestamp(30000), new Timestamp(40000), 31.5F, "Livarisno de corercteurs", VEHICULE);
-        TOURNEE_B = new Tournee(new Timestamp(450000), new Timestamp(8000000), 22F, "Livraison de flûtes québecoises", VEHICULE);
+        TOURNEE_A = new Tournee(new Timestamp(30000), new Timestamp(40000), 31.5F, "Livarisno de corercteurs",
+                VEHICULE);
+        TOURNEE_B = new Tournee(new Timestamp(450000), new Timestamp(8000000), 22F, "Livraison de flûtes québecoises",
+                VEHICULE);
 
         truncateTable("Tournee");
     }
@@ -123,7 +138,8 @@ public class TourneeDAOTest {
      * <p>
      * Ensuite, on demande une tournée ayant pour ID l'iD de TOURNEE_A.
      * <p>
-     * Puis l'on vérifie que l'attribut véhicule est bien le véhicule dans TOURNEE_A.
+     * Puis l'on vérifie que l'attribut véhicule est bien le véhicule dans
+     * TOURNEE_A.
      * <p>
      * Enfin,on s'assure qu'un ID inexistant renvoie bien null.
      */
@@ -137,7 +153,8 @@ public class TourneeDAOTest {
         Tournee tourneeRetour = tourneeDAO.get(TOURNEE_A.getIdTournee());
         assertTrue(TOURNEE_A.equals(tourneeRetour));
 
-        // L'ID du véhicule associé à la tournée doit correspondre au véhicule associé initialement.
+        // L'ID du véhicule associé à la tournée doit correspondre au véhicule associé
+        // initialement.
         Vehicule vehicule = tourneeRetour.getVehicule();
         assertEquals(vehicule.getIdVehicule(), VEHICULE.getIdVehicule());
 
@@ -160,7 +177,7 @@ public class TourneeDAOTest {
         tourneeDAO.add(TOURNEE_B);
 
         // L'on devrait avoir deux tournées d'ID 1 et 2 dans le tableau.
-        List<Tournee> tourneeList = tourneeDAO.getAll();
+        ArrayList<Tournee> tourneeList = tourneeDAO.getAll();
         assertEquals(2, tourneeList.size());
         assertEquals(1, tourneeList.get(0).getIdTournee());
         assertEquals(2, tourneeList.get(1).getIdTournee());
@@ -228,8 +245,10 @@ public class TourneeDAOTest {
         Client client = new Client("Pedro", "31 rue NullPointerException 37000 TOURS", "", "0634117279");
 
         // On crée deux commandes
-        Commande commande1 = new Commande("commande1", 31F, new Timestamp(30000), new Timestamp(370000), PRODUCTEUR, client);
-        Commande commande2 = new Commande("commande2", 12F, new Timestamp(12000), new Timestamp(12000), PRODUCTEUR, client);
+        Commande commande1 = new Commande("commande1", 31F, new Timestamp(30000), new Timestamp(370000), PRODUCTEUR,
+                client);
+        Commande commande2 = new Commande("commande2", 12F, new Timestamp(12000), new Timestamp(12000), PRODUCTEUR,
+                client);
 
         // On les ajoute en base.
         CommandeDAO commandeDAO = new CommandeDAO(conn);
@@ -253,7 +272,8 @@ public class TourneeDAOTest {
         assertTrue(tourneeRetour.getCommandes().get(1).equals(TOURNEE_A.getCommandes().get(1)));
         assertTrue(tourneeRetour.getCommandes().get(0).equals(TOURNEE_A.getCommandes().get(0)));
 
-        // On verifie que les commandes ne sont plus associes a la tournee dans les objets
+        // On verifie que les commandes ne sont plus associes a la tournee dans les
+        // objets
         tourneeDAO.delete(TOURNEE_A);
         assertNull(commande1.getTournee());
         assertNull(commande2.getTournee());
@@ -264,7 +284,9 @@ public class TourneeDAOTest {
     }
 
     /**
-     * On s'assure que les tournées concernées par un véhicule peuvent bien être retrouvées à partir de celui-ci
+     * On s'assure que les tournées concernées par un véhicule peuvent bien être
+     * retrouvées à partir de celui-ci
+     * 
      * @throws SQLException
      */
     @Test
@@ -272,7 +294,8 @@ public class TourneeDAOTest {
     public void getTourneesByVehiculeTest() throws SQLException {
         Producteur producteurC = new Producteur("Dédé", "Jean-Louis", "23 rue de la grosse grange", "", "", "");
         Vehicule vehiculeC = new Vehicule("450677", 57F, "PELLETEUSE", producteurC);
-        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission", vehiculeC);
+        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission",
+                vehiculeC);
 
         producteurDAO.add(producteurC);
         vehiculeDAO.add(vehiculeC);
@@ -290,8 +313,10 @@ public class TourneeDAOTest {
     }
 
     /**
-     * On s'assure que les tournées concernées par une liste de véhicules peuvent bien être
+     * On s'assure que les tournées concernées par une liste de véhicules peuvent
+     * bien être
      * retrouvées à partir de celle-ci
+     * 
      * @throws SQLException
      */
     @Test
@@ -299,9 +324,11 @@ public class TourneeDAOTest {
     public void getTourneesByVehiculesTest() throws SQLException {
         Producteur producteurC = new Producteur("DDDDDDD", "Jean-Louis", "23 rue de la grosse grange", "", "", "");
         Vehicule vehiculeC = new Vehicule("4506", 57F, "PELLETEUSE", producteurC);
-        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission", vehiculeC);
+        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission",
+                vehiculeC);
         Vehicule vehiculeD = new Vehicule("23814", 45F, "TRACTEUR", PRODUCTEUR);
-        Tournee tourneeD = new Tournee(new Timestamp(13000), new Timestamp(47000), 20F, "Transfert de lingitos", VEHICULE);
+        Tournee tourneeD = new Tournee(new Timestamp(13000), new Timestamp(47000), 20F, "Transfert de lingitos",
+                VEHICULE);
 
         producteurDAO.add(producteurC);
         vehiculeDAO.add(vehiculeC);
@@ -315,7 +342,8 @@ public class TourneeDAOTest {
         vehicules.add(VEHICULE);
         vehicules.add(vehiculeD);
 
-        // On vérifie que seules les tournées liées à la liste de véhicules sont retournées
+        // On vérifie que seules les tournées liées à la liste de véhicules sont
+        // retournées
         ArrayList<Tournee> tournees = tourneeDAO.getTourneesByVehicules(vehicules);
         assertEquals(3, tournees.size());
 

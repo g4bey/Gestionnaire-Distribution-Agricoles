@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Classe abstraite des DAO.
  */
-
 public abstract class DAO<T> {
     protected Connection conn = null;
     protected Statement stmt = null;
@@ -44,7 +43,7 @@ public abstract class DAO<T> {
      * 
      * @return Une liste d'instances de T.
      */
-    public abstract List<T> getAll();
+    public abstract ArrayList<T> getAll();
 
     /**
      * Ajoute dans la base de données une instance de T.

@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Représente le DAO des véhicules.
@@ -57,7 +56,7 @@ public class CommandeDAO extends DAO<Commande> {
      * @return Une liste d'instances de Commande.
      */
     @Override
-    public List<Commande> getAll() {
+    public ArrayList<Commande> getAll() {
         ArrayList<Commande> commandes = new ArrayList<>();
         try {
             rs = stmt.executeQuery("SELECT * FROM Commande");
@@ -188,7 +187,7 @@ public class CommandeDAO extends DAO<Commande> {
      * On prend le producteur en parametre pour conserver les références.
      * <p>
      * 
-     * @param prd      le Producteur
+     * @param prd     le Producteur
      * @param tournee Tournee du producteur.
      * @return ArrayList<Commande> la liste de commande associée à une Tournee.
      * @throws SQLException
@@ -221,6 +220,7 @@ public class CommandeDAO extends DAO<Commande> {
      * Retourne une liste de commande d'un producteur
      * en lui associants ses tournées passées en parametre.
      * <p>
+     * 
      * @param prd      le Producteur
      * @param tournees ArrayList<Tournee> du producteur.
      * @return ArrayList<Commande> la liste de commande associée à un producteur.
