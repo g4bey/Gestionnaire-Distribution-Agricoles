@@ -30,14 +30,14 @@
 **Focus sur src:**
 
     src
-    ├── DAO                   # Accesseur aux données
-    ├── controllers           # Contrôleurs (lien entre modele et vue)
-    ├── modele                # Objets-Métier
-    ├── ressources            # Configurations et fichiers utilisés par le logiciel.
+    ├── src.DAO                   # Accesseur aux données
+    ├── src.controllers           # Contrôleurs (lien entre src.modele et vue)
+    ├── src.modele                # Objets-Métier
+    ├── src.ressources            # Configurations et fichiers utilisés par le logiciel.
     ├── exceptions            # Exceptions dérivant d'Exception
-    ├── tests                 # Tests des classes, rangés intuitivement.
-    ├── views                 # Vues (interface graphique)
-    └── utility               # Classes utilitaires et objets-Service
+    ├── src.tests                 # Tests des classes, rangés intuitivement.
+    ├── src.views                 # Vues (interface graphique)
+    └── src.utility               # Classes utilitaires et objets-Service
 
 ---
 
@@ -63,7 +63,7 @@
 - IdBDD, port, tous les trucs de setup dans un json à part
 - Documenter chaque classe
 
-La configuration du checkstyle pour les IDE se trouve dans /src/ressources/checkstyleConfigurationGDA.xml
+La configuration du checkstyle pour les IDE se trouve dans /src/src.ressources/checkstyleConfigurationGDA.xml
 
 
 **Outils:**

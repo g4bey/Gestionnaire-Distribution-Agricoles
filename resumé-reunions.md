@@ -45,7 +45,7 @@
   **12 decembre 2022**
   + Bilan sprint jalon 2
   + Revue des vues FXML.
-  + Revue du connecteur et ses tests.
+  + Revue du connecteur et ses src.tests.
   + Mise au norme du projet
   + Attribution des taches prochain sprint.
 
