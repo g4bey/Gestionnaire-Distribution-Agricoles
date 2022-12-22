@@ -113,8 +113,8 @@ public class Commande {
                 && producteur.equals(cmd.producteur)
                 && client.equals(cmd.client)
                 && cmd.tournee != null ? tournee.equals(cmd.tournee) : tournee == null;
-                // les tournée peuvent etre nul lorsqu'on créer une commande.
-                // si l'une est nul et pas l'autre, c'est false par default.
+        // les tournée peuvent etre nul lorsqu'on créer une commande.
+        // si l'une est nul et pas l'autre, c'est false par default.
     }
 
     /**
@@ -123,8 +123,8 @@ public class Commande {
      * @param idCommande   int représentant l'id de la Commande.
      * @param libelle      String représentant le libellé de la Commande.
      * @param poids        float représentant le poids de la commande.
-     * @param horaireDebut String représentant l'horaire de début de la Commande.
-     * @param horaireFin   String représentant l'horaire de fin de la Commande.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
      * @param producteur   Producteur représentant le producteur qui effectue la
      *                     Commande.
      * @param client       Client représentant le client qui a passé la Commande.
@@ -148,8 +148,8 @@ public class Commande {
      * 
      * @param libelle      String représentant le libellé de la Commande.
      * @param poids        float représentant le poids de la commande.
-     * @param horaireDebut String représentant l'horaire de début de la Commande.
-     * @param horaireFin   String représentant l'horaire de fin de la Commande.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
      * @param producteur   Producteur représentant le producteur qui effectue la
      *                     Commande.
      * @param client       Client représentant le client qui a passé la Commande.
@@ -173,14 +173,14 @@ public class Commande {
      *
      * @param libelle      String représentant le libellé de la Commande.
      * @param poids        float représentant le poids de la commande.
-     * @param horaireDebut String représentant l'horaire de début de la Commande.
-     * @param horaireFin   String représentant l'horaire de fin de la Commande.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Commande.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Commande.
      * @param producteur   Producteur représentant le producteur qui effectue la
      *                     Commande.
      * @param client       Client représentant le client qui a passé la Commande.
      */
-    public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin,
-                    Producteur producteur, Client client) {
+    public Commande(String libelle, float poids, Timestamp horaireDebut, Timestamp horaireFin, Producteur producteur,
+            Client client) {
         this.libelle = libelle;
         this.poids = poids;
         this.horaireDebut = horaireDebut;

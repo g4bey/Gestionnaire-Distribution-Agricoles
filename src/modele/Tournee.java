@@ -103,8 +103,8 @@ public class Tournee {
      * Constructeur de Tournee.
      * 
      * @param idTournee    int représentant l'id de la Tournee.
-     * @param horaireDebut String représentant l'horaire de début de la Tournee.
-     * @param horaireFin   String représentant l'horaire de fin de la Tournee.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournee.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournee.
      * @param poids        float représentant le poids total de la Tournee.
      * @param libelle      String représentant le libellé de la Tournee.
      * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
@@ -123,8 +123,8 @@ public class Tournee {
     /**
      * Constructeur de Tournee.
      * 
-     * @param horaireDebut String représentant l'horaire de début de la Tournee.
-     * @param horaireFin   String représentant l'horaire de fin de la Tournee.
+     * @param horaireDebut Timestamp représentant l'horaire de début de la Tournee.
+     * @param horaireFin   Timestamp représentant l'horaire de fin de la Tournee.
      * @param poids        float représentant le poids total de la Tournee.
      * @param libelle      String représentant le libellé de la Tournee.
      * @param vehicule     Vehicule représentant le véhicule utilisé pour effectuer
@@ -139,7 +139,7 @@ public class Tournee {
     }
 
     /**
-     * Permet d'ajouter une commande à la liste de commandes de la tournée
+     * Permet d'ajouter une commande à la liste de commandes de la Tournee
      * 
      * @param commande L'objet Tournee à ajouter
      */
@@ -149,7 +149,7 @@ public class Tournee {
     }
 
     /**
-     * Permet de supprimer une commande de la liste de commandes de la tournée
+     * Permet de supprimer une commande de la liste de commandes de la Tournee
      * 
      * @param commande L'objet Commande à supprimer
      */
