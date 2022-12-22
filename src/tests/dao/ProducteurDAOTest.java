@@ -36,7 +36,6 @@ public class ProducteurDAOTest {
     static private Producteur PRODUCTEUR_A;
     static private Producteur PRODUCTEUR_B;
     static private Vehicule VEHICULE_A;
-    static private Vehicule VEHICULE_B;
 
     /**
      * Simule un TRUNCATE de la table table.
@@ -129,8 +128,6 @@ public class ProducteurDAOTest {
     @Test
     @DisplayName("Test de la methode get")
     public void getTest() {
-        // On ajoute un nouveau Vehicule
-        VEHICULE_B = new Vehicule("AA230AA", 62, "véhicule secondaire", PRODUCTEUR_A);
         prodDAO.add(PRODUCTEUR_A);
 
         // Demander un producteur d'ID associé au PRODUCTEUR_A
