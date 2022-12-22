@@ -185,7 +185,7 @@ public class CommandeDAO extends DAO<Commande> {
      * <p>
      * 
      * @param prd      le Producteur
-     * @param tournees ArrayList<Tournee> du producteur.
+     * @param tournee Tournee du producteur.
      * @return ArrayList<Commande> la liste de commande associée à une Tournee.
      * @throws SQLException
      */

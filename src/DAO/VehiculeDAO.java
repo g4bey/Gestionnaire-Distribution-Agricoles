@@ -158,6 +158,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 t.setIdVehicule((int) id);
             }
+            t.getProducteur().addVehicule(t); // Ajout pour tester
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -181,6 +182,10 @@ public class VehiculeDAO extends DAO<Vehicule> {
             pstmt.setInt(5, t.getIdVehicule());
 
             pstmt.executeUpdate();
+
+            if(!t.getProducteur().getVehicules().contains(t)) {
+                t.getProducteur().addVehicule(t);
+            } // Ajout pour tester
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -199,6 +204,8 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
             pstmt.executeUpdate();
             t.getTournees().forEach(tournee -> t.setIdVehicule(0));
+
+            t.getProducteur().removeVehicule(t); // Ajout pour tester
         } catch (SQLException e) {
             e.printStackTrace();
         }
