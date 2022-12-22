@@ -168,35 +168,6 @@ public class ProducteurDAO extends DAO<Producteur> {
     }
 
     /**
-     * Renvoie un producteur par son ID.
-     *
-     * @param idProducteur int l'id du producteur
-     * @return Producteur le Producteur associé a l'ID fourni.
-     */
-    public Producteur getProducteurById(int idProducteur) {
-        try {
-            pstmt = conn.prepareStatement("SELECT * FROM Producteur WHERE idProducteur = ?");
-            pstmt.setInt(1, idProducteur);
-            pstmt.executeQuery();
-
-            if (rs.first()) {
-                return new Producteur(
-                        rs.getInt("idProducteur"),
-                        rs.getString("siret"),
-                        rs.getString("proprietaire"),
-                        rs.getString("adresseProd"),
-                        rs.getString("numTelProd"),
-                        rs.getString("gpsProd"),
-                        rs.getString("mdpProd"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
      * Constructeur de ProducteurDAO.
      * 
      * @param conn Une Connection représentant la connexion à la base de données.
