@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,8 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import src.modele.Tournee;
-import src.utility.ControllersUtils;
+import modele.Tournee;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant l'aperçu d'un Vehicule.

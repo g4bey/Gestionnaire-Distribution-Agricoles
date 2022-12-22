@@ -1,5 +1,3 @@
-package src;
-
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -21,9 +19,9 @@ public class GDA extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-    	Parent root = FXMLLoader.load(getClass().getResource("views/homePage.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("/views/homePage.fxml"));
     	Scene scene = new Scene(root);
-    	Image icon = new Image("src/ressources/pictures/1751148-ff5722.png");
+    	Image icon = new Image("/ressources/pictures/1751148-ff5722.png");
     	
     	primaryStage.setTitle("Gestionnaire-Distribution-Agricoles");
     	primaryStage.setResizable(false);

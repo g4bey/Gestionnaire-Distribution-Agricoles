@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.ConsultClientCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultClientCtrl">
    <children>
       <Line endX="374.0000305175781" layoutX="108.0" layoutY="71.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
       <Line endX="-117.10002136230469" endY="-110.00000762939453" layoutX="283.0" layoutY="110.0" startX="-117.10002136230469" startY="-39.50000762939453" />

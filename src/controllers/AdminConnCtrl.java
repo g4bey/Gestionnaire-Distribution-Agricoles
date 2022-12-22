@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import src.utility.ControllersUtils;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant la connexion d'un Administrateur.
@@ -45,7 +45,7 @@ public class AdminConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelAdminConn(ActionEvent event) {
-    	util.loadView(event, "/src/views/homePage.fxml");
+    	util.loadView(event, "/views/homePage.fxml");
     }
     
 	/**
@@ -53,6 +53,6 @@ public class AdminConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateAdminConn(ActionEvent event) {
-    	util.loadView(event, "/src/views/adminSelectMenu.fxml");
+    	util.loadView(event, "/views/adminSelectMenu.fxml");
     }
 }

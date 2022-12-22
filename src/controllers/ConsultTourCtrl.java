@@ -1,4 +1,4 @@
-package src.controllers;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
-import src.modele.Commande;
-import src.utility.ControllersUtils;
+import modele.Commande;
+import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant l'aperçu Tournee.
