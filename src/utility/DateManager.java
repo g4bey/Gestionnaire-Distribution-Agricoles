@@ -27,4 +27,37 @@ public class DateManager {
         // qui peut devenir un timestamp
         return Timestamp.valueOf(dateComplete);
     }
+
+    /**
+     * Convertit un timestamp en sa date sous format LocalDate.
+     *
+     * @param timestamp l'objet Timestamp.
+     * @return un objet LocalDate utilisé par JavaFX DatePicker.
+     */
+    public static LocalDate TimestampToLocalDate(Timestamp timestamp) {
+        LocalDateTime ldt = timestamp.toLocalDateTime();
+        return LocalDate.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth());
+    }
+
+    /**
+     * Convertit un timestamp en son heure sous forme de string.
+     *
+     * @param timestamp l'objet Timestamp.
+     * @return un string représentant une heure.
+     */
+    public static String TimestampToHourString(Timestamp timestamp) {
+        LocalDateTime ldt = timestamp.toLocalDateTime();
+        return ldt.getHour() + ":" + ldt.getMinute();
+    }
+
+    /**
+     * Convertit un timestamp en un objet LocalTime.
+     *
+     * @param timestamp l'objet Timestamp.
+     * @return un objet LocalTime.
+     */
+    public static LocalTime TimestampToLocalTime(Timestamp timestamp) {
+        LocalDateTime ldt = timestamp.toLocalDateTime();
+        return LocalTime.of(ldt.getHour(), ldt.getMinute());
+    }
 }
