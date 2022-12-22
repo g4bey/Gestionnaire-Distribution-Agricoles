@@ -1,5 +1,6 @@
 package utility;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,12 +60,28 @@ public class ValidateurDonnee {
         return !validePoids(poids) || Double.parseDouble(poids) > max ? false : true;
     }
 
-    /*
-     * Not implemented yet.
+    /**
+     * Verifie une date.
+     * Si elle est sous format LocalDate, on pourra la parser.
+     * <p>
+     * @param date LocalDate la date saisi.
+     * @return bool
      */
-    public static boolean valideDate(String date) {
-        // not implemented
-        return false;
+    public static boolean valideDate(LocalDate date) {
+        return date != null;
+    }
+
+    /**
+     * Assure qu'une heure est sous le bon format
+     * <p>
+     * @param heure l'heure saisie.
+     * @return bool
+     */
+    public static boolean valideHeure(String heure) {
+        pattern = Pattern.compile("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
+        matcher = pattern.matcher(heure);
+
+        return matcher.matches();
     }
 
     /*

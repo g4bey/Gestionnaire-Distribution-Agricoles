@@ -2,7 +2,6 @@ package tests.utility;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import utility.ValidateurDonnee;
@@ -67,10 +66,30 @@ public class ValidateurDonneeTest {
         assertFalse(ValidateurDonnee.validePoids("42", 41));
     }
 
+    /**
+     * Permet de valider le format d'une heure sous forme de String.
+     * L'on fera le choix que minuit est 00:00 et non 24:00.
+     */
     @Test
-    @DisplayName("Permet de valider une date")
-    public void valideDateTest() {
-        fail("Not implemented");
+    @DisplayName("Permet de valider une heure")
+    public void valideHeureTest() {
+        assertTrue(ValidateurDonnee.valideHeure("00:00"));
+        assertTrue(ValidateurDonnee.valideHeure("01:00"));
+        assertTrue(ValidateurDonnee.valideHeure("11:00"));
+        assertTrue(ValidateurDonnee.valideHeure("21:00"));
+        assertTrue(ValidateurDonnee.valideHeure("22:00"));
+        assertTrue(ValidateurDonnee.valideHeure("22:00"));
+        assertTrue(ValidateurDonnee.valideHeure("23:00"));
+        assertTrue(ValidateurDonnee.valideHeure("01:59"));
+        assertFalse(ValidateurDonnee.valideHeure("01:60"));
+        assertFalse(ValidateurDonnee.valideHeure("24:00"));
+        assertFalse(ValidateurDonnee.valideHeure("01:5"));
+        assertFalse(ValidateurDonnee.valideHeure("1:50"));
+        assertFalse(ValidateurDonnee.valideHeure("0150"));
+        assertFalse(ValidateurDonnee.valideHeure("0A:50"));
+        assertFalse(ValidateurDonnee.valideHeure("0A:5A"));
+        assertFalse(ValidateurDonnee.valideHeure("A23:00"));
+        assertFalse(ValidateurDonnee.valideHeure("23:00A"));
     }
 
     /**
