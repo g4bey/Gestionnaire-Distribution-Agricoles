@@ -1,24 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.HomePageCtrl">
    <children>
       <Line endX="499.0" endY="-1.1444091796875E-5" layoutX="100.0" layoutY="62.0" startX="-100.0" />
-      <ImageView fitHeight="64.0" fitWidth="119.0" layoutX="8.0" preserveRatio="true">
-         <image>
-            <Image url="@carrote.png" />
-         </image>
-      </ImageView>
       <Line endX="-93.10711669921875" endY="-88.70712280273438" layoutX="229.0" layoutY="150.0" startX="-93.10710144042969" startY="-150.0" />
       <Text layoutX="178.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionnaire Distribution Agricole" wrappingWidth="374.13670349121094">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="admConnBtn" layoutX="202.0" layoutY="145.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: lightblue;" text="Connexion administrateur">
+      <Button fx:id="adminConnBtn" layoutX="202.0" layoutY="145.0" mnemonicParsing="false" onAction="#switchToAdminConn" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: lightblue;" text="Connexion administrateur">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -26,7 +26,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="prodConnBtn" layoutX="202.0" layoutY="213.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="196.0" style="-fx-background-color: lightblue;" text="Connexion producteur">
+      <Button fx:id="prodConnBtn" layoutX="202.0" layoutY="213.0" mnemonicParsing="false" onAction="#switchToProdConn" prefHeight="38.0" prefWidth="196.0" style="-fx-background-color: lightblue;" text="Connexion producteur">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -34,5 +34,10 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <ImageView fitHeight="63.0" fitWidth="117.0" layoutX="7.0" layoutY="-1.0">
+         <image>
+            <Image url="@../ressources/pictures/1751148-ff5722.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

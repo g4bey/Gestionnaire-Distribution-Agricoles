@@ -110,7 +110,6 @@ CREATE TABLE Commande(
 -- Insertion de l'administrateur initial
 INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('null', 'Admin');
 
-
 #------------------------------------------------------------
 # Table: users -- used for test/database
 #------------------------------------------------------------

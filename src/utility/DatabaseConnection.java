@@ -35,7 +35,7 @@ import java.util.Properties;
  * Et dans connection l'on aura:
  * conn<testing, <instance@DatabaseConnection>
  */
-public class DatabaseConnection {
+public final class DatabaseConnection {
 
     private static HashMap<String, String> urlMap = new HashMap<>();
     private static HashMap<String, String> usernameMap = new HashMap<>();
@@ -47,12 +47,14 @@ public class DatabaseConnection {
      * L'on commence par charger les attributs url, username et password à
      * partir du fichier config.properties, et de l'environnement fournit
      * en paramètre.
-     * 
+     *
      * Ensuite l'on instancie la connection, puis nous l'inserons dans une HashMap
-     * avec
-     * comme identifiant l'environnement.
+     * avec comme identifiant l'environnement.
      *
      * @param environment l'environnement (production, testing, development...)
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
      */
     private DatabaseConnection(String environment) throws ClassNotFoundException, SQLException, IOException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -60,7 +62,8 @@ public class DatabaseConnection {
         Connection dbConn = DriverManager.getConnection(
                 urlMap.get(environment),
                 usernameMap.get(environment),
-                passwordMap.get(environment));
+                passwordMap.get(environment)
+            );
         conn.put(environment, dbConn);
     }
 
@@ -73,6 +76,9 @@ public class DatabaseConnection {
      *
      * @param environment l'environnement (production, testing, development...)
      * @return la connection au server sql.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
      */
     public static Connection getInstance(String environment) throws ClassNotFoundException, SQLException, IOException {
         if (conn.get(environment) == null) {
@@ -116,15 +122,22 @@ public class DatabaseConnection {
             config.load(configFile);
 
             // Chargeons les attributs dans leur hasmap respective
-            String url = config.getProperty("db." + environment + ".url");
-            String username = config.getProperty("db." + environment + ".username");
-            String password = config.getProperty("db." + environment + ".password");
+            String url = config.getProperty("db."
+                + environment + ".url"
+            );
+            String username = config.getProperty("db."
+                + environment + ".username"
+            );
+            String password = config.getProperty("db."
+                + environment + ".password"
+            );
 
             // Vérifions que ces variables existent bien.
             if (url == null || username == null || password == null) {
                 throw new IOException(
                         "Impossible de recuperer la base de donnee de l'environnement "
-                                + environment);
+                        + environment
+                );
             } // end if
 
             // Inserons les dans leur hashmap respective.
@@ -141,7 +154,7 @@ public class DatabaseConnection {
      * variable environment.
      * Enfin l'on reset l'attribut connection associé.
      *
-     * @param conn la connection qui doit etre close.
+     * @param environment la connection qui doit etre close.
      * @throws SQLException la connexion n'existe pas.
      */
     public static void close(String environment) throws SQLException {

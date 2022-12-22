@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.ModifyVehicleCtrl">
+   <children>
+      <Line endX="374.0000305175781" layoutX="109.0" layoutY="78.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
+      <Line endX="-117.10003662109375" endY="-117.0" layoutX="284.0" layoutY="117.0" startX="-117.10002136230469" startY="-39.50000762939453" />
+      <Text layoutX="187.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification véhicule">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Label layoutX="43.0" layoutY="110.0" text="N° d'immatriulation:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="161.0" layoutY="149.0" text="Libellé:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="193.0" text="Poids max supporté:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="vehicleImmatField" layoutX="242.0" layoutY="113.0" text="info" />
+      <TextField fx:id="vehicleCapacityField" layoutX="242.0" layoutY="197.0" text="info" />
+      <Button fx:id="validateModifyVehicle" layoutX="365.0" layoutY="284.0" mnemonicParsing="false" onAction="#validateModifyVehicle" text="Valider" />
+      <Button fx:id="cancelModifyVehicle" layoutX="57.0" layoutY="284.0" mnemonicParsing="false" onAction="#cancelModifyVehicle" text="Annuler" />
+      <TextField fx:id="vehicleLabelField" layoutX="242.0" layoutY="153.0" text="info" />
+      <ImageView fitHeight="70.0" fitWidth="150.0" layoutX="11.0" layoutY="4.0">
+         <image>
+            <Image url="@../ressources/pictures/1751148-ff5722.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="modifyErrorText" layoutX="196.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
