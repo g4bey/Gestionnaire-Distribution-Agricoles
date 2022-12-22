@@ -292,6 +292,17 @@ public class CommandeDAOTest {
         assertTrue(COMMANDE_A.getClient().equals(CLIENT_DEMO));
         assertTrue(COMMANDE_A.getTournee().equals(tournee));
         assertTrue(COMMANDE_A.getTournee().getCommandes().equals(tournee.getCommandes()));
+
+        // On supprime une commande d'une tournee.
+        tournee.removeCommande(COMMANDE_A);
+        commandeDAO.update(COMMANDE_A);
+
+        // On s'assure que la tournee ne contient plus la commande dans sa liste.
+        assertFalse(tournee.getCommandes().contains(COMMANDE_A));
+
+        // Countains se base sur le obj.equals
+        // On s'assure que la tournee ne contient plus la commande en base.
+        assertFalse(tourneeDAO.get(tournee.getIdTournee()).getCommandes().contains(COMMANDE_A));
     }
 
     /**

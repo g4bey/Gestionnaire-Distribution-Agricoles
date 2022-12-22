@@ -251,6 +251,15 @@ public class TourneeDAOTest {
         Tournee tourneeRetour = tourneeDAO.get(TOURNEE_A.getIdTournee());
         assertTrue(tourneeRetour.getCommandes().get(1).equals(TOURNEE_A.getCommandes().get(1)));
         assertTrue(tourneeRetour.getCommandes().get(0).equals(TOURNEE_A.getCommandes().get(0)));
+
+        // On verifie que les commandes ne sont plus associes a la tournee dans les objets
+        tourneeDAO.delete(TOURNEE_A);
+        assertNull(commande1.getTournee());
+        assertNull(commande2.getTournee());
+
+        // On verifie que les commandes ne sont plus associes a la tournee en base.
+        assertNull(commandeDAO.get(commande1.getIdCommande()).getTournee());
+        assertNull(commandeDAO.get(commande2.getIdCommande()).getTournee());
     }
 
     /**
