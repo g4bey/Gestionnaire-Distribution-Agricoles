@@ -34,7 +34,7 @@
     ├── src.controllers           # Contrôleurs (lien entre src.modele et vue)
     ├── src.modele                # Objets-Métier
     ├── src.ressources            # Configurations et fichiers utilisés par le logiciel.
-    ├── exceptions            # Exceptions dérivant d'Exception
+    ├── src.exceptions            # Exceptions dérivant d'Exception
     ├── src.tests                 # Tests des classes, rangés intuitivement.
     ├── src.views                 # Vues (interface graphique)
     └── src.utility               # Classes utilitaires et objets-Service
