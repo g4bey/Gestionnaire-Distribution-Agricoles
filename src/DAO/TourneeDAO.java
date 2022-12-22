@@ -171,6 +171,13 @@ public class TourneeDAO extends DAO<Tournee> {
             // On met à jour la liste de tournees dans vehicule.
             t.getVehicule().removeTournee(t);
 
+            CommandeDAO commandeDAO = new CommandeDAO(conn);
+            // On met les tournées à null.
+            t.getCommandes().forEach(c -> {
+                c.setTournee(null);
+                commandeDAO.update(c);
+            });
+
             // On supprime de la liste de tournees dans producteur
             t.getVehicule().getProducteur().removeTournee(t);
         } catch (SQLException e) {
