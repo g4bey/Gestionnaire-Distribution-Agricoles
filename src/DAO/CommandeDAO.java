@@ -87,31 +87,31 @@ public class CommandeDAO extends DAO<Commande> {
     /**
      * Ajoute dans la base de données une instance de Commande.
      * 
-     * @param t l'instance Commande de l'objet à ajouter.
+     * @param cmd l'instance Commande de l'objet à ajouter.
      */
     @Override
-    public void add(Commande t) {
+    public void add(Commande cmd) {
         try {
             pstmt = conn.prepareStatement("INSERT INTO Commande VALUES (NULL, ?, ?, ?, ?, NULL, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, t.getLibelle());
-            pstmt.setFloat(2, t.getPoids());
-            pstmt.setTimestamp(3, t.getHoraireDebut());
-            pstmt.setTimestamp(4, t.getHoraireFin());
+            pstmt.setString(1, cmd.getLibelle());
+            pstmt.setFloat(2, cmd.getPoids());
+            pstmt.setTimestamp(3, cmd.getHoraireDebut());
+            pstmt.setTimestamp(4, cmd.getHoraireFin());
             // A l'ajout d'une commande, l'id tournee est null.
-            pstmt.setInt(5, t.getProducteur().getIdProducteur());
-            pstmt.setInt(6, t.getClient().getIdClient());
+            pstmt.setInt(5, cmd.getProducteur().getIdProducteur());
+            pstmt.setInt(6, cmd.getClient().getIdClient());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
-                t.setIdCommande((int) id);
+                cmd.setIdCommande((int) id);
             }
 
             // On ajoute la commande au producteur
-            t.getProducteur().addCommande(t);
+            cmd.getProducteur().addCommande(cmd);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,35 +121,35 @@ public class CommandeDAO extends DAO<Commande> {
     /**
      * Met à jour dans la base de données une instance de Commande.
      * 
-     * @param t l'instance Commande de l'objet à mettre à jour.
+     * @param cmd l'instance Commande de l'objet à mettre à jour.
      */
     @Override
-    public void update(Commande t) {
+    public void update(Commande cmd) {
         try {
             pstmt = conn.prepareStatement(
                     "UPDATE Commande SET libelle = ?, poids = ?, horaireDebut = ?, horaireFin = ?, idTournee = ?, idProducteur = ?, idClient = ? WHERE idCommande = ?");
-            pstmt.setString(1, t.getLibelle());
-            pstmt.setFloat(2, t.getPoids());
-            pstmt.setTimestamp(3, t.getHoraireDebut());
-            pstmt.setTimestamp(4, t.getHoraireFin());
-            if (t.getTournee() != null) {
-                pstmt.setInt(5, t.getTournee().getIdTournee());
+            pstmt.setString(1, cmd.getLibelle());
+            pstmt.setFloat(2, cmd.getPoids());
+            pstmt.setTimestamp(3, cmd.getHoraireDebut());
+            pstmt.setTimestamp(4, cmd.getHoraireFin());
+            if (cmd.getTournee() != null) {
+                pstmt.setInt(5, cmd.getTournee().getIdTournee());
             } else {
                 pstmt.setNull(5, java.sql.Types.NULL);
             }
-            pstmt.setInt(6, t.getProducteur().getIdProducteur());
-            pstmt.setInt(7, t.getClient().getIdClient());
-            pstmt.setInt(8, t.getIdCommande());
+            pstmt.setInt(6, cmd.getProducteur().getIdProducteur());
+            pstmt.setInt(7, cmd.getClient().getIdClient());
+            pstmt.setInt(8, cmd.getIdCommande());
             pstmt.executeUpdate();
 
             // Si la commande n'est pas dans le tableau
-            if (!t.getProducteur().getCommandes().contains(t)) {
-                t.getProducteur().addCommande(t);
+            if (!cmd.getProducteur().getCommandes().contains(cmd)) {
+                cmd.getProducteur().addCommande(cmd);
             }
 
             // Si la commande n'est pas dans le tableau et que sa tournée n'est pas null
-            if (t.getTournee() != null && !t.getTournee().getCommandes().contains(t)) {
-                t.getTournee().addCommande(t);
+            if (cmd.getTournee() != null && !cmd.getTournee().getCommandes().contains(cmd)) {
+                cmd.getTournee().addCommande(cmd);
             }
 
         } catch (SQLException e) {
@@ -160,21 +160,21 @@ public class CommandeDAO extends DAO<Commande> {
     /**
      * Supprime de la base de données l'instance de Commande associée à l'id.
      * 
-     * @param t Commande représentant la Commande à supprimer.
+     * @param cmd Commande représentant la Commande à supprimer.
      */
     @Override
-    public void delete(Commande t) {
+    public void delete(Commande cmd) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Commande WHERE idCommande = ?");
-            pstmt.setInt(1, t.getIdCommande());
+            pstmt.setInt(1, cmd.getIdCommande());
             pstmt.executeUpdate();
 
             // On supprime la commande
-            t.getProducteur().removeCommande(t);
+            cmd.getProducteur().removeCommande(cmd);
 
             // Si la commande est dans une tournee, on la supprime.
-            if (t.getTournee() != null) {
-                t.getTournee().removeCommande(t);
+            if (cmd.getTournee() != null) {
+                cmd.getTournee().removeCommande(cmd);
             }
 
         } catch (SQLException e) {
@@ -183,13 +183,13 @@ public class CommandeDAO extends DAO<Commande> {
     }
 
     /**
-     * Retour une liste de commandes associée à une tournée.
-     * On prend le producteur en parametre pour conserver les références.
+     * Retour une liste de commandes associée à une Tournee.
+     * On prend le Producteur en paramètre pour conserver les références.
      * <p>
      * 
      * @param prd     le Producteur
-     * @param tournee Tournee du producteur.
-     * @return ArrayList<Commande> la liste de commande associée à une Tournee.
+     * @param tournee Tournee du Producteur.
+     * @return ArrayList<Commande> la liste de commandes associées à une Tournee.
      * @throws SQLException
      */
     public ArrayList<Commande> getCommandesByTournee(Producteur prd, Tournee tournee) throws SQLException {
@@ -217,16 +217,16 @@ public class CommandeDAO extends DAO<Commande> {
     }
 
     /**
-     * Retourne une liste de commande d'un producteur
-     * en lui associants ses tournées passées en parametre.
+     * Retourne une liste de commandes d'un Producteur en lui associant ses tournées
+     * passées en paramètre.
      * <p>
      * 
      * @param prd      le Producteur
-     * @param tournees ArrayList<Tournee> du producteur.
-     * @return ArrayList<Commande> la liste de commande associée à un producteur.
+     * @param tournees ArrayList<Tournee> du Producteur.
+     * @return ArrayList<Commande> la liste de commandes associées à un Producteur.
      * @throws SQLException
      */
-    public ArrayList<Commande> getCommandesByProducteursTournees(Producteur prd, ArrayList<Tournee> tournees)
+    public ArrayList<Commande> getCommandesByProducteurTournees(Producteur prd, ArrayList<Tournee> tournees)
             throws SQLException {
         ArrayList<Commande> commandes = new ArrayList<>();
 

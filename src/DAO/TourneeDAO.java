@@ -186,18 +186,18 @@ public class TourneeDAO extends DAO<Tournee> {
     }
 
     /**
-     * Retour une liste de tournée associée àa un Vehicle.
+     * Retour une liste de tournées associées à un Vehicle.
      *
-     * @param t le Vehicule qui doit etre associe à la tournée
-     * @return tournees un ArrayList<> contenant les tournées associés au Vehicle
+     * @param vh le Vehicule qui doit etre associé à la tournée
+     * @return un ArrayList<> contenant les tournées associées au Vehicle
      * @throws SQLException
      */
-    public ArrayList<Tournee> getTourneesByVehicule(Vehicule t) throws SQLException {
+    public ArrayList<Tournee> getTourneesByVehicule(Vehicule vh) throws SQLException {
         ArrayList<Tournee> tournees = new ArrayList<>();
 
         pstmt = conn.prepareStatement(
                 "SELECT * FROM Tournee WHERE idVehicule = ?");
-        pstmt.setInt(1, t.getIdVehicule());
+        pstmt.setInt(1, vh.getIdVehicule());
         rs = pstmt.executeQuery();
 
         while (rs.next()) {
@@ -207,18 +207,18 @@ public class TourneeDAO extends DAO<Tournee> {
                     rs.getTimestamp("horaireFin"),
                     rs.getFloat("poids"),
                     rs.getString("libelle"),
-                    t));
+                    vh));
         }
 
         return tournees;
     }
 
     /**
-     * Retourne une liste de tournée associée à une liste de véhicules, pour
-     * récupérer à partir
-     * de la liste de véhicules d'un producteur sa liste de tournées.
+     * Retourne une liste de tournées associées à une liste de véhicules, pour
+     * récupérer à partir de la liste de véhicules d'un Producteur sa liste de
+     * tournées.
      *
-     * @param vehicules les véhicules qui doivent etre associés à la tournée
+     * @param vehicules les véhicules qui doivent etre associés à la Tournee
      * @return ArrayList<Tournee> contenant les tournées associées aux véhicules
      * @throws SQLException
      */

@@ -48,7 +48,7 @@ public class ProducteurDAO extends DAO<Producteur> {
                 }
 
                 // On charge la liste de commande
-                for (Commande commande : new CommandeDAO(conn).getCommandesByProducteursTournees(prd, tournees)) {
+                for (Commande commande : new CommandeDAO(conn).getCommandesByProducteurTournees(prd, tournees)) {
                     prd.addCommande(commande);
                 }
 
@@ -95,26 +95,26 @@ public class ProducteurDAO extends DAO<Producteur> {
     /**
      * Ajoute dans la base de données une instance de Producteur.
      * 
-     * @param t l'instance Producteur de l'objet à ajouter.
+     * @param prd l'instance Producteur de l'objet à ajouter.
      */
     @Override
-    public void add(Producteur t) {
+    public void add(Producteur prd) {
         try {
             pstmt = conn.prepareStatement("INSERT INTO Producteur VALUES (NULL, ?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, t.getProprietaire());
-            pstmt.setString(2, t.getAdresseProd());
-            pstmt.setString(3, t.getNumTelProd());
-            pstmt.setString(4, t.getGpsProd());
-            pstmt.setString(5, t.getMdpProd());
-            pstmt.setString(6, t.getSiret());
+            pstmt.setString(1, prd.getProprietaire());
+            pstmt.setString(2, prd.getAdresseProd());
+            pstmt.setString(3, prd.getNumTelProd());
+            pstmt.setString(4, prd.getGpsProd());
+            pstmt.setString(5, prd.getMdpProd());
+            pstmt.setString(6, prd.getSiret());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
-                t.setIdProducteur((int) id);
+                prd.setIdProducteur((int) id);
             }
 
         } catch (SQLException e) {
@@ -125,20 +125,20 @@ public class ProducteurDAO extends DAO<Producteur> {
     /**
      * Met à jour dans la base de données une instance de Producteur.
      * 
-     * @param t l'instance Producteur de l'objet à mettre à jour.
+     * @param prd l'instance Producteur de l'objet à mettre à jour.
      */
     @Override
-    public void update(Producteur t) {
+    public void update(Producteur prd) {
         try {
             pstmt = conn.prepareStatement(
                     "UPDATE Producteur SET siret = ?, proprietaire = ?, adresseProd = ?, numTelProd = ?, gpsProd = ?, mdpProd = ? WHERE idProducteur = ?");
-            pstmt.setString(1, t.getSiret());
-            pstmt.setString(2, t.getProprietaire());
-            pstmt.setString(3, t.getAdresseProd());
-            pstmt.setString(4, t.getNumTelProd());
-            pstmt.setString(5, t.getGpsProd());
-            pstmt.setString(6, t.getMdpProd());
-            pstmt.setInt(7, t.getIdProducteur());
+            pstmt.setString(1, prd.getSiret());
+            pstmt.setString(2, prd.getProprietaire());
+            pstmt.setString(3, prd.getAdresseProd());
+            pstmt.setString(4, prd.getNumTelProd());
+            pstmt.setString(5, prd.getGpsProd());
+            pstmt.setString(6, prd.getMdpProd());
+            pstmt.setInt(7, prd.getIdProducteur());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -155,7 +155,7 @@ public class ProducteurDAO extends DAO<Producteur> {
     public void delete(Producteur prd) {
         try {
             TourneeDAO tDAO = new TourneeDAO(conn);
-            prd.getCommandes().stream().map(t -> t.getTournee()).distinct().forEach(t -> tDAO.delete(t));
+            prd.getCommandes().stream().map(c -> c.getTournee()).distinct().forEach(t -> tDAO.delete(t));
 
             pstmt = conn.prepareStatement("DELETE FROM Producteur WHERE idProducteur = ?");
             pstmt.setInt(1, prd.getIdProducteur());

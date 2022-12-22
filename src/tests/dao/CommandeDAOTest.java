@@ -413,7 +413,7 @@ public class CommandeDAOTest {
                 tourneeListe.add(tourneeBis);
 
                 // On recupere la liste de commandes et on y verifie les valeurs
-                ArrayList<Commande> commandes = commandeDAO.getCommandesByProducteursTournees(PRODUCTEUR_DEMO,
+                ArrayList<Commande> commandes = commandeDAO.getCommandesByProducteurTournees(PRODUCTEUR_DEMO,
                                 tourneeListe);
                 assertTrue(commandes.get(0).equals(COMMANDE_A));
                 assertTrue(commandes.get(1).equals(COMMANDE_B));

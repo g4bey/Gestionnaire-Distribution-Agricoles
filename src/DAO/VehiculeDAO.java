@@ -110,10 +110,11 @@ public class VehiculeDAO extends DAO<Vehicule> {
     }
 
     /**
-     * Retour une liste de tournée associée a un Producteur.
+     * Retour une liste de véhicules associés à un Producteur.
      *
-     * @param prd le Producteur qui doit etre associe au véhicule.
-     * @return tournees un ArrayList<> contenant les tournées associés au Producteur
+     * @param prd le Producteur qui doit être associé au Vehicule.
+     * @return vehicules - ArrayList<> contenant les véhicules associés au
+     *         Producteur
      * @throws SQLException
      */
     public ArrayList<Vehicule> getVehiculesByProducteur(Producteur prd) throws SQLException {
@@ -138,26 +139,26 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Ajoute dans la base de données une instance de Vehicule.
      * 
-     * @param t l'instance Vehicule de l'objet à ajouter.
+     * @param vh l'instance Vehicule de l'objet à ajouter.
      */
     @Override
-    public void add(Vehicule t) {
+    public void add(Vehicule vh) {
         try {
             pstmt = conn.prepareStatement("INSERT INTO Vehicule VALUES (NULL, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setFloat(1, t.getPoidsMax());
-            pstmt.setString(2, t.getLibelle());
-            pstmt.setString(3, t.getNumImmat());
-            pstmt.setInt(4, t.getProducteur().getIdProducteur());
+            pstmt.setFloat(1, vh.getPoidsMax());
+            pstmt.setString(2, vh.getLibelle());
+            pstmt.setString(3, vh.getNumImmat());
+            pstmt.setInt(4, vh.getProducteur().getIdProducteur());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
-                t.setIdVehicule((int) id);
+                vh.setIdVehicule((int) id);
             }
-            t.getProducteur().addVehicule(t); // Ajout pour tester
+            vh.getProducteur().addVehicule(vh); // Ajout pour tester
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -167,23 +168,23 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Met à jour dans la base de données une instance de Vehicule.
      * 
-     * @param t l'instance Vehicule de l'objet à mettre à jour.
+     * @param vh l'instance Vehicule de l'objet à mettre à jour.
      */
     @Override
-    public void update(Vehicule t) {
+    public void update(Vehicule vh) {
         try {
             pstmt = conn.prepareStatement(
                     "UPDATE Vehicule SET poidsMax = ?, libelle = ?, numImmat = ?, idProducteur = ? WHERE idVehicule = ?");
-            pstmt.setFloat(1, t.getPoidsMax());
-            pstmt.setString(2, t.getLibelle());
-            pstmt.setString(3, t.getNumImmat());
-            pstmt.setInt(4, t.getProducteur().getIdProducteur());
-            pstmt.setInt(5, t.getIdVehicule());
+            pstmt.setFloat(1, vh.getPoidsMax());
+            pstmt.setString(2, vh.getLibelle());
+            pstmt.setString(3, vh.getNumImmat());
+            pstmt.setInt(4, vh.getProducteur().getIdProducteur());
+            pstmt.setInt(5, vh.getIdVehicule());
 
             pstmt.executeUpdate();
 
-            if (!t.getProducteur().getVehicules().contains(t)) {
-                t.getProducteur().addVehicule(t);
+            if (!vh.getProducteur().getVehicules().contains(vh)) {
+                vh.getProducteur().addVehicule(vh);
             } // Ajout pour tester
         } catch (SQLException e) {
             e.printStackTrace();
@@ -193,18 +194,18 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Supprime de la base de données l'instance de Vehicule associée à l'id.
      * 
-     * @param t Vehicule représentant le Vehicule à supprimer.
+     * @param vh Vehicule représentant le Vehicule à supprimer.
      */
     @Override
-    public void delete(Vehicule t) {
+    public void delete(Vehicule vh) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Vehicule WHERE idVehicule = ?");
-            pstmt.setInt(1, t.getIdVehicule());
+            pstmt.setInt(1, vh.getIdVehicule());
 
             pstmt.executeUpdate();
-            t.getTournees().forEach(tournee -> t.setIdVehicule(0));
+            vh.getTournees().forEach(tournee -> vh.setIdVehicule(0));
 
-            t.getProducteur().removeVehicule(t); // Ajout pour tester
+            vh.getProducteur().removeVehicule(vh); // Ajout pour tester
         } catch (SQLException e) {
             e.printStackTrace();
         }

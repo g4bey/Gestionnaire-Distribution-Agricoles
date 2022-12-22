@@ -70,24 +70,24 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Ajoute dans la base de données une instance de Client.
      * 
-     * @param t l'instance Client de l'objet à ajouter.
+     * @param clt l'instance Client de l'objet à ajouter.
      */
     @Override
-    public void add(Client t) {
+    public void add(Client clt) {
         try {
             pstmt = conn.prepareStatement("INSERT INTO Client VALUES (NULL, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, t.getNomClient());
-            pstmt.setString(2, t.getAdresseClient());
-            pstmt.setString(3, t.getGpsClient());
-            pstmt.setString(4, t.getNumTelClient());
+            pstmt.setString(1, clt.getNomClient());
+            pstmt.setString(2, clt.getAdresseClient());
+            pstmt.setString(3, clt.getGpsClient());
+            pstmt.setString(4, clt.getNumTelClient());
 
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
-                t.setIdClient((int) id);
+                clt.setIdClient((int) id);
             }
 
         } catch (SQLException e) {
@@ -98,18 +98,18 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Met à jour dans la base de données une instance de Client.
      * 
-     * @param t l'instance Client de l'objet à mettre à jour.
+     * @param clt l'instance Client de l'objet à mettre à jour.
      */
     @Override
-    public void update(Client t) {
+    public void update(Client clt) {
         try {
             pstmt = conn.prepareStatement(
                     "UPDATE Client SET nomClient = ?, adresseClient = ?, gpsClient = ?, numTelClient = ? WHERE idClient = ?");
-            pstmt.setString(1, t.getNomClient());
-            pstmt.setString(2, t.getAdresseClient());
-            pstmt.setString(3, t.getGpsClient());
-            pstmt.setString(4, t.getNumTelClient());
-            pstmt.setInt(5, t.getIdClient());
+            pstmt.setString(1, clt.getNomClient());
+            pstmt.setString(2, clt.getAdresseClient());
+            pstmt.setString(3, clt.getGpsClient());
+            pstmt.setString(4, clt.getNumTelClient());
+            pstmt.setInt(5, clt.getIdClient());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -120,13 +120,13 @@ public class ClientDAO extends DAO<Client> {
     /**
      * Supprime de la base de données l'instance de Client associée à l'id.
      * 
-     * @param t Client représentant le Client à supprimer.
+     * @param clt Client représentant le Client à supprimer.
      */
     @Override
-    public void delete(Client t) {
+    public void delete(Client clt) {
         try {
             pstmt = conn.prepareStatement("DELETE FROM Client WHERE idClient = ?");
-            pstmt.setInt(1, t.getIdClient());
+            pstmt.setInt(1, clt.getIdClient());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
