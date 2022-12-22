@@ -204,6 +204,7 @@ public class TourneeDAOTest {
         tourneeDAO.add(TOURNEE_A);
         TOURNEE_A.setHoraireDebut(new Timestamp(25000));
         TOURNEE_A.setHoraireFin(new Timestamp(35000));
+        TOURNEE_A.setPoids(90F);
         TOURNEE_A.setLibelle("Livraison de correcteurs");
         TOURNEE_A.setVehicule(vehiculeB);
         tourneeDAO.update(TOURNEE_A);
