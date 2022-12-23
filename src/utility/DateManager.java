@@ -43,11 +43,22 @@ public class DateManager {
      * Convertit un timestamp en son heure sous forme de string.
      *
      * @param timestamp l'objet Timestamp.
-     * @return un string représentant une heure.
+     * @return un string représentant une heure du type HH:mm.
      */
     public static String TimestampToHourString(Timestamp timestamp) {
         LocalDateTime ldt = timestamp.toLocalDateTime();
         return ldt.getHour() + ":" + ldt.getMinute();
+    }
+
+    /**
+     * Convertit un timestamp en sa date sous forme de string.
+     *
+     * @param timestamp l'objet Timestamp.
+     * @return un string représentant une heure sour la forme JJ-mm-AAAA.
+     */
+    public static String TimestampToDateString(Timestamp timestamp) {
+        LocalDateTime ldt = timestamp.toLocalDateTime();
+        return ldt.getDayOfMonth() + "-" + ldt.getMonthValue() + "-" + ldt.getYear();
     }
 
     /**
