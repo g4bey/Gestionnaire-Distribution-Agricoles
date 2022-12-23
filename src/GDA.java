@@ -21,7 +21,7 @@ public class GDA extends Application {
     public void start(Stage primaryStage) throws IOException {
     	Parent root = FXMLLoader.load(getClass().getResource("/views/homePage.fxml"));
     	Scene scene = new Scene(root);
-    	Image icon = new Image("/ressources/pictures/1751148-ff5722.png");
+    	Image icon = new Image("/ressources/pictures/p&sLogo.png");
     	
     	primaryStage.setTitle("Gestionnaire-Distribution-Agricoles");
     	primaryStage.setResizable(false);
