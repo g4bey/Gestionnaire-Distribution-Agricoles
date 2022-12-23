@@ -1,0 +1,106 @@
+
+
+/* Style pour les anchorPane pour les vues principales.
+
+    Cela comprend homePage, adminConn et prodConn.
+    Fond blanc
+
+*/
+
+
+/* Propsition 1
+.mainPane {
+    -fx-background-color: rgb(240, 238, 238);
+}
+
+.sideRectangle {
+    -fx-fill: rgb(127, 255, 212);
+    -fx-stroke: none;
+}
+
+.topRectangle {
+    -fx-fill: rgb(186, 255, 186);
+    -fx-stroke: none;
+}
+
+.homePageButton {
+    -fx-background-color: rgb(255, 255, 255);
+}
+*/
+
+/* Proposition 2
+.mainPane {
+    -fx-background-color: rgb(240, 238, 238);
+}
+
+.sideRectangle {
+    -fx-fill: lightsalmon;
+    -fx-stroke: none;
+}
+
+.topRectangle {
+    -fx-fill: #91ff9e;
+    -fx-stroke: none;
+}
+
+.homePageButton {
+    -fx-background-color: rgb(255, 255, 255);
+}
+*/
+
+/* Proposition 3
+.mainPane {
+    -fx-background-color: white;
+}
+
+.sideRectangle {
+    -fx-fill: gainsboro;
+    -fx-stroke: none;
+}
+
+.topRectangle {
+    -fx-fill: rgb(6, 249, 144);
+    -fx-stroke: none;
+}
+
+.homePageButton {
+    -fx-background-color: aquamarine;
+}
+*/
+
+/*
+.mainPane {
+    -fx-background-color: white;
+}
+
+.sideRectangle {
+    -fx-fill: gainsboro;
+    -fx-stroke: none;
+}
+
+.topRectangle {
+    -fx-fill: rgb(255, 131, 82);
+    -fx-stroke: none;
+}
+
+.homePageButton {
+    -fx-background-color: lightsalmon;
+}
+*/
+.mainPane {
+    -fx-background-color: rgb(240, 238, 238);
+}
+
+.sideRectangle {
+    -fx-fill: rgb(127, 255, 212);
+    -fx-stroke: none;
+}
+
+.topRectangle {
+    -fx-fill: rgb(186, 255, 186);
+    -fx-stroke: none;
+}
+
+.homePageButton {
+    -fx-background-color: aquamarine;
+}
