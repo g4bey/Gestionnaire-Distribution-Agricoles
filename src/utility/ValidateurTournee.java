@@ -46,14 +46,19 @@ public class ValidateurTournee {
         jsonObject.add("coordinates", gson
                 .toJsonTree(commandes.stream().map(clt -> clt.getClient().getGpsClient().split(",")).toArray()));
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.openrouteservice.org/v2/directions/driving-car/json"))
-                .header("Authorization", "")
-                .header("Accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8")
-                .header("Content-Type", "application/json; charset=utf-8")
-                .POST(HttpRequest.BodyPublishers
-                        .ofString(gson.toJson(jsonObject)))
-                .build();
+        HttpRequest request;
+        try {
+            request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://api.openrouteservice.org/v2/directions/driving-car/json"))
+                    .header("Authorization", ConfigHelper.get("ORS_KEY"))
+                    .header("Accept",
+                            "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8")
+                    .header("Content-Type", "application/json; charset=utf-8")
+                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonObject))).build();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return false;
+        }
 
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response;

@@ -1,12 +1,10 @@
 package utility;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Properties;
 
 /**
  * Fournit un ensemble de connection unique à la base de donnée.
@@ -62,8 +60,7 @@ public final class DatabaseConnection {
         Connection dbConn = DriverManager.getConnection(
                 urlMap.get(environment),
                 usernameMap.get(environment),
-                passwordMap.get(environment)
-            );
+                passwordMap.get(environment));
         conn.put(environment, dbConn);
     }
 
@@ -117,8 +114,7 @@ public final class DatabaseConnection {
             if (url == null || username == null || password == null) {
                 throw new IOException(
                         "Impossible de recuperer la base de donnee de l'environnement "
-                        + environment
-                );
+                                + environment);
             } // end if
 
             // Inserons les dans leur hashmap respective.
