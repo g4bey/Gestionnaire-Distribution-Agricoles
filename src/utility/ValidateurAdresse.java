@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
  * <p>
  * Si l'adresse est valide, on pourra récupérer les différentes informations via les getter.
  */
-public class AdresseValide {
+public class ValidateurAdresse {
     private final String BASE_URL = "https://api-adresse.data.gouv.fr";
     private final String ENDPOINT = "/search/";
 
@@ -44,7 +44,7 @@ public class AdresseValide {
      * @param ville la ville fourni
      * @throws AdresseInvalideException
      */
-    private AdresseValide(String rue, String codePostale, String ville) throws AdresseInvalideException {
+    private ValidateurAdresse(String rue, String codePostale, String ville) throws AdresseInvalideException {
         // Récupérons le résultat de la requête
         JsonObject objetJson = makeRequest(makeURI(rue, codePostale, ville));
 
@@ -126,8 +126,8 @@ public class AdresseValide {
      * @return un objet AdresseValide
      * @throws AdresseInvalideException l'adresse est invalide.
      */
-    public static AdresseValide create(String rue, String codePostale, String ville) throws AdresseInvalideException {
-        return new AdresseValide(rue, codePostale, ville);
+    public static ValidateurAdresse create(String rue, String codePostale, String ville) throws AdresseInvalideException {
+        return new ValidateurAdresse(rue, codePostale, ville);
     }
 
     /**
