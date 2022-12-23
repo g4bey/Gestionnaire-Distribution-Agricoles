@@ -1,12 +1,10 @@
 package utility;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Properties;
 
 /**
  * Fournit un ensemble de connection unique à la base de donnée.
@@ -62,8 +60,7 @@ public final class DatabaseConnection {
         Connection dbConn = DriverManager.getConnection(
                 urlMap.get(environment),
                 usernameMap.get(environment),
-                passwordMap.get(environment)
-            );
+                passwordMap.get(environment));
         conn.put(environment, dbConn);
     }
 
@@ -108,36 +105,16 @@ public final class DatabaseConnection {
      */
     private static void chargerAttribut(String environment) throws IOException {
         try {
-            // Récupérons le classLoader de l'object
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-            // Obtenons le fichier de configuration sous forme de stream, a partir de la
-            // racine
-            InputStream configFile = classLoader.getResourceAsStream("ressources/config.properties");
-
-            // Déclarons un object Properties que nous nommerons config.
-            Properties config = new Properties();
-
-            // Chargeons config selon configFile
-            config.load(configFile);
-
             // Chargeons les attributs dans leur hasmap respective
-            String url = config.getProperty("db."
-                + environment + ".url"
-            );
-            String username = config.getProperty("db."
-                + environment + ".username"
-            );
-            String password = config.getProperty("db."
-                + environment + ".password"
-            );
+            String url = ConfigHelper.get("db." + environment + ".url");
+            String username = ConfigHelper.get("db." + environment + ".username");
+            String password = ConfigHelper.get("db." + environment + ".password");
 
             // Vérifions que ces variables existent bien.
             if (url == null || username == null || password == null) {
                 throw new IOException(
                         "Impossible de recuperer la base de donnee de l'environnement "
-                        + environment
-                );
+                                + environment);
             } // end if
 
             // Inserons les dans leur hashmap respective.
