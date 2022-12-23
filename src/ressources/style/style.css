@@ -29,6 +29,6 @@
     -fx-border-style: hidden hidden solid hidden;
 }
 
-.prettyField:focus {
+.prettyField:focused {
     -fx-border-color: rgb(56, 56, 210);
 }

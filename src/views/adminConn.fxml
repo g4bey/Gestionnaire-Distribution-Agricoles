@@ -6,42 +6,42 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminConnCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="600.0" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminConnCtrl">
    <children>
-      <Text layoutX="165.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion administrateur">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Text>
-      <TextField fx:id="adminLoginField" layoutX="278.0" layoutY="116.0" />
-      <TextField fx:id="adminPasswordField" layoutX="278.0" layoutY="168.0" />
-      <Label layoutX="201.0" layoutY="114.0" text="Login:">
+      <TextField fx:id="adminLoginField" layoutX="345.0" layoutY="137.0" styleClass="prettyField" />
+      <TextField fx:id="adminPasswordField" layoutX="345.0" layoutY="189.0" styleClass="prettyField" />
+      <Label layoutX="268.0" layoutY="135.0" text="Login:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="130.0" layoutY="165.0" text="Mot de passe:">
+      <Label layoutX="197.0" layoutY="186.0" text="Mot de passe:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Line endX="499.0" endY="-1.1444091796875E-5" layoutX="100.0" layoutY="66.0" startX="-100.0" />
-      <Line endX="-93.10711669921875" endY="-89.70712280273438" layoutX="223.0" layoutY="155.0" startX="-93.10711669921875" startY="-155.0" />
-      <Button fx:id="validateAdminConn" layoutX="449.0" layoutY="284.0" mnemonicParsing="false" onAction="#validateAdminConn" text="Valider" />
-      <Button fx:id="cancelAdminConn" layoutX="88.0" layoutY="284.0" mnemonicParsing="false" onAction="#cancelAdminConn" text="Annuler" />
-      <ImageView fitHeight="58.0" fitWidth="110.0" layoutX="7.0" layoutY="4.0">
-         <image>
-            <Image url="@../ressources/pictures/1751148-ff5722.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="validateAdminConn" layoutX="399.0" layoutY="271.0" mnemonicParsing="false" onAction="#validateAdminConn" prefHeight="30.0" prefWidth="108.0" styleClass="homePageButton" text="Valider" />
+      <Button fx:id="cancelAdminConn" layoutX="225.0" layoutY="271.0" mnemonicParsing="false" onAction="#cancelAdminConn" prefHeight="30.0" prefWidth="108.0" styleClass="homePageButton" text="Annuler" />
       <Text fx:id="formErrorText" layoutX="254.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="359.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" styleClass="sideRectangle" width="137.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="137.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" styleClass="topRectangle" width="465.0" />
+      <Text layoutX="170.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion administrateur">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="29.0" layoutY="15.0">
+         <image>
+            <Image url="@../ressources/pictures/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

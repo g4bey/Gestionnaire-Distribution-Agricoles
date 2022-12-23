@@ -36,7 +36,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="343.0" stroke="BLACK" strokeType="INSIDE" styleClass="sideRectangle" width="137.0" />
       <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="29.0" layoutY="1.0">
          <image>
-            <Image url="@../ressources/pictures/p&amp;sLogo.png" />
+            <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
    </children>
