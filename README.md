@@ -23,6 +23,7 @@
     ├── Rapports              # Rapports envoyées
     ├── Set-up                # Script de mise en route du projet
     ├── src                   # Racine du projet           
+    ├── libraries             # les librairies utilisés      
     ├── README.md             # Informations sur le projet
     └── resumé-reunions.md    # Résumé des réunions de groupe
     
@@ -68,10 +69,11 @@ La configuration du checkstyle pour les IDE se trouve dans /src/ressources/check
 
 **Outils:**
 - JDK 19
-- JavaFX & FXML
+- JavaFX 19 & FXML
 - MySQL 10.2 (preconfiguré par XAMPP)
 - JDBC 
-- JUnit 5.8.1 & JUnit4
+- JUnit 5.8.1
+- gson 2.10
 - Scnene Builder
 
 **Collaborateurs:**
