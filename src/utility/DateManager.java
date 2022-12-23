@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Assiste la création de timestamp.
@@ -19,7 +20,7 @@ public class DateManager {
     public static Timestamp convertToTimestamp(LocalDate date, String heureString) {
         // On parse l'heure et les minutes
         int hr = Integer.parseInt(heureString.substring(0, 2));
-        int mn = Integer.parseInt(heureString.substring(3, 6));
+        int mn = Integer.parseInt(heureString.substring(3, 5));
         // On construit un objet LocalTime
         LocalTime heure = LocalTime.of(hr, mn);
         // Ce qui nous permet de creer un LocalDateTime
@@ -43,11 +44,24 @@ public class DateManager {
      * Convertit un timestamp en son heure sous forme de string.
      *
      * @param timestamp l'objet Timestamp.
-     * @return un string représentant une heure.
+     * @return un string représentant une heure du type HH:mm.
      */
     public static String TimestampToHourString(Timestamp timestamp) {
         LocalDateTime ldt = timestamp.toLocalDateTime();
-        return ldt.getHour() + ":" + ldt.getMinute();
+        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("HH:mm");
+        return ldt.format(customFormat);
+    }
+
+    /**
+     * Convertit un timestamp en sa date sous forme de string.
+     *
+     * @param timestamp l'objet Timestamp.
+     * @return un string représentant une heure sour la forme JJ-mm-AAAA.
+     */
+    public static String TimestampToDateString(Timestamp timestamp) {
+        LocalDateTime ldt = timestamp.toLocalDateTime();
+        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return ldt.format(customFormat);
     }
 
     /**
