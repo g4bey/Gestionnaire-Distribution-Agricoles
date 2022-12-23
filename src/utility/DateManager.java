@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Assiste la création de timestamp.
@@ -47,7 +48,8 @@ public class DateManager {
      */
     public static String TimestampToHourString(Timestamp timestamp) {
         LocalDateTime ldt = timestamp.toLocalDateTime();
-        return ldt.getHour() + ":" + ldt.getMinute();
+        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("hh:mm");
+        return ldt.format(customFormat);
     }
 
     /**
@@ -58,7 +60,8 @@ public class DateManager {
      */
     public static String TimestampToDateString(Timestamp timestamp) {
         LocalDateTime ldt = timestamp.toLocalDateTime();
-        return ldt.getDayOfMonth() + "-" + ldt.getMonthValue() + "-" + ldt.getYear();
+        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return ldt.format(customFormat);
     }
 
     /**
