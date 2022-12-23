@@ -9,7 +9,7 @@ import java.util.Properties;
  * dans config.property situé dans le fichier ressource.
  */
 public class ConfigHelper {
-    private static final String pathToConfig = "ressources/config.properties";
+    private static final String PATH_TO_CONFIG = "ressources/config.properties";
 
     /**
      * Permet de retourner un attribut dans le fichier config.properties
@@ -23,7 +23,7 @@ public class ConfigHelper {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
         // Obtenons le fichier de configuration sous forme de stream, à partir de la racine
-        InputStream configFile = classLoader.getResourceAsStream(pathToConfig);
+        InputStream configFile = classLoader.getResourceAsStream(PATH_TO_CONFIG);
 
         // Déclarons un object Properties que nous nommerons config.
         Properties config = new Properties();
