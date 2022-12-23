@@ -80,12 +80,14 @@ public class ValidateurTournee {
             Commande commande = itCmd.next();
 
             // Vérifie qu'il n'arrive pas après l'heure de fin
-            if (horaireTmp.after(commande.getHoraireFin()))
+            if (horaireTmp.after(commande.getHoraireFin())) {
                 return false;
+            }
 
             // S'il arrive avant l'heure de début, il attend
-            if (horaireTmp.before(commande.getHoraireDebut()))
+            if (horaireTmp.before(commande.getHoraireDebut())) {
                 horaireTmp = commande.getHoraireDebut();
+            }
         }
 
         return true;
