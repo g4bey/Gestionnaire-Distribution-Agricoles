@@ -14,13 +14,13 @@ public class ValidateurAdresseTest {
     @DisplayName("Validation de la création d'une adresse valide")
     public void adresseCreationTest() {
 
-        /* assertThrows(AdresseInvalide.class, () -> {
-            ValidateurAdresse.create("103 rue machin", "37000", "Tours");
+        assertThrows(AdresseInvalide.class, () -> {
+            ValidateurAdresse.create("8 Boulevard machin", "80000", "Amiens");
         });
-        */
-        // ValidateurAdresse adresse = ValidateurAdresse.create("103 rue Emile Zola", "37000", "Tours");
-        // assertEquals(adresse.getCoordX(), 47.3943051);
-        // assertEquals(adresse.getCoordY(), 0.6903615);
+        ValidateurAdresse adresse = ValidateurAdresse.create("8 Boulevard du Port", "80000", "Amiens");
+        assertEquals(adresse.getCoordX(), "49.897443");
+        assertEquals(adresse.getCoordY(), "2.290084");
+        assertEquals(adresse.getCoordXY(), "49.897443,2.290084")
     }
 
     /**
@@ -29,7 +29,7 @@ public class ValidateurAdresseTest {
     @Test
     @DisplayName("Validation du format d'une adresse")
     public void formatTest() {
-        // ValidateurAdresse adresse = ValidateurAdresse.create("103 rue Emile Zola", "37000", "Tours"); 
-        // assertEquals(adresse.format(), "103 rue Emile Zola, 37000, Tours");
+        ValidateurAdresse adresse = ValidateurAdresse.create("8 Boulevard du Port", "80000", "Amiens"); 
+        assertEquals(adresse.format(), "8 Boulevard du Port, 80000, Amiens");
     }
 }
