@@ -104,7 +104,6 @@ public class ControllersUtils {
 	/**
     * Méthode qui permet de fermer la vue popup.
     * @param event ActionEvent
-    * @param stage Stage la fenêtre à fermer.
     */
     public static void closePopup(ActionEvent event) {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
