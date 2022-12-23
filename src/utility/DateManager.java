@@ -20,7 +20,7 @@ public class DateManager {
     public static Timestamp convertToTimestamp(LocalDate date, String heureString) {
         // On parse l'heure et les minutes
         int hr = Integer.parseInt(heureString.substring(0, 2));
-        int mn = Integer.parseInt(heureString.substring(3, 6));
+        int mn = Integer.parseInt(heureString.substring(3, 5));
         // On construit un objet LocalTime
         LocalTime heure = LocalTime.of(hr, mn);
         // Ce qui nous permet de creer un LocalDateTime
@@ -48,7 +48,7 @@ public class DateManager {
      */
     public static String TimestampToHourString(Timestamp timestamp) {
         LocalDateTime ldt = timestamp.toLocalDateTime();
-        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("hh:mm");
+        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("HH:mm");
         return ldt.format(customFormat);
     }
 
