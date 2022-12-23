@@ -1,26 +1,28 @@
 package tests.utility;
 
+import exceptions.AdresseInvalideException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import utility.ValidateurAdresse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ValidateurAdresseTest {
-    
+
     /**
      * Permet de vérifier la création d'une adresse.
      */
     @Test
     @DisplayName("Validation de la création d'une adresse valide")
-    public void adresseCreationTest() {
+    public void adresseCreationTest() throws AdresseInvalideException {
 
-        assertThrows(AdresseInvalide.class, () -> {
+        assertThrows(AdresseInvalideException.class, () -> {
             ValidateurAdresse.create("8 Boulevard machin", "80000", "Amiens");
         });
         ValidateurAdresse adresse = ValidateurAdresse.create("8 Boulevard du Port", "80000", "Amiens");
-        assertEquals(adresse.getCoordX(), "49.897443");
+        assertEquals(adresse.getCoordX(), "49.897442");
         assertEquals(adresse.getCoordY(), "2.290084");
-        assertEquals(adresse.getCoordXY(), "49.897443,2.290084")
+        assertEquals(adresse.getCoordXY(), "49.897442,2.290084");
     }
 
     /**
@@ -28,8 +30,8 @@ public class ValidateurAdresseTest {
      */
     @Test
     @DisplayName("Validation du format d'une adresse")
-    public void formatTest() {
-        ValidateurAdresse adresse = ValidateurAdresse.create("8 Boulevard du Port", "80000", "Amiens"); 
-        assertEquals(adresse.format(), "8 Boulevard du Port, 80000, Amiens");
+    public void formatTest() throws AdresseInvalideException {
+        ValidateurAdresse adresse = ValidateurAdresse.create("8 Boulevard du Port", "80000", "Amiens");
+        assertEquals(adresse.format(), "8 Boulevard du Port 80000 Amiens");
     }
 }
