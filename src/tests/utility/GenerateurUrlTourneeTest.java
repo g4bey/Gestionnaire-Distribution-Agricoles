@@ -16,6 +16,9 @@ import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests de la classe utility.GenerateurUrlTournee.
+ */
 public class GenerateurUrlTourneeTest {
 
     static private Connection conn;
@@ -65,6 +68,10 @@ public class GenerateurUrlTourneeTest {
         truncateTable("Vehicule");
         truncateTable("Producteur");
     }
+
+    /**
+     * On crée une Tournée et on vérifie que l'URL généré est bien celui attendu
+     */
     @Test
     @DisplayName("Test du générateur d'URL")
     public void AffichageTourneeUrlTest() {
