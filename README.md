@@ -63,6 +63,7 @@
 - Commentaire JavaDoc
 - IdBDD, port, tous les trucs de setup dans un json à part
 - Documenter chaque classe
+- Utilisation d'accolades 
 
 La configuration du checkstyle pour les IDE se trouve dans /src/ressources/checkstyleConfigurationGDA.xml
 
