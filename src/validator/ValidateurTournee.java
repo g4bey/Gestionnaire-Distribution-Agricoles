@@ -56,10 +56,10 @@ public class ValidateurTournee {
     public static boolean valideSuiteCommandes(ArrayList<Commande> commandes, String gpsProd) {
         ArrayList<String[]> coordsGPS = new ArrayList<>();
         coordsGPS.add(gpsProd.split(","));
+        coordsGPS.addAll(commandes.stream().map(clt -> clt.getClient().getGpsClient().split(",")).toList());
         Gson gson = new Gson();
         JsonObject jsonObject = new JsonObject();
-        jsonObject.add("coordinates", gson.toJsonTree(
-                coordsGPS.addAll(commandes.stream().map(clt -> clt.getClient().getGpsClient().split(",")).toList())));
+        jsonObject.add("coordinates", gson.toJsonTree(coordsGPS));
 
         HttpRequest request;
         try {
