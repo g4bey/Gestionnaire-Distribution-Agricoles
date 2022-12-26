@@ -24,7 +24,7 @@ public class AdminSelectMenuCtrl implements Initializable {
 	private Label adminLoginLabel;
     
     @FXML
-	private Rectangle adminProfileBtn;
+	private Button adminProfileBtn;
 	
     @FXML
 	private Button addAdminBtn;
@@ -73,10 +73,19 @@ public class AdminSelectMenuCtrl implements Initializable {
     * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
     * @param event MouseEvent
     */
-    public void userProfile(MouseEvent event) {
+    public void userProfile(ActionEvent event) {
     	util.loadPopup(event, "/views/adminProfile.fxml");
     }
-	
+
+    /**
+    * Méthode qui déconnecte l'utilisateur et redirige vers la première vue.
+    * @param event ActionEvent
+    */
+	public void deconnection(ActionEvent event) {
+        util.loadView(event, "/views/homePage.fxml");
+    }
+
+
     /**
     * Méthode qui ouvre une popup pour l'ajout d'un administrateur.
     * @param event ActionEvent

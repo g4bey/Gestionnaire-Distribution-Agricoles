@@ -1,0 +1,98 @@
+
+
+/* Communs à plusieurs vues.
+
+    
+
+*/
+
+.mainPane {
+    -fx-background-color: rgb(240, 238, 238);
+}
+
+.bluishRectangle {
+    -fx-fill: rgb(127, 255, 212);
+    -fx-stroke: none;
+}
+
+.greenishRectangle {
+    -fx-fill: rgb(186, 255, 186);
+    -fx-stroke: none;
+}
+
+.mainBtn {
+    -fx-background-color: aquamarine;
+}
+
+.mainBtn:hover {
+    -fx-background-color: rgb(57, 255, 189);
+}
+
+.prettyField {
+    -fx-background-color: none;
+    -fx-border-style: hidden hidden solid hidden;
+}
+
+.prettyField:focused {
+    -fx-border-color: rgb(56, 56, 210);
+}
+
+
+/*  Pour adminSelectMenu.fxml et prodSelectMenu.fxml
+
+*/
+
+.anchorPaneBackground {
+    -fx-background-color: white;
+    
+}
+
+.tabsBtn {
+    -fx-background-color: gainsboro;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: rgb(127, 255, 212);
+}
+
+.tabsBtn:hover {
+    -fx-background-color: lightgrey;
+}
+
+.tabsBtn:selected {
+    -fx-background-color: white;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: rgb(186, 255, 186);
+}
+
+.tabBackground {
+    -fx-background-color: gainsboro;
+}
+
+/* Pour addTour.fxml et modifyTour.fxml
+
+
+*/
+
+.plusAndMinusBtn {
+    -fx-background-radius: 50px;
+    -fx-background-color: rgb(0, 255, 170);
+}
+
+.plusAndMinusBtn:hover {
+    -fx-background-color: rgb(0, 202, 135);
+}
+
+
+/* Pour les popups de suppression.
+
+*/
+
+.deleteBtn {
+    -fx-background-radius: 50px;
+    -fx-background-color: rgb(1, 190, 149);
+}
+
+.deleteBtn:hover {
+    -fx-background-color: rgb(0, 173, 136);
+}
