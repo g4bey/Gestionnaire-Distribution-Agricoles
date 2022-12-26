@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultClientCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="482.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultClientCtrl">
    <children>
-      <Line endX="374.0000305175781" layoutX="108.0" layoutY="71.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
-      <Line endX="-117.10002136230469" endY="-110.00000762939453" layoutX="283.0" layoutY="110.0" startX="-117.10002136230469" startY="-39.50000762939453" />
-      <Text layoutX="221.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Client:">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="92.0" layoutX="11.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="471.0" />
+      <Text layoutX="174.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Client:">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Text fx:id="clientNameText" layoutX="335.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nom&gt;">
+      <Text fx:id="clientNameText" layoutX="288.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nom&gt;">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text layoutX="73.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
+      <Text layoutX="133.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="73.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro de téléphone:">
+      <Text layoutX="133.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro de téléphone:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="clientAddressText" layoutX="159.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
+      <Text fx:id="clientAddressText" layoutX="219.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="clientPhoneText" layoutX="286.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
+      <Text fx:id="clientPhoneText" layoutX="346.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="closeConsultClientBtn" layoutX="380.0" layoutY="220.0" mnemonicParsing="false" onAction="#closeConsultClient" text="Quitter" />
-      <ImageView fitHeight="65.0" fitWidth="119.0" layoutX="20.0" layoutY="3.0">
+      <Button fx:id="closeConsultClientBtn" layoutX="350.0" layoutY="229.0" mnemonicParsing="false" onAction="#closeConsultClient" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Quitter">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="285.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="109.0" />
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="15.0" layoutY="5.0">
          <image>
-            <Image url="@../ressources/pictures/1751148-ff5722.png" />
+            <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
    </children>

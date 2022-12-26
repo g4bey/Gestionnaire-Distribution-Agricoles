@@ -24,7 +24,7 @@ public class ProdSelectMenuCtrl implements Initializable {
 	private Label prodNameLabel;
     
     @FXML
-	private Rectangle prodProfileBtn;
+	private Button prodProfileBtn;
 	
     @FXML
 	private Button addCommBtn;
@@ -81,8 +81,16 @@ public class ProdSelectMenuCtrl implements Initializable {
     * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
     * @param event
     */
-    public void userProfile(MouseEvent event) {
+    public void userProfile(ActionEvent event) {
     	util.loadPopup(event, "/views/prodProfile.fxml");
+    }
+
+    /**
+    * Méthode qui déconnecte l'utilisateur et redirige vers la première vue.
+    * @param event ActionEvent
+    */
+	public void deconnection(ActionEvent event) {
+        util.loadView(event, "/views/homePage.fxml");
     }
 	
     /**
