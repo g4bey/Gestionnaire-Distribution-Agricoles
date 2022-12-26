@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
 
@@ -26,10 +27,23 @@ public class ProdProfileCtrl implements Initializable {
     @FXML
     private Text prodPhoneText;
 
+    private ControllersUtils util;
+
+    @FXML
+    private Hyperlink modifyInfoLink;
+
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		util = new ControllersUtils();
+    }
+
+    /**
+     * Méthode qui permet la modification du profile utilisateur.
+     * @param event ActionEvent
+     */
+    public void modifyInfo(ActionEvent event) {
+        util.loadPopup(event, "/views/modifyProd.fxml");
     }
     
     /**
