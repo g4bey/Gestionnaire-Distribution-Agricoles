@@ -36,6 +36,7 @@
     ├── modele                # Objets-Métier
     ├── ressources            # Configurations et fichiers utilisés par le logiciel.
     ├── exceptions            # Exceptions dérivant d'Exception
+    ├── validator             # les différents validateurs sont ici.
     ├── tests                 # Tests des classes, rangés intuitivement.
     ├── views                 # Vues (interface graphique)
     └── utility               # Classes utilitaires et objets-Service
