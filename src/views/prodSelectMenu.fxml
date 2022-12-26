@@ -120,7 +120,7 @@
          </image>
       </ImageView>
       <Line endX="-32.000030517578125" endY="8.399993896484375" layoutX="214.0" layoutY="33.0" startX="-32.000030517578125" startY="-25.199996948242188" />
-      <Button fx:id="prodProfileBtn" layoutX="74.0" layoutY="-3.0" mnemonicParsing="false" onAction="#userProfile" prefHeight="50.0" prefWidth="106.0" styleClass="mainBtn" text="Profile">
+      <Button fx:id="prodProfileBtn" layoutX="74.0" layoutY="-3.0" mnemonicParsing="false" onAction="#userProfile" prefHeight="50.0" prefWidth="106.0" styleClass="mainBtn" text="Profil">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

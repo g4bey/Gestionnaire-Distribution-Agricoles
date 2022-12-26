@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
+import utility.UserAuth;
 
 /**
 * Contrôleur permettant la connexion d'un Producteur.
@@ -38,16 +39,19 @@ public class ProdConnCtrl implements Initializable {
         util = new ControllersUtils();
     }
     
+    
     /**
-    * Méthode pour revenir sur la page d'accueil.
+    * Méthode qui authentifie l'utilisateur.
     * @param event ActionEvent
     */
     public void validateProdConn(ActionEvent event) {
+        //UserAuth user = new UserAuth();
     	util.loadView(event, "/views/prodSelectMenu.fxml");
     }
     
+    
     /**
-    * Méthode pour connecter l'utilisateur.
+    * Méthode pour revenir sur la page d'accueil.
     * @param event ActionEvent
     */
     public void cancelProdConn(ActionEvent event) {

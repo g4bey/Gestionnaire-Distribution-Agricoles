@@ -68,7 +68,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="153.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Présente dans la tournées:">
+      <Text layoutX="153.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Présente dans la tournée:">
          <font>
             <Font size="20.0" />
          </font>

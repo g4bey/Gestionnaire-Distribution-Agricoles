@@ -13,81 +13,81 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="626.0" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyProdCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="626.0" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyProdCtrl">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="117.0" layoutX="66.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="560.0" />
-      <Text layoutX="219.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification producteur">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="97.0" layoutX="66.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="560.0" />
+      <Text layoutX="209.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification producteur">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="prodSiretField" layoutX="386.0" layoutY="152.0" styleClass="prettyField" text="userInfo" />
-      <TextField fx:id="propNameField" layoutX="388.0" layoutY="208.0" styleClass="prettyField" text="userInfo" />
-      <TextField fx:id="prodPhoneField" layoutX="395.0" layoutY="474.0" styleClass="prettyField" text="userInfo" />
-      <TextField fx:id="prodPasswordField" layoutX="395.0" layoutY="534.0" styleClass="prettyField" />
-      <TextField fx:id="confirmPasswordField" layoutX="395.0" layoutY="595.0" styleClass="prettyField" />
-      <Label layoutX="315.0" layoutY="149.0" text="SIRET:">
+      <TextField fx:id="prodSiretField" layoutX="373.0" layoutY="106.0" styleClass="prettyField" text="userInfo" />
+      <TextField fx:id="propNameField" layoutX="375.0" layoutY="162.0" styleClass="prettyField" text="userInfo" />
+      <TextField fx:id="prodPhoneField" layoutX="382.0" layoutY="428.0" styleClass="prettyField" text="userInfo" />
+      <TextField fx:id="prodPasswordField" layoutX="382.0" layoutY="488.0" styleClass="prettyField" />
+      <TextField fx:id="confirmPasswordField" layoutX="382.0" layoutY="549.0" styleClass="prettyField" />
+      <Label layoutX="302.0" layoutY="103.0" text="SIRET:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="213.0" layoutY="205.0" text="Nom propriétaire:">
+      <Label layoutX="200.0" layoutY="159.0" text="Nom propriétaire:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="232.0" layoutY="471.0" text="Num. téléphone:">
+      <Label layoutX="219.0" layoutY="425.0" text="Num. téléphone:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="256.0" layoutY="531.0" text="Mot de passe:">
+      <Label layoutX="243.0" layoutY="485.0" text="Mot de passe:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="259.0" layoutY="591.0" text="Confirmation:">
+      <Label layoutX="246.0" layoutY="545.0" text="Confirmation:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="validateModifyProd" layoutX="453.0" layoutY="690.0" mnemonicParsing="false" onAction="#validateModifyProd" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Valider">
+      <Button fx:id="validateModifyProd" layoutX="440.0" layoutY="644.0" mnemonicParsing="false" onAction="#validateModifyProd" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Valider">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="cancelModifyProd" layoutX="215.0" layoutY="690.0" mnemonicParsing="false" onAction="#cancelModifyProd" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Annuler">
+      <Button fx:id="cancelModifyProd" layoutX="202.0" layoutY="644.0" mnemonicParsing="false" onAction="#cancelModifyProd" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Annuler">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="formErrorText" layoutX="333.0" layoutY="655.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
+      <Text fx:id="formErrorText" layoutX="320.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Line endX="100.0" layoutX="485.0" layoutY="294.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
-      <Line endX="100.0" layoutX="485.0" layoutY="450.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
-      <Text layoutX="343.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
+      <Line endX="100.0" layoutX="472.0" layoutY="248.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
+      <Line endX="100.0" layoutX="472.0" layoutY="404.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
+      <Text layoutX="330.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Label layoutX="191.0" layoutY="357.0" text="Ville:">
+      <Label layoutX="178.0" layoutY="311.0" text="Ville:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="193.0" layoutY="398.0" text="Code postal:">
+      <Label layoutX="180.0" layoutY="352.0" text="Code postal:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="pathNameField" layoutX="425.0" layoutY="317.0" styleClass="prettyField" text="des tulipes" />
-      <TextField fx:id="townNameField" layoutX="248.0" layoutY="360.0" styleClass="prettyField" text="Saint-Pierre-des-Corps" />
-      <TextField fx:id="postcodeField" layoutX="311.0" layoutY="400.0" styleClass="prettyField" text="37700" />
-      <ChoiceBox fx:id="pathTypeChoiceBox" layoutX="254.0" layoutY="317.0" prefWidth="150.0" styleClass="prettyField" />
-      <TextField fx:id="addressNumField" layoutX="191.0" layoutY="316.0" prefHeight="26.0" prefWidth="42.0" styleClass="prettyField" text="5" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="751.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />
-      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="27.0" layoutY="16.0">
+      <TextField fx:id="pathNameField" layoutX="412.0" layoutY="271.0" styleClass="prettyField" text="des tulipes" />
+      <TextField fx:id="townNameField" layoutX="235.0" layoutY="314.0" styleClass="prettyField" text="Saint-Pierre-des-Corps" />
+      <TextField fx:id="postcodeField" layoutX="298.0" layoutY="354.0" styleClass="prettyField" text="37700" />
+      <ChoiceBox fx:id="pathTypeChoiceBox" layoutX="241.0" layoutY="271.0" prefWidth="150.0" styleClass="prettyField" />
+      <TextField fx:id="addressNumField" layoutX="178.0" layoutY="270.0" prefHeight="26.0" prefWidth="42.0" styleClass="prettyField" text="5" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="688.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="110.0" />
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="16.0" layoutY="7.0">
          <image>
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
