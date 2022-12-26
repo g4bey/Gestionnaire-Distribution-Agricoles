@@ -12,116 +12,116 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1120.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultTourCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1120.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultTourCtrl">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="1075.0" />
-      <Text layoutX="466.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournée:">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="80.0" layoutX="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="1075.0" />
+      <Text layoutX="460.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournée:">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Text fx:id="tourLabelText" layoutX="617.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Libellé&gt;">
+      <Text fx:id="tourLabelText" layoutX="611.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Libellé&gt;">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text layoutX="171.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poids:">
+      <Text layoutX="146.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poids:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="335.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
+      <Text layoutX="310.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="542.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure de départ:">
+      <Text layoutX="517.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure de départ:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="tourWeightText" layoutX="238.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+      <Text fx:id="tourWeightText" layoutX="213.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="tourDatetimeText" layoutX="397.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX/XX/XXXX">
+      <Text fx:id="tourDatetimeText" layoutX="372.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX/XX/XXXX">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="startText" layoutX="713.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
+      <Text fx:id="startText" layoutX="688.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="closeConsultTourBtn" layoutX="979.0" layoutY="708.0" mnemonicParsing="false" onAction="#closeConsultTour" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Quitter">
+      <Button fx:id="closeConsultTourBtn" layoutX="954.0" layoutY="675.0" mnemonicParsing="false" onAction="#closeConsultTour" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Quitter">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text layoutX="154.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations générales:">
+      <Text layoutX="129.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations générales:">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text layoutX="805.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure d'arrivée/retour:">
+      <Text layoutX="780.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure d'arrivée/retour:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="268.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
+      <Text layoutX="243.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="endText" layoutX="1022.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
+      <Text fx:id="endText" layoutX="997.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="153.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Véhicule utilisé:">
+      <Text layoutX="128.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Véhicule utilisé:">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text layoutX="164.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° d'immatriculation:">
+      <Text layoutX="139.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° d'immatriculation:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="vehicleImmatText" layoutX="368.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;numéro&gt;">
+      <Text fx:id="vehicleImmatText" layoutX="343.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;numéro&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="508.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacité:">
+      <Text layoutX="483.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacité:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="capacityText" layoutX="608.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+      <Text fx:id="capacityText" layoutX="583.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="635.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
+      <Text layoutX="610.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Line endX="493.5" endY="8.5" layoutX="604.0" layoutY="275.0" startX="-10.5" startY="9.5" />
-      <Line endX="-100.0" endY="398.4000244140625" layoutX="693.0" layoutY="285.0" startX="-100.0" />
-      <Line endX="-100.0" endY="398.4000244140625" layoutX="1198.0" layoutY="284.0" startX="-100.0" />
-      <Text layoutX="153.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes concernées:">
+      <Line endX="493.5" endY="8.5" layoutX="572.0" layoutY="244.0" startX="-10.5" startY="9.5" />
+      <Line endX="-100.0" endY="398.4000244140625" layoutX="661.0" layoutY="254.0" startX="-100.0" />
+      <Line endX="-100.0" endY="398.4000244140625" layoutX="1166.0" layoutY="253.0" startX="-100.0" />
+      <Text layoutX="121.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes concernées:">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <ListView fx:id="commListView" layoutX="177.0" layoutY="332.0" prefHeight="354.0" prefWidth="362.0" />
-      <Line endX="495.29998779296875" endY="-25.0999755859375" layoutX="603.0" layoutY="709.0" startX="-9.5" startY="-25.0999755859375" />
-      <WebView fx:id="tourMapWebView" layoutX="594.0" layoutY="286.0" prefHeight="397.0" prefWidth="503.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="765.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="124.0" />
-      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="23.0" layoutY="12.0">
+      <ListView fx:id="commListView" layoutX="145.0" layoutY="301.0" prefHeight="354.0" prefWidth="362.0" />
+      <Line endX="495.29998779296875" endY="-25.0999755859375" layoutX="571.0" layoutY="678.0" startX="-9.5" startY="-25.0999755859375" />
+      <WebView fx:id="tourMapWebView" layoutX="562.0" layoutY="255.0" prefHeight="397.0" prefWidth="503.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="723.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="105.0" />
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="13.0" layoutY="2.0">
          <image>
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
