@@ -50,6 +50,7 @@ public class ValidateurTournee {
      * respecter les horaires de chacune
      * 
      * @param commandes Les commandes de la Tournee, dans l'ordre de livraison
+     * @param gpsProd   Les coordonnées GPS du Producteur
      * @return Un booléen qui indique la validité du trajet associé aux commandes
      */
     public static boolean valideSuiteCommandes(ArrayList<Commande> commandes, String gpsProd) {
