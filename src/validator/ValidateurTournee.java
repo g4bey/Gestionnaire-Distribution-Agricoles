@@ -35,17 +35,30 @@ public class ValidateurTournee {
     }
 
     /**
+     * Vérifie que le poids maximum du Vehicule est compatible avec les commandes
+     * 
+     * @param poidsMax  Le poids maximum du Vehicule que l'on veut vérifier
+     * @param commandes Les commandes de la Tournee
+     * @return Un booléen qui indique si le Vehicule peut accueillir un tel poids
+     */
+    public static boolean validePoids(float poidsMax, ArrayList<Commande> commandes) {
+        return poidsMax >= commandes.stream().map(c -> c.getPoids()).reduce(0.F, Float::sum);
+    }
+
+    /**
      * Vérifie que l'ordre dans lequel les commandes sont livrées permet de
      * respecter les horaires de chacune
      * 
      * @param commandes Les commandes de la Tournee, dans l'ordre de livraison
      * @return Un booléen qui indique la validité du trajet associé aux commandes
      */
-    public static boolean valideSuiteCommandes(ArrayList<Commande> commandes) {
+    public static boolean valideSuiteCommandes(ArrayList<Commande> commandes, String gpsProd) {
+        ArrayList<String[]> coordsGPS = new ArrayList<>();
+        coordsGPS.add(gpsProd.split(","));
         Gson gson = new Gson();
         JsonObject jsonObject = new JsonObject();
-        jsonObject.add("coordinates", gson
-                .toJsonTree(commandes.stream().map(clt -> clt.getClient().getGpsClient().split(",")).toArray()));
+        jsonObject.add("coordinates", gson.toJsonTree(
+                coordsGPS.addAll(commandes.stream().map(clt -> clt.getClient().getGpsClient().split(",")).toList())));
 
         HttpRequest request;
         try {
@@ -79,7 +92,7 @@ public class ValidateurTournee {
         Timestamp horaireTmp = new Timestamp(commandes.get(0).getHoraireDebut().getTime()
                 - itSegm.next().getAsJsonObject().get("duration").getAsLong());
 
-        while (itSegm.hasNext()) {
+        while (itCmd.hasNext()) {
             horaireTmp = new Timestamp(
                     horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong());
 
@@ -95,6 +108,10 @@ public class ValidateurTournee {
                 horaireTmp = commande.getHoraireDebut();
             }
         }
+
+        // Pour quand on factorisera
+        // horaireTmp = new Timestamp(horaireTmp.getTime() +
+        // itSegm.next().getAsJsonObject().get("duration").getAsLong());
 
         return true;
     }
