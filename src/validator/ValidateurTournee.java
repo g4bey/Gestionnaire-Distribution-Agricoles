@@ -90,12 +90,17 @@ public class ValidateurTournee {
      */
     public static Timestamp[] calculTournee(ArrayList<Commande> commandes, String gpsProd)
             throws IOException, InterruptedException, InvalidRouteException {
+        String[] coordsGPSProd = gpsProd.split(",");
+
         ArrayList<String[]> coordsGPS = new ArrayList<>();
-        coordsGPS.add(gpsProd.split(","));
+        coordsGPS.add(coordsGPSProd);
         coordsGPS.addAll(commandes.stream().map(clt -> clt.getClient().getGpsClient().split(",")).toList());
+        coordsGPS.add(coordsGPSProd);
+
         Gson gson = new Gson();
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.add("coordinates", gson.toJsonTree(coordsGPS));
+
+        JsonObject jsonObjectCoordsGPS = new JsonObject();
+        jsonObjectCoordsGPS.add("coordinates", gson.toJsonTree(coordsGPS));
 
         HttpRequest request;
         try {
@@ -105,9 +110,8 @@ public class ValidateurTournee {
                     .header("Accept",
                             "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8")
                     .header("Content-Type", "application/json; charset=utf-8")
-                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonObject))).build();
+                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonObjectCoordsGPS))).build();
         } catch (IOException e1) {
-            e1.printStackTrace();
             throw e1;
         }
 
@@ -117,7 +121,6 @@ public class ValidateurTournee {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
             throw e;
         }
 
@@ -130,7 +133,7 @@ public class ValidateurTournee {
 
         Timestamp horaireTmp = new Timestamp(horaireDebut.getTime());
 
-        if (valideSuiteCommandes(itCmd, itSegm, horaireTmp)) {
+        if (!valideSuiteCommandes(itCmd, itSegm, horaireTmp)) {
             throw new InvalidRouteException("Le trajet généré ne respecte pas les horaires des commandes !");
         }
 

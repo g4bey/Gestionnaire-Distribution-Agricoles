@@ -133,11 +133,9 @@ public class ValidateurTourneeTest {
                 try {
                         ValidateurTournee.calculTournee(listCommandes, PRODUCTEUR_A.getGpsProd());
                 } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
-                        fail("Erreur d'accès lors de la requête.");
+                        fail("Erreur d'accès lors de la requête.\n".concat(e.toString()));
 
                 } catch (InvalidRouteException e) {
-                        e.printStackTrace();
                         fail("Erreur, le trajet est bon et la méthode ne doit pas échouer.");
                 }
         }
@@ -170,10 +168,8 @@ public class ValidateurTourneeTest {
                         ValidateurTournee.calculTournee(listCommandes, PRODUCTEUR_A.getGpsProd());
                         fail("Le trajet n'est pas valide et la méthode doit échouer.");
                 } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
-                        fail("Erreur d'accès lors de la requête.");
+                        fail("Erreur d'accès lors de la requête.\n".concat(e.toString()));
                 } catch (InvalidRouteException e) {
-                        e.printStackTrace();
                         assertNotNull(e);
                 }
         }
