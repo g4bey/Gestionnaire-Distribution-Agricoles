@@ -18,7 +18,7 @@ CREATE TABLE Producteur(
                            proprietaire Varchar (50) NOT NULL ,
                            adresseProd  Varchar (50) NOT NULL ,
                            numTelProd   Varchar (12) NOT NULL ,
-                           gpsProd      Char (19) NOT NULL ,
+                           gpsProd      Char (35) NOT NULL ,
                            mdpProd      Char (100) NOT NULL ,
                            siret        Varchar (14) NOT NULL
     ,CONSTRAINT Producteur_AK UNIQUE (siret)
@@ -34,7 +34,7 @@ CREATE TABLE Vehicule(
                          idVehicule   Int UNSIGNED  Auto_increment  NOT NULL ,
                          poidsMax     Float UNSIGNED NOT NULL ,
                          libelle      Varchar (50) NOT NULL ,
-                         numImmat     Char (7) NOT NULL ,
+                         numImmat     Char (10) NOT NULL ,
                          idProducteur Int UNSIGNED NOT NULL
     ,CONSTRAINT Vehicule_AK UNIQUE (numImmat)
     ,CONSTRAINT Vehicule_PK PRIMARY KEY (idVehicule)
@@ -50,7 +50,7 @@ CREATE TABLE Vehicule(
 CREATE TABLE Tournee(
                         idTournee    Int UNSIGNED  Auto_increment  NOT NULL ,
                         horaireDebut TimeStamp NOT NULL ,
-                        horaireFin   TimeStamp NOT NULL ,
+                        horaireFin   TimeStamp NOT NULL DEFAULT '1970-01-01 01:01:00',
                         poids        Float UNSIGNED NOT NULL ,
                         libelle      Varchar (50) NOT NULL ,
                         idVehicule   Int UNSIGNED
@@ -81,7 +81,7 @@ CREATE TABLE Client(
                        idClient      Int UNSIGNED  Auto_increment  NOT NULL ,
                        nomClient     Varchar (50) NOT NULL ,
                        adresseClient Varchar (50) NOT NULL ,
-                       gpsClient     Char (19) NOT NULL ,
+                       gpsClient     Char (35) NOT NULL ,
                        numTelClient  Varchar (12) NOT NULL
     ,CONSTRAINT Client_PK PRIMARY KEY (idClient)
 )ENGINE=InnoDB;
@@ -96,7 +96,7 @@ CREATE TABLE Commande(
                          libelle      Varchar (50) NOT NULL ,
                          poids        Float UNSIGNED NOT NULL ,
                          horaireDebut TimeStamp NOT NULL ,
-                         horaireFin   TimeStamp NOT NULL ,
+                         horaireFin   TimeStamp NOT NULL DEFAULT '1970-01-01 01:01:00',
                          idTournee    Int UNSIGNED ,
                          idProducteur Int UNSIGNED NOT NULL ,
                          idClient     Int UNSIGNED NOT NULL
