@@ -105,7 +105,7 @@ public class ValidateurAdresse {
                 .get("coordinates").getAsJsonArray();
         this.coordX = coords.get(1).getAsString();
         this.coordY = coords.get(0).getAsString();
-        this.coordXY = coordX + "," + coordY;
+        this.coordXY = coordY + "," + coordX;
 
         // Récupérons les informations sur le lieu
         JsonObject infos = objetJson.get("features")
