@@ -50,7 +50,11 @@ public class ClientDAOTest {
         conn = DatabaseConnection.getInstance("testing");
         clientDAO = new ClientDAO(conn);
 
+        truncateTable("Commande");
         truncateTable("Client");
+        truncateTable("Tournee");
+        truncateTable("Vehicule");
+        truncateTable("Producteur");
     }
 
     /**
