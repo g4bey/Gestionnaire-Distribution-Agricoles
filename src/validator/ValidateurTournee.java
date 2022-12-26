@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import exceptions.InvalidRouteException;
 import modele.Commande;
 import modele.Vehicule;
 import utility.ConfigHelper;
@@ -49,11 +50,46 @@ public class ValidateurTournee {
      * Vérifie que l'ordre dans lequel les commandes sont livrées permet de
      * respecter les horaires de chacune
      * 
-     * @param commandes Les commandes de la Tournee, dans l'ordre de livraison
-     * @param gpsProd   Les coordonnées GPS du Producteur
+     * @param itCmd      Itérateur des commandes dans l'ordre
+     * @param itSegm     Itérateur des segments composant le trajet
+     * @param horaireTmp Timestamp représentant l'horaire qui évolue au cours du
+     *                   trajet
      * @return Un booléen qui indique la validité du trajet associé aux commandes
      */
-    public static boolean valideSuiteCommandes(ArrayList<Commande> commandes, String gpsProd) {
+    public static boolean valideSuiteCommandes(Iterator<Commande> itCmd, Iterator<JsonElement> itSegm,
+            Timestamp horaireTmp) {
+        while (itCmd.hasNext()) {
+            horaireTmp = new Timestamp(
+                    horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong());
+
+            Commande commande = itCmd.next();
+
+            // Vérifie qu'il n'arrive pas après l'heure de fin
+            if (horaireTmp.after(commande.getHoraireFin())) {
+                return false;
+            }
+
+            // S'il arrive avant l'heure de début, il attend
+            if (horaireTmp.before(commande.getHoraireDebut())) {
+                horaireTmp = commande.getHoraireDebut();
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Calcul les horaires de départ et d'arrivée du trajet associé à la suite de
+     * commandes
+     * 
+     * @param commandes Les commandes de la Tournee, dans l'ordre de livraison
+     * @param gpsProd   Les coordonnées GPS du Producteur
+     * @return Un couple de Timestamp représentant l'heure de départ et l'heure
+     *         d'arrivée
+     * @throws Exception
+     */
+    public static Timestamp[] calculTournee(ArrayList<Commande> commandes, String gpsProd)
+            throws IOException, InterruptedException, InvalidRouteException {
         ArrayList<String[]> coordsGPS = new ArrayList<>();
         coordsGPS.add(gpsProd.split(","));
         coordsGPS.addAll(commandes.stream().map(clt -> clt.getClient().getGpsClient().split(",")).toList());
@@ -72,7 +108,7 @@ public class ValidateurTournee {
                     .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonObject))).build();
         } catch (IOException e1) {
             e1.printStackTrace();
-            return false;
+            throw e1;
         }
 
         HttpClient client = HttpClient.newHttpClient();
@@ -82,38 +118,25 @@ public class ValidateurTournee {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            return false;
+            throw e;
         }
 
         Iterator<Commande> itCmd = commandes.iterator();
         Iterator<JsonElement> itSegm = gson.fromJson(response.body(), JsonObject.class).get("routes").getAsJsonArray()
                 .get(0).getAsJsonObject().get("segments").getAsJsonArray().iterator();
 
-        // Horaire de départ
-        Timestamp horaireTmp = new Timestamp(itCmd.next().getHoraireDebut().getTime()
+        Timestamp horaireDebut = new Timestamp(itCmd.next().getHoraireDebut().getTime()
                 - itSegm.next().getAsJsonObject().get("duration").getAsLong());
 
-        while (itCmd.hasNext()) {
-            horaireTmp = new Timestamp(
-                    horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong());
+        Timestamp horaireTmp = new Timestamp(horaireDebut.getTime());
 
-            Commande commande = itCmd.next();
-
-            // Vérifie qu'il n'arrive pas après l'heure de fin
-            if (horaireTmp.after(commande.getHoraireFin())) {
-                return false;
-            }
-
-            // S'il arrive avant l'heure de début, il attend
-            if (horaireTmp.before(commande.getHoraireDebut())) {
-                horaireTmp = commande.getHoraireDebut();
-            }
+        if (valideSuiteCommandes(itCmd, itSegm, horaireTmp)) {
+            throw new InvalidRouteException("Le trajet généré ne respecte pas les horaires des commandes !");
         }
 
-        // Pour quand on factorisera
-        // horaireTmp = new Timestamp(horaireTmp.getTime() +
-        // itSegm.next().getAsJsonObject().get("duration").getAsLong());
+        // On calcul la fin du trajet en ajoutant la durée pour rentrer au dépôt
+        horaireTmp = new Timestamp(horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong());
 
-        return true;
+        return new Timestamp[] { horaireDebut, horaireTmp };
     }
 }
