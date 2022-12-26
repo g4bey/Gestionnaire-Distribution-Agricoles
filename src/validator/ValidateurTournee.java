@@ -90,7 +90,7 @@ public class ValidateurTournee {
                 .get(0).getAsJsonObject().get("segments").getAsJsonArray().iterator();
 
         // Horaire de départ
-        Timestamp horaireTmp = new Timestamp(commandes.get(0).getHoraireDebut().getTime()
+        Timestamp horaireTmp = new Timestamp(itCmd.next().getHoraireDebut().getTime()
                 - itSegm.next().getAsJsonObject().get("duration").getAsLong());
 
         while (itCmd.hasNext()) {
