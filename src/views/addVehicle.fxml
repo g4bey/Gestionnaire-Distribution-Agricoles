@@ -19,7 +19,7 @@
             <Font size="35.0" />
          </font>
       </Text>
-      <Label layoutX="170.0" layoutY="141.0" text="N° d'immatriulation:">
+      <Label layoutX="157.0" layoutY="142.0" text="N° d'immatriculation:">
          <font>
             <Font size="20.0" />
          </font>

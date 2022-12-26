@@ -21,7 +21,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text layoutX="128.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voulez vous vraiment supprimer ce client ?">
+      <Text layoutX="128.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voulez-vous vraiment supprimer ce client ?">
          <font>
             <Font size="20.0" />
          </font>
