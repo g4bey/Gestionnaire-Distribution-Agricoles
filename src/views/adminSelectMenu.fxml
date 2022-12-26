@@ -10,83 +10,90 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminSelectMenuCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminSelectMenuCtrl">
    <children>
-      <TabPane fx:id="adminTabPane" layoutX="19.0" layoutY="58.0" prefHeight="318.0" prefWidth="558.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="adminTabPane" layoutX="19.0" layoutY="58.0" prefHeight="318.0" prefWidth="558.0" side="LEFT" styleClass="tabsBackground" tabClosingPolicy="UNAVAILABLE">
          <tabs>
-            <Tab fx:id="adminTab" text="Administrateurs">
+            <Tab fx:id="adminTab" styleClass="tabsBtn" text="Administrateurs">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabBackground">
                      <children>
-                        <Label layoutX="143.0" layoutY="14.0" text="Administrateurs">
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="addAdminBtn" layoutX="440.0" layoutY="159.0" mnemonicParsing="false" onAction="#popupAddAdmin" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addAdminBtn" layoutX="440.0" layoutY="159.0" mnemonicParsing="false" onAction="#popupAddAdmin" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
                         <ListView fx:id="adminListView" editable="true" layoutX="26.0" layoutY="82.0" prefHeight="200.0" prefWidth="401.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="prodTab" text="Producteurs">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
-                     <children>
-                        <Label layoutX="171.0" layoutY="14.0" text="Producteurs">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="57.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="470.0" />
+                        <Label layoutX="170.0" layoutY="6.0" text="Administrateurs">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addProdBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="prodTab" styleClass="tabsBtn" text="Producteurs">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabBackground">
+                     <children>
+                        <Button fx:id="addProdBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddProd" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyProdBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                        <Button fx:id="modifyProdBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyProd" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Modifier">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="deleteProdBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteProd" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
+                           </cursor>
+                        </Button>
+                        <Button fx:id="deleteProdBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteProd" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Supprimer">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></Button>
+                           </cursor>
+                        </Button>
                         <ListView fx:id="prodListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultProd" prefHeight="200.0" prefWidth="401.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="Clients">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
-                     <children>
-                        <Label layoutX="213.0" layoutY="14.0" text="Clients">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="57.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="470.0" />
+                        <Label layoutX="198.0" layoutY="6.0" text="Producteurs">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addClientBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab styleClass="tabsBtn" text="Clients">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabBackground">
+                     <children>
+                        <Button fx:id="addClientBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddClient" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyClientBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                        <Button fx:id="modifyClientBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyClient" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Modifier">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="deleteClientBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteClient" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
+                           </cursor>
+                        </Button>
+                        <Button fx:id="deleteClientBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteClient" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Supprimer">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></Button>
+                           </cursor>
+                        </Button>
                         <ListView fx:id="clientListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultClient" prefHeight="200.0" prefWidth="401.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="57.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="472.0" />
+                        <Label layoutX="227.0" layoutY="4.0" text="Clients">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>
@@ -96,21 +103,28 @@
             <DropShadow />
          </effect>
       </TabPane>
-      <Rectangle arcHeight="100.0" arcWidth="5.0" fill="#c4c4c4" height="36.0" layoutX="450.0" layoutY="5.0" stroke="#8c8c8c" strokeType="INSIDE" width="136.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Label fx:id="adminLoginLabel" layoutX="471.0" layoutY="14.0" prefHeight="18.0" prefWidth="50.0" text="&lt;Login&gt;" />
-      <Circle fx:id="adminProfilePicture" fill="#c4c4c4" layoutX="554.0" layoutY="23.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="adminProfileBtn" arcHeight="100.0" arcWidth="5.0" fill="#c4c4c4" height="36.0" layoutX="450.0" layoutY="5.0" onMouseClicked="#userProfile" opacity="0.0" stroke="#8c8c8c" strokeType="INSIDE" width="136.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="-46.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="400.0" />
+      <ImageView fitHeight="45.0" fitWidth="41.0" layoutX="14.0">
+         <image>
+            <Image url="@../ressources/pictures/Logo.png" />
+         </image>
+      </ImageView>
+      <Line endX="-32.000030517578125" endY="8.399993896484375" layoutX="214.0" layoutY="33.0" startX="-32.000030517578125" startY="-25.199996948242188" />
+      <Button fx:id="adminProfileBtn" layoutX="74.0" layoutY="-3.0" mnemonicParsing="false" onAction="#userProfile" prefHeight="50.0" prefWidth="106.0" styleClass="mainBtn" text="Profile">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </Rectangle>
-      <ImageView fitHeight="36.0" fitWidth="82.0" layoutX="27.0" layoutY="5.0">
-         <image>
-            <Image url="@../ressources/pictures/1751148-ff5722.png" />
-         </image>
-      </ImageView>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="deconnectionBtn" layoutX="182.0" layoutY="-3.0" mnemonicParsing="false" onAction="#deconnection" prefHeight="50.0" prefWidth="171.0" styleClass="mainBtn" text="Déconnexion">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

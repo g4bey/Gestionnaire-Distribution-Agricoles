@@ -74,6 +74,7 @@ public class ControllersUtils {
         }
         scene = new Scene(root);
         stage = new Stage();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.initOwner((Stage)((Node)event.getSource()).getScene().getWindow());
         stage.initModality(Modality.WINDOW_MODAL);
@@ -95,6 +96,7 @@ public class ControllersUtils {
         }
         scene = new Scene(root);
         stage = new Stage();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.initOwner((Stage)((Node)event.getSource()).getScene().getWindow());
         stage.initModality(Modality.WINDOW_MODAL);
