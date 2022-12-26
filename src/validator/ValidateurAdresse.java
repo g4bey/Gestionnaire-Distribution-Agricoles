@@ -1,4 +1,4 @@
-package utility;
+package validator;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

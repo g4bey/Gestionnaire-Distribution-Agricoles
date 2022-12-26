@@ -1,4 +1,4 @@
-package utility;
+package validator;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,6 +15,7 @@ import com.google.gson.JsonObject;
 
 import modele.Commande;
 import modele.Vehicule;
+import utility.ConfigHelper;
 
 /**
  * Valide ou pas la tournée paramétrée.

@@ -1,9 +1,9 @@
-package tests.utility;
+package tests.validators;
 
 import exceptions.AdresseInvalideException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import utility.ValidateurAdresse;
+import validator.ValidateurAdresse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
