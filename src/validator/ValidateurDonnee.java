@@ -155,7 +155,7 @@ public class ValidateurDonnee {
      * @param codePostal Le code postal à tester
      */
     public static boolean valideCodePostal(String codePostal) {
-        String regex = "/^(?:0[1-9]|[1-8]\\d|9[0-8])\\d{3}$/";
+        String regex = "^(?:0[1-9]|[1-8]\\d|9[0-8])\\d{3}$";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(codePostal);
 
