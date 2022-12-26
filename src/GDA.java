@@ -19,7 +19,7 @@ public class GDA extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-    	Parent root = FXMLLoader.load(getClass().getResource("/views/homePage.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("/views/prodSelectMenu.fxml"));
     	Scene scene = new Scene(root);
     	Image icon = new Image("ressources/pictures/Logo.png");
     	

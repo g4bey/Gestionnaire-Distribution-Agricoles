@@ -55,7 +55,7 @@ public class AddTourneeCtrl {
     * Méthode qui permet de fermer la vue d'ajout d'une tournée.
     * @param event ActionEvent
     */
-    public void cancelAddTournee(ActionEvent event) {
+    public void cancelAddTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
 }

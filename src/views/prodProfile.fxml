@@ -12,7 +12,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="457.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProdProfileCtrl">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="96.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="361.0" />
-      <Text layoutX="165.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile producteur">
+      <Text layoutX="165.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profil producteur">
          <font>
             <Font size="30.0" />
          </font>
