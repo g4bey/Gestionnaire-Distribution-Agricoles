@@ -1,10 +1,10 @@
-package tests.utility;
+package tests.validators;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import utility.ValidateurDonnee;
+import validator.ValidateurDonnee;
 
 public class ValidateurDonneeTest {
 

@@ -36,6 +36,7 @@
     ├── modele                # Objets-Métier
     ├── ressources            # Configurations et fichiers utilisés par le logiciel.
     ├── exceptions            # Exceptions dérivant d'Exception
+    ├── validator             # les différents validateurs sont ici.
     ├── tests                 # Tests des classes, rangés intuitivement.
     ├── views                 # Vues (interface graphique)
     └── utility               # Classes utilitaires et objets-Service
@@ -63,6 +64,7 @@
 - Commentaire JavaDoc
 - IdBDD, port, tous les trucs de setup dans un json à part
 - Documenter chaque classe
+- Utilisation d'accolades 
 
 La configuration du checkstyle pour les IDE se trouve dans /src/ressources/checkstyleConfigurationGDA.xml
 
