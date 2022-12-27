@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import DAO.AdministrateurDAO;
 import DAO.ClientDAO;
+import DAO.CommandeDAO;
 import DAO.ProducteurDAO;
 import DAO.TourneeDAO;
 import DAO.VehiculeDAO;
@@ -16,6 +17,8 @@ public abstract class AbstractConnCtrl {
     protected AdministrateurDAO aDAO = null;
     protected ProducteurDAO pDAO = null;
     protected ClientDAO cltDAO = null;
+    protected CommandeDAO commDAO = null;
+    protected TourneeDAO tDAO = null;
     protected VehiculeDAO vDAO = null;
     protected TourneeDAO tDAO = null;
 
@@ -30,6 +33,8 @@ public abstract class AbstractConnCtrl {
         aDAO = new AdministrateurDAO(conn);
         pDAO = new ProducteurDAO(conn);
         cltDAO = new ClientDAO(conn);
+        commDAO = new CommandeDAO(conn);
+        tDAO = new TourneeDAO(conn);
         vDAO = new VehiculeDAO(conn);
         tDAO = new TourneeDAO(conn);
     }

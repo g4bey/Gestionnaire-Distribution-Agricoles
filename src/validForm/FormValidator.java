@@ -33,9 +33,10 @@ public abstract class FormValidator {
     }
 
     /**
-     * @return le ou les messages d'erreur.
+     * @return on reset le formulaire.
      */
     public String getErrors() {
+        isValid = true;
         return errors;
     }
 

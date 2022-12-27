@@ -161,4 +161,8 @@ public class ValidateurDonnee {
 
         return matcher.matches();
     }
+
+    public static boolean validePassword(String password) {
+        return password.length() >= 5 && password.length() <= 15;
+    }
 }
