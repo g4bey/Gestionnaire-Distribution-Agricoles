@@ -7,9 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
+import validForm.formProdConnCtrl;
 
 /**
  * Contrôleur permettant la connexion d'un Producteur.
@@ -19,7 +21,7 @@ public class ProdConnCtrl implements Initializable {
     private TextField prodSiretField;
 
     @FXML
-    private TextField prodPasswordField;
+    private PasswordField prodPasswordField;
 
     @FXML
     private Button validateProdConn;
@@ -44,8 +46,14 @@ public class ProdConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateProdConn(ActionEvent event) {
-        // UserAuth user = new UserAuth();
-        util.loadView(event, "/views/prodSelectMenu.fxml");
+        formProdConnCtrl verif = new formProdConnCtrl(prodSiretField.getText(), prodPasswordField.getText());
+        if (verif.isValid()) {
+            util.loadView(event, "/views/prodSelectMenu.fxml");
+        } else {
+            connErreurText.setText(verif.getErrors());
+            connErreurText.setVisible(true);
+        }
+
     }
 
     /**

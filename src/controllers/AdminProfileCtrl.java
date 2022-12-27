@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.text.Text;
+import modele.Administrateur;
 import utility.ControllersUtils;
+import utility.UserAuth;
 
 /**
 * Contrôleur de la page profil de l'Administrateur.
@@ -22,10 +24,12 @@ public class AdminProfileCtrl implements Initializable {
     private Hyperlink changePasswordLink;
 
     private ControllersUtils util;
-    
+    private Administrateur admin;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
+        admin = UserAuth.getAdmin();
+        adminLoginLabel.setText(admin.getPseudo());
         util = new ControllersUtils();
     }
 
