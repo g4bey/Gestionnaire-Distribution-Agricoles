@@ -1,8 +1,15 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.swing.event.ChangeEvent;
+
+import DAO.CommandeDAO;
+import DAO.TourneeDAO;
+import DAO.VehiculeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import modele.Vehicule;
 import utility.ControllersUtils;
+import utility.DatabaseConnection;
 import modele.Tournee;
 import modele.Commande;
 
@@ -67,13 +75,40 @@ public class ProdSelectMenuCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub   
     	util = new ControllersUtils();
-    	
-    	modifyCommBtn.setDisable(false);
-    	modifyTourBtn.setDisable(false);
-    	modifyVehicleBtn.setDisable(false);
-    	deleteCommBtn.setDisable(false);
-    	deleteTourBtn.setDisable(false);
-    	deleteVehicleBtn.setDisable(false);
+        
+        try {
+            CommandeDAO commDAO = new CommandeDAO(DatabaseConnection.getInstance("production"));
+            TourneeDAO tourDAO = new TourneeDAO(DatabaseConnection.getInstance("production"));
+            VehiculeDAO vehicleDAO = new VehiculeDAO(DatabaseConnection.getInstance("production"));
+            commListView.getItems().addAll(commDAO.getAll());
+            tourListView.getItems().addAll(tourDAO.getAll());
+            vehicleListView.getItems().addAll(vehicleDAO.getAll());
+        } catch (ClassNotFoundException | SQLException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        commListView.focusedProperty().addListener((s) -> {
+            if (commListView.focusedProperty().get()) {
+                modifyCommBtn.setDisable(false);
+                deleteCommBtn.setDisable(false);
+            }
+            else {
+                modifyCommBtn.setDisable(true);
+                deleteCommBtn.setDisable(true);
+            }
+        });
+
+        tourListView.focusedProperty().addListener((s) -> {
+            if (commListView.focusedProperty().get()) {
+                modifyTourBtn.setDisable(false);
+                deleteTourBtn.setDisable(false);
+            }
+            else {
+                modifyVehicleBtn.setDisable(true);
+                deleteVehicleBtn.setDisable(true);
+            }
+        });
     }
     
     /**
@@ -106,6 +141,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyComm(ActionEvent event) {
+        ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/modifyComm.fxml");
     }
     
@@ -115,6 +151,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteComm(ActionEvent event) {
+        ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/deleteComm.fxml");
     }
     
@@ -125,6 +162,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     */
     public void popupConsultComm(MouseEvent event) {
         if (event.getClickCount() >= 2) {
+            ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultCommV1.fxml");
         }
     }
@@ -143,6 +181,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyTour(ActionEvent event) {
+        ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/modifyTour.fxml");
     }
     
@@ -152,6 +191,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteTour(ActionEvent event) {
+        ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/deleteTour.fxml");
     }
     
@@ -162,6 +202,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     */
     public void popupConsultTour(MouseEvent event) {
         if (event.getClickCount() >= 2) {
+            ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultTour.fxml");
         }
     }
@@ -180,6 +221,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupModifyVehicle(ActionEvent event) {
+        ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/modifyVehicle.fxml");
     }
     
@@ -189,6 +231,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void popupDeleteVehicle(ActionEvent event) {
+        ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/deleteVehicle.fxml");
     }
     
@@ -199,6 +242,7 @@ public class ProdSelectMenuCtrl implements Initializable {
     */
     public void popupConsultVehicle(MouseEvent event) {
     	if (event.getClickCount() >= 2) {
+            ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultVehicle.fxml");
         }
     }
