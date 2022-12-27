@@ -1,6 +1,7 @@
 package controllers;
 
 import DAO.AdministrateurDAO;
+import DAO.ProducteurDAO;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Administrateur;
+import modele.Producteur;
 import utility.ControllersUtils;
 import utility.UserAuth;
 import validForm.FormProdConnCtrl;
@@ -30,7 +32,20 @@ public class PasswordChangeCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void validatePasswordChangeProd(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        FormValidator formulaire = new FormPsChange(passwordField.getText(),confirmField.getText());
+        pDAO = new ProducteurDAO(conn);
+        Producteur prod = UserAuth.getProd();
+
+        if (formulaire.isValid()){
+            Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64);
+            String hashedPs = argon2.hash(2,15*1024,1, passwordField.getText().toCharArray());
+            prod.setMdpProd(hashedPs);
+            pDAO.update(prod);
+            ControllersUtils.closePopup(event);
+        } else {
+            modifyErrorText.setVisible(true);
+            modifyErrorText.setText(formulaire.getErrors());
+        }
     }
 
     /**
