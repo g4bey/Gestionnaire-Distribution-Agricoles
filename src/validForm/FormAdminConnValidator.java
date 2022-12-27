@@ -9,8 +9,8 @@ import modele.Administrateur;
 import utility.DatabaseConnection;
 import utility.UserAuth;
 
-public class formAdminConnValidator extends formValidator {
-    public formAdminConnValidator(String login, String password) {
+public class FormAdminConnValidator extends FormValidator {
+    public FormAdminConnValidator(String login, String password) {
         AdministrateurDAO aDAO;
 
         try {

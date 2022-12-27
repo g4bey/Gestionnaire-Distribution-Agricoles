@@ -7,7 +7,7 @@ package validForm;
  * <p>
  * Ensuite, l'on pourra récupérer les erreurs avec getErrors();
  */
-public abstract class formValidator {
+public abstract class FormValidator {
     private boolean isValid = true;
     private String errors = "";
 

@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
-import validForm.formAdminConnValidator;
+import validForm.FormAdminConnValidator;
 
 /**
  * Contrôleur permettant la connexion d'un Administrateur.
@@ -57,7 +57,7 @@ public class AdminConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateAdminConn(ActionEvent event) {
-        formAdminConnValidator verif = new formAdminConnValidator(adminLoginField.getText(),
+        FormAdminConnValidator verif = new FormAdminConnValidator(adminLoginField.getText(),
                 adminPasswordField.getText());
         if (verif.isValid()) {
             util.loadView(event, "/views/adminSelectMenu.fxml");

@@ -9,8 +9,8 @@ import modele.Producteur;
 import utility.DatabaseConnection;
 import utility.UserAuth;
 
-public class formProdConnCtrl extends formValidator {
-    public formProdConnCtrl(String login, String password) {
+public class FormProdConnCtrl extends FormValidator {
+    public FormProdConnCtrl(String login, String password) {
         ProducteurDAO prodDAO;
 
         try {
