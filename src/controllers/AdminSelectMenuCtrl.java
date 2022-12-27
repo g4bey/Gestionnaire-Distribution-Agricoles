@@ -3,7 +3,6 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DAO.AdministrateurDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import modele.Administrateur;
 import modele.Producteur;
 import utility.ControllersUtils;
-import utility.DatabaseConnection;
 import modele.Client;
 
 /**
