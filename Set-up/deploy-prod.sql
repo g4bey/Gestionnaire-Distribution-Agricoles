@@ -111,7 +111,7 @@ CREATE TABLE Commande(
 INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('$argon2id$v=19$m=15360,t=2,p=1$KNa1ygG8o5PFZCSyggBdzIX7cSXR04F/PXdU8MgnZLs$umKBNIGL0JjZILuugYsh9IasEdCiSxzM+2712pHf0qkKYjEqZt1Nz2cdYF9oET+UIITizo48va17oL01tZTaDw', 'Admin');
 
 -- Insertion du producteur initial
-INSERT INTO Producteur (proprietaire, adresseProd, numTelProd gpsProd, mdpProd, siret) VALUES ('Prod', 'Rue de Bordeaux Tours', '0678364728', '47.3727869,0.6582871', '$argon2id$v=19$m=15360,t=2,p=1$KNa1ygG8o5PFZCSyggBdzIX7cSXR04F/PXdU8MgnZLs$umKBNIGL0JjZILuugYsh9IasEdCiSxzM+2712pHf0qkKYjEqZt1Nz2cdYF9oET+UIITizo48va17oL01tZTaDw', '12345678900001');
+INSERT INTO Producteur (proprietaire, adresseProd, numTelProd, gpsProd, mdpProd, siret) VALUES ('Prod', 'Rue de Bordeaux Tours', '0678364728', '47.3727869,0.6582871', '$argon2id$v=19$m=15360,t=2,p=1$KNa1ygG8o5PFZCSyggBdzIX7cSXR04F/PXdU8MgnZLs$umKBNIGL0JjZILuugYsh9IasEdCiSxzM+2712pHf0qkKYjEqZt1Nz2cdYF9oET+UIITizo48va17oL01tZTaDw', '12345678900001');
 
 -- Création de l'utilisateur et paramétrage des droits
 DROP USER IF EXISTS 'GDA'@'localhost';
