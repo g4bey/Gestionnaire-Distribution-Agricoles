@@ -46,8 +46,14 @@ public class ProdConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateProdConn(ActionEvent event) {
-        // UserAuth user = new UserAuth();
-        util.loadView(event, "/views/prodSelectMenu.fxml");
+        formProdConnCtrl verif = new formProdConnCtrl(prodPasswordField.getText(), prodPasswordField.getText());
+        if (verif.isValid()) {
+            util.loadView(event, "/views/prodSelectMenu.fxml");
+        } else {
+            connErreurText.setText(verif.getErrors());
+            connErreurText.setVisible(true);
+        }
+
     }
 
     /**
@@ -56,12 +62,6 @@ public class ProdConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void cancelProdConn(ActionEvent event) {
-        formProdConnCtrl verif = new formProdConnCtrl(prodPasswordField.getText(), prodPasswordField.getText());
-        if (verif.isValid()) {
-            util.loadView(event, "/views/homePage.fxml");
-        } else {
-            connErreurText.setText(verif.getErrors());
-            connErreurText.setVisible(true);
-        }
+        util.loadView(event, "/views/homePage.fxml");
     }
 }
