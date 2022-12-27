@@ -47,7 +47,7 @@ public class ProdProfileCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void modifyInfo(ActionEvent event) {
-        util.loadPopup(event, "/views/passwordChange.fxml");
+        util.loadPopup(event, "/views/ProdpasswordChange.fxml");
     }
     
     /**
