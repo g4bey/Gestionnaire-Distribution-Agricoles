@@ -33,7 +33,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="prodNameText" layoutX="248.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nom&gt;">
+      <Text fx:id="propNameText" layoutX="248.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nom&gt;">
          <font>
             <Font size="20.0" />
          </font>

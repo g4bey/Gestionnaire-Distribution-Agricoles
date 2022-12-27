@@ -68,6 +68,10 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         modifyClientBtn.setDisable(false);
         deleteProdBtn.setDisable(false);
         deleteClientBtn.setDisable(false);
+
+        adminListView.getItems().addAll(aDAO.getAll());
+        prodListView.getItems().addAll(pDAO.getAll());
+        clientListView.getItems().addAll(cltDAO.getAll());
     }
 
     /**
