@@ -30,7 +30,7 @@ public class ProdProfileCtrl implements Initializable {
     private ControllersUtils util;
 
     @FXML
-    private Hyperlink modifyInfoLink;
+    private Hyperlink modifyPasswordLink;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -43,7 +43,7 @@ public class ProdProfileCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void modifyInfo(ActionEvent event) {
-        util.loadPopup(event, "/views/modifyProd.fxml");
+        util.loadPopup(event, "/views/passwordChange.fxml");
     }
     
     /**

@@ -6,16 +6,15 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import modele.Vehicule;
 import modele.Commande;
+import modele.Vehicule;
 import utility.ControllersUtils;
 
 /**
-* Contrôleur permettant l'ajout d'une Tournee.
+* Contrôleur permettant la modification d'une Tournee.
 */
-public class AddTourneeCtrl {
-	
+public class ModifyTourCtrl {
+
     @FXML
 	private TextField tourLabelField;
     
@@ -40,22 +39,20 @@ public class AddTourneeCtrl {
     @FXML
     private Label datetimeLabel;
     
-    @FXML
-    private Text formErrorText;
-    
 	/**
-	* Méthode qui valide l'ajout d'une tournée.
+	* Méthode qui valide la modification d'une tournée.
 	* @param event ActionEvent
 	*/
-    public void validateAddTour(ActionEvent event) {
+    public void validateModifyTour(ActionEvent event) {
         ControllersUtils.closePopup(event);
     }
 	
 	/**
-    * Méthode qui permet de fermer la vue d'ajout d'une tournée.
+    * Méthode qui permet de fermer la vue 
+    * de modification d'une tournée.
     * @param event ActionEvent
     */
-    public void cancelAddTour(ActionEvent event) {
+    public void cancelModifyTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
     }
 }
