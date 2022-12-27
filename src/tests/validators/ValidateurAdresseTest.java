@@ -22,7 +22,7 @@ public class ValidateurAdresseTest {
         ValidateurAdresse adresse = ValidateurAdresse.create("8 Boulevard du Port", "80000", "Amiens");
         assertEquals(adresse.getCoordX(), "49.897442");
         assertEquals(adresse.getCoordY(), "2.290084");
-        assertEquals(adresse.getCoordXY(), "49.897442,2.290084");
+        assertEquals(adresse.getCoordXY(), "2.290084,49.897442");
     }
 
     /**

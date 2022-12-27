@@ -10,112 +10,131 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProdSelectMenuCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProdSelectMenuCtrl">
    <children>
-      <TabPane fx:id="prodTabPane" layoutX="19.0" layoutY="58.0" prefHeight="318.0" prefWidth="558.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-            <Tab fx:id="commTab" text="Commandes">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
+      <TabPane fx:id="prodTabPane" layoutX="19.0" layoutY="58.0" prefHeight="318.0" prefWidth="558.0" side="LEFT" styleClass="tabsBackground" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab fx:id="commTab" styleClass="tabsBtn" text="Commandes">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabBackground">
                      <children>
-                        <Label layoutX="167.0" layoutY="14.0" text="Commandes">
+                        <ListView fx:id="commListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultComm" prefHeight="200.0" prefWidth="401.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="57.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="470.0" />
+                        <Label layoutX="195.0" layoutY="6.0" text="Commandes">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addCommBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="addCommBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddComm" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Ajouter">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyCommBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="deleteCommBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteComm" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <ListView fx:id="commListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultComm" prefHeight="202.0" prefWidth="402.0" />
-                     </children></AnchorPane>
-              </content>
-            </Tab>
-          <Tab fx:id="tourTab" text="Tournées">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
-                     <children>
-                        <Label layoutX="193.0" layoutY="14.0" text="Tournées">
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="addTourBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
+                        <Button fx:id="modifyCommBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyComm" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Modifier">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="modifyTourBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
+                        <Button fx:id="deleteCommBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteComm" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Supprimer">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="deleteTourBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteTour" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <ListView fx:id="tourListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultTour" prefHeight="202.0" prefWidth="402.0" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab fx:id="vehicleTab" text="Véhicules">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #7f7f7f;">
-                     <children>
-                        <Label layoutX="191.0" layoutY="14.0" text="Véhicules">
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="addVehicleBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Ajouter">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="modifyVehicleBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Modifier">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="deleteVehicleBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteVehicle" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #0099cc;" text="Supprimer">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <ListView fx:id="vehicleListView" editable="true" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultVehicle" prefHeight="202.0" prefWidth="402.0" />
+                           </cursor>
+                        </Button>
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
+               </content>
+            </Tab>
+            <Tab fx:id="tourTab" styleClass="tabsBtn" text="Tournées">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabBackground">
+                     <children>
+                        <Button fx:id="addTourBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddTour" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Ajouter">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="modifyTourBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyTour" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Modifier">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="deleteTourBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteTour" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Supprimer">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ListView fx:id="tourListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultTour" prefHeight="200.0" prefWidth="401.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="57.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="470.0" />
+                        <Label layoutX="220.0" layoutY="6.0" text="Tournées">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="vehicleTab" styleClass="tabsBtn" text="Véhicules">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabBackground">
+                     <children>
+                        <Button fx:id="addVehicleBtn" layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#popupAddVehicle" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Ajouter">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="modifyVehicleBtn" disable="true" layoutX="440.0" layoutY="169.0" mnemonicParsing="false" onAction="#popupModifyVehicle" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Modifier">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="deleteVehicleBtn" disable="true" layoutX="440.0" layoutY="234.0" mnemonicParsing="false" onAction="#popupDeleteVehicle" prefHeight="26.0" prefWidth="75.0" styleClass="mainBtn" text="Supprimer">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ListView fx:id="vehicleListView" layoutX="26.0" layoutY="82.0" onMouseClicked="#popupConsultVehicle" prefHeight="200.0" prefWidth="401.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="57.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="472.0" />
+                        <Label layoutX="220.0" layoutY="6.0" text="Véhicules">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
          <effect>
             <DropShadow />
          </effect>
       </TabPane>
-      <Rectangle arcHeight="100.0" arcWidth="5.0" fill="#c4c4c4" height="36.0" layoutX="450.0" layoutY="5.0" stroke="#8c8c8c" strokeType="INSIDE" width="136.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Label fx:id="prodNameLabel" layoutX="471.0" layoutY="14.0" prefHeight="18.0" prefWidth="47.0" text="&lt;Nom&gt;" />
-      <Circle fx:id="prodProfilePicture" fill="#c4c4c4" layoutX="554.0" layoutY="23.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fitHeight="51.0" fitWidth="103.0" layoutX="14.0" layoutY="-2.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="-46.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="400.0" />
+      <ImageView fitHeight="45.0" fitWidth="41.0" layoutX="14.0">
          <image>
-            <Image url="@../ressources/pictures/1751148-ff5722.png" />
+            <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="prodProfileBtn" arcHeight="100.0" arcWidth="5.0" fill="#c4c4c4" height="36.0" layoutX="450.0" layoutY="6.0" onMouseClicked="#userProfile" opacity="0.0" stroke="#8c8c8c" strokeType="INSIDE" width="136.0">
+      <Line endX="-32.000030517578125" endY="8.399993896484375" layoutX="214.0" layoutY="33.0" startX="-32.000030517578125" startY="-25.199996948242188" />
+      <Button fx:id="prodProfileBtn" layoutX="74.0" layoutY="-3.0" mnemonicParsing="false" onAction="#userProfile" prefHeight="50.0" prefWidth="106.0" styleClass="mainBtn" text="Profil">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </Rectangle>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="deconnectionBtn" layoutX="182.0" layoutY="-3.0" mnemonicParsing="false" onAction="#deconnection" prefHeight="50.0" prefWidth="171.0" styleClass="mainBtn" text="Déconnexion">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

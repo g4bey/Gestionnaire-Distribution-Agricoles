@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -9,97 +10,110 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyTourneeCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="596.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyTourCtrl">
    <children>
-      <Line endX="374.0000305175781" layoutX="109.0" layoutY="78.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
-      <Line endX="-117.10003662109375" endY="-117.0" layoutX="284.0" layoutY="117.0" startX="-117.10002136230469" startY="-39.50000762939453" />
-      <Text layoutX="186.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification tournée">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="80.0" layoutX="18.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="578.0" />
+      <Text layoutX="192.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification tournée">
          <font>
-            <Font size="30.0" />
+            <Font size="35.0" />
          </font>
       </Text>
-      <Label layoutX="135.0" layoutY="112.0" text="Libellé:">
+      <Label layoutX="241.0" layoutY="88.0" text="Libellé:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="119.0" layoutY="153.0" text="Véhicule:">
+      <Label layoutX="225.0" layoutY="129.0" text="Véhicule:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="tourLabelField" layoutX="223.0" layoutY="115.0" text="info" />
-      <ChoiceBox fx:id="vehicleChoiceBox" layoutX="223.0" layoutY="155.0" prefWidth="150.0" />
-      <Button fx:id="validateModifyTour" layoutX="373.0" layoutY="648.0" mnemonicParsing="false" onAction="#validateModifyTour" text="Valider" />
-      <Button fx:id="cancelModifyTour" layoutX="57.0" layoutY="648.0" mnemonicParsing="false" onAction="#cancelModifyTour" text="Annuler" />
-      <Line endX="350.0" layoutX="107.0" layoutY="252.0" startX="-80.0" startY="-7.62939453125E-6" />
-      <Line endX="350.0" layoutX="107.0" layoutY="422.0" startX="-80.0" startY="-7.62939453125E-6" />
-      <Text layoutX="170.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes:">
+      <TextField fx:id="tourLabelField" layoutX="329.0" layoutY="91.0" styleClass="prettyField" />
+      <ChoiceBox fx:id="vehicleChoiceBox" layoutX="329.0" layoutY="131.0" prefWidth="150.0" styleClass="prettyField" />
+      <Button fx:id="validateModifyTour" layoutX="422.0" layoutY="637.0" mnemonicParsing="false" onAction="#validateModifyTour" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Valider">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="cancelModifyTour" layoutX="161.0" layoutY="637.0" mnemonicParsing="false" onAction="#cancelModifyTour" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Annuler">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Line endX="350.0" layoutX="213.0" layoutY="228.0" startX="-80.0" startY="-7.62939453125E-6" />
+      <Line endX="350.0" layoutX="213.0" layoutY="398.0" startX="-80.0" startY="-7.62939453125E-6" />
+      <Button fx:id="addCommBtn" layoutX="407.0" layoutY="328.0" mnemonicParsing="false" styleClass="plusAndMinusBtn" text="+">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="remCommBtn" layoutX="506.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" styleClass="plusAndMinusBtn" text="-">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Text layoutX="276.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes:">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Label layoutX="55.0" layoutY="435.0" text="Poids total:">
+      <Label layoutX="146.0" layoutY="406.0" text="Poids total:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="477.0" text="Horaire début:">
+      <Label layoutX="147.0" layoutY="444.0" text="Horaire début:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="518.0" text="Horaire fin:">
+      <Label layoutX="147.0" layoutY="481.0" text="Horaire fin:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="557.0" text="Date:">
+      <Label layoutX="146.0" layoutY="520.0" text="Date:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="maxWeightLabel" layoutX="161.0" layoutY="435.0" text="&lt;poids&gt;">
+      <Label fx:id="maxWeightLabel" layoutX="255.0" layoutY="406.0" text="&lt;poids&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="startLabel" layoutX="197.0" layoutY="477.0" text="XX:XX">
+      <Label fx:id="startLabel" layoutX="289.0" layoutY="444.0" text="XX:XX">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="endLabel" layoutX="160.0" layoutY="518.0" text="XX:XX">
+      <Label fx:id="endLabel" layoutX="258.0" layoutY="481.0" text="XX:XX">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="datetimeLabel" layoutX="115.0" layoutY="557.0" text="XX-XX-XXXX">
+      <Label fx:id="datetimeLabel" layoutX="210.0" layoutY="520.0" text="XX-XX-XXXX">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="241.0" layoutY="435.0" text="kg.">
+      <Label layoutX="337.0" layoutY="406.0" text="kg.">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="67.0" fitWidth="128.0" layoutX="14.0" layoutY="8.0">
-         <image>
-            <Image url="@../ressources/pictures/1751148-ff5722.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="modifyErrorText" layoutX="191.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
+      <Text fx:id="formErrorText" layoutX="302.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button fx:id="addCommBtn" layoutX="307.0" layoutY="354.0" mnemonicParsing="false" text="+" />
-      <Button fx:id="remCommBtn" layoutX="416.0" layoutY="354.0" mnemonicParsing="false" text="-" />
-      <ListView fx:id="commListView" layoutX="50.0" layoutY="272.0" prefHeight="132.0" prefWidth="234.0" />
-      <ChoiceBox fx:id="commChoiceBox" layoutX="298.0" layoutY="292.0" prefWidth="150.0" />
+      <ListView fx:id="commListView" layoutX="146.0" layoutY="247.0" prefHeight="132.0" prefWidth="234.0" />
+      <ChoiceBox fx:id="commChoiceBox" layoutX="394.0" layoutY="267.0" prefWidth="150.0" styleClass="prettyField" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="673.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="98.0" />
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="10.0">
+         <image>
+            <Image url="@../ressources/pictures/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

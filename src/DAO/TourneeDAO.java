@@ -227,19 +227,7 @@ public class TourneeDAO extends DAO<Tournee> {
         ArrayList<Tournee> tournees = new ArrayList<>();
 
         for (Vehicule vehicule : vehicules) {
-            pstmt = conn.prepareStatement("SELECT * FROM Tournee WHERE idVehicule = ?");
-            pstmt.setInt(1, vehicule.getIdVehicule());
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                tournees.add(new Tournee(
-                        rs.getInt("idTournee"),
-                        rs.getTimestamp("horaireDebut"),
-                        rs.getTimestamp("horaireFin"),
-                        rs.getFloat("poids"),
-                        rs.getString("libelle"),
-                        vehicule));
-            }
+            tournees.addAll(getTourneesByVehicule(vehicule));
         }
 
         return tournees;
