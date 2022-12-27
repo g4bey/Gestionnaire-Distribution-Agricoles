@@ -17,6 +17,7 @@ public class UserAuth {
      */
     public UserAuth(Producteur prod) {
         UserAuth.prodUser = prod;
+        UserAuth.adminUser = null;
     }
 
     /**
@@ -25,6 +26,7 @@ public class UserAuth {
      */
     public UserAuth(Administrateur admin) {
         UserAuth.adminUser = admin;
+        UserAuth.prodUser = null;
     }
 
     public static int getProdId() {

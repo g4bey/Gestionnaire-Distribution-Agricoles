@@ -9,7 +9,7 @@ import utility.ControllersUtils;
 /**
 * Contrôleur permettant l'ajout d'un Vehicule.
 */
-public class AddVehiculeCtrl {
+public class AddVehicleCtrl {
 
     @FXML
     private TextField vehicleImmatField;
