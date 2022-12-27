@@ -26,7 +26,7 @@ import modele.Commande;
 /**
 * Contrôleur permettant la consultation d'un Producteur.
 */
-public class ProdSelectMenuCtrl implements Initializable {
+public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializable {
     @FXML
 	private Label prodNameLabel;
     
@@ -75,14 +75,14 @@ public class ProdSelectMenuCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub   
     	util = new ControllersUtils();
-        
+
         try {
-            CommandeDAO commDAO = new CommandeDAO(DatabaseConnection.getInstance("production"));
-            TourneeDAO tourDAO = new TourneeDAO(DatabaseConnection.getInstance("production"));
-            VehiculeDAO vehicleDAO = new VehiculeDAO(DatabaseConnection.getInstance("production"));
+            commDAO = new CommandeDAO(DatabaseConnection.getInstance("production"));
+            tDAO = new TourneeDAO(DatabaseConnection.getInstance("production"));
+            vDAO = new VehiculeDAO(DatabaseConnection.getInstance("production"));
             commListView.getItems().addAll(commDAO.getAll());
-            tourListView.getItems().addAll(tourDAO.getAll());
-            vehicleListView.getItems().addAll(vehicleDAO.getAll());
+            tourListView.getItems().addAll(tDAO.getAll());
+            vehicleListView.getItems().addAll(vDAO.getAll());
         } catch (ClassNotFoundException | SQLException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
