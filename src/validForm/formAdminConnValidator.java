@@ -7,6 +7,7 @@ import DAO.AdministrateurDAO;
 import de.mkammerer.argon2.Argon2Factory;
 import modele.Administrateur;
 import utility.DatabaseConnection;
+import utility.UserAuth;
 
 public class formAdminConnValidator extends formValidator {
     public formAdminConnValidator(String login, String password) {
@@ -29,6 +30,9 @@ public class formAdminConnValidator extends formValidator {
         if (!Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64).verify(adm.getMdpAdmin(),
                 password.toCharArray())) {
             setInvalid("Mot de passe invalide.");
+            return;
         }
+
+        UserAuth.setAdministrateur(adm);
     }
 }

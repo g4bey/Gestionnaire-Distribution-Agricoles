@@ -10,51 +10,50 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
-import utility.UserAuth;
 
 /**
-* Contrôleur permettant la connexion d'un Producteur.
-*/
+ * Contrôleur permettant la connexion d'un Producteur.
+ */
 public class ProdConnCtrl implements Initializable {
     @FXML
-	private TextField prodSiretField;
-	
+    private TextField prodSiretField;
+
     @FXML
-	private TextField prodPasswordField;
+    private TextField prodPasswordField;
 
     @FXML
     private Button validateProdConn;
-    
+
     @FXML
     private Button cancelProdConn;
-    
+
     @FXML
     private Text connErreurText;
-    
+
     private ControllersUtils util;
-    
+
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        // TODO Auto-generated method stub
         util = new ControllersUtils();
     }
-    
-    
+
     /**
-    * Méthode qui authentifie l'utilisateur.
-    * @param event ActionEvent
-    */
+     * Méthode qui authentifie l'utilisateur.
+     * 
+     * @param event ActionEvent
+     */
     public void validateProdConn(ActionEvent event) {
-        //UserAuth user = new UserAuth();
-    	util.loadView(event, "/views/prodSelectMenu.fxml");
+        // UserAuth user = new UserAuth();
+        util.loadView(event, "/views/prodSelectMenu.fxml");
     }
-    
-    
+
     /**
-    * Méthode pour revenir sur la page d'accueil.
-    * @param event ActionEvent
-    */
+     * Méthode pour revenir sur la page d'accueil.
+     * 
+     * @param event ActionEvent
+     */
     public void cancelProdConn(ActionEvent event) {
-    	util.loadView(event, "/views/homePage.fxml");
+        util.loadView(event, "/views/homePage.fxml");
     }
 }

@@ -63,6 +63,53 @@ public class ProducteurDAO extends DAO<Producteur> {
     }
 
     /**
+     * Récupère dans la base de données l'instance de Producteur demandée.
+     * 
+     * @param siret SIRET de type String, représente le SIRET de l'objet Producteur
+     *              demandé.
+     * @return Une instance de Producteur.
+     */
+    public Producteur get(String siret) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Producteur WHERE siret = ?");
+            pstmt.setString(1, siret);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                Producteur prd = new Producteur(rs.getInt("idProducteur"), siret, rs.getString("proprietaire"),
+                        rs.getString("adresseProd"),
+                        rs.getString("numTelProd"),
+                        rs.getString("gpsProd"),
+                        rs.getString("mdpProd"));
+
+                // On charge la liste de Véhicules
+                ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
+                for (Vehicule vehicule : vehicules) {
+                    prd.addVehicule(vehicule);
+                }
+
+                // On charge la liste de Tournées
+                ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
+                for (Tournee tournee : tournees) {
+                    prd.addTournee(tournee);
+                }
+
+                // On charge la liste de Commandes
+                for (Commande commande : new CommandeDAO(conn).getCommandesByProducteurTournees(prd, tournees)) {
+                    prd.addCommande(commande);
+                }
+
+                return prd;
+            }
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Récupère dans la base de données toutes les instances de Producteur.
      * 
      * @return Une liste d'instances de Producteur.
