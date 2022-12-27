@@ -29,7 +29,7 @@ public class formAdminConnValidator extends formValidator {
 
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64);
 
-        if (argon2.verify(argon2.hash(2, 15 * 1024, 1, password.toCharArray()), adm.getMdpAdmin().toCharArray())) {
+        if (!argon2.verify(argon2.hash(2, 15 * 1024, 1, password.toCharArray()), adm.getMdpAdmin().toCharArray())) {
             setInvalid("Mot de passe invalide.");
         }
     }
