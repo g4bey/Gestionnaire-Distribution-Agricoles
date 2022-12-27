@@ -46,7 +46,7 @@ public class ProdConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateProdConn(ActionEvent event) {
-        formProdConnCtrl verif = new formProdConnCtrl(prodPasswordField.getText(), prodPasswordField.getText());
+        formProdConnCtrl verif = new formProdConnCtrl(prodSiretField.getText(), prodPasswordField.getText());
         if (verif.isValid()) {
             util.loadView(event, "/views/prodSelectMenu.fxml");
         } else {
