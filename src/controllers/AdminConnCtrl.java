@@ -39,6 +39,7 @@ public class AdminConnCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
         util = new ControllersUtils();
+        formErrorText.setVisible(false);
     }
 
     /**
@@ -61,6 +62,9 @@ public class AdminConnCtrl implements Initializable {
                 adminPasswordField.getText());
         if (verif.isValid()) {
             util.loadView(event, "/views/adminSelectMenu.fxml");
+        } else {
+            formErrorText.setText(verif.getErrors());
+            formErrorText.setVisible(true);
         }
     }
 }

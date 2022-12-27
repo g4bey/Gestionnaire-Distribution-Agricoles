@@ -16,7 +16,7 @@ public class formAdminConnValidator extends formValidator {
         try {
             aDAO = new AdministrateurDAO(DatabaseConnection.getInstance("production"));
         } catch (ClassNotFoundException | SQLException | IOException e) {
-            e.printStackTrace();
+            setInvalid(e.toString());
             return;
         }
 
