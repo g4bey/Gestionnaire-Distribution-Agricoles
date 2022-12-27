@@ -8,6 +8,7 @@ import modele.Vehicule;
 import utility.ControllersUtils;
 import modele.Tournee;
 import modele.Commande;
+import modele.Producteur;
 
 /**
 * Contrôleur permettant l'aperçu Producteur.
@@ -34,6 +35,8 @@ public class ConsultProdCtrl {
     
     @FXML
     private ListView<Vehicule> prodVehicleListView;
+
+    private static Producteur producteur;
     
     /**
     * Méthode qui permet de fermer la vue de consultation
@@ -42,5 +45,14 @@ public class ConsultProdCtrl {
     */
     public void closeConsultProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère le producteur sélectionné dans la listView
+    * de la vue précédente (adminSelectMenu)
+    * @param prod Producteur
+    */
+    public static void setProd(Producteur prod) {
+        producteur = prod;
     }
 }

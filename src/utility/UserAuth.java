@@ -29,11 +29,11 @@ public class UserAuth {
         UserAuth.prodUser = null;
     }
 
-    public static int getProdId() {
-        return prodUser.getIdProducteur();
+    public static Producteur getProd() {
+        return prodUser;
     }
 
-    public static int getAdminId() {
-        return adminUser.getIdAdministrateur();
+    public static Administrateur getAdmin() {
+        return adminUser;
     }
 }

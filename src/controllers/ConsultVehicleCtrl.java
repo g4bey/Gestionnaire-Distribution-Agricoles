@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import modele.Tournee;
+import modele.Vehicule;
 import utility.ControllersUtils;
 
 /**
@@ -27,6 +28,8 @@ public class ConsultVehicleCtrl implements Initializable {
     
     @FXML
     private ListView<Tournee> tourListView;
+
+    private static Vehicule vehicule;
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -41,5 +44,14 @@ public class ConsultVehicleCtrl implements Initializable {
     */
     public void closeConsultVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère le véhicule sélectionné dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param vehi Vehicule
+    */
+    public static void setVehicule(Vehicule vehi) {
+        vehicule = vehi;
     }
 }

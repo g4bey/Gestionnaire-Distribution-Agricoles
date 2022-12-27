@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import modele.Vehicule;
 import utility.ControllersUtils;
 
 /**
@@ -16,6 +17,8 @@ public class DeleteVehicleCtrl implements Initializable {
 
     @FXML
     private Text vehicleLabelText;
+
+    private static Vehicule vehicule;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,5 +40,14 @@ public class DeleteVehicleCtrl implements Initializable {
     */
     public void cancelDeleteVehicle(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère le véhicule sélectionné dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param vehi Vehicule
+    */
+    public static void setVehicule(Vehicule vehi) {
+        vehicule = vehi;
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import modele.Commande;
+import modele.Tournee;
 import modele.Vehicule;
 import utility.ControllersUtils;
 
@@ -38,6 +39,8 @@ public class ModifyTourCtrl {
    
     @FXML
     private Label datetimeLabel;
+
+    private static Tournee tournee;
     
 	/**
 	* Méthode qui valide la modification d'une tournée.
@@ -54,5 +57,14 @@ public class ModifyTourCtrl {
     */
     public void cancelModifyTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère la tournée sélectionnée dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param tour Tournee
+    */
+    public static void setTournee(Tournee tour) {
+        tournee = tour;
     }
 }

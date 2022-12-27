@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import modele.Client;
 import utility.ControllersUtils;
 
 /**
@@ -16,6 +17,8 @@ public class DeleteClientCtrl implements Initializable {
     
     @FXML
     private Text clientNameText;
+
+    private static Client client;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,5 +40,14 @@ public class DeleteClientCtrl implements Initializable {
     */
     public void cancelDeleteClient(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère le client sélectionné dans la listView
+    * de la vue précédente (adminSelectMenu)
+    * @param cl Client
+    */
+    public static void setClient(Client cl) {
+        client = cl;
     }
 }
