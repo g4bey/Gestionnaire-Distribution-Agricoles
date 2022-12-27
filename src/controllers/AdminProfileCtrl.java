@@ -38,7 +38,7 @@ public class AdminProfileCtrl implements Initializable {
      * @param event
      */
     public void changePassword(ActionEvent event) {
-        util.loadPopup(event, "/views/passwordChange.fxml");
+        util.loadPopup(event, "/views/AdminPasswordChange.fxml");
     }
     /**
     * Méthode qui permet de fermer la vue du profile.
