@@ -18,7 +18,7 @@ import utility.UserAuth;
 public class ProdProfileCtrl implements Initializable {
 	
     @FXML
-    private Text propNameText;
+    private Text prodNameText;
     @FXML
     private Text prodSiretText;
     @FXML
@@ -35,7 +35,7 @@ public class ProdProfileCtrl implements Initializable {
 		// TODO Auto-generated method stub
         user = UserAuth.getProd();
         prodSiretText.setText(user.getSiret());
-        propNameText.setText(user.getProprietaire());
+        prodNameText.setText(user.getProprietaire());
         prodAddressText.setText(user.getAdresseProd());
         prodPhoneText.setText(user.getNumTelProd());
 		util = new ControllersUtils();
