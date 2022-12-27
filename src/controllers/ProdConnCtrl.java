@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
-import validForm.formProdConnCtrl;
+import validForm.FormProdConnCtrl;
 
 /**
  * Contrôleur permettant la connexion d'un Producteur.
@@ -46,7 +46,7 @@ public class ProdConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateProdConn(ActionEvent event) {
-        formProdConnCtrl verif = new formProdConnCtrl(prodSiretField.getText(), prodPasswordField.getText());
+        FormProdConnCtrl verif = new FormProdConnCtrl(prodSiretField.getText(), prodPasswordField.getText());
         if (verif.isValid()) {
             util.loadView(event, "/views/prodSelectMenu.fxml");
         } else {

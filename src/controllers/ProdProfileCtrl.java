@@ -18,7 +18,7 @@ import utility.UserAuth;
 public class ProdProfileCtrl implements Initializable {
 	
     @FXML
-    private Text prodLoginText;
+    private Text propNameText;
     @FXML
     private Text prodSiretText;
     @FXML
@@ -34,14 +34,16 @@ public class ProdProfileCtrl implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         user = UserAuth.getProd();
+        propNameText.setText(user.getProprietaire());
         prodSiretText.setText(user.getSiret());
+        propNameText.setText(user.getProprietaire());
         prodAddressText.setText(user.getAdresseProd());
         prodPhoneText.setText(user.getNumTelProd());
 		util = new ControllersUtils();
     }
 
     /**
-     * Méthode qui permet la modification du profile utilisateur.
+     * Méthode qui permet la modification du profil utilisateur.
      * @param event ActionEvent
      */
     public void modifyInfo(ActionEvent event) {
@@ -49,7 +51,7 @@ public class ProdProfileCtrl implements Initializable {
     }
     
     /**
-	* Méthode qui permet de fermer la vue du profile.
+	* Méthode qui permet de fermer la vue du profil.
 	* @param event ActionEvent
 	*/
     public void closeProdProfile(ActionEvent event) {
