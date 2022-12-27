@@ -19,7 +19,7 @@ CREATE TABLE Producteur(
                            adresseProd  Varchar (50) NOT NULL ,
                            numTelProd   Varchar (12) NOT NULL ,
                            gpsProd      Char (35) NOT NULL ,
-                           mdpProd      Char (100) NOT NULL ,
+                           mdpProd      Char (161) NOT NULL ,
                            siret        Varchar (14) NOT NULL
     ,CONSTRAINT Producteur_AK UNIQUE (siret)
     ,CONSTRAINT Producteur_PK PRIMARY KEY (idProducteur)
@@ -66,7 +66,7 @@ CREATE TABLE Tournee(
 
 CREATE TABLE Administrateur(
                                idAdministrateur Int UNSIGNED  Auto_increment  NOT NULL ,
-                               mdpAdmin         Char (100) NOT NULL ,
+                               mdpAdmin         Char (161) NOT NULL ,
                                pseudo           Varchar (50) NOT NULL
     ,CONSTRAINT Administrateur_AK UNIQUE (pseudo)
     ,CONSTRAINT Administrateur_PK PRIMARY KEY (idAdministrateur)
