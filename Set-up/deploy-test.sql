@@ -108,7 +108,7 @@ CREATE TABLE Commande(
 )ENGINE=InnoDB;
 
 -- Insertion de l'administrateur initial
-INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('null', 'Admin');
+INSERT INTO Administrateur (mdpAdmin, pseudo) VALUES ('$argon2id$v=19$m=15360,t=2,p=1$KNa1ygG8o5PFZCSyggBdzIX7cSXR04F/PXdU8MgnZLs$umKBNIGL0JjZILuugYsh9IasEdCiSxzM+2712pHf0qkKYjEqZt1Nz2cdYF9oET+UIITizo48va17oL01tZTaDw', 'Admin');
 
 #------------------------------------------------------------
 # Table: users -- used for test/database
