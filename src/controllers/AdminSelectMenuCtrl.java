@@ -3,6 +3,7 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DAO.AdministrateurDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,154 +14,165 @@ import javafx.scene.input.MouseEvent;
 import modele.Administrateur;
 import modele.Producteur;
 import utility.ControllersUtils;
+import utility.DatabaseConnection;
 import modele.Client;
 
 /**
-* Contrôleur permettant la consultation Administrateur.
-*/
-public class AdminSelectMenuCtrl implements Initializable {
+ * Contrôleur permettant la consultation Administrateur.
+ */
+public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializable {
     @FXML
-	private Label adminLoginLabel;
-    
+    private Label adminLoginLabel;
+
     @FXML
-	private Button adminProfileBtn;
-	
+    private Button adminProfileBtn;
+
     @FXML
-	private Button addAdminBtn;
-	
+    private Button addAdminBtn;
+
     @FXML
-	private ListView<Administrateur> adminListView;
-	
+    private ListView<Administrateur> adminListView;
+
     @FXML
-	private Button addProdBtn;
-	
+    private Button addProdBtn;
+
     @FXML
-	private Button modifyProdBtn;
-	
+    private Button modifyProdBtn;
+
     @FXML
-	private Button deleteProdBtn;
-	
+    private Button deleteProdBtn;
+
     @FXML
-	private ListView<Producteur> prodListView;
-	
+    private ListView<Producteur> prodListView;
+
     @FXML
-	private Button addClientBtn;
-	
+    private Button addClientBtn;
+
     @FXML
-	private Button modifyClientBtn;
-	
+    private Button modifyClientBtn;
+
     @FXML
-	private Button deleteClientBtn;
-	
+    private Button deleteClientBtn;
+
     @FXML
-	private ListView<Client> clientListView;
-    
+    private ListView<Client> clientListView;
+
     private ControllersUtils util;
-	
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub 
-    	this.util = new ControllersUtils();
-    	
-    	modifyProdBtn.setDisable(false);
-    	modifyClientBtn.setDisable(false);
-    	deleteProdBtn.setDisable(false);
-    	deleteClientBtn.setDisable(false);
-    }
-    
-    /**
-    * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
-    * @param event MouseEvent
-    */
-    public void userProfile(ActionEvent event) {
-    	util.loadPopup(event, "/views/adminProfile.fxml");
+        // TODO Auto-generated method stub
+        this.util = new ControllersUtils();
+
+        modifyProdBtn.setDisable(false);
+        modifyClientBtn.setDisable(false);
+        deleteProdBtn.setDisable(false);
+        deleteClientBtn.setDisable(false);
     }
 
     /**
-    * Méthode qui déconnecte l'utilisateur et redirige vers la première vue.
-    * @param event ActionEvent
-    */
-	public void deconnection(ActionEvent event) {
+     * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
+     * 
+     * @param event MouseEvent
+     */
+    public void userProfile(ActionEvent event) {
+        util.loadPopup(event, "/views/adminProfile.fxml");
+    }
+
+    /**
+     * Méthode qui déconnecte l'utilisateur et redirige vers la première vue.
+     * 
+     * @param event ActionEvent
+     */
+    public void deconnection(ActionEvent event) {
         util.loadView(event, "/views/homePage.fxml");
     }
 
+    /**
+     * Méthode qui ouvre une popup pour l'ajout d'un administrateur.
+     * 
+     * @param event ActionEvent
+     */
+    public void popupAddAdmin(ActionEvent event) {
+        util.loadPopup(event, "/views/addAdmin.fxml");
+    }
 
     /**
-    * Méthode qui ouvre une popup pour l'ajout d'un administrateur.
-    * @param event ActionEvent
-    */
-    public void popupAddAdmin(ActionEvent event) {
-    	util.loadPopup(event, "/views/addAdmin.fxml");
-    }
-    
-    /**
-    * Méthode qui ouvre une popup pour l'ajout d'un producteur.
-    * @param event ActionEvent
-    */
+     * Méthode qui ouvre une popup pour l'ajout d'un producteur.
+     * 
+     * @param event ActionEvent
+     */
     public void popupAddProd(ActionEvent event) {
-    	util.loadPopup(event, "/views/addProd.fxml");
+        util.loadPopup(event, "/views/addProd.fxml");
     }
-    
+
     /**
-    * Méthode qui ouvre une popup pour la modification d'un producteur.
-    * @param event ActionEvent
-    */
+     * Méthode qui ouvre une popup pour la modification d'un producteur.
+     * 
+     * @param event ActionEvent
+     */
     public void popupModifyProd(ActionEvent event) {
-    	util.loadPopup(event, "/views/modifyProd.fxml");
+        util.loadPopup(event, "/views/modifyProd.fxml");
     }
-    
+
     /**
-    * Méthode qui ouvre une popup pour demander la confirmation
-    * de la suppression d'un producteur.
-    * @param event ActionEvent
-    */
+     * Méthode qui ouvre une popup pour demander la confirmation
+     * de la suppression d'un producteur.
+     * 
+     * @param event ActionEvent
+     */
     public void popupDeleteProd(ActionEvent event) {
-    	util.loadPopup(event, "/views/deleteProd.fxml");
+        util.loadPopup(event, "/views/deleteProd.fxml");
     }
-    
+
     /**
-    * Méthode qui ouvre une popup permettant de 
-    * consulter un producteur double-cliqué dans la ListView prodListView.
-    * @param event MouseEvent
-    */
+     * Méthode qui ouvre une popup permettant de
+     * consulter un producteur double-cliqué dans la ListView prodListView.
+     * 
+     * @param event MouseEvent
+     */
     public void popupConsultProd(MouseEvent event) {
         if (event.getClickCount() >= 2) {
             util.loadPopup(event, "/views/consultProd.fxml");
         }
     }
-    
+
     /**
-    * Méthode qui ouvre une popup pour l'ajout d'un client.
-    * @param event ActionEvent
-    */
+     * Méthode qui ouvre une popup pour l'ajout d'un client.
+     * 
+     * @param event ActionEvent
+     */
     public void popupAddClient(ActionEvent event) {
-    	util.loadPopup(event, "/views/addClient.fxml");
+        util.loadPopup(event, "/views/addClient.fxml");
     }
-    
+
     /**
-    * Méthode qui ouvre une popup pour la modification d'un client.
-    * @param event ActionEvent
-    */
+     * Méthode qui ouvre une popup pour la modification d'un client.
+     * 
+     * @param event ActionEvent
+     */
     public void popupModifyClient(ActionEvent event) {
-    	util.loadPopup(event, "/views/modifyClient.fxml");
+        util.loadPopup(event, "/views/modifyClient.fxml");
     }
-    
+
     /**
-    * Méthode qui ouvre une popup pour demander la confirmation
-    * de la suppression d'un client.
-    * @param event ActionEvent
-    */
+     * Méthode qui ouvre une popup pour demander la confirmation
+     * de la suppression d'un client.
+     * 
+     * @param event ActionEvent
+     */
     public void popupDeleteClient(ActionEvent event) {
-    	util.loadPopup(event, "/views/deleteClient.fxml");
+        util.loadPopup(event, "/views/deleteClient.fxml");
     }
-    
+
     /**
-    * Méthode qui ouvre une popup permettant de 
-    * consulter un client double-cliqué dans la ListView clientListView.
-    * @param event MouseEvent
-    */
+     * Méthode qui ouvre une popup permettant de
+     * consulter un client double-cliqué dans la ListView clientListView.
+     * 
+     * @param event MouseEvent
+     */
     public void popupConsultClient(MouseEvent event) {
-    	if (event.getClickCount() >= 2) {
+        if (event.getClickCount() >= 2) {
             util.loadPopup(event, "/views/consultClient.fxml");
         }
     }
