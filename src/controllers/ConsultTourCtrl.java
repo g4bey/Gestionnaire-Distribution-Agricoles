@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import modele.Commande;
+import modele.Tournee;
 import utility.ControllersUtils;
 
 /**
@@ -44,6 +45,8 @@ public class ConsultTourCtrl implements Initializable {
     @FXML
     private WebView tourMapWebView;
 
+    private static Tournee tournee;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -56,5 +59,14 @@ public class ConsultTourCtrl implements Initializable {
     */
     public void closeConsultTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère la tournée sélectionnée dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param tour Tournee
+    */
+    public static void setTournee(Tournee tour) {
+      tournee = tour;
     }
 }

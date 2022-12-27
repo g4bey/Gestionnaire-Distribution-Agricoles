@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import modele.Commande;
 import utility.ControllersUtils;
 
 /**
@@ -16,6 +17,8 @@ public class DeleteCommCtrl implements Initializable {
 	
     @FXML
     private Text commLabelText;
+
+    private static Commande commande;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,5 +40,14 @@ public class DeleteCommCtrl implements Initializable {
     */
     public void cancelDeleteComm(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère la commande sélectionnée dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param comm Commande
+    */
+    public static void setCommande(Commande comm) {
+        commande = comm;
     }
 }

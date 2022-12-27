@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import modele.Tournee;
 import utility.ControllersUtils;
 
 /**
@@ -16,6 +17,8 @@ public class DeleteTourneeCtrl implements Initializable {
     
     @FXML
     private Text tourLabelText;
+
+    private static Tournee tournee;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,5 +40,14 @@ public class DeleteTourneeCtrl implements Initializable {
     */
     public void cancelDeleteTour(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère la tournée sélectionnée dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param tour Tournee
+    */
+    public static void setTournee(Tournee tour) {
+      tournee = tour;
     }
 }

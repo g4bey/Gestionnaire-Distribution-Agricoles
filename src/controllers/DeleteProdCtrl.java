@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import modele.Producteur;
 import utility.ControllersUtils;
 
 /**
@@ -16,6 +17,8 @@ public class DeleteProdCtrl implements Initializable {
 	
     @FXML
     private Text prodLabelText;
+
+    private static Producteur producteur;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,5 +40,14 @@ public class DeleteProdCtrl implements Initializable {
     */
     public void cancelDeleteProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère le producteur sélectionné dans la listView
+    * de la vue précédente (adminSelectMenu)
+    * @param prod Producteur
+    */
+    public static void setProd(Producteur prod) {
+        producteur = prod;
     }
 }

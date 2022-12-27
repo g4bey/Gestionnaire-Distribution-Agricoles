@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import modele.Client;
+import modele.Commande;
 import utility.ControllersUtils;
 
 /**
@@ -35,6 +36,8 @@ public class ModifyCommCtrl implements Initializable {
     @FXML
     private ChoiceBox<Client> clientChoiceBox;
 
+    private static Commande commande;
+
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -55,5 +58,14 @@ public class ModifyCommCtrl implements Initializable {
 	*/
     public void cancelModifyComm(ActionEvent event) {
         ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère la commande sélectionnée dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param comm Commande
+    */
+    public static void setCommande(Commande comm) {
+        commande = comm;
     }
 }

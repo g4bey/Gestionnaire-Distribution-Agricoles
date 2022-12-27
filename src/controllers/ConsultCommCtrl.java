@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import modele.Commande;
 import utility.ControllersUtils;
 
 /**
@@ -43,6 +44,8 @@ public class ConsultCommCtrl implements Initializable {
     @FXML
 	private WebView commMapWebView;
 
+    private static Commande commande;
+
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -55,5 +58,14 @@ public class ConsultCommCtrl implements Initializable {
     */
     public void closeConsultComm(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère la commande sélectionnée dans la listView
+    * de la vue précédente (prodSelectMenu)
+    * @param comm Commande
+    */
+    public static void setCommande(Commande comm) {
+        commande = comm;
     }
 }

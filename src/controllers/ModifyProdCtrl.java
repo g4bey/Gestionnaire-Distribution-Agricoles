@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import modele.Producteur;
 import utility.ControllersUtils;
 
 /**
@@ -44,6 +45,8 @@ public class ModifyProdCtrl implements Initializable {
 	
     @FXML
 	private TextField confirmPasswordField;
+
+    private static Producteur producteur;
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -65,5 +68,14 @@ public class ModifyProdCtrl implements Initializable {
     */
     public void cancelModifyProd(ActionEvent event) {
     	ControllersUtils.closePopup(event);
+    }
+
+    /**
+    * Méthode qui récupère le producteur sélectionné dans la listView
+    * de la vue précédente (adminSelectMenu)
+    * @param prod Producteur
+    */
+    public static void setProd(Producteur prod) {
+        producteur = prod;
     }
 }
