@@ -4,35 +4,39 @@ import exceptions.AdresseInvalideException;
 import validator.ValidateurAdresse;
 import validator.ValidateurDonnee;
 
-public class FormProdAddValidator extends FormValidator {
+/**
+ * Validateur de formulaire pour AddClientCtrl
+ * @see controllers.AddClientCtrl
+ */
+public class FormClientAddValidator extends FormValidator {
 
     public String adresseCsv;
     public String coordsXY;
 
-    public FormProdAddValidator(String siret,
-                                String proprietaire,
-                                String addressNumField,
-                                String addressPathType,
-                                String addressPathName,
-                                String addressTownName,
-                                String addressPostCode,
-                                String numTelProd,
-                                String password,
-                                String confirmPassword) {
-        if(!ValidateurDonnee.valideSiret(siret)) {
-            setInvalid("Le SIRET est invalide");
+    /**
+     * Constructeur de FormClientAddValidator,
+     * permet de changer les champs d'adresse en une adresse au format CSV
+     * et génère les coordonnées GPS
+     * @param clientName Nom du Client récupéré dans la vue
+     * @param addressNumField Numéro de voie du Client récupéré dans la vue
+     * @param addressPathType Type de voie du Client récupéré dans la vue
+     * @param addressPathName Nom de voie du Client récupéré dans la vue
+     * @param addressTownName Nom de ville du Client récupéré dans la vue
+     * @param addressPostCode Code postal du Client récupéré dans la vue
+     * @param clientPhone Numéro de téléphone du Client récupéré dans la vue
+     */
+    public FormClientAddValidator(String clientName,
+                                  String addressNumField,
+                                  String addressPathType,
+                                  String addressPathName,
+                                  String addressTownName,
+                                  String addressPostCode,
+                                  String clientPhone) {
+        if (clientName.equals("")) {
+            setInvalid("Veuillez entrer le nom du Client");
         }
-        if (proprietaire.equals("")) {
-            setInvalid("Veuillez entrer un propriétaire");
-        }
-        if (!ValidateurDonnee.valideTelephone(numTelProd)) {
-            setInvalid("Le numéro de téléphone est invalide");
-        }
-        if (!ValidateurDonnee.validePassword(password)){
-            setInvalid("Format du mot de passe incorrect");
-        }
-        if (!password.equals(confirmPassword)) {
-            setInvalid("Les mots de passe ne correspondent pas");
+        if (!ValidateurDonnee.valideTelephone(clientPhone)) {
+            setInvalid("Le numéro de téléphone n'est pas valide");
         }
         if (addressPathType == null) {
             setInvalid("Veuillez sélectionner un type de voie");
