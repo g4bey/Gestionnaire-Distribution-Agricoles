@@ -31,13 +31,10 @@ public class TourneeDAO extends DAO<Tournee> {
                 Vehicule vh = new VehiculeDAO(conn).get(rs.getInt("idVehicule"));
 
                 Tournee tournee = new Tournee(id, rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
-                        rs.getFloat("poids"), rs.getString("libelle"),
-                        vh);
+                        rs.getFloat("poids"), rs.getString("libelle"), vh);
 
                 // On charge la liste des Commandes
-                ArrayList<Commande> commandes = new CommandeDAO(conn).getCommandesByTournee(vh.getProducteur(),
-                        tournee);
-                for (Commande commande : commandes) {
+                for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(vh.getProducteur(), tournee)) {
                     tournee.addCommande(commande);
                 }
 
@@ -59,19 +56,30 @@ public class TourneeDAO extends DAO<Tournee> {
     @Override
     public ArrayList<Tournee> getAll() {
         ArrayList<Tournee> tournees = new ArrayList<>();
+
+        CommandeDAO cmdDAO = new CommandeDAO(conn);
         try {
             rs = stmt.executeQuery("SELECT * FROM Tournee");
 
             VehiculeDAO vDAO = new VehiculeDAO(conn);
 
             while (rs.next()) {
-                tournees.add(new Tournee(
+                Vehicule vh = vDAO.get(rs.getInt("idVehicule"));
+
+                Tournee tournee = new Tournee(
                         rs.getInt("idTournee"),
                         rs.getTimestamp("horaireDebut"),
                         rs.getTimestamp("horaireFin"),
                         rs.getFloat("poids"),
                         rs.getString("libelle"),
-                        vDAO.get(rs.getInt("idVehicule"))));
+                        vh);
+
+                // On charge la liste des Commandes
+                for (Commande commande : cmdDAO.getCommandesByTournee(vh.getProducteur(), tournee)) {
+                    tournee.addCommande(commande);
+                }
+
+                tournees.add(tournee);
             }
 
             return tournees;
