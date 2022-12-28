@@ -2,7 +2,6 @@ package controllers;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import exceptions.AdresseInvalideException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.scene.text.Text;
 import modele.Producteur;
 import utility.ControllersUtils;
 import validForm.FormProdAddValidator;
-import validator.ValidateurAdresse;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -85,17 +83,6 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
             formErrorText.setVisible(false);
             Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64);
             String hashedPs = argon2.hash(2,15*1024,1, prodPasswordField.getText().toCharArray());
-            ValidateurAdresse validadresse = null;
-            try {
-                validadresse = ValidateurAdresse.create(
-                    addressNumField.getText(),
-                    pathTypeChoiceBox.getValue(),
-                    pathNameField.getText(),
-                    townNameField.getText(),
-                    postcodeField.getText());
-            } catch (NumberFormatException | AdresseInvalideException e) {
-                e.printStackTrace();
-            }
             pDAO.add(new Producteur(
                 prodSiretField.getText(),
                 propNameField.getText(),
