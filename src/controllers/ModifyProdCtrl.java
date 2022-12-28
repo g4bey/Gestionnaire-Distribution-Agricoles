@@ -69,7 +69,7 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
         listePath.add("Chemin");
         listePath.add("Route");
         listePath.add("Impasse");
-        listePath.add("Lieu-Dit");
+        listePath.add("Lieu Dit");
         pathTypeChoiceBox.setItems(listePath);
         pathTypeChoiceBox.setValue(adresse[1]);
 
