@@ -76,7 +76,7 @@ public class AddClientCtrl extends AbstractConnCtrl implements Initializable {
                 fcav.getCoordsXY(),
                 clientPhoneField.getText()
             ));
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         }
         else {
             formErrorText.setText(fcav.getErrors());
@@ -90,7 +90,7 @@ public class AddClientCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelAddClient(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 
 
