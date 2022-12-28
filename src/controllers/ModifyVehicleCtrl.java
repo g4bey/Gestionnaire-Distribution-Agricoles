@@ -2,16 +2,20 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
 import validForm.FormAddVehicleCtrl;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 /**
  * Contrôleur permettant la modification d'un Vehicule.
  */
-public class ModifyVehicleCtrl extends AbstractConnCtrl {
+public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable {
 
     @FXML
     private TextField vehicleImmatField;
@@ -26,6 +30,13 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl {
     private Text formErrorText;
 
     private static Vehicule vehicule;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        vehicleImmatField.setText(vehicule.getNumImmat());
+        vehicleLabelField.setText(vehicule.getLibelle());
+        vehicleCapacityField.setText(Float.toString(vehicule.getPoidsMax()));
+    }
 
     /**
      * Méthode qui valide la modification d'un véhicule.
@@ -43,7 +54,7 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl {
 
             vDAO.update(vehicule);
 
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         } else {
             formErrorText.setText(favc.getErrors());
             formErrorText.setVisible(true);

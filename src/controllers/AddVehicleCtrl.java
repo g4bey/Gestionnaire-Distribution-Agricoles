@@ -38,7 +38,7 @@ public class AddVehicleCtrl extends AbstractConnCtrl {
         if (favc.isValid()) {
             vDAO.add(new Vehicule(vehicleImmatField.getText(), Float.parseFloat(vehicleCapacityField.getText()),
                     vehicleLabelField.getText(), UserAuth.getProd()));
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent (event);
         } else {
             formErrorText.setText(favc.getErrors());
             formErrorText.setVisible(true);
@@ -51,6 +51,6 @@ public class AddVehicleCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void cancelAddVehicle(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent (event);
     }
 }

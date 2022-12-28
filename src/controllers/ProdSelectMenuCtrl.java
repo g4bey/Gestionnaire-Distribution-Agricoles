@@ -91,9 +91,20 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         });
 
         tourListView.focusedProperty().addListener((s) -> {
-            if (commListView.focusedProperty().get()) {
+            if (tourListView.focusedProperty().get()) {
                 modifyTourBtn.setDisable(false);
                 deleteTourBtn.setDisable(false);
+            }
+            else {
+                modifyTourBtn.setDisable(true);
+                deleteTourBtn.setDisable(true);
+            }
+        });
+
+        vehicleListView.focusedProperty().addListener((s) -> {
+            if (vehicleListView.focusedProperty().get()) {
+                modifyVehicleBtn.setDisable(false);
+                deleteVehicleBtn.setDisable(false);
             }
             else {
                 modifyVehicleBtn.setDisable(true);
@@ -178,7 +189,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupDeleteComm(ActionEvent event) {
-        ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
+        DeleteCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/deleteComm.fxml");
     }
     
@@ -189,7 +200,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     */
     public void popupConsultComm(MouseEvent event) {
         if (event.getClickCount() >= 2 && !commListView.getSelectionModel().isEmpty()) {
-            ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
+            ConsultCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultCommV1.fxml");
         }
     }
@@ -218,7 +229,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupDeleteTour(ActionEvent event) {
-        ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
+        DeleteTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/deleteTour.fxml");
     }
     
@@ -229,7 +240,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     */
     public void popupConsultTour(MouseEvent event) {
         if (event.getClickCount() >= 2 && !tourListView.getSelectionModel().isEmpty()) {
-            ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
+            ConsultTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultTour.fxml");
         }
     }
@@ -258,7 +269,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupDeleteVehicle(ActionEvent event) {
-        ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
+        DeleteVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
     	util.loadPopup(event, "/views/deleteVehicle.fxml");
     }
     
@@ -269,7 +280,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     */
     public void popupConsultVehicle(MouseEvent event) {
     	if (event.getClickCount() >= 2 && !vehicleListView.getSelectionModel().isEmpty()) {
-            ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
+            ConsultVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultVehicle.fxml");
         }
     }

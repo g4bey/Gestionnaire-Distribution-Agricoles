@@ -13,7 +13,7 @@ import utility.ControllersUtils;
 /**
 * Contrôleur permettant la suppression d'une Tournee.
 */
-public class DeleteTourCtrl implements Initializable {
+public class DeleteTourCtrl extends AbstractConnCtrl implements Initializable {
     
     @FXML
     private Text tourLabelText;
