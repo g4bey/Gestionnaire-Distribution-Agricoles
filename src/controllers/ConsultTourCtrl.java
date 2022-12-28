@@ -12,11 +12,12 @@ import javafx.scene.web.WebView;
 import modele.Commande;
 import modele.Tournee;
 import utility.ControllersUtils;
+import utility.DateManager;
 
 /**
  * Contrôleur permettant l'aperçu Tournee.
  */
-public class ConsultTourCtrl extends AbstractDateCtrl implements Initializable {
+public class ConsultTourCtrl implements Initializable {
 
   @FXML
   private Text tourLabelText;
@@ -51,9 +52,9 @@ public class ConsultTourCtrl extends AbstractDateCtrl implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
     tourLabelText.setText(tournee.getLibelle());
     tourWeightText.setText(String.valueOf(tournee.getPoids()));
-    tourDatetimeText.setText(jour.format(tournee.getHoraireDebut()));
-    startText.setText(heure.format(tournee.getHoraireDebut()));
-    endText.setText(heure.format(tournee.getHoraireFin()));
+    tourDatetimeText.setText(DateManager.TimestampToDateString(tournee.getHoraireDebut()));
+    startText.setText(DateManager.TimestampToHourString(tournee.getHoraireDebut()));
+    endText.setText(DateManager.TimestampToHourString(tournee.getHoraireFin()));
     vehicleImmatText.setText(tournee.getVehicule().getNumImmat());
     capacityText.setText(String.valueOf(tournee.getPoids()));
     commListView.getItems().addAll(tournee.getCommandes());

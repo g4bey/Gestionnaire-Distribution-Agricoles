@@ -11,11 +11,12 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import modele.Commande;
 import utility.ControllersUtils;
+import utility.DateManager;
 
 /**
  * Contrôleur permettant l'aperçu Commande.
  */
-public class ConsultCommCtrl extends AbstractDateCtrl implements Initializable {
+public class ConsultCommCtrl implements Initializable {
 
     @FXML
     private Text commLabelText;
@@ -50,9 +51,9 @@ public class ConsultCommCtrl extends AbstractDateCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         commLabelText.setText(commande.getLibelle());
         commWeightText.setText(String.valueOf(commande.getPoids()));
-        commDateText.setText(jour.format((commande.getHoraireDebut())));
-        commStartText.setText(heure.format(commande.getHoraireDebut()));
-        commEndText.setText(heure.format(commande.getHoraireFin()));
+        commDateText.setText(DateManager.TimestampToDateString((commande.getHoraireDebut())));
+        commStartText.setText(DateManager.TimestampToHourString(commande.getHoraireDebut()));
+        commEndText.setText(DateManager.TimestampToHourString(commande.getHoraireFin()));
         clientAddressText.setText(commande.getClient().getAdresseClient());
         clientNameText.setText(commande.getClient().getNomClient());
         tourLabelText.setText(commande.getTournee().getLibelle());
