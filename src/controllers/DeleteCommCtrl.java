@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import modele.Commande;
 import utility.ControllersUtils;
+import validForm.FormDeleteCommand;
+import validForm.FormValidator;
 
 /**
 * Contrôleur permettant la suppression d'une Commande.
@@ -32,6 +34,15 @@ public class DeleteCommCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteComm(ActionEvent event) {
+        FormValidator formulaire = new FormDeleteCommand(commande);
+
+        if (formulaire.isValid()) {
+            commDAO.delete(commande);
+        } else {
+            deleteErrorText.setVisible(true);
+            deleteErrorText.setText(formulaire.getErrors());
+        }
+
     	ControllersUtils.closePopupAndUpdateParent(event);
     }
     
