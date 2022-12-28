@@ -50,7 +50,7 @@ public class ValidateurAdresse {
      * @param ville       la ville fourni
      * @throws AdresseInvalideException
      */
-    private ValidateurAdresse(String numeroRue, String typeRue, String nomRue, String codePostale, String ville)
+    private ValidateurAdresse(String numeroRue, String typeRue, String nomRue, String ville, String codePostale)
             throws AdresseInvalideException {
         // Récupérons le résultat de la requête
         JsonObject objetJson = makeRequest(makeURI(
@@ -153,10 +153,10 @@ public class ValidateurAdresse {
      * @return un objet AdresseValide
      * @throws AdresseInvalideException l'adresse est invalide.
      */
-    public static ValidateurAdresse create(String numeroRue, String typeRue, String nomRue, String codePostale,
-            String ville) throws AdresseInvalideException {
+    public static ValidateurAdresse create(String numeroRue, String typeRue, String nomRue, String ville,
+            String codePostale) throws AdresseInvalideException {
 
-        return new ValidateurAdresse(numeroRue, typeRue, nomRue, codePostale, ville);
+        return new ValidateurAdresse(numeroRue, typeRue, nomRue, ville, codePostale);
     }
 
     /**

@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import modele.Producteur;
-import tests.validators.ValidateurAdresseTest;
 import utility.ControllersUtils;
 import validator.ValidateurAdresse;
 
