@@ -2,7 +2,6 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.stream.Collector;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
