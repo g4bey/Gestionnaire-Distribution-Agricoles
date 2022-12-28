@@ -114,6 +114,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupModifyProd(ActionEvent event) {
+        ModifyProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
         util.loadPopup(event, "/views/modifyProd.fxml");
     }
 
@@ -124,6 +125,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupDeleteProd(ActionEvent event) {
+        DeleteProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
         util.loadPopup(event, "/views/deleteProd.fxml");
     }
 
@@ -135,6 +137,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      */
     public void popupConsultProd(MouseEvent event) {
         if (event.getClickCount() >= 2) {
+            ConsultProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultProd.fxml");
         }
     }
@@ -154,6 +157,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupModifyClient(ActionEvent event) {
+        ModifyClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
         util.loadPopup(event, "/views/modifyClient.fxml");
     }
 
@@ -164,6 +168,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupDeleteClient(ActionEvent event) {
+        DeleteClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
         util.loadPopup(event, "/views/deleteClient.fxml");
     }
 
@@ -175,6 +180,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      */
     public void popupConsultClient(MouseEvent event) {
         if (event.getClickCount() >= 2) {
+            ConsultClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultClient.fxml");
         }
     }
