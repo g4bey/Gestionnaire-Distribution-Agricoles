@@ -83,18 +83,25 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             }
         });
 
-        try {
-            commDAO = new CommandeDAO(DatabaseConnection.getInstance("production"));
-            tDAO = new TourneeDAO(DatabaseConnection.getInstance("production"));
-            vDAO = new VehiculeDAO(DatabaseConnection.getInstance("production"));
-            commListView.getItems().addAll(commDAO.getAll());
-            tourListView.getItems().addAll(tDAO.getAll());
-            vehicleListView.getItems().addAll(vDAO.getAll());
-        } catch (ClassNotFoundException | SQLException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        commListView.getItems().addAll(commDAO.getAll());
+        tourListView.getItems().addAll(tDAO.getAll());
+        vehicleListView.getItems().addAll(vDAO.getAll());
+
+        // On désactive la listeView comm si vide.
+        if(commListView.getItems().isEmpty()) {
+            commListView.setDisable(true);
         }
-        
+
+        // On désactive la listeView tour si vide.
+        if(tourListView.getItems().isEmpty()) {
+            tourListView.setDisable(true);
+        }
+
+        // On désactive la listeView vehicule si vide.
+        if(vehicleListView.getItems().isEmpty()) {
+            vehicleListView.setDisable(true);
+        }
+
         commListView.focusedProperty().addListener((s) -> {
             if (commListView.focusedProperty().get()) {
                 modifyCommBtn.setDisable(false);

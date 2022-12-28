@@ -62,11 +62,6 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         // TODO Auto-generated method stub
         this.util = new ControllersUtils();
 
-        modifyProdBtn.setDisable(false);
-        modifyClientBtn.setDisable(false);
-        deleteProdBtn.setDisable(false);
-        deleteClientBtn.setDisable(false);
-
         // Remplissions les listView
         adminListView.getItems().addAll(aDAO.getAll());
         prodListView.getItems().addAll(pDAO.getAll());
@@ -80,15 +75,11 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         // On désactive la listeView prod si vide.
         if(prodListView.getItems().isEmpty()) {
             prodListView.setDisable(true);
-            modifyProdBtn.setDisable(true);
-            deleteProdBtn.setDisable(true);
         }
 
         // On désactive la listeView client si vide.
         if(clientListView.getItems().isEmpty()) {
             clientListView.setDisable(true);
-            modifyClientBtn.setDisable(true);
-            deleteClientBtn.setDisable(true);
         }
 
         // On desactive les boutons si c'est necessaire.
