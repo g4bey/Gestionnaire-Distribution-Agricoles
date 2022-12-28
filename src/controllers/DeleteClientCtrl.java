@@ -30,6 +30,10 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     * @param event ActionEvent
     */
     public void validateDeleteClient(ActionEvent event) {
+        if (commDAO.getAll().stream().noneMatch(
+                cmd->cmd.getClient().equals(client))) {
+            cltDAO.delete(client);
+        }
 
     	ControllersUtils.closePopupAndUpdateParent(event);
     }
@@ -39,7 +43,6 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     * @param event ActionEvent
     */
     public void cancelDeleteClient(ActionEvent event) {
-        cltDAO.delete(client);
     	ControllersUtils.closePopupAndUpdateParent(event);
     }
 
