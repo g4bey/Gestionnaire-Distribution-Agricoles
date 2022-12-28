@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import modele.Client;
 import utility.ControllersUtils;
+import validForm.FormDeleteClient;
+import validForm.FormValidator;
 
 /**
 * Contrôleur permettant la suppression d'un Client.
@@ -17,6 +19,8 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     
     @FXML
     private Text clientNameText;
+    @FXML
+    private Text deleteErrorText;
 
     private static Client client;
 
@@ -30,9 +34,13 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     * @param event ActionEvent
     */
     public void validateDeleteClient(ActionEvent event) {
-        if (commDAO.getAll().stream().noneMatch(
-                cmd->cmd.getClient().equals(client))) {
+        FormValidator formulaire = new FormDeleteClient(client);
+
+        if (formulaire.isValid()) {
             cltDAO.delete(client);
+        } else {
+            deleteErrorText.setVisible(true);
+            deleteErrorText.setText(formulaire.getErrors());
         }
 
     	ControllersUtils.closePopupAndUpdateParent(event);
