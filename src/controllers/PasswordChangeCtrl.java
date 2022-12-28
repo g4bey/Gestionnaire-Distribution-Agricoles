@@ -33,7 +33,6 @@ public class PasswordChangeCtrl extends AbstractConnCtrl {
      */
     public void validatePasswordChangeProd(ActionEvent event) {
         FormValidator formulaire = new FormPsChange(passwordField.getText(),confirmField.getText());
-        pDAO = new ProducteurDAO(conn);
         Producteur prod = UserAuth.getProd();
 
         if (formulaire.isValid()){
