@@ -30,7 +30,6 @@ public class DeleteCommCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteComm(ActionEvent event) {
-        commDAO.delete(commande);
     	ControllersUtils.closePopupAndUpdateParent(event);
     }
     
