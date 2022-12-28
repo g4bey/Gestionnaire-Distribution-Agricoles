@@ -22,7 +22,7 @@ public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		prodLabelText.setText(producteur.getSiret());
+        prodLabelText.setText(producteur.getSiret());
     }
     
     /**
@@ -31,7 +31,7 @@ public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
     */
     public void validateDeleteProd(ActionEvent event) {
         pDAO.delete(producteur);
-    	ControllersUtils.closePopup(event);
+        ControllersUtils.closePopup(event);
     }
     
     /**
