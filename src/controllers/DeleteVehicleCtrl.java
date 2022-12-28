@@ -9,11 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
+import validForm.FormDeleteCommand;
+import validForm.FormDeleteVehicule;
+import validForm.FormValidator;
 
 /**
 * Contrôleur permettant la suppression d'un Vehicule.
 */
-public class DeleteVehicleCtrl implements Initializable {
+public class DeleteVehicleCtrl extends AbstractConnCtrl implements Initializable {
 
     @FXML
     private Text vehicleLabelText;
@@ -33,7 +36,16 @@ public class DeleteVehicleCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteVehicle(ActionEvent event) {
-    	ControllersUtils.closePopupAndUpdateParent(event);
+        FormValidator formulaire = new FormDeleteVehicule(vehicule);
+
+        if (formulaire.isValid()) {
+            vDAO.delete(vehicule);
+        } else {
+            deleteErrorText.setVisible(true);
+            deleteErrorText.setText(formulaire.getErrors());
+        }
+
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
     
     /**
