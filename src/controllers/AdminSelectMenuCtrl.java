@@ -67,9 +67,53 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         deleteProdBtn.setDisable(false);
         deleteClientBtn.setDisable(false);
 
+        // Remplissions les listView
         adminListView.getItems().addAll(aDAO.getAll());
         prodListView.getItems().addAll(pDAO.getAll());
         clientListView.getItems().addAll(cltDAO.getAll());
+
+        // On désactive la listeView admin si vide.
+        if(adminListView.getItems().isEmpty()) {
+            adminListView.setDisable(true);
+        }
+
+        // On désactive la listeView prod si vide.
+        if(prodListView.getItems().isEmpty()) {
+            prodListView.setDisable(true);
+            modifyProdBtn.setDisable(true);
+            deleteProdBtn.setDisable(true);
+        }
+
+        // On désactive la listeView client si vide.
+        if(clientListView.getItems().isEmpty()) {
+            clientListView.setDisable(true);
+            modifyClientBtn.setDisable(true);
+            deleteClientBtn.setDisable(true);
+        }
+
+        // On desactive les boutons si c'est necessaire.
+        prodListView.focusedProperty().addListener((s) -> {
+            if (prodListView.focusedProperty().get()) {
+                modifyProdBtn.setDisable(false);
+                deleteProdBtn.setDisable(false);
+            }
+            else {
+                modifyProdBtn.setDisable(true);
+                deleteProdBtn.setDisable(true);
+            }
+        });
+
+        // On desactive les boutons si c'est necessaire.
+        clientListView.focusedProperty().addListener((s) -> {
+            if (clientListView.focusedProperty().get()) {
+                modifyClientBtn.setDisable(false);
+                deleteClientBtn.setDisable(false);
+            }
+            else {
+                modifyClientBtn.setDisable(true);
+                deleteClientBtn.setDisable(true);
+            }
+        });
     }
 
     /**
