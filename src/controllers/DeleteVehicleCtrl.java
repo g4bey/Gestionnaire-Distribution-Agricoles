@@ -17,6 +17,8 @@ public class DeleteVehicleCtrl implements Initializable {
 
     @FXML
     private Text vehicleLabelText;
+    @FXML
+    private Text deleteErrorText;
 
     private static Vehicule vehicule;
 

@@ -17,6 +17,8 @@ public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
 	
     @FXML
     private Text prodLabelText;
+    @FXML
+    private Text deleteErrorText;
 
     private static Producteur producteur;
 

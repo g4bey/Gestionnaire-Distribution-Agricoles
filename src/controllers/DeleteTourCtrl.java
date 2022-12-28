@@ -17,6 +17,8 @@ public class DeleteTourCtrl implements Initializable {
     
     @FXML
     private Text tourLabelText;
+    @FXML
+    private Text deleteErrorText;
 
     private static Tournee tournee;
 

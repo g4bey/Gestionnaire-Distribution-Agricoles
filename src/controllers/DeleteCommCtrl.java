@@ -17,6 +17,8 @@ public class DeleteCommCtrl extends AbstractConnCtrl implements Initializable {
 	
     @FXML
     private Text commLabelText;
+    @FXML
+    private Text deleteErrorText;
 
     private static Commande commande;
 
