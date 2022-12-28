@@ -13,7 +13,7 @@ import utility.ControllersUtils;
 /**
 * Contrôleur permettant la suppression d'un Client.
 */
-public class DeleteClientCtrl implements Initializable {
+public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable {
     
     @FXML
     private Text clientNameText;
@@ -22,8 +22,7 @@ public class DeleteClientCtrl implements Initializable {
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+        clientNameText.setText(client.getNomClient());
     }
     
     /**
@@ -31,6 +30,7 @@ public class DeleteClientCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteClient(ActionEvent event) {
+
     	ControllersUtils.closePopup(event);
     }
     
@@ -39,6 +39,7 @@ public class DeleteClientCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelDeleteClient(ActionEvent event) {
+        cltDAO.delete(client);
     	ControllersUtils.closePopup(event);
     }
 

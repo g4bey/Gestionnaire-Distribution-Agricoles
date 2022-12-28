@@ -13,7 +13,7 @@ import utility.ControllersUtils;
 /**
 * Contrôleur permettant la suppression d'une Commande.
 */
-public class DeleteCommCtrl implements Initializable {
+public class DeleteCommCtrl extends AbstractConnCtrl implements Initializable {
 	
     @FXML
     private Text commLabelText;
@@ -22,8 +22,7 @@ public class DeleteCommCtrl implements Initializable {
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+        commLabelText.setText(commande.getLibelle());
     }
     
     /**
@@ -31,6 +30,7 @@ public class DeleteCommCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteComm(ActionEvent event) {
+        commDAO.delete(commande);
     	ControllersUtils.closePopup(event);
     }
     

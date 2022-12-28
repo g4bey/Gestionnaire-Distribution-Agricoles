@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import modele.Vehicule;
@@ -44,6 +45,15 @@ public class ConsultProdCtrl implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+
+        prodCommListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Commande row, boolean empty) {
+                super.updateItem(row, empty) ;
+                setText(empty ? null : row.getLibelle());
+            }
+        });
+
         prodSiretText.setText(producteur.getSiret());
         prodPropText.setText(producteur.getProprietaire());
         prodAddressText.setText(producteur.getAdresseProd());
