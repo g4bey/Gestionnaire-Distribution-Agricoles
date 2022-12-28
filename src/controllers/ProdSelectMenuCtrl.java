@@ -87,17 +87,17 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         tourListView.getItems().addAll(tDAO.getAll());
         vehicleListView.getItems().addAll(vDAO.getAll());
 
-        // On désactive la listeView admin si vide.
+        // On désactive la listeView comm si vide.
         if(commListView.getItems().isEmpty()) {
             commListView.setDisable(true);
         }
 
-        // On désactive la listeView prod si vide.
+        // On désactive la listeView tour si vide.
         if(tourListView.getItems().isEmpty()) {
             tourListView.setDisable(true);
         }
 
-        // On désactive la listeView client si vide.
+        // On désactive la listeView vehicule si vide.
         if(vehicleListView.getItems().isEmpty()) {
             vehicleListView.setDisable(true);
         }
