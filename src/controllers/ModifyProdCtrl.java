@@ -56,18 +56,13 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
         prodSiretField.setText(producteur.getSiret());
         propNameField.setText(producteur.getProprietaire());
 
-        ValidateurAdresse adresse = null;
+        String[] adresse = producteur.getAdresseProd().split(",");
 
-        try {
-            adresse = ValidateurAdresse.unpack(producteur.getAdresseProd());
-        } catch (NumberFormatException | AdresseInvalideException e) {
-        }
-
-        if (adresse != null) {
-            addressNumField.setText(null);
-        }
-
-        addressNumField.setText(null);
+        addressNumField.setText(adresse[0]);
+        pathTypeChoiceBox.setValue(adresse[1]);
+        pathNameField.setText(adresse[2]);
+        townNameField.setText(adresse[3]);
+        postcodeField.setText(adresse[4]);
 
         prodPhoneField.setText(producteur.getNumTelProd());
     }
