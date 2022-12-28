@@ -51,9 +51,9 @@ public class ConsultTourCtrl extends AbstractDateCtrl implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
     tourLabelText.setText(tournee.getLibelle());
     tourWeightText.setText(String.valueOf(tournee.getPoids()));
-    tourDatetimeText.setText(jour.format(tournee.getHoraireDebut()));
-    startText.setText(heure.format(tournee.getHoraireDebut()));
-    endText.setText(heure.format(tournee.getHoraireFin()));
+    tourDatetimeText.setText(AbstractDateCtrl.getJourFormat().format(tournee.getHoraireDebut()));
+    startText.setText(AbstractDateCtrl.getHeureFormat().format(tournee.getHoraireDebut()));
+    endText.setText(AbstractDateCtrl.getHeureFormat().format(tournee.getHoraireFin()));
     vehicleImmatText.setText(tournee.getVehicule().getNumImmat());
     capacityText.setText(String.valueOf(tournee.getPoids()));
     commListView.getItems().addAll(tournee.getCommandes());

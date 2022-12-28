@@ -3,6 +3,14 @@ package controllers;
 import java.text.SimpleDateFormat;
 
 public abstract class AbstractDateCtrl {
-    protected SimpleDateFormat jour = new SimpleDateFormat("yyyy-MM-dd");
-    protected SimpleDateFormat heure = new SimpleDateFormat("HH:mm");
+    private static SimpleDateFormat jour = new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat heure = new SimpleDateFormat("HH:mm");
+
+    public static SimpleDateFormat getJourFormat() {
+        return jour;
+    }
+
+    public static SimpleDateFormat getHeureFormat() {
+        return heure;
+    }
 }
