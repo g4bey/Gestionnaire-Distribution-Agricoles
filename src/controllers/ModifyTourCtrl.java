@@ -57,7 +57,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl {
         tournee.setVehicule(vehicleChoiceBox.getValue());
 
         tDAO.update(tournee);
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
@@ -67,7 +67,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void cancelModifyTour(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

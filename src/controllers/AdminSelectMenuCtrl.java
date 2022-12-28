@@ -62,26 +62,6 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         // TODO Auto-generated method stub
         this.util = new ControllersUtils();
 
-        // Remplissions les listView
-        adminListView.getItems().addAll(aDAO.getAll());
-        prodListView.getItems().addAll(pDAO.getAll());
-        clientListView.getItems().addAll(cltDAO.getAll());
-
-        // On désactive la listeView admin si vide.
-        if(adminListView.getItems().isEmpty()) {
-            adminListView.setDisable(true);
-        }
-
-        // On désactive la listeView prod si vide.
-        if(prodListView.getItems().isEmpty()) {
-            prodListView.setDisable(true);
-        }
-
-        // On désactive la listeView client si vide.
-        if(clientListView.getItems().isEmpty()) {
-            clientListView.setDisable(true);
-        }
-
         // On desactive les boutons si c'est necessaire.
         prodListView.focusedProperty().addListener((s) -> {
             if (prodListView.focusedProperty().get()) {
@@ -105,6 +85,41 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
                 deleteClientBtn.setDisable(true);
             }
         });
+
+        // si une pop-up est close.
+        ControllersUtils.getStage().setOnCloseRequest(
+                event -> {
+                    reloadListViews();
+                }
+        );
+
+        loadListViews();
+    }
+
+    /**
+     * Reload les listViews.
+     */
+    private void reloadListViews() {
+        clearListViews();
+        loadListViews();
+    }
+
+    /**
+     * Clear les listViews.
+     */
+    private void clearListViews() {
+        adminListView.getItems().clear();
+        prodListView.getItems().clear();
+        clientListView.getItems().clear();
+    }
+
+    /**
+     * Load les ListViews
+     */
+    private void loadListViews() {
+        adminListView.getItems().addAll(aDAO.getAll());
+        prodListView.getItems().addAll(pDAO.getAll());
+        clientListView.getItems().addAll(cltDAO.getAll());
     }
 
     /**
@@ -171,7 +186,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event MouseEvent
      */
     public void popupConsultProd(MouseEvent event) {
-        if (event.getClickCount() >= 2) {
+        if (event.getClickCount() >= 2 && !prodListView.getSelectionModel().isEmpty()) {
             ConsultProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultProd.fxml");
         }
@@ -214,7 +229,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event MouseEvent
      */
     public void popupConsultClient(MouseEvent event) {
-        if (event.getClickCount() >= 2) {
+        if (event.getClickCount() >= 2 && !clientListView.getSelectionModel().isEmpty()) {
             ConsultClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultClient.fxml");
         }

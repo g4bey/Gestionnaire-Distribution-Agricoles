@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import modele.Commande;
 import utility.ControllersUtils;
@@ -68,7 +67,7 @@ public class ConsultCommCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void closeConsultComm(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

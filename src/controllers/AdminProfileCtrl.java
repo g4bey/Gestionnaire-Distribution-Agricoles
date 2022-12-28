@@ -31,6 +31,13 @@ public class AdminProfileCtrl implements Initializable {
         admin = UserAuth.getAdmin();
         adminLoginLabel.setText(admin.getPseudo());
         util = new ControllersUtils();
+
+        // si une pop-up est close.
+        ControllersUtils.getStage().setOnCloseRequest(
+                event -> {
+                    System.out.println("d");
+                }
+        );
     }
 
     /**
@@ -45,6 +52,6 @@ public class AdminProfileCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void closeAdminProfile(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

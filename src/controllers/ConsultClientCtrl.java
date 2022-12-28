@@ -40,7 +40,7 @@ public class ConsultClientCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void closeConsultClient(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

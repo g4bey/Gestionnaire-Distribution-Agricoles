@@ -17,9 +17,9 @@ public class ValidateurAdresseTest {
     public void adresseCreationTest() throws AdresseInvalideException {
 
         assertThrows(AdresseInvalideException.class, () -> {
-            ValidateurAdresse.create("8", "Boulevard", "machin", "80000", "Amiens");
+            ValidateurAdresse.create("8", "Boulevard", "machin", "Amiens", "80000");
         });
-        ValidateurAdresse adresse = ValidateurAdresse.create("8", "Boulevard", "du Port", "80000", "Amiens");
+        ValidateurAdresse adresse = ValidateurAdresse.create("8", "Boulevard", "du Port", "Amiens", "80000");
         assertEquals(adresse.getCoordX(), "49.897442");
         assertEquals(adresse.getCoordY(), "2.290084");
         assertEquals(adresse.getCoordXY(), "2.290084,49.897442");
@@ -31,7 +31,7 @@ public class ValidateurAdresseTest {
     @Test
     @DisplayName("Validation du format d'une adresse")
     public void formatTest() throws AdresseInvalideException {
-        ValidateurAdresse adresse = ValidateurAdresse.create("8", "Boulevard", "du Port", "80000", "Amiens");
+        ValidateurAdresse adresse = ValidateurAdresse.create("8", "Boulevard", "du Port", "Amiens", "80000");
         assertEquals(adresse.format(), "8 Boulevard du Port Amiens 80000");
     }
 }

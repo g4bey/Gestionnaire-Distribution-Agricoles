@@ -8,8 +8,21 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Validateur de formulaire pour AddCommCtrl
+ * @see controllers.AddCommCtrl
+ */
 public class FormCommAddValidator extends FormValidator {
 
+    /**
+     * Constructeur de FormCommAddValidator
+     * @param libelle Le libellé de la Commande récupéré dans la vue
+     * @param poids Le poids de la Commande récupéré dans la vue
+     * @param date La date de la Commande récupérée dans la vue
+     * @param creneauDebut Le créneau de début de la Commande récupéré dans la vue
+     * @param creneauFin Le créneau de fin de la Commande récupéré dans la vue
+     * @param client Le client de la Commande récupéré dans la vue
+     */
     public FormCommAddValidator(String libelle,
             String poids,
             LocalDate date,

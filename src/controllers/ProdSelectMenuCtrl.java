@@ -83,25 +83,6 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             }
         });
 
-        commListView.getItems().addAll(commDAO.getAll());
-        tourListView.getItems().addAll(tDAO.getAll());
-        vehicleListView.getItems().addAll(vDAO.getAll());
-
-        // On désactive la listeView comm si vide.
-        if(commListView.getItems().isEmpty()) {
-            commListView.setDisable(true);
-        }
-
-        // On désactive la listeView tour si vide.
-        if(tourListView.getItems().isEmpty()) {
-            tourListView.setDisable(true);
-        }
-
-        // On désactive la listeView vehicule si vide.
-        if(vehicleListView.getItems().isEmpty()) {
-            vehicleListView.setDisable(true);
-        }
-
         commListView.focusedProperty().addListener((s) -> {
             if (commListView.focusedProperty().get()) {
                 modifyCommBtn.setDisable(false);
@@ -123,6 +104,42 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
                 deleteVehicleBtn.setDisable(true);
             }
         });
+
+        // si une pop-up est close.
+        ControllersUtils.getStage().setOnCloseRequest(
+                event -> {
+                    reloadListViews();
+                }
+        );
+
+        loadListViews();
+    }
+
+
+    /**
+     * Reload les listViews.
+     */
+    private void reloadListViews() {
+        clearListViews();
+        loadListViews();
+    }
+
+    /**
+     * Clear les listViews.
+     */
+    private void clearListViews() {
+        commListView.getItems().clear();
+        tourListView.getItems().clear();
+        vehicleListView.getItems().clear();
+    }
+
+    /**
+     * Load les ListViews
+     */
+    private void loadListViews() {
+        commListView.getItems().addAll(commDAO.getAll());
+        tourListView.getItems().addAll(tDAO.getAll());
+        vehicleListView.getItems().addAll(vDAO.getAll());
     }
     
     /**
@@ -175,7 +192,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event MouseEvent
     */
     public void popupConsultComm(MouseEvent event) {
-        if (event.getClickCount() >= 2) {
+        if (event.getClickCount() >= 2 && !commListView.getSelectionModel().isEmpty()) {
             ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultCommV1.fxml");
         }
@@ -215,7 +232,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event MouseEvent
     */
     public void popupConsultTour(MouseEvent event) {
-        if (event.getClickCount() >= 2) {
+        if (event.getClickCount() >= 2 && !tourListView.getSelectionModel().isEmpty()) {
             ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultTour.fxml");
         }
@@ -255,7 +272,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event
     */
     public void popupConsultVehicle(MouseEvent event) {
-    	if (event.getClickCount() >= 2) {
+    	if (event.getClickCount() >= 2 && !vehicleListView.getSelectionModel().isEmpty()) {
             ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultVehicle.fxml");
         }

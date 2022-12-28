@@ -76,7 +76,7 @@ public class AddCommCtrl extends AbstractConnCtrl implements Initializable {
                 UserAuth.getProd(),
                 clientChoiceBox.getValue()
             ));
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         }
         else {
             formErrorText.setText(fcav.getErrors());
@@ -90,6 +90,6 @@ public class AddCommCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelAddComm(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

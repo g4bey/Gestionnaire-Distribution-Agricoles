@@ -85,7 +85,7 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
             client.setNumTelClient(clientPhoneField.getText());
 
             cltDAO.update(client);
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         }
     }
 
@@ -95,7 +95,7 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
      * @param event ActionEvent
      */
     public void cancelModifyClient(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

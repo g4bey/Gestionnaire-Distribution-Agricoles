@@ -69,7 +69,7 @@ public class ConsultTourCtrl implements Initializable {
    * @param event ActionEvent
    */
   public void closeConsultTour(ActionEvent event) {
-    ControllersUtils.closePopup(event);
+    ControllersUtils.closePopupAndUpdateParent(event);
   }
 
   /**

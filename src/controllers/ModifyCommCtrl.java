@@ -73,7 +73,7 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
 
             commDAO.update(commande);
         }
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
@@ -82,7 +82,7 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void cancelModifyComm(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

@@ -48,7 +48,7 @@ public class AddTourCtrl {
 	* @param event ActionEvent
 	*/
     public void validateAddTour(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 	
 	/**
@@ -56,6 +56,6 @@ public class AddTourCtrl {
     * @param event ActionEvent
     */
     public void cancelAddTour(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

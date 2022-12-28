@@ -101,7 +101,7 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
                     prodPasswordField.getText().toCharArray()));
 
             pDAO.update(producteur);
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         }
     }
 
@@ -111,7 +111,7 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void cancelModifyProd(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

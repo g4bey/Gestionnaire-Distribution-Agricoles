@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
 * Classe utilitaire pour les contrôleurs.
@@ -20,7 +21,7 @@ public class ControllersUtils {
     private static Parent root;
     private static Stage stage;
     private static Scene scene;
-    
+
     /**
     * Méthode qui charge une vue passée en paramètre.
     * @param event MouseEvent
@@ -39,7 +40,7 @@ public class ControllersUtils {
     	stage.setScene(scene);
     	stage.show();
     }
-    
+
     /**
     * Méthode qui charge une vue passée en paramètre.
     * @param event MouseEvent
@@ -58,7 +59,7 @@ public class ControllersUtils {
     	stage.setScene(scene);
     	stage.show();
     }
-    
+
     /**
     * Méthode qui charge une vue popup passée en paramètre.
     * @param event ActionEvent
@@ -67,7 +68,7 @@ public class ControllersUtils {
     public void loadPopup(ActionEvent event, String path) {
     	try {
     	    root = FXMLLoader.load(getClass().getResource(path));
-        } 
+        }
         catch (IOException e) {
     			// TODO Auto-generated catch block
             e.printStackTrace();
@@ -80,7 +81,7 @@ public class ControllersUtils {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
-    
+
     /**
     * Méthode qui charge une vue popup passée en paramètre.
     * @param event MouseEvent
@@ -89,7 +90,7 @@ public class ControllersUtils {
     public void loadPopup(MouseEvent event, String path) {
         try {
      	    root = FXMLLoader.load(getClass().getResource(path));
-        } 
+        }
         catch (IOException e) {
      			// TODO Auto-generated catch block
             e.printStackTrace();
@@ -102,13 +103,41 @@ public class ControllersUtils {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
-	
+
 	/**
     * Méthode qui permet de fermer la vue popup.
     * @param event ActionEvent
     */
-    public static void closePopup(ActionEvent event) {
+    public static void closePopupAndUpdateParent(ActionEvent event) {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        notifcationFermetureFenetre(stage);
     	stage.close();
+    }
+
+    /**
+     * Méthode qui permet de fermer la vue popup.
+     * @param event ActionEvent
+     */
+    public static void closePopup(ActionEvent event) {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    /**
+     * Permet d'envoyer lors qu'on ferme une fenetre.
+     * On va notifier la fenetre ayant invoqué cette derniere.
+     * @param stage la fenetre qui provoque cette notification.
+     */
+    public static void notifcationFermetureFenetre(Stage stage) {
+        // Si on appel d'une pop-up,
+        if (stage.getOwner().getOnCloseRequest() != null) {
+            stage.getOwner().getOnCloseRequest().handle(
+                    new WindowEvent(stage.getOwner(), WindowEvent.WINDOW_CLOSE_REQUEST)
+            );
+        }
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 }

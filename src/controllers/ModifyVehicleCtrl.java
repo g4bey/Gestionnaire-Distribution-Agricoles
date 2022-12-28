@@ -57,7 +57,7 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void cancelModifyVehicle(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

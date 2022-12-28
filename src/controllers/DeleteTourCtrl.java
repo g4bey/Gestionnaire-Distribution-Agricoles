@@ -31,7 +31,7 @@ public class DeleteTourCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteTour(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
     
     /**
@@ -39,7 +39,7 @@ public class DeleteTourCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelDeleteTour(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
