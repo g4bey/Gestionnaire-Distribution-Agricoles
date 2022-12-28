@@ -3,78 +3,123 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import de.mkammerer.argon2.Argon2Factory;
+import exceptions.AdresseInvalideException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import modele.Producteur;
+import tests.validators.ValidateurAdresseTest;
 import utility.ControllersUtils;
+import validator.ValidateurAdresse;
 
 /**
-* Contrôleur permettant la modification d'un Producteur.
-*/
-public class ModifyProdCtrl implements Initializable {
-	
+ * Contrôleur permettant la modification d'un Producteur.
+ */
+public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
+
     @FXML
-	private TextField prodSiretField;
-	
+    private TextField prodSiretField;
+
     @FXML
-	private TextField propNameField;
-	
+    private TextField propNameField;
+
     @FXML
-   	private TextField addressNumField;
-       
+    private TextField addressNumField;
+
     @FXML
     private ChoiceBox<String> pathTypeChoiceBox;
-       
+
     @FXML
     private TextField pathNameField;
-       
+
     @FXML
     private TextField townNameField;
-       
+
     @FXML
     private TextField postcodeField;
-	
+
     @FXML
-	private TextField prodPhoneField;
-	
+    private TextField prodPhoneField;
+
     @FXML
-	private TextField prodPasswordField;
-	
+    private TextField prodPasswordField;
+
     @FXML
-	private TextField confirmPasswordField;
+    private TextField confirmPasswordField;
 
     private static Producteur producteur;
-    
+
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-    }
-    
-	/**
-	* Méthode qui valide la modification d'un producteur.
-	* @param event ActionEvent
-	*/
-    public void validateModifyProd(ActionEvent event) {
-        ControllersUtils.closePopup(event);
-    }
-	
-	/**
-    * Méthode qui permet de fermer la vue de modification d'un producteur.
-    * @param event ActionEvent
-    */
-    public void cancelModifyProd(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        prodSiretField.setText(producteur.getSiret());
+        propNameField.setText(producteur.getProprietaire());
+
+        ValidateurAdresse adresse = null;
+
+        try {
+            adresse = ValidateurAdresse.unpack(producteur.getAdresseProd());
+        } catch (NumberFormatException | AdresseInvalideException e) {
+        }
+
+        if (adresse != null) {
+            addressNumField.setText(null);
+        }
+
+        addressNumField.setText(null);
+
+        prodPhoneField.setText(producteur.getNumTelProd());
     }
 
     /**
-    * Méthode qui récupère le producteur sélectionné dans la listView
-    * de la vue précédente (adminSelectMenu)
-    * @param prod Producteur
-    */
+     * Méthode qui valide la modification d'un producteur.
+     * 
+     * @param event ActionEvent
+     */
+    public void validateModifyProd(ActionEvent event) {
+        producteur.setSiret(prodSiretField.getText());
+        producteur.setProprietaire(propNameField.getText());
+        producteur.setNumTelProd(prodPhoneField.getText());
+
+        ValidateurAdresse adresse = null;
+
+        try {
+            adresse = ValidateurAdresse.create(addressNumField.getText(), pathTypeChoiceBox.getValue(),
+                    pathNameField.getText(), townNameField.getText(), postcodeField.getText());
+        } catch (NumberFormatException | AdresseInvalideException e) {
+        }
+
+        if (adresse != null) {
+            producteur.setAdresseProd(adresse.csv());
+        }
+
+        if (prodPasswordField.getText().equals(confirmPasswordField.getText())) {
+            producteur.setMdpProd(Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64).hash(2, 15 * 1024, 1,
+                    prodPasswordField.getText().toCharArray()));
+        }
+
+        pDAO.update(producteur);
+
+        ControllersUtils.closePopup(event);
+    }
+
+    /**
+     * Méthode qui permet de fermer la vue de modification d'un producteur.
+     * 
+     * @param event ActionEvent
+     */
+    public void cancelModifyProd(ActionEvent event) {
+        ControllersUtils.closePopup(event);
+    }
+
+    /**
+     * Méthode qui récupère le producteur sélectionné dans la listView
+     * de la vue précédente (adminSelectMenu)
+     * 
+     * @param prod Producteur
+     */
     public static void setProd(Producteur prod) {
         producteur = prod;
     }
