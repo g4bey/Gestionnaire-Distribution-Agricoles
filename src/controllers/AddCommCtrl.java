@@ -10,7 +10,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Client;
+import modele.Commande;
 import utility.ControllersUtils;
+import utility.DateManager;
+import utility.UserAuth;
+import validForm.FormCommAddValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,7 +58,31 @@ public class AddCommCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateAddComm(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+        FormCommAddValidator fcav = new FormCommAddValidator(
+            commLabelField.getText(),
+            commWeightField.getText(),
+            commDateField.getValue(),
+            commStartField.getText(),
+            commEndField.getText(),
+            clientChoiceBox.getValue()
+        );
+        if (fcav.isValid()) {
+            formErrorText.setVisible(false);
+            commDAO.add(new Commande(
+                commLabelField.getText(),
+                Float.parseFloat(commWeightField.getText()),
+                DateManager.convertToTimestamp(commDateField.getValue(), commStartField.getText()),
+                DateManager.convertToTimestamp(commDateField.getValue(), commEndField.getText()),
+                UserAuth.getProd(),
+                clientChoiceBox.getValue()
+            ));
+            ControllersUtils.closePopup(event);
+        }
+        else {
+            formErrorText.setText(fcav.getErrors());
+            formErrorText.setVisible(true);
+        }
+
     }
     
     /**
