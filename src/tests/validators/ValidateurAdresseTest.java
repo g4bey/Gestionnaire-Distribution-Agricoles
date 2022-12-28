@@ -32,6 +32,6 @@ public class ValidateurAdresseTest {
     @DisplayName("Validation du format d'une adresse")
     public void formatTest() throws AdresseInvalideException {
         ValidateurAdresse adresse = ValidateurAdresse.create("8", "Boulevard", "du Port", "80000", "Amiens");
-        assertEquals(adresse.format(), "8 Boulevard du Port 80000 Amiens");
+        assertEquals(adresse.format(), "8 Boulevard du Port Amiens 80000");
     }
 }
