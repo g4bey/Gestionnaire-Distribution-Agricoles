@@ -22,10 +22,8 @@ public class FormDeleteClient extends FormValidator {
         }
 
         // Il faut qu'il soit associé à aucune commande.
-        if (cmdDAO.getAll().stream().noneMatch(
+        if (cmdDAO.getAll().stream().anyMatch(
                 cmd->cmd.getClient().equals(client))) {
-            cltDAO.delete(client);
-        } else {
             setInvalid("Ce client est associé à une commande.");
         }
     }
