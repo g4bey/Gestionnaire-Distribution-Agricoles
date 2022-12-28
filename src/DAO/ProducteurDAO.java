@@ -117,26 +117,49 @@ public class ProducteurDAO extends DAO<Producteur> {
     @Override
     public ArrayList<Producteur> getAll() {
         ArrayList<Producteur> producteurs = new ArrayList<>();
+
+        VehiculeDAO vDAO = new VehiculeDAO(conn);
+        TourneeDAO tDAO = new TourneeDAO(conn);
+        CommandeDAO cmdDAO = new CommandeDAO(conn);
+
         try {
             rs = stmt.executeQuery("SELECT * FROM Producteur");
 
             while (rs.next()) {
-                producteurs.add(
-                        new Producteur(
-                                rs.getInt("idProducteur"),
-                                rs.getString("siret"),
-                                rs.getString("proprietaire"),
-                                rs.getString("adresseProd"),
-                                rs.getString("numTelProd"),
-                                rs.getString("gpsProd"),
-                                rs.getString("mdpProd")));
-            }
+                Producteur prd = new Producteur(
+                        rs.getInt("idProducteur"),
+                        rs.getString("siret"),
+                        rs.getString("proprietaire"),
+                        rs.getString("adresseProd"),
+                        rs.getString("numTelProd"),
+                        rs.getString("gpsProd"),
+                        rs.getString("mdpProd"));
 
-            return producteurs;
+                // On charge la liste de Véhicules
+                ArrayList<Vehicule> vehicules = vDAO.getVehiculesByProducteur(prd);
+                for (Vehicule vehicule : vehicules) {
+                    prd.addVehicule(vehicule);
+                }
+
+                // On charge la liste de Tournées
+                ArrayList<Tournee> tournees = tDAO.getTourneesByVehicules(vehicules);
+                for (Tournee tournee : tournees) {
+                    prd.addTournee(tournee);
+                }
+
+                // On charge la liste de Commandes
+                for (Commande commande : cmdDAO.getCommandesByProducteurTournees(prd, tournees)) {
+                    prd.addCommande(commande);
+                }
+
+                producteurs.add(prd);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+
+        return producteurs;
     }
 
     /**
