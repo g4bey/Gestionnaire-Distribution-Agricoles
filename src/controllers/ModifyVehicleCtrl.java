@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
+import validForm.FormAddVehicleCtrl;
 
 /**
  * Contrôleur permettant la modification d'un Vehicule.
@@ -32,13 +33,21 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void validateModifyVehicle(ActionEvent event) {
-        vehicule.setNumImmat(vehicleImmatField.getText());
-        vehicule.setLibelle(vehicleLabelField.getText());
-        vehicule.setPoidsMax(Float.parseFloat(vehicleCapacityField.getText()));
+        FormAddVehicleCtrl favc = new FormAddVehicleCtrl(vehicleImmatField.getText(), vehicleLabelField.getText(),
+                vehicleCapacityField.getText());
 
-        vDAO.update(vehicule);
+        if (favc.isValid()) {
+            vehicule.setNumImmat(vehicleImmatField.getText());
+            vehicule.setLibelle(vehicleLabelField.getText());
+            vehicule.setPoidsMax(Float.parseFloat(vehicleCapacityField.getText()));
 
-        ControllersUtils.closePopup(event);
+            vDAO.update(vehicule);
+
+            ControllersUtils.closePopup(event);
+        } else {
+            formErrorText.setText(favc.getErrors());
+            formErrorText.setVisible(true);
+        }
     }
 
     /**
