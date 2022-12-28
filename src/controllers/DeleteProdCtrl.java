@@ -13,7 +13,7 @@ import utility.ControllersUtils;
 /**
 * Contrôleur permettant la suppression d'un Producteur.
 */
-public class DeleteProdCtrl implements Initializable {
+public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
 	
     @FXML
     private Text prodLabelText;
@@ -22,8 +22,7 @@ public class DeleteProdCtrl implements Initializable {
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		prodLabelText.setText(producteur.getSiret());
     }
     
     /**
@@ -31,6 +30,7 @@ public class DeleteProdCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteProd(ActionEvent event) {
+        pDAO.delete(producteur);
     	ControllersUtils.closePopup(event);
     }
     
