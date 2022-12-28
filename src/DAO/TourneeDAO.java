@@ -1,5 +1,6 @@
 package DAO;
 
+import modele.Client;
 import modele.Commande;
 import modele.Tournee;
 import modele.Vehicule;
@@ -240,6 +241,30 @@ public class TourneeDAO extends DAO<Tournee> {
 
         return tournees;
     }
+
+    /**
+     * Retourne si oui ou non un client est dans une tournée
+     *
+     * @param cl Le Client qui doit être associé à la Tournée
+     * @return Un boolean attestant de la présence d'une client dans une tournée
+     * @throws SQLException
+     */
+    public boolean clientEstDansTournee (Client cl) throws SQLException {
+        ArrayList<Client> clients = new ArrayList<>();
+
+        pstmt = conn.prepareStatement(
+                "SELECT idTournee FROM Tournee T JOIN Commande USING(idTournee) WHERE idClient = ?"
+        );
+        pstmt.setInt(1, cl.getIdClient());
+        rs = pstmt.executeQuery();
+
+        if (rs.first()) {
+            return true;
+        }
+
+        return false;
+    }
+
 
     /**
      * Constructeur de TourneeDAO.

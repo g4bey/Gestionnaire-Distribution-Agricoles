@@ -1,7 +1,6 @@
 package validForm;
 
-import DAO.ClientDAO;
-import DAO.CommandeDAO;
+import DAO.TourneeDAO;
 import modele.Client;
 import utility.DatabaseConnection;
 
@@ -10,21 +9,22 @@ import java.sql.SQLException;
 
 public class FormDeleteClient extends FormValidator {
     public  FormDeleteClient(Client client) {
-        CommandeDAO cmdDAO;
-        ClientDAO cltDAO;
+        TourneeDAO tDAO;
 
         try {
-            cmdDAO = new CommandeDAO(DatabaseConnection.getInstance("production"));
-            cltDAO = new ClientDAO(DatabaseConnection.getInstance("production"));
+            tDAO = new TourneeDAO(DatabaseConnection.getInstance("production"));
         } catch (ClassNotFoundException | SQLException | IOException e) {
             setInvalid("Impossible de se connecter à la base de donnée.");
             return;
         }
 
-        // Il faut qu'il soit associé à aucune commande.
-        if (cmdDAO.getAll().stream().anyMatch(
-                cmd->cmd.getClient().equals(client))) {
-            setInvalid("Ce client est associé à une commande.");
+        // Il faut que le client soit associé à aucune tournée.
+        try {
+            if (tDAO.clientEstDansTournee(client)) {
+                setInvalid("Ce client est associé à une commande.");
+            }
+        } catch (SQLException e) {
+            setInvalid("Probleme, veuillez contacter l'administrateur: " + e.getErrorCode());
         }
     }
 }
