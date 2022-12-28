@@ -64,6 +64,7 @@ public class ValidateurDonnee {
      * Verifie une date.
      * Si elle est sous format LocalDate, on pourra la parser.
      * <p>
+     * 
      * @param date LocalDate la date saisi.
      * @return bool
      */
@@ -74,6 +75,7 @@ public class ValidateurDonnee {
     /**
      * Assure qu'une heure est sous le bon format
      * <p>
+     * 
      * @param heure l'heure saisie.
      * @return bool
      */
@@ -152,6 +154,7 @@ public class ValidateurDonnee {
      * Validateur de code postal
      * Prend en compte les numéros de département (jusqu'à 98)
      * Ne peut contenir que des chiffres
+     * 
      * @param codePostal Le code postal à tester
      */
     public static boolean valideCodePostal(String codePostal) {
@@ -163,6 +166,6 @@ public class ValidateurDonnee {
     }
 
     public static boolean validePassword(String password) {
-        return password.length() >= 5 && password.length() <= 15;
+        return password.length() >= 9 && password.length() <= 70;
     }
 }

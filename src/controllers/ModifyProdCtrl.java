@@ -4,7 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import de.mkammerer.argon2.Argon2Factory;
-import exceptions.AdresseInvalideException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import modele.Producteur;
 import utility.ControllersUtils;
-import validator.ValidateurAdresse;
+import validForm.FormModifyProdCtrl;
 
 /**
  * Contrôleur permettant la modification d'un Producteur.
@@ -59,7 +60,19 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
         String[] adresse = producteur.getAdresseProd().split(",");
 
         addressNumField.setText(adresse[0]);
+
+        ObservableList<String> listePath = FXCollections.observableArrayList();
+        listePath.add("Rue");
+        listePath.add("Boulevard");
+        listePath.add("Avenue");
+        listePath.add("Allée");
+        listePath.add("Chemin");
+        listePath.add("Route");
+        listePath.add("Impasse");
+        listePath.add("Lieu-Dit");
+        pathTypeChoiceBox.setItems(listePath);
         pathTypeChoiceBox.setValue(adresse[1]);
+
         pathNameField.setText(adresse[2]);
         townNameField.setText(adresse[3]);
         postcodeField.setText(adresse[4]);
@@ -73,30 +86,23 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateModifyProd(ActionEvent event) {
-        producteur.setSiret(prodSiretField.getText());
-        producteur.setProprietaire(propNameField.getText());
-        producteur.setNumTelProd(prodPhoneField.getText());
+        FormModifyProdCtrl fmpc = new FormModifyProdCtrl(prodSiretField.getText(), propNameField.getText(),
+                addressNumField.getText(), pathTypeChoiceBox.getValue(), pathNameField.getText(),
+                townNameField.getText(), postcodeField.getText(), prodPhoneField.getText(), prodPasswordField.getText(),
+                confirmPasswordField.getText());
 
-        ValidateurAdresse adresse = null;
-
-        try {
-            adresse = ValidateurAdresse.create(addressNumField.getText(), pathTypeChoiceBox.getValue(),
-                    pathNameField.getText(), townNameField.getText(), postcodeField.getText());
-        } catch (NumberFormatException | AdresseInvalideException e) {
-        }
-
-        if (adresse != null) {
-            producteur.setAdresseProd(adresse.csv());
-        }
-
-        if (prodPasswordField.getText().equals(confirmPasswordField.getText())) {
+        if (fmpc.isValid()) {
+            producteur.setSiret(prodSiretField.getText());
+            producteur.setProprietaire(propNameField.getText());
+            producteur.setNumTelProd(prodPhoneField.getText());
+            producteur.setAdresseProd(fmpc.getAdresseCSV());
+            producteur.setGpsProd(fmpc.getCoordsXY());
             producteur.setMdpProd(Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64).hash(2, 15 * 1024, 1,
                     prodPasswordField.getText().toCharArray()));
+
+            pDAO.update(producteur);
+            ControllersUtils.closePopup(event);
         }
-
-        pDAO.update(producteur);
-
-        ControllersUtils.closePopup(event);
     }
 
     /**
