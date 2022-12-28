@@ -1,13 +1,8 @@
 package controllers;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import DAO.CommandeDAO;
-import DAO.TourneeDAO;
-import DAO.VehiculeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,11 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import modele.Producteur;
 import modele.Vehicule;
 import utility.ControllersUtils;
-import utility.DatabaseConnection;
 import modele.Tournee;
 import modele.Commande;
+import utility.UserAuth;
 
 /**
 * Contrôleur permettant la consultation d'un Producteur.
@@ -137,9 +133,9 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
      * Load les ListViews
      */
     private void loadListViews() {
-        commListView.getItems().addAll(commDAO.getAll());
-        tourListView.getItems().addAll(tDAO.getAll());
-        vehicleListView.getItems().addAll(vDAO.getAll());
+        commListView.getItems().addAll(UserAuth.getProd().getCommandes());
+        tourListView.getItems().addAll(UserAuth.getProd().getTournees());
+        vehicleListView.getItems().addAll(UserAuth.getProd().getVehicules());
     }
     
     /**
