@@ -192,7 +192,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event MouseEvent
     */
     public void popupConsultComm(MouseEvent event) {
-        if (event.getClickCount() >= 2) {
+        if (event.getClickCount() >= 2 && !commListView.getSelectionModel().isEmpty()) {
             ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultCommV1.fxml");
         }
@@ -232,7 +232,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event MouseEvent
     */
     public void popupConsultTour(MouseEvent event) {
-        if (event.getClickCount() >= 2) {
+        if (event.getClickCount() >= 2 && !tourListView.getSelectionModel().isEmpty()) {
             ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultTour.fxml");
         }
@@ -272,7 +272,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event
     */
     public void popupConsultVehicle(MouseEvent event) {
-    	if (event.getClickCount() >= 2) {
+    	if (event.getClickCount() >= 2 && !vehicleListView.getSelectionModel().isEmpty()) {
             ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultVehicle.fxml");
         }
