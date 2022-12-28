@@ -55,6 +55,6 @@ public class ProdProfileCtrl implements Initializable {
 	* @param event ActionEvent
 	*/
     public void closeProdProfile(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

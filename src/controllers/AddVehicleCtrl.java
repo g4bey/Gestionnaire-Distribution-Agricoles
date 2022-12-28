@@ -28,7 +28,7 @@ public class AddVehicleCtrl {
 	* @param event ActionEvent
 	*/
     public void validateAddVehicle(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 	
 	/**
@@ -36,6 +36,6 @@ public class AddVehicleCtrl {
     * @param event ActionEvent
     */
     public void cancelAddVehicle(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

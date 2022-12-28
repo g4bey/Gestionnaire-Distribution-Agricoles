@@ -31,7 +31,7 @@ public class DeleteVehicleCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteVehicle(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
     
     /**
@@ -39,7 +39,7 @@ public class DeleteVehicleCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelDeleteVehicle(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

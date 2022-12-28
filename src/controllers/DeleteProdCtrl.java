@@ -31,7 +31,7 @@ public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
     */
     public void validateDeleteProd(ActionEvent event) {
         pDAO.delete(producteur);
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
     
     /**
@@ -39,7 +39,7 @@ public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelDeleteProd(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

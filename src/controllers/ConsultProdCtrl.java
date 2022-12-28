@@ -70,7 +70,7 @@ public class ConsultProdCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void closeConsultProd(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

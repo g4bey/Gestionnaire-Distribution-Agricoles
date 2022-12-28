@@ -41,7 +41,7 @@ public class AddClientCtrl {
     * @param event ActionEvent
     */
     public void validateAddClient(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
     
     /**
@@ -49,6 +49,6 @@ public class AddClientCtrl {
     * @param event ActionEvent
     */
     public void cancelAddClient(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

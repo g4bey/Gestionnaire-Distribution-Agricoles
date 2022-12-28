@@ -1,12 +1,8 @@
 package utility;
 
-import java.awt.event.FocusEvent;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventTarget;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -112,11 +108,19 @@ public class ControllersUtils {
     * Méthode qui permet de fermer la vue popup.
     * @param event ActionEvent
     */
-    public static void closePopup(ActionEvent event) {
+    public static void closePopupAndUpdateParent(ActionEvent event) {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        // On envoie la notification de fermeture de fenetre.
         notifcationFermetureFenetre(stage);
     	stage.close();
+    }
+
+    /**
+     * Méthode qui permet de fermer la vue popup.
+     * @param event ActionEvent
+     */
+    public static void closePopup(ActionEvent event) {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     /**
@@ -125,9 +129,12 @@ public class ControllersUtils {
      * @param stage la fenetre qui provoque cette notification.
      */
     public static void notifcationFermetureFenetre(Stage stage) {
-        stage.getOwner().getOnCloseRequest().handle(
-                new WindowEvent(stage.getOwner(), WindowEvent.WINDOW_CLOSE_REQUEST)
-        );
+        // Si on appel d'une pop-up,
+        if (stage.getOwner().getOnCloseRequest() != null) {
+            stage.getOwner().getOnCloseRequest().handle(
+                    new WindowEvent(stage.getOwner(), WindowEvent.WINDOW_CLOSE_REQUEST)
+            );
+        }
     }
 
     public static Stage getStage() {

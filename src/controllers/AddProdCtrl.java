@@ -104,7 +104,7 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
                 fpav.getCoordsXY(),
                 hashedPs
             ));
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         }
 
         else {
@@ -119,6 +119,6 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelAddProd(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

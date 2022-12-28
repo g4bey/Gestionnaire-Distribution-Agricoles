@@ -50,7 +50,7 @@ public class AddAdminCtrl extends AbstractConnCtrl implements Initializable {
             Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64);
             String hashedPs = argon2.hash(2,15*1024,1, adminPasswordField.getText().toCharArray());
             aDAO.add(new Administrateur(adminLoginField.getText(), hashedPs));
-            ControllersUtils.closePopup(event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         }
         else {
             formErrorText.setText(faav.getErrors());
@@ -63,6 +63,6 @@ public class AddAdminCtrl extends AbstractConnCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelAddAdmin(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

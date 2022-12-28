@@ -31,7 +31,7 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     */
     public void validateDeleteClient(ActionEvent event) {
 
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
     
     /**
@@ -40,7 +40,7 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     */
     public void cancelDeleteClient(ActionEvent event) {
         cltDAO.delete(client);
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**

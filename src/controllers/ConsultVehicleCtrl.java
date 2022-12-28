@@ -47,7 +47,7 @@ public class ConsultVehicleCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void closeConsultVehicle(ActionEvent event) {
-        ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
