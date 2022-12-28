@@ -25,31 +25,6 @@ public class FormProdAddValidator extends FormValidator {
         if (proprietaire.equals("")) {
             setInvalid("Veuillez entrer un propriétaire");
         }
-        if (addressNumField.equals("") && addressPathType.equals("Lieu Dit")) {
-            setInvalid("Veuillez entrer un numéro de voie");
-        }
-        if (addressPathType.equals("")) {
-            setInvalid("Veuillez sélectionner un type de voie");
-        }
-        if (addressPathName.equals("")) {
-            setInvalid("Veuillez entrer une voie");
-        }
-        if (addressTownName.equals("")) {
-            setInvalid("Veuillez entrer le nom de la ville");
-        }
-        if (addressPostCode.equals("")) {
-            setInvalid("Veuillez entrer un code postal");
-        }
-        ValidateurAdresse validadresse;
-        try {
-            validadresse = ValidateurAdresse.create(addressNumField, addressPathType,
-                addressPathName, addressTownName, addressPostCode);
-            adresseCsv = validadresse.csv();
-            coordsXY = validadresse.getCoordXY();
-        } catch (NumberFormatException | AdresseInvalideException e) {
-            e.printStackTrace();
-            setInvalid("L'adresse n'est pas valide");
-        }
         if (!ValidateurDonnee.valideTelephone(numTelProd)) {
             setInvalid("Le numéro de téléphone est invalide");
         }
@@ -58,6 +33,35 @@ public class FormProdAddValidator extends FormValidator {
         }
         if (!password.equals(confirmPassword)) {
             setInvalid("Les mots de passe ne correspondent pas");
+        }
+        if (addressPathType == null) {
+            setInvalid("Veuillez sélectionner un type de voie");
+            return;
+        }
+        if (addressNumField.equals("") && (!addressPathType.equals("Lieu Dit"))) {
+            setInvalid("Veuillez entrer un numéro de voie");
+            return;
+        }
+        if (addressPathName.equals("")) {
+            setInvalid("Veuillez entrer une voie");
+            return;
+        }
+        if (addressTownName.equals("")) {
+            setInvalid("Veuillez entrer le nom de la ville");
+            return;
+        }
+        if (addressPostCode.equals("")) {
+            setInvalid("Veuillez entrer un code postal");
+            return;
+        }
+        ValidateurAdresse validadresse;
+        try {
+            validadresse = ValidateurAdresse.create(addressNumField, addressPathType,
+                addressPathName, addressTownName, addressPostCode);
+            adresseCsv = validadresse.csv();
+            coordsXY = validadresse.getCoordXY();
+        } catch (NumberFormatException | AdresseInvalideException e) {
+            setInvalid("L'adresse n'est pas valide");
         }
     }
 
