@@ -5,8 +5,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javax.swing.event.ChangeEvent;
-
 import DAO.CommandeDAO;
 import DAO.TourneeDAO;
 import DAO.VehiculeDAO;
@@ -15,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import modele.Vehicule;
@@ -75,6 +74,14 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub   
     	util = new ControllersUtils();
+
+        commListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Commande row, boolean empty) {
+                super.updateItem(row, empty) ;
+                setText(empty ? null : row.getLibelle());
+            }
+        });
 
         try {
             commDAO = new CommandeDAO(DatabaseConnection.getInstance("production"));
