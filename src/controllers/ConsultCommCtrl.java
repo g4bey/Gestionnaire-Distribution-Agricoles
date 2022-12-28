@@ -15,7 +15,7 @@ import utility.ControllersUtils;
 /**
  * Contrôleur permettant l'aperçu Commande.
  */
-public class ConsultCommCtrl implements Initializable {
+public class ConsultCommCtrl extends AbstractDateCtrl implements Initializable {
 
     @FXML
     private Text commLabelText;
@@ -50,9 +50,9 @@ public class ConsultCommCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         commLabelText.setText(commande.getLibelle());
         commWeightText.setText(String.valueOf(commande.getPoids()));
-        commDateText.setText(AbstractDateCtrl.getJourFormat().format((commande.getHoraireDebut())));
-        commStartText.setText(AbstractDateCtrl.getHeureFormat().format(commande.getHoraireDebut()));
-        commEndText.setText(AbstractDateCtrl.getHeureFormat().format(commande.getHoraireFin()));
+        commDateText.setText(jour.format((commande.getHoraireDebut())));
+        commStartText.setText(heure.format(commande.getHoraireDebut()));
+        commEndText.setText(heure.format(commande.getHoraireFin()));
         clientAddressText.setText(commande.getClient().getAdresseClient());
         clientNameText.setText(commande.getClient().getNomClient());
         tourLabelText.setText(commande.getTournee().getLibelle());
