@@ -37,14 +37,14 @@ public class DeleteVehicleCtrl extends AbstractConnCtrl implements Initializable
     public void validateDeleteVehicle(ActionEvent event) {
         FormValidator formulaire = new FormDeleteVehicule(vehicule);
 
+        deleteErrorText.setVisible(false);
         if (formulaire.isValid()) {
             vDAO.delete(vehicule);
+            ControllersUtils.closePopupAndUpdateParent(event);
         } else {
             deleteErrorText.setVisible(true);
             deleteErrorText.setText(formulaire.getErrors());
         }
-
-        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
