@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Producteur;
 import utility.ControllersUtils;
-import validForm.FormProdValidator;
+import validForm.FormAddProdCtrl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -66,28 +66,27 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateAddProd(ActionEvent event) {
-        FormProdValidator fpv = new FormProdValidator(prodSiretField.getText(), propNameField.getText(),
+        FormAddProdCtrl fapc = new FormAddProdCtrl(prodSiretField.getText(), propNameField.getText(),
                 addressNumField.getText(), pathTypeChoiceBox.getValue(), pathNameField.getText(),
                 townNameField.getText(), postcodeField.getText(), prodPhoneField.getText(), prodPasswordField.getText(),
                 confirmPasswordField.getText());
 
-        if (fpv.isValid()) {
+        if (fapc.isValid()) {
             formErrorText.setVisible(false);
             Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64);
             String hashedPs = argon2.hash(2, 15 * 1024, 1, prodPasswordField.getText().toCharArray());
             pDAO.add(new Producteur(
                     prodSiretField.getText(),
                     propNameField.getText(),
-                    fpv.getAdresseCSV(),
+                    fapc.getAdresseCSV(),
                     prodPhoneField.getText(),
-                    fpv.getCoordsXY(),
+                    fapc.getCoordsXY(),
                     hashedPs));
             ControllersUtils.closePopupAndUpdateParent(event);
         } else {
-            formErrorText.setText(fpv.getErrors());
+            formErrorText.setText(fapc.getErrors());
             formErrorText.setVisible(true);
         }
-
     }
 
     /**

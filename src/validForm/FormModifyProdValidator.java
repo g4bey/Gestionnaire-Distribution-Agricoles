@@ -5,17 +5,16 @@ import validator.ValidateurAdresse;
 import validator.ValidateurDonnee;
 
 /**
- * Utilisé lorsqu'on ajoute ou modifie un producteur.
+ * Utilisé lorsqu'on modifie un Producteur.
  * 
- * @see controllers.AddProdCtrl
  * @see controllers.ModifyProdCtrl
  */
-public class FormProdValidator extends FormValidator {
+public class FormModifyProdValidator extends FormValidator {
     private String adresseCsv;
     private String coordsXY;
 
     /**
-     * Constructeur de FormProdValidator.
+     * Constructeur de FormModifyProdCtrl.
      * 
      * @param siret           le siret du producteur.
      * @param proprietaire    le nom du producteur.
@@ -28,7 +27,7 @@ public class FormProdValidator extends FormValidator {
      * @param password        le mot de passe du producteur
      * @param confirmPassword le mot de passe à confirmer.
      */
-    public FormProdValidator(String siret, String proprietaire, String addressNumField, String addressPathType,
+    public FormModifyProdValidator(String siret, String proprietaire, String addressNumField, String addressPathType,
             String addressPathName, String addressTownName, String addressPostCode, String numTelProd, String password,
             String confirmPassword) {
         if (!ValidateurDonnee.valideSiret(siret)) {
@@ -39,9 +38,6 @@ public class FormProdValidator extends FormValidator {
         }
         if (!ValidateurDonnee.valideTelephone(numTelProd)) {
             setInvalid("Le numéro de téléphone est invalide");
-        }
-        if (!ValidateurDonnee.validePassword(password)) {
-            setInvalid("Format du mot de passe incorrect");
         }
         if (!password.equals(confirmPassword)) {
             setInvalid("Les mots de passe ne correspondent pas");
