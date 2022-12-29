@@ -1,6 +1,5 @@
 package DAO;
 
-import modele.Client;
 import modele.Commande;
 import modele.Tournee;
 import modele.Vehicule;
