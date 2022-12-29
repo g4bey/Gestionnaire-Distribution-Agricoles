@@ -30,7 +30,7 @@ public class GenerateurUrl {
             + adresseProd + "&waypoints=" + wayPoints;
     }
 
-    public String AffichageCommandeUrl(Commande commande) {
+    public static String AffichageCommandeUrl(Commande commande) {
         return "https://www.google.com/maps/search/?api=1&query=" + commande.getClient().getGpsClient();
     }
 }

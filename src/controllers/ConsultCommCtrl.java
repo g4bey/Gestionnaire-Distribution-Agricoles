@@ -7,10 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import modele.Commande;
 import utility.ControllersUtils;
 import utility.DateManager;
+import utility.GenerateurUrl;
 
 /**
  * Contrôleur permettant l'aperçu Commande.
@@ -57,8 +59,10 @@ public class ConsultCommCtrl implements Initializable {
         clientNameText.setText(commande.getClient().getNomClient());
         tourLabelText.setText(commande.getTournee() != null ? commande.getTournee().getLibelle() : "Aucune.");
 
-        // TODO map
+        WebEngine webEngine = commMapWebView.getEngine();
+        webEngine.load(GenerateurUrl.AffichageCommandeUrl(commande));
     }
+
 
     /**
      * Méthode qui permet de fermer la vue de consultation
