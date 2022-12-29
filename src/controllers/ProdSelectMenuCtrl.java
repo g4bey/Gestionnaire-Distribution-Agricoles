@@ -175,9 +175,6 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         commandes = UserAuth.getProd().getCommandes();
         tournees = UserAuth.getProd().getTournees();
 
-        System.out.println(UserAuth.getProd().getCommandes().get(0) + "\n" +
-                UserAuth.getProd().getTournees().get(0).getCommandes().get(0).getClass());
-
         Comparator<Commande> commandesAsc = (comm1, comm2) -> Long.valueOf(
                 comm1.getHoraireDebut().getTime())
                 .compareTo(comm2.getHoraireDebut().getTime());
