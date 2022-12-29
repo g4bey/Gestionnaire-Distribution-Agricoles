@@ -45,9 +45,10 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         clientNameField.setText(client.getNomClient());
-        addressNumField.setText(client.getNumTelClient());
 
         String[] adresse = client.getAdresseClient().split(",");
+
+        addressNumField.setText(adresse[0]);
 
         ObservableList<String> listePath = FXCollections.observableArrayList();
         listePath.add("Rue");
