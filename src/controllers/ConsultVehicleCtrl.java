@@ -35,7 +35,7 @@ public class ConsultVehicleCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         vehicleLabelText.setText(vehicule.getLibelle());
         vehicleImmatText.setText(vehicule.getNumImmat());
-        vehicleCapacityText.setText(String.valueOf(vehicule.getPoidsMax()));
+        vehicleCapacityText.setText(String.valueOf(vehicule.getPoidsMax()).concat("kg"));
 
         tourListView.getItems().addAll(vehicule.getTournees());
     }

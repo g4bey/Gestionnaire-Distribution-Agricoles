@@ -49,15 +49,14 @@ public class ConsultCommCtrl implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         commLabelText.setText(commande.getLibelle());
-        commWeightText.setText(String.valueOf(commande.getPoids()));
+        commWeightText.setText(String.valueOf(commande.getPoids()).concat("kg"));
         commDateText.setText(DateManager.TimestampToDateString((commande.getHoraireDebut())));
         commStartText.setText(DateManager.TimestampToHourString(commande.getHoraireDebut()));
         commEndText.setText(DateManager.TimestampToHourString(commande.getHoraireFin()));
         clientAddressText.setText(commande.getClient().getAdresseClient());
         clientNameText.setText(commande.getClient().getNomClient());
         tourLabelText.setText(
-                commande.getTournee() != null ? commande.getTournee().getLibelle() : "Aucune."
-        );
+                commande.getTournee() != null ? commande.getTournee().getLibelle() : "Aucune.");
 
         // TODO map
     }

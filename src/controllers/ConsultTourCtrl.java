@@ -51,7 +51,7 @@ public class ConsultTourCtrl implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     tourLabelText.setText(tournee.getLibelle());
-    tourWeightText.setText(String.valueOf(tournee.getPoids()));
+    tourWeightText.setText(String.valueOf(tournee.getPoids()).concat("kg"));
     tourDatetimeText.setText(DateManager.TimestampToDateString(tournee.getHoraireDebut()));
     startText.setText(DateManager.TimestampToHourString(tournee.getHoraireDebut()));
     endText.setText(DateManager.TimestampToHourString(tournee.getHoraireFin()));
