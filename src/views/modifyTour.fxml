@@ -97,11 +97,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="337.0" layoutY="406.0" text="kg.">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Text fx:id="formErrorText" layoutX="302.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
          <font>
             <Font size="15.0" />

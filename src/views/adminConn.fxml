@@ -33,7 +33,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="formErrorText" layoutX="312.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
+      <Text fx:id="formErrorText" layoutX="197.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="316.528564453125">
          <font>
             <Font size="15.0" />
          </font>
