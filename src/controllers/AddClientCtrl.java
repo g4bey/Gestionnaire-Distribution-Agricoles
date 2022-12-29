@@ -10,16 +10,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Client;
 import utility.ControllersUtils;
-import validForm.FormClientAddValidator;
+import validForm.FormClientValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
-* Contrôleur permettant l'ajout d'un Client.
-*/
+ * Contrôleur permettant l'ajout d'un Client.
+ */
 public class AddClientCtrl extends AbstractConnCtrl implements Initializable {
-	
+
     @FXML
     private TextField clientNameField;
     @FXML
@@ -53,45 +53,38 @@ public class AddClientCtrl extends AbstractConnCtrl implements Initializable {
     }
 
     /**
-    * Méthode qui valide l'ajout d'un client.
-    * @param event ActionEvent
-    */
+     * Méthode qui valide l'ajout d'un client.
+     * 
+     * @param event ActionEvent
+     */
     public void validateAddClient(ActionEvent event) {
 
-        FormClientAddValidator fcav = new FormClientAddValidator(
-            clientNameField.getText(),
-            addressNumField.getText(),
-            pathTypeChoiceBox.getValue(),
-            pathNameField.getText(),
-            townNameField.getText(),
-            postcodeField.getText(),
-            clientPhoneField.getText()
-        );
+        FormClientValidator fcv = new FormClientValidator(clientNameField.getText(), addressNumField.getText(),
+                pathTypeChoiceBox.getValue(), pathNameField.getText(), townNameField.getText(), postcodeField.getText(),
+                clientPhoneField.getText());
 
-        if (fcav.isValid()) {
+        if (fcv.isValid()) {
             formErrorText.setVisible(false);
             cltDAO.add(new Client(
-                clientNameField.getText(),
-                fcav.getAdresseCsv(),
-                fcav.getCoordsXY(),
-                clientPhoneField.getText()
-            ));
+                    clientNameField.getText(),
+                    fcv.getAdresseCSV(),
+                    fcv.getCoordsXY(),
+                    clientPhoneField.getText()));
             ControllersUtils.closePopupAndUpdateParent(event);
-        }
-        else {
-            formErrorText.setText(fcav.getErrors());
+        } else {
+            formErrorText.setText(fcv.getErrors());
             formErrorText.setVisible(true);
         }
 
     }
-    
-    /**
-    * Méthode qui permet de fermer la vue d'ajout d'un client.
-    * @param event ActionEvent
-    */
-    public void cancelAddClient(ActionEvent event) {
-    	ControllersUtils.closePopupAndUpdateParent(event);
-    }
 
+    /**
+     * Méthode qui permet de fermer la vue d'ajout d'un client.
+     * 
+     * @param event ActionEvent
+     */
+    public void cancelAddClient(ActionEvent event) {
+        ControllersUtils.closePopupAndUpdateParent(event);
+    }
 
 }

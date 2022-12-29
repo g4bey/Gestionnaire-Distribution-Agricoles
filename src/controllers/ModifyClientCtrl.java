@@ -12,7 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import modele.Client;
 import utility.ControllersUtils;
-import validForm.FormModifyClientCtrl;
+import validForm.FormClientValidator;
 
 /**
  * Contrôleur permettant la modification d'un Client.
@@ -74,7 +74,7 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
      * @param event ActionEvent
      */
     public void validateModifyClient(ActionEvent event) {
-        FormModifyClientCtrl fmcc = new FormModifyClientCtrl(clientNameField.getText(), addressNumField.getText(),
+        FormClientValidator fmcc = new FormClientValidator(clientNameField.getText(), addressNumField.getText(),
                 pathTypeChoiceBox.getValue(), pathNameField.getText(), townNameField.getText(), postcodeField.getText(),
                 clientPhoneField.getText());
 
