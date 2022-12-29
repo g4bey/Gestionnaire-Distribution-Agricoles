@@ -9,6 +9,7 @@ import exceptions.InvalidRouteException;
 import modele.Commande;
 import modele.Producteur;
 import modele.Vehicule;
+import utility.DateManager;
 import validator.ValidateurTournee;
 
 /**
@@ -47,6 +48,12 @@ public class FormAddTourValidator extends FormValidator {
         if (!ValidateurTournee.validePoids(vehicule.getPoidsMax(), commandes)) {
             setInvalid("La capacité du véhicule est dépassé !");
         }
+
+        // On vérifie que la commande n'est pas deja dans une commande.
+        Optional<Commande> cmd = commandes.stream().filter(commande -> commande.getTournee() != null).findFirst();
+        cmd.ifPresent(
+                commande -> setInvalid("La commande " + commande.getLibelle() + " est déja dans une tournée.")
+        );
 
         try {
             horaires = ValidateurTournee.calculTournee(commandes, producteur.getGpsProd());

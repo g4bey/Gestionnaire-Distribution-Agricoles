@@ -10,10 +10,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import modele.Client;
 import modele.Commande;
 import utility.ControllersUtils;
 import utility.DateManager;
+import validForm.FormCommModifyValidator;
 import validForm.FormCommValidator;
 
 /**
@@ -38,6 +40,8 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
 
     @FXML
     private ChoiceBox<Client> clientChoiceBox;
+    @FXML
+    private Text formErrorText;
 
     private static Commande commande;
 
@@ -56,14 +60,14 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
 
     /**
      * Méthode qui valide la modification de la commande.
-     * 
+     *
      * @param event ActionEvent
      */
     public void validateModifyComm(ActionEvent event) {
-        FormCommValidator fcv = new FormCommValidator(commLabelField.getText(), commWeightField.getText(),
+        FormCommValidator fmcv = new FormCommModifyValidator(commande.getIdCommande(), commLabelField.getText(), commWeightField.getText(),
                 commDateField.getValue(), commStartField.getText(), commEndField.getText(), clientChoiceBox.getValue());
 
-        if (fcv.isValid()) {
+        if (fmcv.isValid()) {
             commande.setLibelle(commLabelField.getText());
             commande.setPoids(Float.parseFloat(commWeightField.getText()));
             commande.setHoraireDebut(
@@ -72,13 +76,16 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
             commande.setClient(clientChoiceBox.getValue());
 
             commDAO.update(commande);
+            ControllersUtils.closePopupAndUpdateParent(event);
+        } else {
+            formErrorText.setVisible(true);
+            formErrorText.setText(fmcv.getErrors());
         }
-        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
      * Méthode qui ferme la vue de modification de la commande.
-     * 
+     *
      * @param event ActionEvent
      */
     public void cancelModifyComm(ActionEvent event) {
@@ -88,7 +95,7 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
     /**
      * Méthode qui récupère la commande sélectionnée dans la listView
      * de la vue précédente (prodSelectMenu)
-     * 
+     *
      * @param comm Commande
      */
     public static void setCommande(Commande comm) {
