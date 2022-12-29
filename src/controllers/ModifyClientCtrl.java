@@ -1,6 +1,7 @@
 package controllers;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.scene.text.Text;
 import modele.Client;
 import utility.ControllersUtils;
 import validForm.FormClientValidator;
+import validForm.FormModifyClientValidator;
 
 /**
  * Contrôleur permettant la modification d'un Client.
@@ -78,8 +80,8 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
      * 
      * @param event ActionEvent
      */
-    public void validateModifyClient(ActionEvent event) {
-        FormClientValidator fmcc = new FormClientValidator(clientNameField.getText(), addressNumField.getText(),
+    public void validateModifyClient(ActionEvent event) throws SQLException {
+        FormClientValidator fmcc = new FormModifyClientValidator(client.getIdClient(),clientNameField.getText(), addressNumField.getText(),
                 pathTypeChoiceBox.getValue(), pathNameField.getText(), townNameField.getText(), postcodeField.getText(),
                 clientPhoneField.getText());
 

@@ -245,14 +245,14 @@ public class TourneeDAO extends DAO<Tournee> {
     /**
      * Retourne si oui ou non un client est dans une tournée
      *
-     * @param cl Le Client qui doit être associé à la Tournée
+     * @param clientId L'id du Client qui doit être associé à la Tournée
      * @return Un boolean attestant de la présence d'une client dans une tournée
      * @throws SQLException
      */
-    public boolean clientEstDansTournee(Client cl) throws SQLException {
+    public boolean clientEstDansTournee(int clientId) throws SQLException {
         pstmt = conn.prepareStatement(
                 "SELECT idTournee FROM Tournee T JOIN Commande USING(idTournee) WHERE idClient = ?");
-        pstmt.setInt(1, cl.getIdClient());
+        pstmt.setInt(1, clientId);
         rs = pstmt.executeQuery();
 
         if (rs.first()) {

@@ -365,7 +365,7 @@ public class TourneeDAOTest {
         cDAO.add(clienMystere);
 
         // Pour l'instant, le client n'est dans aucune tournée.
-        assertFalse(tourneeDAO.clientEstDansTournee(clienMystere));
+        assertFalse(tourneeDAO.clientEstDansTournee(clienMystere.getIdClient()));
 
         // Désormais ajoutons une commande et ajoutons-la dans la tournée.
         // Cette commande associe le client à la tournée.
@@ -377,7 +377,7 @@ public class TourneeDAOTest {
         tourneeDAO.update(TOURNEE_A);
 
         // L'assertion est vrai, car la tournée est maintenant associé au client.
-        assertTrue(tourneeDAO.clientEstDansTournee(TOURNEE_A.getCommandes().get(0).getClient()));
+        assertTrue(tourneeDAO.clientEstDansTournee(TOURNEE_A.getCommandes().get(0).getClient().getIdClient()));
     }
 
     /**
