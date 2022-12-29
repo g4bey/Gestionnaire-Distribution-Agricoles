@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
-import validForm.FormAddVehicleCtrl;
 import validForm.FormModifyVehicleCtrl;
 
 import java.net.URL;
