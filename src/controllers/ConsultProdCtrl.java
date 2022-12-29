@@ -11,8 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
-import utility.DateManager;
-import validator.ValidateurAdresse;
 import modele.Tournee;
 import modele.Commande;
 import modele.Producteur;
