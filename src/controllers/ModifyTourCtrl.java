@@ -148,6 +148,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
             }
         });
 
+        // On récupère tous les véhicules disponibles
         vehicleChoiceBox.getItems().addAll(UserAuth.getProd().getVehicules().stream().filter(
                 vh -> ValidateurTournee.valideVehicule(vh, tournee.getHoraireDebut(), tournee.getHoraireFin()))
                 .toList());
