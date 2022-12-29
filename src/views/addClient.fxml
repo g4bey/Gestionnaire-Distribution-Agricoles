@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -41,11 +42,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="formErrorText" layoutX="198.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="291.728515625">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
       <Line endX="100.0" layoutX="453.0" layoutY="226.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
       <Line endX="100.0" layoutX="453.0" layoutY="388.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
       <Text layoutX="311.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
@@ -74,5 +70,14 @@
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
+      <ScrollPane layoutX="164.0" layoutY="452.0" prefHeight="55.0" prefWidth="367.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="363.72845458984375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

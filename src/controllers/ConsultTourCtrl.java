@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -59,7 +60,14 @@ public class ConsultTourCtrl implements Initializable {
     capacityText.setText(String.valueOf(tournee.getPoids()));
     commListView.getItems().addAll(tournee.getCommandes());
 
-    // TODO map
+    // Affichage du libelle uniquement sur le listView.
+    commListView.setCellFactory(lv -> new ListCell<>() {
+      @Override
+      public void updateItem(Commande row, boolean empty) {
+        super.updateItem(row, empty);
+        setText(empty ? null : row.getLibelle());
+      }
+    });
   }
 
   /**

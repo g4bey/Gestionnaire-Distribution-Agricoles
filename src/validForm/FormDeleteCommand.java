@@ -27,7 +27,7 @@ public class FormDeleteCommand extends FormValidator {
             return;
         }
 
-        // Il faut qu'elle soit associée à aucune commande.
+        // Il faut qu'elle soit associée à aucune tournée.
         if (tDAO.getAll().stream().anyMatch(
                 tournee -> tournee.getCommandes().contains(commande))) {
             setInvalid("Cette commande est associée à une tournée");

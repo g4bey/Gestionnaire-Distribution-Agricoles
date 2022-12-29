@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -97,16 +98,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="337.0" layoutY="406.0" text="kg.">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Text fx:id="formErrorText" layoutX="302.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
       <ListView fx:id="commListView" layoutX="146.0" layoutY="247.0" prefHeight="132.0" prefWidth="234.0" />
       <ChoiceBox fx:id="commChoiceBox" layoutX="394.0" layoutY="267.0" prefWidth="150.0" styleClass="prettyField" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="673.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="98.0" />
@@ -115,5 +106,14 @@
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
+      <ScrollPane layoutX="146.0" layoutY="550.0" prefHeight="71.0" prefWidth="402.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="398.12852478027344">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

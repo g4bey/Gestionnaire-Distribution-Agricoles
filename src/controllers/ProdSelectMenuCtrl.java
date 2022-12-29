@@ -1,8 +1,16 @@
 package controllers;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import modele.Vehicule;
 import utility.ControllersUtils;
+import utility.DateManager;
 import modele.Tournee;
 import modele.Commande;
 import utility.UserAuth;
@@ -65,23 +74,21 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
 
     private ControllersUtils util;
 
+    private List<Commande> commandes;
+
+    private List<Tournee> tournees;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
         util = new ControllersUtils();
-        modifyCommBtn.setDisable(false);
-        deleteCommBtn.setDisable(false);
-        modifyTourBtn.setDisable(false);
-        deleteTourBtn.setDisable(false);
-        modifyVehicleBtn.setDisable(false);
-        deleteVehicleBtn.setDisable(false);
 
         // Affichage du libelle uniquement sur le listView.
         commListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle());
+                setText(empty ? null : row.getLibelle()+" | "+row.getHoraireDebut());
             }
         });
         vehicleListView.setCellFactory(lv -> new ListCell<>() {
@@ -99,12 +106,53 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             }
         });
 
+        commListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Commande>() {
+            @Override
+            public void changed(ObservableValue<? extends Commande> arg0, Commande arg1, Commande arg2) {
+                // TODO Auto-generated method stub$
+                if (commListView.getItems().size() > 0) {
+                    modifyCommBtn.setDisable(false);
+                    deleteCommBtn.setDisable(false);
+                } else {
+                    modifyCommBtn.setDisable(true);
+                    deleteCommBtn.setDisable(true);
+                }
+            }
+        });
+
+        tourListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tournee>() {
+            @Override
+            public void changed(ObservableValue<? extends Tournee> arg0, Tournee arg1, Tournee arg2) {
+                // TODO Auto-generated method stub$
+                if (commListView.getItems().size() > 0) {
+                    modifyTourBtn.setDisable(false);
+                    deleteTourBtn.setDisable(false);
+                } else {
+                    modifyTourBtn.setDisable(true);
+                    deleteTourBtn.setDisable(true);
+                }
+            }
+        });
+
+        vehicleListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Vehicule>() {
+            @Override
+            public void changed(ObservableValue<? extends Vehicule> arg0, Vehicule arg1, Vehicule arg2) {
+                // TODO Auto-generated method stub$
+                if (commListView.getItems().size() > 0) {
+                    modifyVehicleBtn.setDisable(false);
+                    deleteVehicleBtn.setDisable(false);
+                } else {
+                    modifyVehicleBtn.setDisable(true);
+                    deleteVehicleBtn.setDisable(true);
+                }
+            }
+        });
+
         // si une pop-up est close.
         ControllersUtils.getStage().setOnCloseRequest(
                 event -> {
                     reloadListViews();
                 });
-
         loadListViews();
     }
 
@@ -129,8 +177,23 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
      * Load les ListViews
      */
     private void loadListViews() {
-        commListView.getItems().addAll(UserAuth.getProd().getCommandes());
-        tourListView.getItems().addAll(UserAuth.getProd().getTournees());
+        commandes = new ArrayList<>(UserAuth.getProd().getCommandes());
+        tournees = new ArrayList<>(UserAuth.getProd().getTournees());
+
+        Comparator<Commande> commandesAsc = (comm1, comm2) -> Long.valueOf(
+        comm1.getHoraireDebut().getTime())
+        .compareTo(comm2.getHoraireDebut().getTime()
+        );
+
+        Comparator<Tournee> tourneesAsc = (tour1, tour2) -> Long.valueOf(
+        tour1.getHoraireDebut().getTime())
+        .compareTo(tour2.getHoraireDebut().getTime()
+        );
+        Collections.sort(commandes, commandesAsc);
+        Collections.sort(tournees, tourneesAsc);
+
+        commListView.getItems().addAll(commandes);
+        tourListView.getItems().addAll(tournees);
         vehicleListView.getItems().addAll(UserAuth.getProd().getVehicules());
     }
 

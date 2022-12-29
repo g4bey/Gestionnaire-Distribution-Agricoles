@@ -69,11 +69,6 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="238.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
       <Text fx:id="endText" layoutX="973.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX">
          <font>
             <Font size="20.0" />
@@ -100,11 +95,6 @@
          </font>
       </Text>
       <Text fx:id="capacityText" layoutX="561.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="607.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
          <font>
             <Font size="20.0" />
          </font>

@@ -96,3 +96,8 @@
 .deleteBtn:hover {
     -fx-background-color: rgb(0, 173, 136);
 }
+
+.errorScrollPane {
+    -fx-background: white;
+    -fx-background-color: white;
+}

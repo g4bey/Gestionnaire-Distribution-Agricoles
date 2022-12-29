@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -58,11 +59,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="formErrorText" layoutX="179.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="333.0980682373047">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
       <Line endX="100.0" layoutX="470.0" layoutY="244.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
       <Line endX="100.0" layoutX="470.0" layoutY="400.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
       <Text layoutX="328.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
@@ -93,5 +89,14 @@
       </ImageView>
       <PasswordField fx:id="prodPasswordField" layoutX="380.0" layoutY="482.0" styleClass="prettyField" />
       <PasswordField fx:id="confirmPasswordField" layoutX="380.0" layoutY="542.0" styleClass="prettyField" />
+      <ScrollPane layoutX="187.0" layoutY="577.0" prefHeight="47.0" prefWidth="362.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="359.49803161621094">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

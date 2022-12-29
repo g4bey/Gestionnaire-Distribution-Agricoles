@@ -39,12 +39,22 @@ public class ProducteurDAO extends DAO<Producteur> {
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                        vehicule.addTournee(tournee);
+                    }
                 }
 
                 // On charge la liste de Tournées
                 ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
                 for (Tournee tournee : tournees) {
                     prd.addTournee(tournee);
+
+                    // On remplie le tableau de commandes dans tournee.
+                    for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(prd, tournee)) {
+                        tournee.addCommande(commande);
+                    }
                 }
 
                 // On charge la liste de Commandes
@@ -86,12 +96,22 @@ public class ProducteurDAO extends DAO<Producteur> {
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                        vehicule.addTournee(tournee);
+                    }
                 }
 
                 // On charge la liste de Tournées
                 ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
                 for (Tournee tournee : tournees) {
                     prd.addTournee(tournee);
+
+                    // On remplie le tableau de commandes dans tournee.
+                    for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(prd, tournee)) {
+                        tournee.addCommande(commande);
+                    }
                 }
 
                 // On charge la liste de Commandes
@@ -139,12 +159,22 @@ public class ProducteurDAO extends DAO<Producteur> {
                 ArrayList<Vehicule> vehicules = vDAO.getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                        vehicule.addTournee(tournee);
+                    }
                 }
 
                 // On charge la liste de Tournées
                 ArrayList<Tournee> tournees = tDAO.getTourneesByVehicules(vehicules);
                 for (Tournee tournee : tournees) {
                     prd.addTournee(tournee);
+
+                    // On remplie le tableau de commandes dans tournee.
+                    for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(prd, tournee)) {
+                        tournee.addCommande(commande);
+                    }
                 }
 
                 // On charge la liste de Commandes

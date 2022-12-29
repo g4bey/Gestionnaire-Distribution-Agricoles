@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -97,16 +98,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="343.0" layoutY="401.0" text="kg.">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Text fx:id="formErrorText" layoutX="173.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="357.8980712890625">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
       <ListView fx:id="commListView" layoutX="158.0" layoutY="249.0" prefHeight="132.0" prefWidth="234.0" />
       <ChoiceBox fx:id="commChoiceBox" layoutX="406.0" layoutY="269.0" prefWidth="150.0" styleClass="prettyField" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="635.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="110.0" />
@@ -115,5 +106,14 @@
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
+      <ScrollPane layoutX="178.0" layoutY="521.0" prefHeight="57.0" prefWidth="364.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="361.09808349609375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

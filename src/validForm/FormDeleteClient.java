@@ -30,7 +30,7 @@ public class FormDeleteClient extends FormValidator {
 
         // Il faut que le client soit associé à aucune tournée.
         try {
-            if (tDAO.clientEstDansTournee(client)) {
+            if (tDAO.clientEstDansTournee(client.getIdClient())) {
                 setInvalid("Ce client est associé à une tournée.");
             }
         } catch (SQLException e) {
