@@ -1,6 +1,10 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -33,13 +37,21 @@ public class ConsultVehicleCtrl implements Initializable {
 
     private static Vehicule vehicule;
 
+    private List<Tournee> tournees;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         vehicleLabelText.setText(vehicule.getLibelle());
         vehicleImmatText.setText(vehicule.getNumImmat());
         vehicleCapacityText.setText(String.valueOf(vehicule.getPoidsMax()).concat("kg"));
+        tournees = new ArrayList<>(vehicule.getTournees());
 
-        tourListView.getItems().addAll(vehicule.getTournees());
+        Comparator<Tournee> tourneesAsc = (tour1, tour2) -> Long.valueOf(
+            tour1.getHoraireDebut().getTime())
+            .compareTo(tour2.getHoraireDebut().getTime()
+        );
+        Collections.sort(tournees, tourneesAsc);
+        tourListView.getItems().addAll(tournees);
 
         // Affichage du libelle uniquement sur le listView.
         tourListView.setCellFactory(lv -> new ListCell<>() {
