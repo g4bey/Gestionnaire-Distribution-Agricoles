@@ -4,10 +4,27 @@ import exceptions.AdresseInvalideException;
 import validator.ValidateurAdresse;
 import validator.ValidateurDonnee;
 
+/**
+ * Utilisé lorsqu'on modifie les informations d'un producteur.
+ * @see controllers.ModifyProdCtrl
+ */
 public class FormModifyProdCtrl extends FormValidator {
     private String adresseCSV;
     private String coordsXY;
 
+    /**
+     * Constructeur de FormModifyProdCtrl.
+     * @param siret le siret du producteur.
+     * @param proprietaire le nom du producteur.
+     * @param numRue le numéro de rue du producteur.
+     * @param typeRue le type de voie dans laquelle travaille le producteur.
+     * @param nomRue le type de voie du Producteur récupéré dans la vue
+     * @param ville la ville du Producteur.
+     * @param codePostal le code Postal du producteur
+     * @param numTel le numéro de téléphone du producteur.
+     * @param password le mot de passe du producteur
+     * @param confirmPassword le mot de passe à confirmer.
+     */
     public FormModifyProdCtrl(String siret, String proprietaire, String numRue, String typeRue, String nomRue,
             String ville, String codePostal, String numTel, String password, String confirmPassword) {
 
