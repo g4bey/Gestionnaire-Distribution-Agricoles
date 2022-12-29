@@ -59,8 +59,8 @@ public class Client {
         return ("Informtion Client :\nId : " + idClient)
                 .concat("\nNom : ").concat(nomClient)
                 .concat("\nadresse : ").concat(adresseClient)
-                .concat("GPS : ").concat(gpsClient)
-                .concat("Numéro téléphone : ").concat(numTelClient);
+                .concat("\nGPS : ").concat(gpsClient)
+                .concat("\nNuméro téléphone : ").concat(numTelClient);
     }
 
     /**

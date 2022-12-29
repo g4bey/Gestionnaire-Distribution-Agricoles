@@ -90,12 +90,12 @@ public class Commande {
     @Override
     public String toString() {
         return ("Information Commande :\nId : " + idCommande)
-                .concat("Poids : " + poids)
-                .concat("Horaire début : " + horaireDebut)
-                .concat("Horaire fin : " + horaireFin)
-                .concat("Tournée : ").concat(tournee == null ? "" : tournee.getLibelle())
-                .concat("Producteur : ").concat(producteur.getSiret())
-                .concat("Client : ").concat(client.getNomClient());
+                .concat("\nPoids : " + poids)
+                .concat("\nHoraire début : " + horaireDebut)
+                .concat("\nHoraire fin : " + horaireFin)
+                .concat("\nTournée : ").concat(tournee == null ? "" : tournee.getLibelle())
+                .concat("\nProducteur : ").concat(producteur.getSiret())
+                .concat("\nClient : ").concat(client.getNomClient());
     }
 
     /**
