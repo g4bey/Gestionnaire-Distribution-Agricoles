@@ -8,12 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import modele.Administrateur;
-import modele.Producteur;
+import modele.*;
 import utility.ControllersUtils;
-import modele.Client;
 
 /**
  * Contrôleur permettant la consultation Administrateur.
@@ -62,27 +61,26 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         // TODO Auto-generated method stub
         this.util = new ControllersUtils();
 
-        // On desactive les boutons si c'est necessaire.
-        prodListView.focusedProperty().addListener((s) -> {
-            if (prodListView.focusedProperty().get()) {
-                modifyProdBtn.setDisable(false);
-                deleteProdBtn.setDisable(false);
-            }
-            else {
-                modifyProdBtn.setDisable(true);
-                deleteProdBtn.setDisable(true);
+        // Affichage du libelle uniquement sur le listView.
+        adminListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Administrateur row, boolean empty) {
+                super.updateItem(row, empty) ;
+                setText(empty ? null : row.getPseudo());
             }
         });
-
-        // On desactive les boutons si c'est necessaire.
-        clientListView.focusedProperty().addListener((s) -> {
-            if (clientListView.focusedProperty().get()) {
-                modifyClientBtn.setDisable(false);
-                deleteClientBtn.setDisable(false);
+        prodListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Producteur row, boolean empty) {
+                super.updateItem(row, empty) ;
+                setText(empty ? null : row.getProprietaire());
             }
-            else {
-                modifyClientBtn.setDisable(true);
-                deleteClientBtn.setDisable(true);
+        });
+        clientListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Client row, boolean empty) {
+                super.updateItem(row, empty) ;
+                setText(empty ? null : row.getNomClient());
             }
         });
 
