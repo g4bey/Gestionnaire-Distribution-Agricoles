@@ -24,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 import modele.Vehicule;
-import modele.Client;
 import modele.Commande;
 import modele.Producteur;
 import modele.Tournee;
@@ -70,7 +69,12 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
     
     @FXML
     private Text formErrorText;
+
+    private LocalDate date;
+
+    private Timestamp start;
     
+    private Timestamp end;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -155,11 +159,6 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
     public void addComm(ActionEvent event) {
         Commande comm = commChoiceBox.getSelectionModel().getSelectedItem();
         List<Commande> commsList = commListView.getItems();
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate newDate;
-        Timestamp newHoraireDebut;
-        Timestamp newHoraireFin;
         
         commsList.add(comm);
         commChoiceBox.getSelectionModel().clearSelection();
@@ -170,17 +169,18 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         commChoiceBox.getItems().addAll(newComms);
 
         if (commsList.size() == 1) {
-            
             changeLabel(comm.getPoids(), comm.getHoraireDebut(), comm.getHoraireFin(), comm.getHoraireFin());
+            changeTime(comm.getHoraireDebut(), 
+            comm.getHoraireFin(), 
+            DateManager.TimestampToLocalDate(comm.getHoraireDebut()));
         }
-        
-        newDate = LocalDate.parse(datetimeLabel.getText(), format);
-        newHoraireDebut = DateManager.convertToTimestamp(newDate, startLabel.getText());
-        newHoraireFin = DateManager.convertToTimestamp(newDate, endLabel.getText());
 
-        if (comm.getHoraireFin().compareTo(newHoraireFin) > 0) {
-            newHoraireFin = comm.getHoraireFin();
-            changeLabel(Float.parseFloat(maxWeightLabel.getText())+ comm.getPoids(), newHoraireDebut, newHoraireFin, comm.getHoraireFin());
+        if (comm.getHoraireFin().compareTo(end) > 0) {
+            end = comm.getHoraireFin();
+            changeLabel(Float.parseFloat(maxWeightLabel.getText())+ comm.getPoids(), 
+            start, 
+            end, 
+            DateManager.convertToTimestamp(date, DateManager.TimestampToHourString(start)));
         }
     }
 
@@ -197,12 +197,8 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         commChoiceBox.getItems().clear();
         comms.addAll(UserAuth.getProd().getCommandes());
         comms.removeAll(oldComms);
-        
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    
         Float weight = Float.parseFloat(maxWeightLabel.getText());
-        LocalDate newDate = LocalDate.parse(datetimeLabel.getText(), format);
-        Timestamp newHoraireDebut = DateManager.convertToTimestamp(newDate, startLabel.getText());
-        Timestamp newHoraireFin = DateManager.convertToTimestamp(newDate, endLabel.getText());
 
         weight -= comm.getPoids();
         
@@ -213,34 +209,34 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         }
         else {
             comms = comms.stream().filter(c -> 
-            (c.getHoraireFin().toLocalDateTime().toLocalDate().compareTo(newDate) == 0))
+            (c.getHoraireFin().toLocalDateTime().toLocalDate().compareTo(date) == 0))
             .toList();
             
         }
 
-        if (comm.getHoraireDebut().compareTo(newHoraireDebut) == 0 && commListView.getItems().size() != 0) {
-            newHoraireDebut = commListView.getItems().get(0).getHoraireDebut();
+        if (comm.getHoraireDebut().compareTo(start) == 0 && commListView.getItems().size() != 0) {
+            start = commListView.getItems().get(0).getHoraireDebut();
             for (Commande c : oldComms) {
-                if (c.getHoraireDebut().compareTo(newHoraireDebut) < 0) {
-                    newHoraireDebut = c.getHoraireDebut();
+                if (c.getHoraireDebut().compareTo(start) < 0) {
+                    start = c.getHoraireDebut();
                 }
             }
         }
-        if (comm.getHoraireFin().compareTo(newHoraireFin) == 0 && commListView.getItems().size() != 0) {
-            newHoraireFin = commListView.getItems().get(0).getHoraireFin();
+        if (comm.getHoraireFin().compareTo(end) == 0 && commListView.getItems().size() != 0) {
+            end = commListView.getItems().get(0).getHoraireFin();
             for (Commande c : oldComms) {
-                if (c.getHoraireFin().compareTo(newHoraireFin) < 0) {
-                    newHoraireFin = c.getHoraireFin();
+                if (c.getHoraireFin().compareTo(end) < 0) {
+                    end = c.getHoraireFin();
                 }
             }
         }
         
-        changeLabel(weight, newHoraireDebut, newHoraireFin, newHoraireFin);
+        changeLabel(weight, start, end, DateManager.convertToTimestamp(date, null));
 
         if (commListView.getItems().size() > 0) {
             comms = comms.stream().filter(c -> 
             c.getHoraireDebut()
-            .compareTo(DateManager.convertToTimestamp(newDate, startLabel.getText())) >= 0).toList();
+            .compareTo(start) >= 0).toList();
         }
 
         commChoiceBox.getItems().addAll(comms);   
@@ -251,7 +247,6 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
 	* @param event ActionEvent
 	*/
     public void validateAddTour(ActionEvent event) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         FormAddTourValidator fatv = new FormAddTourValidator(
             tourLabelField.getText(), 
             UserAuth.getProd(), 
@@ -260,22 +255,17 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
             maxWeightLabel.getText(), 
             startLabel.getText(), 
             endLabel.getText(),
-            datetimeLabel.getText()
+            date
         );
         if (fatv.isValid()) {
-            try {
-                tDAO.add(new Tournee(
-                    0,
-                    new Timestamp((format.parse(startLabel.getText()).getTime())), 
-                    new Timestamp((format.parse(endLabel.getText()).getTime())), 
-                    Float.parseFloat(maxWeightLabel.getText()), 
-                    tourLabelField.getText(), 
-                    vehicleChoiceBox.getSelectionModel().getSelectedItem()
-                ));
-            } catch (NumberFormatException | ParseException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            tDAO.add(new Tournee(
+                0,
+                start, 
+                end, 
+                Float.parseFloat(maxWeightLabel.getText()), 
+                tourLabelField.getText(), 
+                vehicleChoiceBox.getSelectionModel().getSelectedItem()
+            ));
             ControllersUtils.closePopupAndUpdateParent(event);
         }
         else {
@@ -298,11 +288,27 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
      * dans la ListView commListView.
      * @see addComm
      * @see remComm
+     * @param weight Float
+     * @param startTime Timestamp
+     * @param endTime Timestamp
+     * @param dateTime Timestamp
      */
-    public void changeLabel(Float weight, Timestamp startTime, Timestamp endTime, Timestamp date) {
+    public void changeLabel(Float weight, Timestamp startTime, Timestamp endTime, Timestamp dateTime) {
         maxWeightLabel.setText(Float.toString(weight));
         startLabel.setText(DateManager.TimestampToHourString(startTime));
         endLabel.setText(DateManager.TimestampToHourString(endTime));
-        datetimeLabel.setText(DateManager.TimestampToDateString(date));
+        datetimeLabel.setText(DateManager.TimestampToDateString(dateTime));
+    }
+
+    /**
+     * Permet de modifier les variable d'instance start, end et date.
+     * @param startTime
+     * @param endTime
+     * @param dateTime
+     */
+    public void changeTime(Timestamp startTime, Timestamp endTime, LocalDate dateTime) {
+        date = dateTime;
+        start = startTime;
+        end = endTime;
     }
 }
