@@ -192,6 +192,7 @@ public class TourneeDAO extends DAO<Tournee> {
 
             // On supprime de la liste de Tournées dans Producteur
             t.getVehicule().getProducteur().removeTournee(t);
+            new VehiculeDAO(conn).update(t.getVehicule());
         } catch (SQLException e) {
             e.printStackTrace();
         }
