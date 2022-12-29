@@ -55,7 +55,9 @@ public class ConsultCommCtrl implements Initializable {
         commEndText.setText(DateManager.TimestampToHourString(commande.getHoraireFin()));
         clientAddressText.setText(commande.getClient().getAdresseClient());
         clientNameText.setText(commande.getClient().getNomClient());
-        tourLabelText.setText(commande.getTournee().getLibelle());
+        tourLabelText.setText(
+                commande.getTournee() != null ? commande.getTournee().getLibelle() : "Aucune."
+        );
 
         // TODO map
     }
