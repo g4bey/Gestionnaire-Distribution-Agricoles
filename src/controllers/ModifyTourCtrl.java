@@ -176,6 +176,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
         List<Commande> commsList = commListView.getItems();
         
         commsList.add(comm);
+        tournee.addCommande(comm);
         commChoiceBox.getSelectionModel().clearSelection();
         commChoiceBox.getItems().remove(comm);
         addCommBtn.setDisable(true);
@@ -209,6 +210,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
         List<Commande> comms = new ArrayList<>(); // toutes les commandes de l'utilisateur
 
         commListView.getItems().remove(comm);
+        tournee.removeCommande(comm);
         commChoiceBox.getItems().clear();
         comms.addAll(UserAuth.getProd().getCommandes());
         comms.removeAll(oldComms);
@@ -245,8 +247,6 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
             }
         }
         
-        
-
         if (commListView.getItems().size() > 0) {
             comms = comms.stream().filter(c -> 
             c.getHoraireDebut()
@@ -263,7 +263,6 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateModifyTour(ActionEvent event) {
-        tDAO.update(tournee);
         FormAddTourValidator fatv = new FormAddTourValidator(
             tourLabelField.getText(), 
             UserAuth.getProd(), 
@@ -280,6 +279,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
             tournee.setLibelle(tourLabelField.getText());
             tournee.setPoids(Float.parseFloat(maxWeightLabel.getText()));
             tournee.setVehicule(vehicleChoiceBox.getSelectionModel().getSelectedItem());
+            tDAO.update(tournee);
             ControllersUtils.closePopupAndUpdateParent(event);
         }
         else {
