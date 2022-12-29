@@ -1,8 +1,9 @@
 package utility;
 
+import modele.Commande;
 import modele.Tournee;
 
-public class GenerateurUrlTournee {
+public class GenerateurUrl {
 
     /**
      * Permet de générer l'URL nécessaire à la WebView lors de l'affichage d'une Tournée
@@ -27,5 +28,9 @@ public class GenerateurUrlTournee {
 
         return "https://www.google.com/maps/dir/?api=1&origin=" + adresseProd + "&destination="
             + adresseProd + "&waypoints=" + wayPoints;
+    }
+
+    public String AffichageCommandeUrl(Commande commande) {
+        return "https://www.google.com/maps/search/?api=1&query=" + commande.getClient().getGpsClient();
     }
 }

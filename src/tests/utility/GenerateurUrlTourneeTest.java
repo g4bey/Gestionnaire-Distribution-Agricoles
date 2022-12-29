@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utility.DatabaseConnection;
-import utility.GenerateurUrlTournee;
+import utility.GenerateurUrl;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -27,7 +27,7 @@ public class GenerateurUrlTourneeTest {
     static private TourneeDAO tourneeDAO;
     static private VehiculeDAO vehiculeDAO;
     static private ProducteurDAO producteurDAO;
-    static private GenerateurUrlTournee gut;
+    static private GenerateurUrl gut;
 
     /**
      * Simule un TRUNCATE de la table table.
@@ -60,7 +60,7 @@ public class GenerateurUrlTourneeTest {
         vehiculeDAO = new VehiculeDAO(conn);
         producteurDAO = new ProducteurDAO(conn);
 
-        gut = new GenerateurUrlTournee();
+        gut = new GenerateurUrl();
 
         truncateTable("Commande");
         truncateTable("Client");
