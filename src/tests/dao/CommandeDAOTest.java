@@ -73,7 +73,8 @@ public class CommandeDAOTest {
         }
 
         /**
-         * Avant CHAQUE test, on réinitialise les objets métier Commande, Client et Producteur témoins.
+         * Avant CHAQUE test, on réinitialise les objets métier Commande, Client et
+         * Producteur témoins.
          * <p>
          * 
          * @throws SQLException
@@ -360,8 +361,8 @@ public class CommandeDAOTest {
          * @throws SQLException
          */
         @Test
-        @DisplayName("Test la méthode getCommandesByTournee")
-        public void getCommandesByProducteurTournees() throws SQLException {
+        @DisplayName("Test la méthode getCommandesByProducteurWithoutTournee")
+        public void getCommandesByProducteurWithoutTourneeTest() throws SQLException {
                 commandeDAO.add(COMMANDE_A);
                 commandeDAO.add(COMMANDE_B);
 
@@ -383,16 +384,6 @@ public class CommandeDAOTest {
                 tournee.addCommande(COMMANDE_A);
                 tourneeDAO.update(tournee);
 
-                // On crée une autre Tournée.
-                Tournee tourneeBis = new Tournee(
-                                new Timestamp(1000000), new Timestamp(9000000),
-                                420F, "text2", vehicule);
-                tourneeDAO.add(tourneeBis);
-
-                // On ajoute les Commandes dans cette Tournée.
-                tourneeBis.addCommande(COMMANDE_B);
-                tourneeDAO.update(tourneeBis);
-
                 // On crée une Commande qui n'est pas dans une Tournée.
                 Commande commandeSeule = new Commande(
                                 "Commande seule",
@@ -404,18 +395,11 @@ public class CommandeDAOTest {
                                 CLIENT_DEMO);
                 commandeDAO.add(commandeSeule);
 
-                // On crée une liste de Tournées
-                ArrayList<Tournee> tourneeListe = new ArrayList<>();
-                tourneeListe.add(tournee);
-                tourneeListe.add(tourneeBis);
-
                 // On récupère la liste de Commandes et on y vérifie les valeurs
-                ArrayList<Commande> commandes = commandeDAO.getCommandesByProducteurTournees(PRODUCTEUR_DEMO,
-                                tourneeListe);
+                ArrayList<Commande> commandes = commandeDAO.getCommandesByProducteurWithoutTournee(PRODUCTEUR_DEMO);
                 assertTrue(commandes.get(0).equals(COMMANDE_A));
-                assertTrue(commandes.get(1).equals(COMMANDE_B));
-                assertTrue(commandes.get(2).equals(commandeSeule));
-                assertTrue(commandes.size() == 3);
+                assertTrue(commandes.get(1).equals(commandeSeule));
+                assertTrue(commandes.size() == 2);
         }
 
         /**
