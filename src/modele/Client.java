@@ -56,9 +56,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return ("Informtion Client :\nId : " + idClient)
+        return ("Information Client :\nId : " + idClient)
                 .concat("\nNom : ").concat(nomClient)
-                .concat("\nadresse : ").concat(adresseClient.replace(",", " "))
+                .concat("\nAdresse : ").concat(adresseClient.replace(",", " "))
                 .concat("\nGPS : ").concat(gpsClient)
                 .concat("\nNuméro téléphone : ").concat(numTelClient);
     }
