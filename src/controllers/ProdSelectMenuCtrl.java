@@ -83,27 +83,6 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         // TODO Auto-generated method stub
         util = new ControllersUtils();
 
-        Commande comm1 = new Commande("comm1", 0, Timestamp.valueOf("2023-01-01 12:00:00"), Timestamp.valueOf("2023-01-01 13:00:00"), null, null);
-        Commande comm2 = new Commande("comm2", 0, Timestamp.valueOf("2023-01-01 18:00:00"), Timestamp.valueOf("2023-01-01 22:00:00"), null, null);
-        Commande comm3 = new Commande("comm3", 0, Timestamp.valueOf("2023-02-01 06:00:00"), Timestamp.valueOf("2023-02-01 11:00:00"), null, null);
-        Commande comm4 = new Commande("comm4", 0, Timestamp.valueOf("2023-01-15 10:00:00"), Timestamp.valueOf("2023-01-15 20:00:00"), null, null);
-        Commande comm5 = new Commande("comm5", 0, Timestamp.valueOf("2023-05-01 16:00:00"), Timestamp.valueOf("2023-05-01 23:00:00"), null, null);
-
-        List<Commande> comms = new ArrayList<>();
-        comms.add(comm1);
-        comms.add(comm2);
-        comms.add(comm3);
-        comms.add(comm4);
-        comms.add(comm5);
-
-        Comparator<Commande> commandesAsc = (prod1, prod2) -> Long.valueOf(
-        prod1.getHoraireDebut().getTime())
-        .compareTo(prod2.getHoraireDebut().getTime()
-        );
-
-        Collections.sort(comms, commandesAsc);
-        commListView.getItems().addAll(comms);
-
         // Affichage du libelle uniquement sur le listView.
         commListView.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -123,7 +102,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             @Override
             public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle()+" | "+row.getHoraireDebut());
+                setText(empty ? null : row.getLibelle());
             }
         });
 
@@ -169,16 +148,12 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             }
         });
 
-
-
         // si une pop-up est close.
-        /* 
         ControllersUtils.getStage().setOnCloseRequest(
                 event -> {
                     reloadListViews();
                 });
-        */
-        //loadListViews();
+        loadListViews();
     }
 
     /**
