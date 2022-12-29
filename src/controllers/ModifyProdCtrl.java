@@ -13,7 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import modele.Producteur;
 import utility.ControllersUtils;
-import validForm.FormModifyProdCtrl;
+import validForm.FormProdValidator;
 
 /**
  * Contrôleur permettant la modification d'un Producteur.
@@ -86,17 +86,17 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateModifyProd(ActionEvent event) {
-        FormModifyProdCtrl fmpc = new FormModifyProdCtrl(prodSiretField.getText(), propNameField.getText(),
+        FormProdValidator fpc = new FormProdValidator(prodSiretField.getText(), propNameField.getText(),
                 addressNumField.getText(), pathTypeChoiceBox.getValue(), pathNameField.getText(),
                 townNameField.getText(), postcodeField.getText(), prodPhoneField.getText(), prodPasswordField.getText(),
                 confirmPasswordField.getText());
 
-        if (fmpc.isValid()) {
+        if (fpc.isValid()) {
             producteur.setSiret(prodSiretField.getText());
             producteur.setProprietaire(propNameField.getText());
             producteur.setNumTelProd(prodPhoneField.getText());
-            producteur.setAdresseProd(fmpc.getAdresseCSV());
-            producteur.setGpsProd(fmpc.getCoordsXY());
+            producteur.setAdresseProd(fpc.getAdresseCSV());
+            producteur.setGpsProd(fpc.getCoordsXY());
             producteur.setMdpProd(Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64).hash(2, 15 * 1024, 1,
                     prodPasswordField.getText().toCharArray()));
 

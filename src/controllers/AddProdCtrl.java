@@ -12,22 +12,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Producteur;
 import utility.ControllersUtils;
-import validForm.FormProdAddValidator;
+import validForm.FormProdValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
-* Contrôleur permettant l'ajout d'un Producteur.
-*/
+ * Contrôleur permettant l'ajout d'un Producteur.
+ */
 public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
-	
+
     @FXML
-	private TextField prodSiretField;
+    private TextField prodSiretField;
     @FXML
-	private TextField propNameField;
+    private TextField propNameField;
     @FXML
-   	private TextField addressNumField;
+    private TextField addressNumField;
     @FXML
     private ChoiceBox<String> pathTypeChoiceBox;
     @FXML
@@ -37,11 +37,11 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
     @FXML
     private TextField postcodeField;
     @FXML
-	private TextField prodPhoneField;
+    private TextField prodPhoneField;
     @FXML
-	private TextField prodPasswordField;
+    private TextField prodPasswordField;
     @FXML
-	private TextField confirmPasswordField;
+    private TextField confirmPasswordField;
     @FXML
     private Text formErrorText;
 
@@ -60,52 +60,42 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
         pathTypeChoiceBox.setItems(listePath);
     }
 
-	/**
-	* Méthode qui valide l'ajout d'un producteur.
-	* @param event ActionEvent
-	*/
+    /**
+     * Méthode qui valide l'ajout d'un producteur.
+     * 
+     * @param event ActionEvent
+     */
     public void validateAddProd(ActionEvent event) {
+        FormProdValidator fpv = new FormProdValidator(prodSiretField.getText(), propNameField.getText(),
+                addressNumField.getText(), pathTypeChoiceBox.getValue(), pathNameField.getText(),
+                townNameField.getText(), postcodeField.getText(), prodPhoneField.getText(), prodPasswordField.getText(),
+                confirmPasswordField.getText());
 
-        FormProdAddValidator fpav = new FormProdAddValidator(
-          prodSiretField.getText(),
-          propNameField.getText(),
-          addressNumField.getText(),
-          pathTypeChoiceBox.getValue(),
-          pathNameField.getText(),
-          townNameField.getText(),
-          postcodeField.getText(),
-          prodPhoneField.getText(),
-          prodPasswordField.getText(),
-          confirmPasswordField.getText()
-        );
-
-        if(fpav.isValid()) {
+        if (fpv.isValid()) {
             formErrorText.setVisible(false);
             Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64);
-            String hashedPs = argon2.hash(2,15*1024,1, prodPasswordField.getText().toCharArray());
+            String hashedPs = argon2.hash(2, 15 * 1024, 1, prodPasswordField.getText().toCharArray());
             pDAO.add(new Producteur(
-                prodSiretField.getText(),
-                propNameField.getText(),
-                fpav.getAdresseCsv(),
-                prodPhoneField.getText(),
-                fpav.getCoordsXY(),
-                hashedPs
-            ));
+                    prodSiretField.getText(),
+                    propNameField.getText(),
+                    fpv.getAdresseCSV(),
+                    prodPhoneField.getText(),
+                    fpv.getCoordsXY(),
+                    hashedPs));
             ControllersUtils.closePopupAndUpdateParent(event);
-        }
-
-        else {
-            formErrorText.setText(fpav.getErrors());
+        } else {
+            formErrorText.setText(fpv.getErrors());
             formErrorText.setVisible(true);
         }
 
     }
-	
-	/**
-    * Méthode qui permet de fermer la vue d'ajout d'un producteur.
-    * @param event ActionEvent
-    */
+
+    /**
+     * Méthode qui permet de fermer la vue d'ajout d'un producteur.
+     * 
+     * @param event ActionEvent
+     */
     public void cancelAddProd(ActionEvent event) {
-    	ControllersUtils.closePopupAndUpdateParent(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 }
