@@ -76,17 +76,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty) ;
                 setText(empty ? null : row.getLibelle());
-            }
-        });
-
-        commListView.focusedProperty().addListener((s) -> {
-            if (commListView.focusedProperty().get()) {
-                modifyCommBtn.setDisable(false);
-                deleteCommBtn.setDisable(false);
-            }
-            else {
-                modifyCommBtn.setDisable(true);
-                deleteCommBtn.setDisable(true);
+                setItem(row);
             }
         });
 
