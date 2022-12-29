@@ -219,7 +219,6 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
                                                                                                                         // disponibles
                                                                                                                         // de
                                                                                                                         // l'utilisateur
-        commsDispo.stream().forEach(System.out::println);
         if (commListView.getItems().size() == 0) {
             startLabel.setText("");
             endLabel.setText("");
