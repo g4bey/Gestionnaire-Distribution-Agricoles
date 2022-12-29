@@ -15,7 +15,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
-import utility.UserAuth;
 import modele.Tournee;
 import modele.Commande;
 import modele.Producteur;
@@ -72,19 +71,17 @@ public class ConsultProdCtrl implements Initializable {
         tournees = new ArrayList<>(producteur.getTournees());
 
         Comparator<Commande> commandesAsc = (comm1, comm2) -> Long.valueOf(
-        comm1.getHoraireDebut().getTime())
-        .compareTo(comm2.getHoraireDebut().getTime()
-        );
+                comm1.getHoraireDebut().getTime())
+                .compareTo(comm2.getHoraireDebut().getTime());
         Comparator<Tournee> tourneesAsc = (tour1, tour2) -> Long.valueOf(
-        tour1.getHoraireDebut().getTime())
-        .compareTo(tour2.getHoraireDebut().getTime()
-        );
+                tour1.getHoraireDebut().getTime())
+                .compareTo(tour2.getHoraireDebut().getTime());
         Collections.sort(commandes, commandesAsc);
         Collections.sort(tournees, tourneesAsc);
 
         prodCommListView.getItems().addAll(commandes);
         prodTourListView.getItems().addAll(tournees);
-        
+
         // Affichage du libelle uniquement sur le listView.
         prodCommListView.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -106,7 +103,7 @@ public class ConsultProdCtrl implements Initializable {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle());
             }
-        });        
+        });
     }
 
     /**
