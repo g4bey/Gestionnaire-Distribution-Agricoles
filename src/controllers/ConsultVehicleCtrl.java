@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import modele.Commande;
 import modele.Tournee;
 import modele.Vehicule;
 import utility.ControllersUtils;
@@ -38,6 +40,15 @@ public class ConsultVehicleCtrl implements Initializable {
         vehicleCapacityText.setText(String.valueOf(vehicule.getPoidsMax()).concat("kg"));
 
         tourListView.getItems().addAll(vehicule.getTournees());
+
+        // Affichage du libelle uniquement sur le listView.
+        tourListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Tournee row, boolean empty) {
+                super.updateItem(row, empty);
+                setText(empty ? null : row.getLibelle());
+            }
+        });
     }
 
     /**

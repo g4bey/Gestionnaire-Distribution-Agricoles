@@ -61,6 +61,29 @@ public class ConsultProdCtrl implements Initializable {
         prodCommListView.getItems().addAll(producteur.getCommandes());
         prodTourListView.getItems().addAll(producteur.getTournees());
         prodVehicleListView.getItems().addAll(producteur.getVehicules());
+
+        // Affichage du libelle uniquement sur le listView.
+        prodCommListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Commande row, boolean empty) {
+                super.updateItem(row, empty);
+                setText(empty ? null : row.getLibelle());
+            }
+        });
+        prodTourListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Tournee row, boolean empty) {
+                super.updateItem(row, empty);
+                setText(empty ? null : row.getLibelle());
+            }
+        });
+        prodVehicleListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Vehicule row, boolean empty) {
+                super.updateItem(row, empty);
+                setText(empty ? null : row.getLibelle());
+            }
+        });
     }
 
     /**
