@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
 import utility.UserAuth;
-import validForm.FormAddVehicleCtrl;
+import validForm.FormVehicleValidator;
 
 /**
  * Contrôleur permettant l'ajout d'un Vehicule.
@@ -32,15 +32,15 @@ public class AddVehicleCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void validateAddVehicle(ActionEvent event) {
-        FormAddVehicleCtrl favc = new FormAddVehicleCtrl(vehicleImmatField.getText(), vehicleCapacityField.getText(),
+        FormVehicleValidator fvv = new FormVehicleValidator(vehicleImmatField.getText(), vehicleCapacityField.getText(),
                 vehicleLabelField.getText());
 
-        if (favc.isValid()) {
+        if (fvv.isValid()) {
             vDAO.add(new Vehicule(vehicleImmatField.getText(), Float.parseFloat(vehicleCapacityField.getText()),
                     vehicleLabelField.getText(), UserAuth.getProd()));
-            ControllersUtils.closePopupAndUpdateParent (event);
+            ControllersUtils.closePopupAndUpdateParent(event);
         } else {
-            formErrorText.setText(favc.getErrors());
+            formErrorText.setText(fvv.getErrors());
             formErrorText.setVisible(true);
         }
     }
@@ -51,6 +51,6 @@ public class AddVehicleCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void cancelAddVehicle(ActionEvent event) {
-        ControllersUtils.closePopupAndUpdateParent (event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 }
