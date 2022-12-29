@@ -70,24 +70,18 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub   
     	util = new ControllersUtils();
+        modifyCommBtn.setDisable(false);
+        deleteCommBtn.setDisable(false);
+        modifyTourBtn.setDisable(false);
+        deleteTourBtn.setDisable(false);
+        modifyVehicleBtn.setDisable(false);
+        deleteVehicleBtn.setDisable(false);
 
         commListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty) ;
                 setText(empty ? null : row.getLibelle());
-                setItem(row);
-            }
-        });
-
-        tourListView.focusedProperty().addListener((s) -> {
-            if (tourListView.focusedProperty().get()) {
-                modifyTourBtn.setDisable(false);
-                deleteTourBtn.setDisable(false);
-            }
-            else {
-                modifyTourBtn.setDisable(true);
-                deleteTourBtn.setDisable(true);
             }
         });
 
