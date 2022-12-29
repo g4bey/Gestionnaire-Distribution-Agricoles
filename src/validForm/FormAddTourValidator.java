@@ -38,7 +38,7 @@ public class FormAddTourValidator extends FormValidator {
             setInvalid("Veuillez choisir un véhicule !");
             return;
         }
-        if (date.isEmpty()) {
+        if (commandes.isEmpty()) {
             setInvalid("Veuillez choisir une commande !");
             return;
         }
