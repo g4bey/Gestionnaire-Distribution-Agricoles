@@ -50,9 +50,6 @@ public class FormTourValidator extends FormValidator {
             setInvalid("La suite de commandes est incorrecte !");
             return;
         }
-        if (!ValidateurTournee.valideVehicule(vehicule, horaires[0], horaires[1])) {
-            setInvalid("Le véhicule n'est pas disponible pour ce créneau horaire !");
-        }
     }
 
     public Timestamp getHeureDebut() {

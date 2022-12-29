@@ -2,10 +2,10 @@ package validForm;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 import modele.Commande;
 import modele.Producteur;
 import modele.Vehicule;
+import validator.ValidateurTournee;
 
 /**
  * Formulaire d'ajout de tournée.
@@ -25,6 +25,10 @@ public class FormAddTourValidator extends FormTourValidator {
             String poids) {
 
         super(libelle, producteur, vehicule, commandes, poids);
+
+        if (!ValidateurTournee.valideVehicule(vehicule, super.getHeureDebut(), super.getHeureFin())) {
+            setInvalid("Le véhicule n'est pas disponible pour ce créneau horaire !");
+        }
 
         // On vérifie que la commande n'est pas deja dans une tournee.
         Optional<Commande> cmd = commandes.stream().filter(commande -> commande.getTournee() != null).findFirst();
