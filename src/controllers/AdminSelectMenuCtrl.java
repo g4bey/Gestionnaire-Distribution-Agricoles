@@ -164,8 +164,10 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupModifyProd(ActionEvent event) {
-        ModifyProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
-        util.loadPopup(event, "/views/modifyProd.fxml");
+        if (!prodListView.getSelectionModel().isEmpty()) {
+            ModifyProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/modifyProd.fxml");
+        }
     }
 
     /**
@@ -175,8 +177,10 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupDeleteProd(ActionEvent event) {
-        DeleteProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
-        util.loadPopup(event, "/views/deleteProd.fxml");
+        if (!prodListView.getSelectionModel().isEmpty()) {
+            DeleteProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/deleteProd.fxml");
+        }
     }
 
     /**
@@ -207,8 +211,10 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupModifyClient(ActionEvent event) {
-        ModifyClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
-        util.loadPopup(event, "/views/modifyClient.fxml");
+        if (!clientListView.getSelectionModel().isEmpty()) {
+            ModifyClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/modifyClient.fxml");
+        }
     }
 
     /**
@@ -218,8 +224,10 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      * @param event ActionEvent
      */
     public void popupDeleteClient(ActionEvent event) {
-        DeleteClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
-        util.loadPopup(event, "/views/deleteClient.fxml");
+        if (!clientListView.getSelectionModel().isEmpty()) {
+            DeleteClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/deleteClient.fxml");
+        }
     }
 
     /**
