@@ -39,6 +39,11 @@ public class ProducteurDAO extends DAO<Producteur> {
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                        vehicule.addTournee(tournee);
+                    }
                 }
 
                 // On charge la liste de Tournées
@@ -91,6 +96,11 @@ public class ProducteurDAO extends DAO<Producteur> {
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                        vehicule.addTournee(tournee);
+                    }
                 }
 
                 // On charge la liste de Tournées
@@ -149,6 +159,11 @@ public class ProducteurDAO extends DAO<Producteur> {
                 ArrayList<Vehicule> vehicules = vDAO.getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                        vehicule.addTournee(tournee);
+                    }
                 }
 
                 // On charge la liste de Tournées
