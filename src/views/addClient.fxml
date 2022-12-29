@@ -41,9 +41,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="formErrorText" layoutX="298.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
+      <Text fx:id="formErrorText" layoutX="198.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="291.728515625">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Text>
       <Line endX="100.0" layoutX="453.0" layoutY="226.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />

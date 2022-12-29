@@ -88,7 +88,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="241.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
+      <Text layoutX="258.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
          <font>
             <Font size="20.0" />
          </font>

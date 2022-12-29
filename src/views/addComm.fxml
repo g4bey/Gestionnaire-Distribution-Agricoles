@@ -65,9 +65,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="formErrorText" layoutX="292.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
+      <Text fx:id="formErrorText" layoutX="211.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" wrappingWidth="260.2980499267578">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="607.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />

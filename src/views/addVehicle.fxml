@@ -45,9 +45,9 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <TextField fx:id="vehicleLabelField" layoutX="367.0" layoutY="202.0" styleClass="prettyField" />
-      <Text fx:id="formErrorText" layoutX="299.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
+      <Text fx:id="formErrorText" layoutX="177.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="309.0980224609375">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="441.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />

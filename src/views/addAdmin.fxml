@@ -44,9 +44,9 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Text fx:id="formErrorText" layoutX="266.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text d'erreur" textAlignment="CENTER" visible="false">
+      <Text fx:id="formErrorText" layoutX="189.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="243.88426208496094">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="442.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />

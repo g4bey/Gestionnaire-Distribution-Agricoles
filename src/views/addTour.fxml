@@ -102,9 +102,9 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Text fx:id="formErrorText" layoutX="314.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
+      <Text fx:id="formErrorText" layoutX="173.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="357.8980712890625">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Text>
       <ListView fx:id="commListView" layoutX="158.0" layoutY="249.0" prefHeight="132.0" prefWidth="234.0" />
