@@ -36,7 +36,7 @@ public class ValidateurDonnee {
 
         // On vérifie que le poids fournit puisse être parsé.
         try {
-            Float.valueOf(poids);
+            Float.parseFloat(poids);
         } catch (NumberFormatException e) {
             return false;
         } // end try catch
@@ -55,9 +55,9 @@ public class ValidateurDonnee {
      * 
      * @see validePoids
      */
-    public static boolean validePoids(String poids, double max) {
+    public static boolean validePoids(String poids, float max) {
         // Si non parsable, ou poids > max: false, sinon true.
-        return !validePoids(poids) || Float.valueOf(poids) > max ? false : true;
+        return validePoids(poids) && !(Float.parseFloat(poids) > max);
     }
 
     /**

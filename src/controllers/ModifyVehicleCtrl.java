@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
 import validForm.FormAddVehicleCtrl;
+import validForm.FormModifyVehicleCtrl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,10 +45,10 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
      * @param event ActionEvent
      */
     public void validateModifyVehicle(ActionEvent event) {
-        FormAddVehicleCtrl favc = new FormAddVehicleCtrl(vehicleImmatField.getText(), vehicleLabelField.getText(),
-                vehicleCapacityField.getText());
+        FormModifyVehicleCtrl fmvc = new FormModifyVehicleCtrl(vehicleImmatField.getText(),
+                vehicleCapacityField.getText(), vehicleLabelField.getText());
 
-        if (favc.isValid()) {
+        if (fmvc.isValid()) {
             vehicule.setNumImmat(vehicleImmatField.getText());
             vehicule.setLibelle(vehicleLabelField.getText());
             vehicule.setPoidsMax(Float.parseFloat(vehicleCapacityField.getText()));
@@ -56,7 +57,10 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
 
             ControllersUtils.closePopupAndUpdateParent(event);
         } else {
-            formErrorText.setText(favc.getErrors());
+            System.out.println(vehicleImmatField.getText());
+            System.out.println(vehicleLabelField.getText());
+            System.out.println(vehicleCapacityField.getText());
+            formErrorText.setText(fmvc.getErrors());
             formErrorText.setVisible(true);
         }
     }
