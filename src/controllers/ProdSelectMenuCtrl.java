@@ -85,7 +85,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle()+" | "+row.getHoraireDebut());
+                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut());
             }
         });
         vehicleListView.setCellFactory(lv -> new ListCell<>() {
@@ -172,18 +172,16 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
      * Load les ListViews
      */
     private void loadListViews() {
-        commandes = new ArrayList<>(UserAuth.getProd().getCommandes());
-        tournees = new ArrayList<>(UserAuth.getProd().getTournees());
+        commandes = UserAuth.getProd().getCommandes();
+        tournees = UserAuth.getProd().getTournees();
 
         Comparator<Commande> commandesAsc = (comm1, comm2) -> Long.valueOf(
-        comm1.getHoraireDebut().getTime())
-        .compareTo(comm2.getHoraireDebut().getTime()
-        );
+                comm1.getHoraireDebut().getTime())
+                .compareTo(comm2.getHoraireDebut().getTime());
 
         Comparator<Tournee> tourneesAsc = (tour1, tour2) -> Long.valueOf(
-        tour1.getHoraireDebut().getTime())
-        .compareTo(tour2.getHoraireDebut().getTime()
-        );
+                tour1.getHoraireDebut().getTime())
+                .compareTo(tour2.getHoraireDebut().getTime());
         Collections.sort(commandes, commandesAsc);
         Collections.sort(tournees, tourneesAsc);
 

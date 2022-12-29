@@ -70,9 +70,9 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
 
     private static Tournee tournee;
 
-    private ArrayList<Commande> commandesSav;
+    private ArrayList<Commande> commandesSav = new ArrayList<>();
 
-    private ArrayList<Commande> commandesToDel;
+    private ArrayList<Commande> commandesToDel = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -154,6 +154,8 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
                 .toList());
         vehicleChoiceBox.setValue(tournee.getVehicule());
 
+        tourLabelField.setText(tournee.getLibelle());
+
         commListView.getItems().addAll(tournee.getCommandes());
         changeLabel(tournee.getPoids(), tournee.getHoraireDebut(), tournee.getHoraireFin(), tournee.getHoraireFin());
     }
@@ -202,6 +204,13 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
      */
     public void remComm(ActionEvent event) {
         Commande commDel = commListView.getSelectionModel().getSelectedItem(); // commande sélectionnée
+
+        float poids = commDel.getPoids();
+        tournee.removeCommande(commDel);
+        commandesToDel.add(commDel);
+        commListView.getItems().remove(commDel);
+        commChoiceBox.getItems().clear();
+
         List<Commande> commsDispo = new ArrayList<>(
                 UserAuth.getProd().getCommandes().stream().filter(commande -> commande.getTournee() == null).toList()); // toutes
                                                                                                                         // les
@@ -209,12 +218,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
                                                                                                                         // disponibles
                                                                                                                         // de
                                                                                                                         // l'utilisateur
-
-        commListView.getItems().remove(commDel);
-        tournee.removeCommande(commDel);
-        commandesToDel.add(commDel);
-        commChoiceBox.getItems().clear();
-
+        commsDispo.stream().forEach(System.out::println);
         if (commListView.getItems().size() == 0) {
             startLabel.setText("");
             endLabel.setText("");
@@ -230,7 +234,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
                 return;
             }
 
-            changeLabel(Float.parseFloat(maxWeightLabel.getText()) - commDel.getPoids(), horaires[0], horaires[1],
+            changeLabel(Float.parseFloat(maxWeightLabel.getText()) - poids, horaires[0], horaires[1],
                     horaires[0]);
 
             commsDispo = commsDispo.stream().filter(c -> c.getHoraireDebut().compareTo(horaires[1]) >= 0).toList();
