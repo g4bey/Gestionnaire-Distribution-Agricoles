@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import modele.Client;
 import utility.ControllersUtils;
 import validForm.FormClientValidator;
@@ -39,6 +40,9 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
 
     @FXML
     private TextField clientPhoneField;
+
+    @FXML
+    private Text formErrorText;
 
     private static Client client;
 
@@ -79,14 +83,17 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
                 pathTypeChoiceBox.getValue(), pathNameField.getText(), townNameField.getText(), postcodeField.getText(),
                 clientPhoneField.getText());
 
+        formErrorText.setVisible(false);
         if (fmcc.isValid()) {
             client.setNomClient(clientNameField.getText());
             client.setAdresseClient(fmcc.getAdresseCSV());
             client.setGpsClient(fmcc.getCoordsXY());
             client.setNumTelClient(clientPhoneField.getText());
-
             cltDAO.update(client);
             ControllersUtils.closePopupAndUpdateParent(event);
+        } else {
+            formErrorText.setVisible(true);
+            formErrorText.setText(fmcc.getErrors());
         }
     }
 

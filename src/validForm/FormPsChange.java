@@ -14,7 +14,7 @@ public class FormPsChange extends  FormValidator {
      * @param comfirmPs le mot de passe à confirmer.
      */
     public FormPsChange(String ps, String comfirmPs) {
-        if(ValidateurDonnee.validePassword(ps)) {
+        if(!ValidateurDonnee.validePassword(ps)) {
             setInvalid("Votre mots de passe doit faire au moins 8 caracteres.");
         }
 
