@@ -11,6 +11,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
+import utility.DateManager;
+import validator.ValidateurAdresse;
 import modele.Tournee;
 import modele.Commande;
 import modele.Producteur;
@@ -49,14 +51,14 @@ public class ConsultProdCtrl implements Initializable {
         prodCommListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Commande row, boolean empty) {
-                super.updateItem(row, empty) ;
+                super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle());
             }
         });
 
         prodSiretText.setText(producteur.getSiret());
         prodPropText.setText(producteur.getProprietaire());
-        prodAddressText.setText(producteur.getAdresseProd());
+        prodAddressText.setText(producteur.getAdresseProd().replace(",", " "));
         prodPhoneText.setText(producteur.getNumTelProd());
         prodCommListView.getItems().addAll(producteur.getCommandes());
         prodTourListView.getItems().addAll(producteur.getTournees());

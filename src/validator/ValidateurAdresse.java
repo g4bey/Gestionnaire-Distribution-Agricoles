@@ -138,21 +138,6 @@ public class ValidateurAdresse {
      * @return un objet AdresseValide
      * @throws AdresseInvalideException l'adresse est invalide.
      */
-    public static ValidateurAdresse unpack(String address) throws AdresseInvalideException {
-        String[] addressElement = address.split(",");
-
-        return new ValidateurAdresse(addressElement[0], addressElement[1], addressElement[2], addressElement[3],
-                addressElement[4]);
-    }
-
-    /**
-     * Initie l'instanciation d'un objet adresse valide et
-     * provoque une erreur s'il est impossible de récupérer l'adresse.
-     *
-     * @param address l'adresse complète au format csv
-     * @return un objet AdresseValide
-     * @throws AdresseInvalideException l'adresse est invalide.
-     */
     public static ValidateurAdresse create(String numeroRue, String typeRue, String nomRue, String ville,
             String codePostale) throws AdresseInvalideException {
 

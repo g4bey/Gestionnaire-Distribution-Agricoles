@@ -29,7 +29,7 @@ public class ConsultClientCtrl implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         clientNameText.setText(client.getNomClient());
-        clientAddressText.setText(client.getAdresseClient());
+        clientAddressText.setText(client.getAdresseClient().replace(",", " "));
         clientPhoneText.setText(client.getNumTelClient());
     }
 
