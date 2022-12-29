@@ -60,6 +60,10 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
         this.util = new ControllersUtils();
+        modifyClientBtn.setDisable(false);
+        deleteClientBtn.setDisable(false);
+        modifyProdBtn.setDisable(false);
+        deleteProdBtn.setDisable(false);
 
         // Affichage du libelle uniquement sur le listView.
         adminListView.setCellFactory(lv -> new ListCell<>() {
