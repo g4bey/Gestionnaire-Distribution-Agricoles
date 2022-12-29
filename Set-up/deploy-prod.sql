@@ -104,7 +104,7 @@ CREATE TABLE Commande(
 
     ,CONSTRAINT Commande_Tournee_FK FOREIGN KEY (idTournee) REFERENCES Tournee(idTournee) ON DELETE SET NULL
     ,CONSTRAINT Commande_Producteur0_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur) ON DELETE CASCADE
-    ,CONSTRAINT Commande_Client1_FK FOREIGN KEY (idClient) REFERENCES Client(idClient)
+    ,CONSTRAINT Commande_Client1_FK FOREIGN KEY (idClient) REFERENCES Client(idClient) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 -- Insertion de l'administrateur initial
