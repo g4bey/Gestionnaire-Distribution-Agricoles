@@ -44,8 +44,7 @@ public class FormAddTourValidator extends FormValidator {
         }
 
         // On vérifie que la commande n'est pas deja dans une commande.
-        boolean res = commandes.stream().anyMatch(commande -> commande.getTournee() != null);
-        Optional<Commande> cmd = commandes.stream().filter(commande -> commande.getTournee() == null).findFirst();
+        Optional<Commande> cmd = commandes.stream().filter(commande -> commande.getTournee() != null).findFirst();
         cmd.ifPresent(
                 commande -> setInvalid("La commande " + commande.getLibelle() + " est déja dans une tournée.")
         );
