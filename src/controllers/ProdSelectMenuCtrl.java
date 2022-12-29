@@ -77,9 +77,24 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         modifyVehicleBtn.setDisable(false);
         deleteVehicleBtn.setDisable(false);
 
+        // Affichage du libelle uniquement sur le listView.
         commListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Commande row, boolean empty) {
+                super.updateItem(row, empty) ;
+                setText(empty ? null : row.getLibelle());
+            }
+        });
+        vehicleListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Vehicule row, boolean empty) {
+                super.updateItem(row, empty) ;
+                setText(empty ? null : row.getLibelle());
+            }
+        });
+        tourListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty) ;
                 setText(empty ? null : row.getLibelle());
             }
