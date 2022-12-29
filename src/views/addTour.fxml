@@ -44,11 +44,11 @@
          </cursor></Button>
       <Line endX="350.0" layoutX="225.0" layoutY="230.0" startX="-80.0" startY="-7.62939453125E-6" />
       <Line endX="350.0" layoutX="225.0" layoutY="400.0" startX="-80.0" startY="-7.62939453125E-6" />
-      <Button fx:id="addCommBtn" layoutX="419.0" layoutY="330.0" mnemonicParsing="false" styleClass="plusAndMinusBtn" text="+">
+      <Button fx:id="addCommBtn" disable="true" layoutX="419.0" layoutY="330.0" mnemonicParsing="false" onAction="#addComm" styleClass="plusAndMinusBtn" text="+">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="remCommBtn" layoutX="518.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" styleClass="plusAndMinusBtn" text="-">
+      <Button fx:id="remCommBtn" disable="true" layoutX="518.0" layoutY="330.0" mnemonicParsing="false" onAction="#remComm" prefHeight="26.0" prefWidth="26.0" styleClass="plusAndMinusBtn" text="-">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -77,22 +77,22 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="maxWeightLabel" layoutX="261.0" layoutY="401.0" text="&lt;poids&gt;">
+      <Label fx:id="maxWeightLabel" layoutX="261.0" layoutY="401.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="startLabel" layoutX="292.0" layoutY="431.0" text="XX:XX">
+      <Label fx:id="startLabel" layoutX="292.0" layoutY="431.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="endLabel" layoutX="261.0" layoutY="461.0" text="XX:XX">
+      <Label fx:id="endLabel" layoutX="261.0" layoutY="461.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="datetimeLabel" layoutX="215.0" layoutY="491.0" text="XX-XX-XXXX">
+      <Label fx:id="datetimeLabel" layoutX="215.0" layoutY="491.0">
          <font>
             <Font size="20.0" />
          </font>

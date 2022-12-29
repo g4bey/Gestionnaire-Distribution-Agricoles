@@ -93,7 +93,7 @@ public class Commande {
                 .concat("Poids : " + poids)
                 .concat("Horaire début : " + horaireDebut)
                 .concat("Horaire fin : " + horaireFin)
-                .concat("Tournée : ").concat(tournee.getLibelle())
+                .concat("Tournée : ").concat(tournee == null ? "" : tournee.getLibelle())
                 .concat("Producteur : ").concat(producteur.getSiret())
                 .concat("Client : ").concat(client.getNomClient());
     }
