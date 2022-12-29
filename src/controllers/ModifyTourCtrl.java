@@ -166,16 +166,19 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
     public void addComm(ActionEvent event) {
         Commande comm = commChoiceBox.getSelectionModel().getSelectedItem();
         ArrayList<Commande> commsList = new ArrayList<>(commListView.getItems());
+        commsList.add(comm);
 
         Timestamp[] horaires;
 
         try {
             horaires = ValidateurTournee.calculTournee(commsList, UserAuth.getProd().getGpsProd());
         } catch (IOException | InterruptedException | InvalidRouteException e) {
+            commsList.remove(comm);
             return;
         }
 
-        commsList.add(comm);
+        commListView.getItems().add(comm);
+
         tournee.addCommande(comm);
         commChoiceBox.getSelectionModel().clearSelection();
         commChoiceBox.getItems().remove(comm);
