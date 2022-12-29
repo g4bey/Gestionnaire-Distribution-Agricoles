@@ -4,6 +4,7 @@ import modele.Commande;
 import modele.Producteur;
 import modele.Tournee;
 import modele.Vehicule;
+import tests.dao.CommandeDAOTest;
 
 import java.math.BigInteger;
 import java.sql.Connection;
@@ -35,30 +36,28 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("gpsProd"),
                         rs.getString("mdpProd"));
 
+                TourneeDAO tDAO = new TourneeDAO(conn);
+                CommandeDAO cmdDAO = new CommandeDAO(conn);
+
                 // On charge la liste de Véhicules
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
 
                     // On remplie le tableau de tournee dans vehicule
-                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                    for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
+                        prd.addTournee(tournee);
                         vehicule.addTournee(tournee);
+
+                        // On charge les commandes de la Tournee
+                        for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
+                            prd.addCommande(commande);
+                            tournee.addCommande(commande);
+                        }
                     }
                 }
 
-                // On charge la liste de Tournées
-                ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
-                for (Tournee tournee : tournees) {
-                    prd.addTournee(tournee);
-
-                    // On remplie le tableau de commandes dans tournee.
-                    for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(prd, tournee)) {
-                        tournee.addCommande(commande);
-                    }
-                }
-
-                // On charge la liste de Commandes
-                for (Commande commande : new CommandeDAO(conn).getCommandesByProducteurTournees(prd, tournees)) {
+                for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
                     prd.addCommande(commande);
                 }
 
@@ -92,30 +91,28 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("gpsProd"),
                         rs.getString("mdpProd"));
 
+                TourneeDAO tDAO = new TourneeDAO(conn);
+                CommandeDAO cmdDAO = new CommandeDAO(conn);
+
                 // On charge la liste de Véhicules
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
 
                     // On remplie le tableau de tournee dans vehicule
-                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                    for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
+                        prd.addTournee(tournee);
                         vehicule.addTournee(tournee);
+
+                        // On charge les commandes de la Tournee
+                        for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
+                            prd.addCommande(commande);
+                            tournee.addCommande(commande);
+                        }
                     }
                 }
 
-                // On charge la liste de Tournées
-                ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
-                for (Tournee tournee : tournees) {
-                    prd.addTournee(tournee);
-
-                    // On remplie le tableau de commandes dans tournee.
-                    for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(prd, tournee)) {
-                        tournee.addCommande(commande);
-                    }
-                }
-
-                // On charge la liste de Commandes
-                for (Commande commande : new CommandeDAO(conn).getCommandesByProducteurTournees(prd, tournees)) {
+                for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
                     prd.addCommande(commande);
                 }
 
@@ -161,24 +158,20 @@ public class ProducteurDAO extends DAO<Producteur> {
                     prd.addVehicule(vehicule);
 
                     // On remplie le tableau de tournee dans vehicule
-                    for (Tournee tournee : new TourneeDAO(conn).getTourneesByVehicule(vehicule)) {
+                    for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
+                        prd.addTournee(tournee);
                         vehicule.addTournee(tournee);
+
+                        // On charge les commandes de la Tournee
+                        for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
+                            prd.addCommande(commande);
+                            tournee.addCommande(commande);
+                        }
                     }
                 }
 
-                // On charge la liste de Tournées
-                ArrayList<Tournee> tournees = tDAO.getTourneesByVehicules(vehicules);
-                for (Tournee tournee : tournees) {
-                    prd.addTournee(tournee);
-
-                    // On remplie le tableau de commandes dans tournee.
-                    for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(prd, tournee)) {
-                        tournee.addCommande(commande);
-                    }
-                }
-
-                // On charge la liste de Commandes
-                for (Commande commande : cmdDAO.getCommandesByProducteurTournees(prd, tournees)) {
+                // Les commandes qui ne sont pas associées à une Tournee
+                for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
                     prd.addCommande(commande);
                 }
 
