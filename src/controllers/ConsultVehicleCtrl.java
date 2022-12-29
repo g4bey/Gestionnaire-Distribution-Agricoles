@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import modele.Commande;
 import modele.Tournee;
 import modele.Vehicule;
 import utility.ControllersUtils;
@@ -47,9 +46,8 @@ public class ConsultVehicleCtrl implements Initializable {
         tournees = new ArrayList<>(vehicule.getTournees());
 
         Comparator<Tournee> tourneesAsc = (tour1, tour2) -> Long.valueOf(
-            tour1.getHoraireDebut().getTime())
-            .compareTo(tour2.getHoraireDebut().getTime()
-        );
+                tour1.getHoraireDebut().getTime())
+                .compareTo(tour2.getHoraireDebut().getTime());
         Collections.sort(tournees, tourneesAsc);
         tourListView.getItems().addAll(tournees);
 
