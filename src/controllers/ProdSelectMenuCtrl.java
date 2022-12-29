@@ -1,9 +1,7 @@
 package controllers;
 
 import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -21,7 +19,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import modele.Vehicule;
 import utility.ControllersUtils;
-import utility.DateManager;
 import modele.Tournee;
 import modele.Commande;
 import utility.UserAuth;
@@ -119,7 +116,6 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
                 }
             }
         });
-
         tourListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tournee>() {
             @Override
             public void changed(ObservableValue<? extends Tournee> arg0, Tournee arg1, Tournee arg2) {
@@ -133,7 +129,6 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
                 }
             }
         });
-
         vehicleListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Vehicule>() {
             @Override
             public void changed(ObservableValue<? extends Vehicule> arg0, Vehicule arg1, Vehicule arg2) {
