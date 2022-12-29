@@ -7,6 +7,11 @@ import utility.DatabaseConnection;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Utilisé lors qu'on supprime un véhicule.
+ * Si un véhicule est lié à une tournée, on ne peut le supprimer.
+ * @see controllers.DeleteVehicleCtrl
+ */
 public class FormDeleteVehicule extends FormValidator {
     public FormDeleteVehicule(Vehicule vehicule) {
         TourneeDAO tDAO;
@@ -18,7 +23,7 @@ public class FormDeleteVehicule extends FormValidator {
             return;
         }
         
-        // Il faut qu'elle soit associée à aucune commande.
+        // Il faut qu'elle soit associée à aucune tournée.
         try {
             if (!tDAO.getTourneesByVehicule(vehicule).isEmpty()) {
                 setInvalid("Ce véhicule est associé à une tournée");

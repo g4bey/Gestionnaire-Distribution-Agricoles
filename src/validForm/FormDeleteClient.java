@@ -7,7 +7,17 @@ import utility.DatabaseConnection;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Utilisé lors qu'on supprime un client.
+ * Si un client est dans une tournée, il ne peut disparaitre de la base.
+ * @see controllers.DeleteClientCtrl
+ */
 public class FormDeleteClient extends FormValidator {
+
+    /**
+     * Constructeur de FormDeleteClient.
+     * @param client le client que l'on doit supprimer.
+     */
     public  FormDeleteClient(Client client) {
         TourneeDAO tDAO;
 
