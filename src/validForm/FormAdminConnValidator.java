@@ -9,7 +9,19 @@ import modele.Administrateur;
 import utility.DatabaseConnection;
 import utility.UserAuth;
 
+/**
+ * Permet d'authentifier un administrateur.
+ * Ce formulaire a comme particularité d'authentifier l'utilisateur dans l'objet session UserAuth.
+ * @see UserAuth
+ * @see controllers.AdminConnCtrl
+ */
 public class FormAdminConnValidator extends FormValidator {
+    /**
+     * Vérifie que le mot de passe fourni correspond bien au mot de passe en base,
+     * Ce mot de passe est hashé avec Argon2.
+     * @param login le pseudonyme de l'admin
+     * @param password le mot de passe
+     */
     public FormAdminConnValidator(String login, String password) {
         AdministrateurDAO aDAO;
 

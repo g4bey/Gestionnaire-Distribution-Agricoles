@@ -2,7 +2,17 @@ package validForm;
 
 import validator.ValidateurDonnee;
 
+/**
+ * Formulaire utilisé lorsqu'on modifie un véhicule.
+ * @see FormModifyVehicleCtrl
+ */
 public class FormModifyVehicleCtrl extends FormValidator {
+    /**
+     * Vérifie le format des données correspondant à un véhicule.
+     * @param numImmat la plaque d'immatriculation avec des tirets entre les zones.
+     * @param poids le poids max du véhicule.
+     * @param libelle un libellé utilisé pour l'identifier facilement.
+     */
     public FormModifyVehicleCtrl(String numImmat, String poids, String libelle) {
 
         if (!ValidateurDonnee.valideImmatriculation(numImmat)) {
