@@ -45,7 +45,9 @@ public class ValidateurAdresse {
      * Si les résultats sont cohérents, on pourra récupérer les résultats via les
      * getters.
      * 
-     * @param rue         la rue fourni
+     * @param numeroRue   la numero de rue fourni
+     * @param typeRue     la type de rue fourni
+     * @param nomRue      la nom  rue fourni
      * @param codePostale le code postal fourni
      * @param ville       la ville fourni
      * @throws AdresseInvalideException
