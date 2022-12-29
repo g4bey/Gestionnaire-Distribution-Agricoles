@@ -13,10 +13,10 @@ import validForm.FormDeleteCommand;
 import validForm.FormValidator;
 
 /**
-* Contrôleur permettant la suppression d'une Commande.
-*/
+ * Contrôleur permettant la suppression d'une Commande.
+ */
 public class DeleteCommCtrl extends AbstractConnCtrl implements Initializable {
-	
+
     @FXML
     private Text commLabelText;
     @FXML
@@ -25,40 +25,42 @@ public class DeleteCommCtrl extends AbstractConnCtrl implements Initializable {
     private static Commande commande;
 
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+    public void initialize(URL arg0, ResourceBundle arg1) {
         commLabelText.setText(commande.getLibelle());
     }
-    
+
     /**
-    * Méthode qui valide la suppression de la commande.
-    * @param event ActionEvent
-    */
+     * Méthode qui valide la suppression de la commande.
+     * 
+     * @param event ActionEvent
+     */
     public void validateDeleteComm(ActionEvent event) {
         FormValidator formulaire = new FormDeleteCommand(commande);
 
         if (formulaire.isValid()) {
             commDAO.delete(commande);
+            ControllersUtils.closePopupAndUpdateParent(event);
         } else {
             deleteErrorText.setVisible(true);
             deleteErrorText.setText(formulaire.getErrors());
         }
-
-    	ControllersUtils.closePopupAndUpdateParent(event);
     }
-    
+
     /**
-    * Méthode qui annule la suppression de la commande.
-    * @param event ActionEvent
-    */
+     * Méthode qui annule la suppression de la commande.
+     * 
+     * @param event ActionEvent
+     */
     public void cancelDeleteComm(ActionEvent event) {
-    	ControllersUtils.closePopupAndUpdateParent(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
-    * Méthode qui récupère la commande sélectionnée dans la listView
-    * de la vue précédente (prodSelectMenu)
-    * @param comm Commande
-    */
+     * Méthode qui récupère la commande sélectionnée dans la listView
+     * de la vue précédente (prodSelectMenu)
+     * 
+     * @param comm Commande
+     */
     public static void setCommande(Commande comm) {
         commande = comm;
     }
