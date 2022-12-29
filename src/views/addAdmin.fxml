@@ -53,7 +53,7 @@
       </ImageView>
       <PasswordField fx:id="confirmPasswordField" layoutX="313.0" layoutY="255.0" promptText="********" styleClass="prettyField" />
       <PasswordField fx:id="adminPasswordField" layoutX="313.0" layoutY="198.0" promptText="********" styleClass="prettyField" />
-      <ScrollPane layoutX="162.0" layoutY="306.0" prefHeight="26.0" prefWidth="302.0" styleClass="errorScrollPane">
+      <ScrollPane layoutX="162.0" layoutY="306.0" prefHeight="54.0" prefWidth="302.0" styleClass="errorScrollPane">
          <content>
             <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="299.88427734375">
                <font>

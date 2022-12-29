@@ -72,7 +72,7 @@
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="158.0" layoutY="449.0" prefHeight="38.0" prefWidth="382.0" styleClass="errorScrollPane">
+      <ScrollPane layoutX="158.0" layoutY="449.0" prefHeight="55.0" prefWidth="382.0" styleClass="errorScrollPane">
          <content>
             <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="374.69801330566406">
                <font>
