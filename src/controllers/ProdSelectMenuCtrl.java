@@ -163,8 +163,10 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupModifyComm(ActionEvent event) {
-        ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
-    	util.loadPopup(event, "/views/modifyComm.fxml");
+        if (!commListView.getSelectionModel().isEmpty()) {
+            ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/modifyComm.fxml");
+        }
     }
     
     /**
@@ -173,8 +175,10 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupDeleteComm(ActionEvent event) {
-        DeleteCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
-    	util.loadPopup(event, "/views/deleteComm.fxml");
+        if (!commListView.getSelectionModel().isEmpty()) {
+            DeleteCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/deleteComm.fxml");
+        }
     }
     
     /**
@@ -203,8 +207,10 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupModifyTour(ActionEvent event) {
-        ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
-    	util.loadPopup(event, "/views/modifyTour.fxml");
+        if (!tourListView.getSelectionModel().isEmpty()) {
+            ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/modifyTour.fxml");
+        }
     }
     
     /**
@@ -213,8 +219,10 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupDeleteTour(ActionEvent event) {
-        DeleteTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
-    	util.loadPopup(event, "/views/deleteTour.fxml");
+        if (!tourListView.getSelectionModel().isEmpty()) {
+            DeleteTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/deleteTour.fxml");
+        }
     }
     
     /**
@@ -243,8 +251,10 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupModifyVehicle(ActionEvent event) {
-        ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
-    	util.loadPopup(event, "/views/modifyVehicle.fxml");
+        if (!vehicleListView.getSelectionModel().isEmpty()) {
+            ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/modifyVehicle.fxml");
+        }
     }
     
     /**
@@ -253,8 +263,10 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     * @param event ActionEvent
     */
     public void popupDeleteVehicle(ActionEvent event) {
-        DeleteVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
-    	util.loadPopup(event, "/views/deleteVehicle.fxml");
+        if (!vehicleListView.getSelectionModel().isEmpty()) {
+            DeleteVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
+            util.loadPopup(event, "/views/deleteVehicle.fxml");
+        }
     }
     
     /**
