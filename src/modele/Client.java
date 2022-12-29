@@ -58,7 +58,7 @@ public class Client {
     public String toString() {
         return ("Informtion Client :\nId : " + idClient)
                 .concat("\nNom : ").concat(nomClient)
-                .concat("\nadresse : ").concat(adresseClient)
+                .concat("\nadresse : ").concat(adresseClient.replace(",", " "))
                 .concat("\nGPS : ").concat(gpsClient)
                 .concat("\nNuméro téléphone : ").concat(numTelClient);
     }
