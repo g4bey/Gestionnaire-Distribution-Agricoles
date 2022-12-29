@@ -10,15 +10,19 @@ public class GenerateurUrl {
      * @param tournee La Tournée à afficher
      * @return L'URL de la map à afficher
      */
-    public String AffichageTourneeUrl(Tournee tournee) {
+    public static String AffichageTourneeUrl(Tournee tournee) {
         // L'adresse du Producteur est à la fois point de départ et point d'arrivée
-        String adresseProd = tournee.getVehicule().getProducteur().getGpsProd();
+        String gps1Prod = tournee.getVehicule().getProducteur().getGpsProd().split(",")[1];
+        String gps2Prod = tournee.getVehicule().getProducteur().getGpsProd().split(",")[0];
+        String adresseProd = gps1Prod + "," + gps2Prod;
 
         StringBuilder wayPoints = new StringBuilder();
 
         // On récupère pour chaque Commande les coordonnées du Client lié
         for (int i = 0; i < tournee.getCommandes().size(); i++) {
-            wayPoints.append(tournee.getCommandes().get(i).getClient().getGpsClient());
+            String gps1 = tournee.getCommandes().get(i).getClient().getGpsClient().split(",")[1];
+            String gps2 = tournee.getCommandes().get(i).getClient().getGpsClient().split(",")[0];
+            wayPoints.append(gps1).append(",").append(gps2);
 
             // On ajoute les "espaces" entre chaque coordonnée
             if (i != tournee.getCommandes().size() - 1) {
@@ -31,6 +35,8 @@ public class GenerateurUrl {
     }
 
     public static String AffichageCommandeUrl(Commande commande) {
-        return "https://www.google.com/maps/search/?api=1&query=" + commande.getClient().getGpsClient();
+        String gps1 = commande.getClient().getGpsClient().split(",")[1];
+        String gps2 = commande.getClient().getGpsClient().split(",")[0];
+        return "https://www.google.com/maps/search/?api=1&query=" + gps1 + "," + gps2;
     }
 }
