@@ -14,7 +14,7 @@ import modele.Client;
 import modele.Commande;
 import utility.ControllersUtils;
 import utility.DateManager;
-import validForm.FormModifyCommCtrl;
+import validForm.FormCommValidator;
 
 /**
  * Contrôleur permettant la modification d'une Commande.
@@ -60,10 +60,10 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateModifyComm(ActionEvent event) {
-        FormModifyCommCtrl fmcc = new FormModifyCommCtrl(commLabelField.getText(), commWeightField.getText(),
+        FormCommValidator fcv = new FormCommValidator(commLabelField.getText(), commWeightField.getText(),
                 commDateField.getValue(), commStartField.getText(), commEndField.getText(), clientChoiceBox.getValue());
 
-        if (fmcc.isValid()) {
+        if (fcv.isValid()) {
             commande.setLibelle(commLabelField.getText());
             commande.setPoids(Float.parseFloat(commWeightField.getText()));
             commande.setHoraireDebut(
