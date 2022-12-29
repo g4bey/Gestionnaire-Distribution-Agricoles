@@ -11,7 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import modele.*;
+import modele.Administrateur;
+import modele.Client;
+import modele.Producteur;
 import utility.ControllersUtils;
 
 /**
@@ -69,21 +71,21 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         adminListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Administrateur row, boolean empty) {
-                super.updateItem(row, empty) ;
+                super.updateItem(row, empty);
                 setText(empty ? null : row.getPseudo());
             }
         });
         prodListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Producteur row, boolean empty) {
-                super.updateItem(row, empty) ;
+                super.updateItem(row, empty);
                 setText(empty ? null : row.getProprietaire());
             }
         });
         clientListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Client row, boolean empty) {
-                super.updateItem(row, empty) ;
+                super.updateItem(row, empty);
                 setText(empty ? null : row.getNomClient());
             }
         });
@@ -92,8 +94,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         ControllersUtils.getStage().setOnCloseRequest(
                 event -> {
                     reloadListViews();
-                }
-        );
+                });
 
         loadListViews();
     }
