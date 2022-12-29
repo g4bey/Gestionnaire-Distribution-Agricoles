@@ -258,14 +258,19 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
             date
         );
         if (fatv.isValid()) {
-            tDAO.add(new Tournee(
-                0,
-                start, 
-                end, 
-                Float.parseFloat(maxWeightLabel.getText()), 
-                tourLabelField.getText(), 
-                vehicleChoiceBox.getSelectionModel().getSelectedItem()
-            ));
+            Tournee maTournee = new Tournee(
+                    start,
+                    end,
+                    Float.parseFloat(maxWeightLabel.getText()),
+                    tourLabelField.getText(),
+                    vehicleChoiceBox.getSelectionModel().getSelectedItem()
+            );
+            tDAO.add(maTournee);
+            commListView.getItems().forEach(
+                    cmd -> maTournee.addCommande(cmd)
+            );
+            tDAO.update(maTournee);
+
             ControllersUtils.closePopupAndUpdateParent(event);
         }
         else {
