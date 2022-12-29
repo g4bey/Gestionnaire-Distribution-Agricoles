@@ -9,25 +9,23 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * Validateur de formulaire pour AddCommCtrl
+ * Validateur de formulaire pour ajouter ou modifier une Commande
+ * 
  * @see controllers.AddCommCtrl
  */
-public class FormCommAddValidator extends FormValidator {
+public class FormCommValidator extends FormValidator {
 
     /**
      * Constructeur de FormCommAddValidator
-     * @param libelle Le libellé de la Commande récupéré dans la vue
-     * @param poids Le poids de la Commande récupéré dans la vue
-     * @param date La date de la Commande récupérée dans la vue
+     * 
+     * @param libelle      Le libellé de la Commande récupéré dans la vue
+     * @param poids        Le poids de la Commande récupéré dans la vue
+     * @param date         La date de la Commande récupérée dans la vue
      * @param creneauDebut Le créneau de début de la Commande récupéré dans la vue
-     * @param creneauFin Le créneau de fin de la Commande récupéré dans la vue
-     * @param client Le client de la Commande récupéré dans la vue
+     * @param creneauFin   Le créneau de fin de la Commande récupéré dans la vue
+     * @param client       Le client de la Commande récupéré dans la vue
      */
-    public FormCommAddValidator(String libelle,
-            String poids,
-            LocalDate date,
-            String creneauDebut,
-            String creneauFin,
+    public FormCommValidator(String libelle, String poids, LocalDate date, String creneauDebut, String creneauFin,
             Client client) {
 
         if (libelle.equals("")) {
@@ -52,7 +50,7 @@ public class FormCommAddValidator extends FormValidator {
             return;
         }
         if (DateManager.convertToTimestamp(date, creneauDebut).before(Timestamp.valueOf(LocalDateTime.now()))) {
-            setInvalid("Vous ne pouvez pas ajouter une Commande dans le passé");
+            setInvalid("Vous ne pouvez pas programmer une Commande dans le passé");
         }
         if (DateManager.convertToTimestamp(date, creneauDebut)
                 .after(DateManager.convertToTimestamp(date, creneauFin))) {
