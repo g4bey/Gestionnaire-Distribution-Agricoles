@@ -13,10 +13,10 @@ import validForm.FormDeleteClient;
 import validForm.FormValidator;
 
 /**
-* Contrôleur permettant la suppression d'un Client.
-*/
+ * Contrôleur permettant la suppression d'un Client.
+ */
 public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable {
-    
+
     @FXML
     private Text clientNameText;
     @FXML
@@ -25,40 +25,42 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     private static Client client;
 
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+    public void initialize(URL arg0, ResourceBundle arg1) {
         clientNameText.setText(client.getNomClient());
     }
-    
+
     /**
-    * Méthode qui valide la suppression du client.
-    * @param event ActionEvent
-    */
+     * Méthode qui valide la suppression du client.
+     * 
+     * @param event ActionEvent
+     */
     public void validateDeleteClient(ActionEvent event) {
         FormValidator formulaire = new FormDeleteClient(client);
 
         if (formulaire.isValid()) {
             cltDAO.delete(client);
+            ControllersUtils.closePopupAndUpdateParent(event);
         } else {
             deleteErrorText.setVisible(true);
             deleteErrorText.setText(formulaire.getErrors());
         }
-
-    	ControllersUtils.closePopupAndUpdateParent(event);
     }
-    
+
     /**
-    * Méthode qui annule la suppression du client.
-    * @param event ActionEvent
-    */
+     * Méthode qui annule la suppression du client.
+     * 
+     * @param event ActionEvent
+     */
     public void cancelDeleteClient(ActionEvent event) {
-    	ControllersUtils.closePopupAndUpdateParent(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 
     /**
-    * Méthode qui récupère le client sélectionné dans la listView
-    * de la vue précédente (adminSelectMenu)
-    * @param cl Client
-    */
+     * Méthode qui récupère le client sélectionné dans la listView
+     * de la vue précédente (adminSelectMenu)
+     * 
+     * @param cl Client
+     */
     public static void setClient(Client cl) {
         client = cl;
     }

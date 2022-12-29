@@ -249,12 +249,9 @@ public class TourneeDAO extends DAO<Tournee> {
      * @return Un boolean attestant de la présence d'une client dans une tournée
      * @throws SQLException
      */
-    public boolean clientEstDansTournee (Client cl) throws SQLException {
-        ArrayList<Client> clients = new ArrayList<>();
-
+    public boolean clientEstDansTournee(Client cl) throws SQLException {
         pstmt = conn.prepareStatement(
-                "SELECT idTournee FROM Tournee T JOIN Commande USING(idTournee) WHERE idClient = ?"
-        );
+                "SELECT idTournee FROM Tournee T JOIN Commande USING(idTournee) WHERE idClient = ?");
         pstmt.setInt(1, cl.getIdClient());
         rs = pstmt.executeQuery();
 
@@ -264,7 +261,6 @@ public class TourneeDAO extends DAO<Tournee> {
 
         return false;
     }
-
 
     /**
      * Constructeur de TourneeDAO.
