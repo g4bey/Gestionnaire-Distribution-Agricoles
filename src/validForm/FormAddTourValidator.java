@@ -1,12 +1,13 @@
 package validForm;
 
-import java.time.LocalDate;
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import exceptions.InvalidRouteException;
 import modele.Commande;
 import modele.Producteur;
 import modele.Vehicule;
-import utility.DateManager;
 import validator.ValidateurTournee;
 
 /**
@@ -15,6 +16,7 @@ import validator.ValidateurTournee;
  * @see controllers.AddTourCtrl
  */
 public class FormAddTourValidator extends FormValidator {
+    private Timestamp[] horaires;
 
     /**
      *
@@ -28,7 +30,7 @@ public class FormAddTourValidator extends FormValidator {
      * @param date         la date de la tournée.
      */
     public FormAddTourValidator(String libelle, Producteur producteur, Vehicule vehicule, ArrayList<Commande> commandes,
-            String poids, String horaireDebut, String horaireFin, LocalDate date) {
+            String poids) {
         if (libelle.isEmpty()) {
             setInvalid("Veuillez écrire un libellé !");
             return;
@@ -41,13 +43,26 @@ public class FormAddTourValidator extends FormValidator {
             setInvalid("Veuillez choisir une commande !");
             return;
         }
-        if (!ValidateurTournee.valideVehicule(vehicule,
-                DateManager.convertToTimestamp(date, horaireDebut),
-                DateManager.convertToTimestamp(date, horaireFin))) {
-            setInvalid("Le véhicule n'est pas disponible pour ce créneau horaire !");
-        }
         if (!ValidateurTournee.validePoids(vehicule.getPoidsMax(), commandes)) {
             setInvalid("La capacité du véhicule est dépassé !");
         }
+
+        try {
+            horaires = ValidateurTournee.calculTournee(commandes, producteur.getGpsProd());
+        } catch (IOException | InterruptedException | InvalidRouteException e) {
+            setInvalid("La suite de commandes est incorrecte !");
+            return;
+        }
+        if (!ValidateurTournee.valideVehicule(vehicule, horaires[0], horaires[1])) {
+            setInvalid("Le véhicule n'est pas disponible pour ce créneau horaire !");
+        }
+    }
+
+    public Timestamp getHeureDebut() {
+        return horaires[0];
+    }
+
+    public Timestamp getHeureFin() {
+        return horaires[1];
     }
 }

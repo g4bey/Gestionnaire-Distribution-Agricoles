@@ -114,13 +114,15 @@ public class TourneeDAO extends DAO<Tournee> {
 
                 CommandeDAO coDAO = new CommandeDAO(conn);
                 for (Commande commande : t.getCommandes()) {
-                    coDAO.add(commande);
+                    coDAO.update(commande);
                 }
                 // On met à jour la liste de Tournées dans Véhicule.
                 t.getVehicule().addTournee(t);
+                new VehiculeDAO(conn).update(t.getVehicule());
 
                 // On met à jour la liste de Tournées dans Producteur
                 t.getVehicule().getProducteur().addTournee(t);
+                new ProducteurDAO(conn).update(t.getVehicule().getProducteur());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,11 +156,13 @@ public class TourneeDAO extends DAO<Tournee> {
             // On met à jour la liste de Tournées dans Véhicule.
             if (!t.getVehicule().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
+                new VehiculeDAO(conn).update(t.getVehicule());
             }
 
             // On met à jour la liste de Tournees dans Producteur.
             if (!t.getVehicule().getProducteur().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
+                new ProducteurDAO(conn).update(t.getVehicule().getProducteur());
             }
         } catch (SQLException e) {
             e.printStackTrace();
