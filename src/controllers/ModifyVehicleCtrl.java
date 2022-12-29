@@ -7,16 +7,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
-import validForm.FormModifyVehicleCtrl;
+import validForm.FormVehicleValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * FormVehicleValidator
  * Contrôleur permettant la modification d'un Vehicule.
  */
 public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable {
-
     @FXML
     private TextField vehicleImmatField;
 
@@ -44,10 +44,10 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
      * @param event ActionEvent
      */
     public void validateModifyVehicle(ActionEvent event) {
-        FormModifyVehicleCtrl fmvc = new FormModifyVehicleCtrl(vehicleImmatField.getText(),
-                vehicleCapacityField.getText(), vehicleLabelField.getText());
+        FormVehicleValidator fvv = new FormVehicleValidator(vehicleImmatField.getText(), vehicleCapacityField.getText(),
+                vehicleLabelField.getText());
 
-        if (fmvc.isValid()) {
+        if (fvv.isValid()) {
             vehicule.setNumImmat(vehicleImmatField.getText());
             vehicule.setLibelle(vehicleLabelField.getText());
             vehicule.setPoidsMax(Float.parseFloat(vehicleCapacityField.getText()));
@@ -59,7 +59,7 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
             System.out.println(vehicleImmatField.getText());
             System.out.println(vehicleLabelField.getText());
             System.out.println(vehicleCapacityField.getText());
-            formErrorText.setText(fmvc.getErrors());
+            formErrorText.setText(fvv.getErrors());
             formErrorText.setVisible(true);
         }
     }
