@@ -28,6 +28,7 @@ import utility.ControllersUtils;
 import utility.DateManager;
 import utility.UserAuth;
 import validForm.FormAddTourValidator;
+import validForm.FormModifyTourValidator;
 import validator.ValidateurTournee;
 
 /**
@@ -203,12 +204,8 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
     public void remComm(ActionEvent event) {
         Commande commDel = commListView.getSelectionModel().getSelectedItem(); // commande sélectionnée
         List<Commande> commsDispo = new ArrayList<>(
-                UserAuth.getProd().getCommandes().stream().filter(commande -> commande.getTournee() == null).toList()); // toutes
-                                                                                                                        // les
-                                                                                                                        // commandes
-                                                                                                                        // disponibles
-                                                                                                                        // de
-                                                                                                                        // l'utilisateur
+                UserAuth.getProd().getCommandes().stream().filter(commande -> commande.getTournee() == null).toList());
+        // toutes les commandes disponibles de l'utilisateur
 
         commListView.getItems().remove(commDel);
         tournee.removeCommande(commDel);
@@ -235,7 +232,6 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
 
             commsDispo = commsDispo.stream().filter(c -> c.getHoraireDebut().compareTo(horaires[1]) >= 0).toList();
         }
-
         commChoiceBox.getItems().addAll(commsDispo);
     }
 
@@ -245,9 +241,10 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateModifyTour(ActionEvent event) {
-        FormAddTourValidator fatv = new FormAddTourValidator(tourLabelField.getText(), UserAuth.getProd(),
+        FormModifyTourValidator fatv = new FormModifyTourValidator(tourLabelField.getText(), UserAuth.getProd(),
                 vehicleChoiceBox.getSelectionModel().getSelectedItem(),
-                new ArrayList<Commande>(commListView.getItems()), maxWeightLabel.getText());
+                new ArrayList<Commande>(commListView.getItems()), maxWeightLabel.getText(), tournee.getIdTournee());
+        formErrorText.setVisible(false);
         if (fatv.isValid()) {
             tournee.setHoraireDebut(fatv.getHeureDebut());
             tournee.setHoraireFin(fatv.getHeureFin());
@@ -260,7 +257,6 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
             }
 
             tDAO.update(tournee);
-
             ControllersUtils.closePopupAndUpdateParent(event);
         } else {
             formErrorText.setVisible(true);
