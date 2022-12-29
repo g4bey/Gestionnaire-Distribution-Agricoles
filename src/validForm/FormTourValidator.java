@@ -9,7 +9,6 @@ import validator.ValidateurTournee;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * Formulaire d'ajout de tournée.
@@ -21,14 +20,14 @@ public class FormTourValidator extends FormValidator {
 
     /**
      *
-     * @param libelle      le libellé pour identifier la tournée.
-     * @param producteur   le producteur associé à la tournée.
-     * @param vehicule     le vehicle associé à la tournée.
-     * @param commandes    la liste de commande composant la tournée.
-     * @param poids        le poids de la tournée
+     * @param libelle    le libellé pour identifier la tournée.
+     * @param producteur le producteur associé à la tournée.
+     * @param vehicule   le vehicle associé à la tournée.
+     * @param commandes  la liste de commande composant la tournée.
+     * @param poids      le poids de la tournée
      */
     public FormTourValidator(String libelle, Producteur producteur, Vehicule vehicule, ArrayList<Commande> commandes,
-                             String poids) {
+            String poids) {
         if (libelle.isEmpty()) {
             setInvalid("Veuillez écrire un libellé !");
             return;

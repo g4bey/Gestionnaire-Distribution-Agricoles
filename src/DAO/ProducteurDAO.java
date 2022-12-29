@@ -4,7 +4,6 @@ import modele.Commande;
 import modele.Producteur;
 import modele.Tournee;
 import modele.Vehicule;
-import tests.dao.CommandeDAOTest;
 
 import java.math.BigInteger;
 import java.sql.Connection;

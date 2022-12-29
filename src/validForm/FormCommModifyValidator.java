@@ -1,20 +1,12 @@
 package validForm;
 
 import DAO.CommandeDAO;
-import DAO.TourneeDAO;
 import modele.Client;
-import modele.Commande;
-import modele.Tournee;
 import utility.DatabaseConnection;
-import utility.DateManager;
-import utility.UserAuth;
-import validator.ValidateurDonnee;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Validateur de formulaire pour ajouter ou modifier une Commande
@@ -34,10 +26,10 @@ public class FormCommModifyValidator extends FormCommValidator {
      * @param creneauFin   Le créneau de fin de la Commande récupéré dans la vue
      * @param client       Le client de la Commande récupéré dans la vue
      */
-    public FormCommModifyValidator(int idCommande, String libelle, String poids, LocalDate date, String creneauDebut, String creneauFin,
-                                   Client client) {
-        super(libelle, poids, date,creneauDebut,creneauFin, client);
-
+    public FormCommModifyValidator(int idCommande, String libelle, String poids, LocalDate date, String creneauDebut,
+            String creneauFin,
+            Client client) {
+        super(libelle, poids, date, creneauDebut, creneauFin, client);
 
         CommandeDAO cDAO;
         try {
