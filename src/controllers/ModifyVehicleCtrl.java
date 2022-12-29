@@ -56,9 +56,6 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
 
             ControllersUtils.closePopupAndUpdateParent(event);
         } else {
-            System.out.println(vehicleImmatField.getText());
-            System.out.println(vehicleLabelField.getText());
-            System.out.println(vehicleCapacityField.getText());
             formErrorText.setText(fvv.getErrors());
             formErrorText.setVisible(true);
         }
