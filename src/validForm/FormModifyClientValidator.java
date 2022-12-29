@@ -50,7 +50,7 @@ public class FormModifyClientValidator extends FormClientValidator {
         }
 
         // Si on ne modifie pas l'adresse, il n'y a pas d'incohérence.
-        if (!getAdresseCSV().equals(cDAO.get(idClient).getAdresseClient())) {
+        if (!super.getAdresseCSV().equals(cDAO.get(idClient).getAdresseClient())) {
             // Si on modifie l'adresse, il faut etre sur que le client ne pas dans une tournée.
             if (tDAO.clientEstDansTournee(idClient)) {
                 setInvalid("Impossible de modifier l'adresse d'un client dans une tournée.");
