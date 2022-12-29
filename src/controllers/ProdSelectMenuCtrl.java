@@ -85,6 +85,17 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             }
         });
 
+        commListView.focusedProperty().addListener((s) -> {
+            if (commListView.focusedProperty().get()) {
+                modifyCommBtn.setDisable(false);
+                deleteCommBtn.setDisable(false);
+            }
+            else {
+                modifyCommBtn.setDisable(true);
+                deleteCommBtn.setDisable(true);
+            }
+        });
+
         vehicleListView.focusedProperty().addListener((s) -> {
             if (vehicleListView.focusedProperty().get()) {
                 modifyVehicleBtn.setDisable(false);
