@@ -9,6 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 import modele.Client;
 import modele.Commande;
 import utility.ControllersUtils;
@@ -51,6 +52,22 @@ public class AddCommCtrl extends AbstractConnCtrl implements Initializable {
         ObservableList<Client> listeClients = FXCollections.observableArrayList();
         listeClients.addAll(cltDAO.getAll());
         clientChoiceBox.setItems(listeClients);
+
+        clientChoiceBox.setConverter(new StringConverter<Client>() {
+
+            @Override
+            public Client fromString(String arg0) {
+                return null;
+            }
+
+            @Override
+            public String toString(Client arg0) {
+                if (arg0 == null) {
+                    return "";
+                }
+                return arg0.getNomClient();
+            }
+        });
     }
 
     /**

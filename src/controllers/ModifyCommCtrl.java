@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 import modele.Client;
 import modele.Commande;
 import utility.ControllersUtils;
@@ -56,6 +57,22 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
         clientChoiceBox.setItems(FXCollections.observableArrayList(cltDAO.getAll()));
         clientChoiceBox.setValue(clientChoiceBox.getItems().stream()
                 .filter(clt -> clt.getIdClient() == commande.getClient().getIdClient()).findFirst().get());
+
+        clientChoiceBox.setConverter(new StringConverter<Client>() {
+
+            @Override
+            public Client fromString(String arg0) {
+                return null;
+            }
+        
+            @Override
+            public String toString(Client arg0) {
+                if (arg0 == null) {
+                    return "";
+                }
+                return arg0.getNomClient();
+            }
+        });
     }
 
     /**
