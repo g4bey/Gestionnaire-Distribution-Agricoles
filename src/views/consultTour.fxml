@@ -15,12 +15,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1082.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultTourCtrl">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" layoutX="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="1037.0" />
-      <Text layoutX="456.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournée:">
+      <Text layoutX="365.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournée:">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Text fx:id="tourLabelText" layoutX="607.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Libellé&gt;">
+      <Text fx:id="tourLabelText" layoutX="515.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Libellé&gt;">
          <font>
             <Font size="25.0" />
          </font>

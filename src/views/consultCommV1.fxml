@@ -11,15 +11,15 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="975.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultCommCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="1087.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultCommCtrl">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="94.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="881.0" />
-      <Text layoutX="381.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commande:">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="94.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="994.0" />
+      <Text layoutX="529.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commande:">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Text fx:id="commLabelText" layoutX="584.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Libellé&gt;">
+      <Text fx:id="commLabelText" layoutX="166.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Libellé&gt;" textAlignment="CENTER" wrappingWidth="912.1805267333984">
          <font>
             <Font size="25.0" />
          </font>
@@ -54,7 +54,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="closeConsultCommBtn" layoutX="804.0" layoutY="540.0" mnemonicParsing="false" onAction="#closeConsultComm" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Quitter">
+      <Button fx:id="closeConsultCommBtn" layoutX="963.0" layoutY="541.0" mnemonicParsing="false" onAction="#closeConsultComm" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Quitter">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -78,7 +78,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="clientAddressText" layoutX="166.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Adresse&gt;">
+      <Text fx:id="clientAddressText" layoutX="159.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Adresse&gt;">
          <font>
             <Font size="20.0" />
          </font>
@@ -88,16 +88,16 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="clientNameText" layoutX="170.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nom&gt;">
+      <Text fx:id="clientNameText" layoutX="162.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nom&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Line endX="332.0" layoutX="623.0" layoutY="166.0" startX="-134.00001525878906" />
-      <Line endX="-62.00001525878906" endY="309.0" layoutX="551.0" layoutY="204.0" startX="-62.00001525878906" startY="-38.0" />
-      <Line endX="253.0" endY="-26.0" layoutX="702.0" layoutY="539.0" startX="-213.00001525878906" startY="-26.0" />
-      <Line endX="431.5" endY="-56.5" layoutX="524.0" layoutY="569.0" startX="431.5" startY="-402.5" />
-      <WebView fx:id="commMapWebView" layoutX="490.0" layoutY="167.0" prefHeight="345.0" prefWidth="465.0" />
+      <Line endX="332.0" layoutX="725.0" layoutY="151.0" startX="-134.00001525878906" />
+      <Line endX="-62.00001525878906" endY="309.0" layoutX="653.0" layoutY="189.0" startX="-62.00001525878906" startY="-38.0" />
+      <Line endX="253.0" endY="-26.0" layoutX="804.0" layoutY="524.0" startX="-213.00001525878906" startY="-26.0" />
+      <Line endX="431.5" endY="-56.5" layoutX="626.0" layoutY="554.0" startX="431.5" startY="-402.5" />
+      <WebView fx:id="commMapWebView" layoutX="592.0" layoutY="152.0" prefHeight="345.0" prefWidth="465.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="599.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />
       <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="29.0" layoutY="20.0">
          <image>

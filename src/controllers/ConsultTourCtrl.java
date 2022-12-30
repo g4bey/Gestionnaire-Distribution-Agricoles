@@ -59,7 +59,7 @@ public class ConsultTourCtrl implements Initializable {
     startText.setText(DateManager.TimestampToHourString(tournee.getHoraireDebut()));
     endText.setText(DateManager.TimestampToHourString(tournee.getHoraireFin()));
     vehicleImmatText.setText(tournee.getVehicule().getNumImmat());
-    capacityText.setText(String.valueOf(tournee.getPoids()));
+    capacityText.setText(String.valueOf(tournee.getPoids()).concat("kg"));
     commListView.getItems().addAll(tournee.getCommandes());
 
     // Affichage du libelle uniquement sur le listView.
@@ -67,7 +67,7 @@ public class ConsultTourCtrl implements Initializable {
       @Override
       public void updateItem(Commande row, boolean empty) {
         super.updateItem(row, empty);
-        setText(empty ? null : row.getLibelle());
+        setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
       }
     });
 

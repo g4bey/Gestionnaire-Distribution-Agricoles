@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
+import validForm.FormModifyVehicleValidator;
 import validForm.FormVehicleValidator;
 
 import java.net.URL;
@@ -44,8 +45,8 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
      * @param event ActionEvent
      */
     public void validateModifyVehicle(ActionEvent event) {
-        FormVehicleValidator fvv = new FormVehicleValidator(vehicleImmatField.getText(), vehicleCapacityField.getText(),
-                vehicleLabelField.getText());
+        FormVehicleValidator fvv = new FormModifyVehicleValidator(vehicleImmatField.getText(), vehicleCapacityField.getText(),
+                vehicleLabelField.getText(), vehicule);
 
         if (fvv.isValid()) {
             vehicule.setNumImmat(vehicleImmatField.getText());
