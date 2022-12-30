@@ -11,12 +11,14 @@ import validator.ValidateurDonnee;
  */
 public class FormAddProdValidator extends FormProdValidator {
     public FormAddProdValidator(String siret, String proprietaire, String addressNumField, String addressPathType,
-                               String addressPathName, String addressTownName, String addressPostCode, String numTelProd, String password,
-                               String confirmPassword) {
-        super(siret, proprietaire, addressNumField, addressPathType, addressPathName, addressTownName, addressPostCode, numTelProd, password, confirmPassword);
+            String addressPathName, String addressTownName, String addressPostCode, String numTelProd, String password,
+            String confirmPassword) {
+        super(siret, proprietaire, addressNumField, addressPathType, addressPathName, addressTownName, addressPostCode,
+                numTelProd, password, confirmPassword);
 
         if (!ValidateurDonnee.validePassword(password)) {
-            setInvalid("Format du mot de passe incorrect");
+            setInvalid(
+                    "Le mot de passe ne répond pas aux exigences minimales de sécurité :\n9 caractères\n1 caractère spécial\n1 majuscule\n1 minuscule\n1 chiffre");
         }
 
         if (!isValid()) {

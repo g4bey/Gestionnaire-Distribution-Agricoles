@@ -165,7 +165,18 @@ public class ValidateurDonnee {
         return matcher.matches();
     }
 
+    /**
+     * Vérifie que le mot de passe est en conformité avec les recommandations
+     * minimales de l'ANSSI, à savoir une longueur d'au moins 9 caractères, au moins
+     * 1 caractère spécial, 1 majuscule, 1 miniscule et 1 chiffre
+     * 
+     * https://www.ssi.gouv.fr/guide/recommandations-relatives-a-lauthentification-multifacteur-et-aux-mots-de-passe/
+     * 
+     * @param password Le mot de passe du l'utilisateur
+     * @return La validité du mot de passe avec les recommandations minimales de
+     *         l'ANSSI
+     */
     public static boolean validePassword(String password) {
-        return password.length() >= 9 && password.length() <= 70;
+        return password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{9,}$");
     }
 }
