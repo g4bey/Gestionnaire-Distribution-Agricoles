@@ -251,7 +251,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     public void popupConsultComm(MouseEvent event) {
         if (event.getClickCount() >= 2 && !commListView.getSelectionModel().isEmpty()) {
             ConsultCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
-            util.loadPopup(event, "/views/consultCommV1.fxml");
+            util.loadPopup(event, "/views/consultComm.fxml");
         }
     }
 
