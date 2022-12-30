@@ -33,7 +33,9 @@ public class FormModifyProdValidator extends FormProdValidator {
                     addressPostCode);
 
             // si on veut changer l'adresse
-            if (adresseValide.csv() != producteur.getAdresseProd() && !producteur.getTournees().isEmpty()) {
+            if (!adresseValide.csv().equals(producteur.getAdresseProd()) && !producteur.getTournees().isEmpty()) {
+                System.out.println(adresseValide.csv());
+                System.out.println(producteur.getAdresseProd());
                 setInvalid("Impossible de modifier l'adresse car le producteur est concerne par une tournée.");
                 return;
             }

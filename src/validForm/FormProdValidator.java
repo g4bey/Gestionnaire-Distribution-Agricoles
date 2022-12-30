@@ -1,5 +1,6 @@
 package validForm;
 
+import validator.ValidateurAdresse;
 import validator.ValidateurDonnee;
 
 /**
@@ -59,6 +60,10 @@ public class FormProdValidator extends FormValidator {
         }
         if (addressPostCode.equals("")) {
             setInvalid("Veuillez entrer un code postal");
+            return;
+        }
+        if (!ValidateurDonnee.valideCodePostal(addressPostCode)) {
+            setInvalid("Le code postale n'est pas valide.");
             return;
         }
     }
