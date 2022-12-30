@@ -46,7 +46,7 @@ public class ProdProfileCtrl implements Initializable {
      * Méthode qui permet la modification du profil utilisateur.
      * @param event ActionEvent
      */
-    public void modifyInfo(ActionEvent event) {
+    public void modifyPassword(ActionEvent event) {
         util.loadPopup(event, "/views/ProdpasswordChange.fxml");
     }
     
