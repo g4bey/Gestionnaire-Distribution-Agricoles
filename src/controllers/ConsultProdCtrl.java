@@ -87,14 +87,14 @@ public class ConsultProdCtrl implements Initializable {
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle());
+                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
         });
         prodTourListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle());
+                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
         });
         prodVehicleListView.setCellFactory(lv -> new ListCell<>() {

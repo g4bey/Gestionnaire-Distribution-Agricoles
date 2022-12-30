@@ -84,7 +84,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut());
+                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
         });
         vehicleListView.setCellFactory(lv -> new ListCell<>() {
@@ -98,7 +98,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             @Override
             public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut());
+                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
         });
 
