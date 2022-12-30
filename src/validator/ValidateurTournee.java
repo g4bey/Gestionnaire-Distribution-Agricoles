@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -59,8 +60,8 @@ public class ValidateurTournee {
     private static Timestamp valideSuiteCommandes(Iterator<Commande> itCmd, Iterator<JsonElement> itSegm,
             Timestamp horaireTmp) {
         while (itCmd.hasNext()) {
-            horaireTmp
-                    .setTime(horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong() * 1000);
+            horaireTmp = new Timestamp(
+                    horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong() * 1000);
 
             Commande commande = itCmd.next();
 
@@ -71,7 +72,7 @@ public class ValidateurTournee {
 
             // S'il arrive avant l'heure de début, il attend
             if (horaireTmp.before(commande.getHoraireDebut())) {
-                horaireTmp = commande.getHoraireDebut();
+                horaireTmp = new Timestamp(commande.getHoraireDebut().getTime());
             }
         }
 
