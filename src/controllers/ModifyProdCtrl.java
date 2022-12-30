@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import modele.Producteur;
 import utility.ControllersUtils;
 import validForm.FormModifyProdValidator;
+import validForm.FormProdValidator;
 
 /**
  * Contrôleur permettant la modification d'un Producteur.
@@ -91,19 +92,30 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateModifyProd(ActionEvent event) {
-        FormModifyProdValidator fmpv = new FormModifyProdValidator(prodSiretField.getText(), propNameField.getText(),
+        FormProdValidator fmpv = new FormModifyProdValidator(prodSiretField.getText(), propNameField.getText(),
                 addressNumField.getText(), pathTypeChoiceBox.getValue(), pathNameField.getText(),
                 townNameField.getText(), postcodeField.getText(), prodPhoneField.getText(), prodPasswordField.getText(),
-                confirmPasswordField.getText());
+                confirmPasswordField.getText(), producteur);
 
         if (fmpv.isValid()) {
-            producteur.setSiret(prodSiretField.getText());
-            producteur.setProprietaire(propNameField.getText());
-            producteur.setNumTelProd(prodPhoneField.getText());
-            producteur.setAdresseProd(fmpv.getAdresseCSV());
-            producteur.setGpsProd(fmpv.getCoordsXY());
-            producteur.setMdpProd(Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64).hash(2, 15 * 1024, 1,
-                    prodPasswordField.getText().toCharArray()));
+
+            if (prodPasswordField.getText().isEmpty() ) {
+                producteur.setSiret(prodSiretField.getText());
+                producteur.setProprietaire(propNameField.getText());
+                producteur.setNumTelProd(prodPhoneField.getText());
+                producteur.setAdresseProd(fmpv.getAdresseCSV());
+                producteur.setGpsProd(fmpv.getCoordsXY());
+                producteur.setMdpProd(producteur.getMdpProd());
+            } else {
+                producteur.setSiret(prodSiretField.getText());
+                producteur.setProprietaire(propNameField.getText());
+                producteur.setNumTelProd(prodPhoneField.getText());
+                producteur.setAdresseProd(fmpv.getAdresseCSV());
+                producteur.setGpsProd(fmpv.getCoordsXY());
+                producteur.setMdpProd(Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64).hash(2, 15 * 1024, 1,
+                        prodPasswordField.getText().toCharArray()));
+            }
+
 
             pDAO.update(producteur);
             ControllersUtils.closePopupAndUpdateParent(event);
