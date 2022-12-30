@@ -8,7 +8,7 @@ package validForm;
  * Ensuite, l'on pourra récupérer les erreurs avec getErrors();
  */
 public abstract class FormValidator {
-    private boolean isValid = true;
+    protected boolean isValid = true;
     private String errors = "";
 
     /**
@@ -30,6 +30,13 @@ public abstract class FormValidator {
     public void setInvalid(String reason) {
         isValid = false;
         appendError(reason);
+    }
+
+    /**
+     * Rend le formulaire invalide.
+     */
+    public void setInvalid() {
+        isValid = false;
     }
 
     /**
