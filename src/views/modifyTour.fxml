@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -44,11 +45,11 @@
          </cursor></Button>
       <Line endX="350.0" layoutX="213.0" layoutY="228.0" startX="-80.0" startY="-7.62939453125E-6" />
       <Line endX="350.0" layoutX="213.0" layoutY="398.0" startX="-80.0" startY="-7.62939453125E-6" />
-      <Button fx:id="addCommBtn" layoutX="407.0" layoutY="328.0" mnemonicParsing="false" styleClass="plusAndMinusBtn" text="+">
+      <Button fx:id="addCommBtn" disable="true" layoutX="407.0" layoutY="328.0" mnemonicParsing="false" onAction="#addComm" styleClass="plusAndMinusBtn" text="+">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="remCommBtn" layoutX="506.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" styleClass="plusAndMinusBtn" text="-">
+      <Button fx:id="remCommBtn" disable="true" layoutX="506.0" layoutY="328.0" mnemonicParsing="false" onAction="#remComm" prefHeight="26.0" prefWidth="26.0" styleClass="plusAndMinusBtn" text="-">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -77,36 +78,26 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="maxWeightLabel" layoutX="255.0" layoutY="406.0" text="&lt;poids&gt;">
+      <Label fx:id="maxWeightLabel" layoutX="255.0" layoutY="406.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="startLabel" layoutX="289.0" layoutY="444.0" text="XX:XX">
+      <Label fx:id="startLabel" layoutX="289.0" layoutY="444.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="endLabel" layoutX="258.0" layoutY="481.0" text="XX:XX">
+      <Label fx:id="endLabel" layoutX="258.0" layoutY="481.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="datetimeLabel" layoutX="210.0" layoutY="520.0" text="XX-XX-XXXX">
+      <Label fx:id="datetimeLabel" layoutX="210.0" layoutY="520.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="337.0" layoutY="406.0" text="kg.">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Text fx:id="formErrorText" layoutX="302.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
       <ListView fx:id="commListView" layoutX="146.0" layoutY="247.0" prefHeight="132.0" prefWidth="234.0" />
       <ChoiceBox fx:id="commChoiceBox" layoutX="394.0" layoutY="267.0" prefWidth="150.0" styleClass="prettyField" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="673.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="98.0" />
@@ -115,5 +106,14 @@
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
+      <ScrollPane layoutX="146.0" layoutY="550.0" prefHeight="71.0" prefWidth="402.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="398.12852478027344">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

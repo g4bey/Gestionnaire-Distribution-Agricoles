@@ -35,20 +35,83 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("gpsProd"),
                         rs.getString("mdpProd"));
 
+                TourneeDAO tDAO = new TourneeDAO(conn);
+                CommandeDAO cmdDAO = new CommandeDAO(conn);
+
                 // On charge la liste de Véhicules
                 ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
+                        prd.addTournee(tournee);
+                        vehicule.addTournee(tournee);
+
+                        // On charge les commandes de la Tournee
+                        for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
+                            prd.addCommande(commande);
+                            tournee.addCommande(commande);
+                        }
+                    }
                 }
 
-                // On charge la liste de Tournées
-                ArrayList<Tournee> tournees = new TourneeDAO(conn).getTourneesByVehicules(vehicules);
-                for (Tournee tournee : tournees) {
-                    prd.addTournee(tournee);
+                for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
+                    prd.addCommande(commande);
                 }
 
-                // On charge la liste de Commandes
-                for (Commande commande : new CommandeDAO(conn).getCommandesByProducteurTournees(prd, tournees)) {
+                return prd;
+            }
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Récupère dans la base de données l'instance de Producteur demandée.
+     * 
+     * @param siret SIRET de type String, représente le SIRET de l'objet Producteur
+     *              demandé.
+     * @return Une instance de Producteur.
+     */
+    public Producteur get(String siret) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Producteur WHERE siret = ?");
+            pstmt.setString(1, siret);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                Producteur prd = new Producteur(rs.getInt("idProducteur"), siret, rs.getString("proprietaire"),
+                        rs.getString("adresseProd"),
+                        rs.getString("numTelProd"),
+                        rs.getString("gpsProd"),
+                        rs.getString("mdpProd"));
+
+                TourneeDAO tDAO = new TourneeDAO(conn);
+                CommandeDAO cmdDAO = new CommandeDAO(conn);
+
+                // On charge la liste de Véhicules
+                ArrayList<Vehicule> vehicules = new VehiculeDAO(conn).getVehiculesByProducteur(prd);
+                for (Vehicule vehicule : vehicules) {
+                    prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
+                        prd.addTournee(tournee);
+                        vehicule.addTournee(tournee);
+
+                        // On charge les commandes de la Tournee
+                        for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
+                            prd.addCommande(commande);
+                            tournee.addCommande(commande);
+                        }
+                    }
+                }
+
+                for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
                     prd.addCommande(commande);
                 }
 
@@ -70,26 +133,55 @@ public class ProducteurDAO extends DAO<Producteur> {
     @Override
     public ArrayList<Producteur> getAll() {
         ArrayList<Producteur> producteurs = new ArrayList<>();
+
+        VehiculeDAO vDAO = new VehiculeDAO(conn);
+        TourneeDAO tDAO = new TourneeDAO(conn);
+        CommandeDAO cmdDAO = new CommandeDAO(conn);
+
         try {
             rs = stmt.executeQuery("SELECT * FROM Producteur");
 
             while (rs.next()) {
-                producteurs.add(
-                        new Producteur(
-                                rs.getInt("idProducteur"),
-                                rs.getString("siret"),
-                                rs.getString("proprietaire"),
-                                rs.getString("adresseProd"),
-                                rs.getString("numTelProd"),
-                                rs.getString("gpsProd"),
-                                rs.getString("mdpProd")));
-            }
+                Producteur prd = new Producteur(
+                        rs.getInt("idProducteur"),
+                        rs.getString("siret"),
+                        rs.getString("proprietaire"),
+                        rs.getString("adresseProd"),
+                        rs.getString("numTelProd"),
+                        rs.getString("gpsProd"),
+                        rs.getString("mdpProd"));
 
-            return producteurs;
+                // On charge la liste de Véhicules
+                ArrayList<Vehicule> vehicules = vDAO.getVehiculesByProducteur(prd);
+                for (Vehicule vehicule : vehicules) {
+                    prd.addVehicule(vehicule);
+
+                    // On remplie le tableau de tournee dans vehicule
+                    for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
+                        prd.addTournee(tournee);
+                        vehicule.addTournee(tournee);
+
+                        // On charge les commandes de la Tournee
+                        for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
+                            prd.addCommande(commande);
+                            tournee.addCommande(commande);
+                        }
+                    }
+                }
+
+                // Les commandes qui ne sont pas associées à une Tournee
+                for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
+                    prd.addCommande(commande);
+                }
+
+                producteurs.add(prd);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+
+        return producteurs;
     }
 
     /**
@@ -155,7 +247,8 @@ public class ProducteurDAO extends DAO<Producteur> {
     public void delete(Producteur prd) {
         try {
             TourneeDAO tDAO = new TourneeDAO(conn);
-            prd.getCommandes().stream().map(c -> c.getTournee()).distinct().forEach(t -> tDAO.delete(t));
+
+            prd.getTournees().stream().forEach(tDAO::delete);
 
             pstmt = conn.prepareStatement("DELETE FROM Producteur WHERE idProducteur = ?");
             pstmt.setInt(1, prd.getIdProducteur());

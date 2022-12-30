@@ -66,10 +66,10 @@ public class Vehicule {
     @Override
     public String toString() {
         return ("Information Vehicule :\nId : " + idVehicule)
-                .concat("Immatriculation : ").concat(numImmat)
-                .concat("Poids max : " + poidsMax)
-                .concat("Libellé : ").concat(libelle)
-                .concat("Producteur : ").concat(producteur.getProprietaire());
+                .concat("\nImmatriculation : ").concat(numImmat)
+                .concat("\nPoids max : " + poidsMax)
+                .concat("\nLibellé : ").concat(libelle)
+                .concat("\nProducteur : ").concat(producteur.getProprietaire());
     }
 
     /**

@@ -36,6 +36,30 @@ public class AdministrateurDAO extends DAO<Administrateur> {
     }
 
     /**
+     * Récupère dans la base de données l'instance d'Administrateur demandée.
+     * 
+     * @param pseudo Id de type int, représente l'id de l'objet Administrateur
+     *               demandé.
+     * @return Une instance d'Administrateur.
+     */
+    public Administrateur get(String pseudo) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM Administrateur WHERE pseudo = ?");
+            pstmt.setString(1, pseudo);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Administrateur(rs.getInt("idAdministrateur"), pseudo, rs.getString("mdpAdmin"));
+            }
+
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Récupère dans la base de données toutes les instances d'Administrateur.
      * 
      * @return Une liste d'instances d'Administrateur.

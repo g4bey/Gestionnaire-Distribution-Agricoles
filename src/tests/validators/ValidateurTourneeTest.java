@@ -11,10 +11,8 @@ import utility.DatabaseConnection;
 import validator.ValidateurTournee;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -96,16 +94,20 @@ public class ValidateurTourneeTest {
 
                 // Ajouton des clients
                 CLIENT_A = new Client(
-                                "Blaise", "47 bd de l’hôpital 75005 Paris", "0.684,47.392", "1001101101");
+                                "Blaise", "ibis Tours Sud 37200 Tours", "0.7003045,47.3357014", "1001101101");
                 COMMANDE_A = new Commande(
-                                "Les PC nuls de la fac", 10F, new Timestamp(1672012800), new Timestamp(1672025400),
+                                "Les PC nuls de la fac", 10F,
+                        Timestamp.valueOf(LocalDateTime.now().plusHours(2)),
+                        Timestamp.valueOf(LocalDateTime.now().plusHours(5)),
                                 PRODUCTEUR_A, CLIENT_A);
                 clientDAO.add(CLIENT_A);
                 commandeDAO.add(COMMANDE_A);
                 CLIENT_B = new Client(
-                                "Jul", "Porte 3C Port de Marseille Fos 13015 Marseille", "5.369165,43.2901655", "non");
+                                "Jul", "Les Atlantes Saint Pierre Des Corps 37700", "0.724309,47.3839677", "non");
                 COMMANDE_B = new Commande(
-                                "Des albums claqués au sol.", 20F, new Timestamp(1672025400), new Timestamp(1672063200),
+                                "Des albums claqués au sol.", 20F,
+                        Timestamp.valueOf(LocalDateTime.now().plusHours(3)),
+                        Timestamp.valueOf(LocalDateTime.now().plusHours(12)),
                                 PRODUCTEUR_A, CLIENT_B);
                 clientDAO.add(CLIENT_B);
                 commandeDAO.add(COMMANDE_B);
@@ -136,6 +138,7 @@ public class ValidateurTourneeTest {
                         fail("Erreur d'accès lors de la requête.\n".concat(e.toString()));
 
                 } catch (InvalidRouteException e) {
+                        e.printStackTrace();
                         fail("Erreur, le trajet est bon et la méthode ne doit pas échouer.");
                 }
         }
@@ -159,7 +162,8 @@ public class ValidateurTourneeTest {
                 // La plage horaire ne permet pas de se rendre si loin.
                 Commande commandeImpossible = new Commande(
                                 "Les PC nuls de la fac", 10F,
-                                new Timestamp(1672012800), new Timestamp(1672025400),
+                        Timestamp.valueOf(LocalDateTime.now().plusHours(2)),
+                        Timestamp.valueOf(LocalDateTime.now().plusHours(3)),
                                 PRODUCTEUR_A, clientChiant);
                 listCommandes.add(commandeImpossible);
 

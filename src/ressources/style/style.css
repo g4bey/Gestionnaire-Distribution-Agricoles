@@ -10,6 +10,11 @@
     -fx-background-color: rgb(240, 238, 238);
 }
 
+.anchorPaneBackground {
+    -fx-background-color: white;
+    
+}
+
 .bluishRectangle {
     -fx-fill: rgb(127, 255, 212);
     -fx-stroke: none;
@@ -22,6 +27,9 @@
 
 .mainBtn {
     -fx-background-color: aquamarine;
+    -fx-border-color: rgb(0, 255, 170);
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
 
 .mainBtn:hover {
@@ -41,11 +49,6 @@
 /*  Pour adminSelectMenu.fxml et prodSelectMenu.fxml
 
 */
-
-.anchorPaneBackground {
-    -fx-background-color: white;
-    
-}
 
 .tabsBtn {
     -fx-background-color: gainsboro;
@@ -95,4 +98,9 @@
 
 .deleteBtn:hover {
     -fx-background-color: rgb(0, 173, 136);
+}
+
+.errorScrollPane {
+    -fx-background: white;
+    -fx-background-color: white;
 }

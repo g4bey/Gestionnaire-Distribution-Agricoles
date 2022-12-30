@@ -9,9 +9,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="600.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomePageCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="620.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomePageCtrl">
    <children>
-      <Button fx:id="adminConnBtn" layoutX="269.0" layoutY="163.0" mnemonicParsing="false" onAction="#switchToAdminConn" prefHeight="37.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion administrateur">
+      <ImageView fitHeight="257.0" fitWidth="485.0" layoutX="135.0" layoutY="86.0">
+         <image>
+            <Image url="@../ressources/pictures/lettuce.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="adminConnBtn" layoutX="280.0" layoutY="165.0" mnemonicParsing="false" onAction="#switchToAdminConn" prefHeight="37.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion administrateur">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -19,7 +24,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="prodConnBtn" layoutX="269.0" layoutY="231.0" mnemonicParsing="false" onAction="#switchToProdConn" prefHeight="38.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion producteur">
+      <Button fx:id="prodConnBtn" layoutX="280.0" layoutY="233.0" mnemonicParsing="false" onAction="#switchToProdConn" prefHeight="38.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion producteur">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -27,17 +32,22 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="135.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="465.0" />
-      <Text layoutX="138.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionnaire Distributions Agricoles" wrappingWidth="458.5999755859375">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="135.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="485.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="343.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />
       <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="29.0" layoutY="1.0">
          <image>
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
+      <Text layoutX="145.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionnaire Distributions Agricoles" textAlignment="CENTER" wrappingWidth="465.79998779296875">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Text layoutX="266.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patate &amp; Salade" textAlignment="CENTER" wrappingWidth="209.80001831054688">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

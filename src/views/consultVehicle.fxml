@@ -37,11 +37,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text layoutX="316.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kg.">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
       <Text layoutX="150.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° d'immatriculation:">
          <font>
             <Font size="20.0" />

@@ -11,74 +11,74 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="681.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultProdCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="681.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultProdCtrl">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="101.0" layoutX="102.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="579.0" />
-      <Text layoutX="253.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Producteur:">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="73.0" layoutX="56.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="625.0" />
+      <Text layoutX="227.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Producteur:">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Text fx:id="prodSiretText" layoutX="456.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;SIRET&gt;">
+      <Text fx:id="prodSiretText" layoutX="430.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;SIRET&gt;">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text layoutX="169.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Propriétaire:">
+      <Text layoutX="148.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Propriétaire:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="169.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
+      <Text layoutX="148.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="168.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro de téléphone:">
+      <Text layoutX="147.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro de téléphone:">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="prodPropText" layoutX="293.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
+      <Text fx:id="prodPropText" layoutX="272.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="prodAddressText" layoutX="260.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
+      <Text fx:id="prodAddressText" layoutX="239.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="prodPhoneText" layoutX="393.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
+      <Text fx:id="prodPhoneText" layoutX="372.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;info&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="330.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes:">
+      <Text layoutX="307.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes:">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <ListView fx:id="prodCommListView" layoutX="149.0" layoutY="272.0" prefHeight="110.0" prefWidth="506.0" />
-      <Text layoutX="348.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournées:">
+      <ListView fx:id="prodCommListView" layoutX="126.0" layoutY="248.0" prefHeight="87.0" prefWidth="506.0" />
+      <Text layoutX="325.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournées:">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <ListView fx:id="prodTourListView" layoutX="148.0" layoutY="441.0" prefHeight="110.0" prefWidth="506.0" />
-      <Text layoutX="347.0" layoutY="600.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Véhicules:">
+      <ListView fx:id="prodTourListView" layoutX="125.0" layoutY="400.0" prefHeight="87.0" prefWidth="506.0" />
+      <Text layoutX="326.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Véhicules:">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <ListView fx:id="prodVehicleListView" layoutX="146.0" layoutY="619.0" prefHeight="110.0" prefWidth="506.0" />
-      <Line endX="270.0" layoutX="400.0" layoutY="222.0" startX="-253.6000213623047" />
-      <Button fx:id="closeConsultProdBtn" layoutX="536.0" layoutY="743.0" mnemonicParsing="false" onAction="#closeConsultProd" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Quitter">
+      <ListView fx:id="prodVehicleListView" layoutX="125.0" layoutY="544.0" prefHeight="87.0" prefWidth="506.0" />
+      <Line endX="270.0" layoutX="379.0" layoutY="190.0" startX="-253.6000213623047" strokeWidth="1.5" />
+      <Button fx:id="closeConsultProdBtn" layoutX="513.0" layoutY="648.0" mnemonicParsing="false" onAction="#closeConsultProd" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Quitter">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="792.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="126.0" />
-      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="24.0" layoutY="15.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="696.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="95.0" />
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="8.0" layoutY="2.0">
          <image>
             <Image url="@../ressources/pictures/Logo.png" />
          </image>

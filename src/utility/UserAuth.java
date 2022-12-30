@@ -7,33 +7,33 @@ import modele.Producteur;
  * Classe d'authentification d'un utilisateur.
  */
 public class UserAuth {
-    
-    private static Producteur prodUser;
-    private static Administrateur adminUser;
+
+    private static Producteur prodUser = null;
+    private static Administrateur adminUser = null;
 
     /**
-     * Constructeur de la classe UserAuth pour un utilisateur Producteur.
+     * Associe prodUser au Producteur connecté.
+     * 
      * @param prod Producteur
      */
-    public UserAuth(Producteur prod) {
+    public static void setProducteur(Producteur prod) {
         UserAuth.prodUser = prod;
-        UserAuth.adminUser = null;
     }
 
     /**
-     * Constructeur de la classe UserAuth pour un utilisateur Administrateur.
+     * Associe adminUser à l'Administrateur connecté.
+     * 
      * @param admin
      */
-    public UserAuth(Administrateur admin) {
+    public static void setAdministrateur(Administrateur admin) {
         UserAuth.adminUser = admin;
-        UserAuth.prodUser = null;
     }
 
-    public static int getProdId() {
-        return prodUser.getIdProducteur();
+    public static Producteur getProd() {
+        return prodUser;
     }
 
-    public static int getAdminId() {
-        return adminUser.getIdAdministrateur();
+    public static Administrateur getAdmin() {
+        return adminUser;
     }
 }

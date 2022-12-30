@@ -16,6 +16,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProdSelectMenuCtrl">
    <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../ressources/pictures/patates.jpg" />
+         </image>
+      </ImageView>
       <TabPane fx:id="prodTabPane" layoutX="19.0" layoutY="58.0" prefHeight="318.0" prefWidth="558.0" side="LEFT" styleClass="tabsBackground" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab fx:id="commTab" styleClass="tabsBtn" text="Commandes">

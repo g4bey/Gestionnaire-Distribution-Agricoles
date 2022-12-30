@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="559.0" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyCommCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="559.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyCommCtrl">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="94.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="465.0" />
       <Text layoutX="166.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification commande">
@@ -65,16 +66,20 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="formErrorText" layoutX="292.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="607.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />
       <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="29.0" layoutY="16.0">
          <image>
             <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
+      <ScrollPane layoutX="160.0" layoutY="437.0" prefHeight="74.0" prefWidth="368.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="366.12855529785156">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

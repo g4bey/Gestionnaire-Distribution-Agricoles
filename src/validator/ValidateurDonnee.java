@@ -36,7 +36,7 @@ public class ValidateurDonnee {
 
         // On vérifie que le poids fournit puisse être parsé.
         try {
-            Double.valueOf(poids);
+            Float.parseFloat(poids);
         } catch (NumberFormatException e) {
             return false;
         } // end try catch
@@ -55,15 +55,16 @@ public class ValidateurDonnee {
      * 
      * @see validePoids
      */
-    public static boolean validePoids(String poids, double max) {
+    public static boolean validePoids(String poids, float max) {
         // Si non parsable, ou poids > max: false, sinon true.
-        return !validePoids(poids) || Double.parseDouble(poids) > max ? false : true;
+        return validePoids(poids) && !(Float.parseFloat(poids) > max);
     }
 
     /**
      * Verifie une date.
      * Si elle est sous format LocalDate, on pourra la parser.
      * <p>
+     * 
      * @param date LocalDate la date saisi.
      * @return bool
      */
@@ -74,6 +75,7 @@ public class ValidateurDonnee {
     /**
      * Assure qu'une heure est sous le bon format
      * <p>
+     * 
      * @param heure l'heure saisie.
      * @return bool
      */
@@ -152,6 +154,7 @@ public class ValidateurDonnee {
      * Validateur de code postal
      * Prend en compte les numéros de département (jusqu'à 98)
      * Ne peut contenir que des chiffres
+     * 
      * @param codePostal Le code postal à tester
      */
     public static boolean valideCodePostal(String codePostal) {
@@ -160,5 +163,20 @@ public class ValidateurDonnee {
         matcher = pattern.matcher(codePostal);
 
         return matcher.matches();
+    }
+
+    /**
+     * Vérifie que le mot de passe est en conformité avec les recommandations
+     * minimales de l'ANSSI, à savoir une longueur d'au moins 9 caractères, au moins
+     * 1 caractère spécial, 1 majuscule, 1 miniscule et 1 chiffre
+     * 
+     * https://www.ssi.gouv.fr/guide/recommandations-relatives-a-lauthentification-multifacteur-et-aux-mots-de-passe/
+     * 
+     * @param password Le mot de passe du l'utilisateur
+     * @return La validité du mot de passe avec les recommandations minimales de
+     *         l'ANSSI
+     */
+    public static boolean validePassword(String password) {
+        return password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{9,}$");
     }
 }

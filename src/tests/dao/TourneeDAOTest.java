@@ -350,6 +350,37 @@ public class TourneeDAOTest {
     }
 
     /**
+     * Vérifions que clientEstDansTournee rend bien compte de la présence d'une tournée
+     * associé à un client.
+     * @throws SQLException
+     */
+    @Test
+    @DisplayName("Test de la méthode clientEstDansTournee")
+    public void clientEstDansTourneeTest() throws SQLException {
+        tourneeDAO.add(TOURNEE_A);
+
+        // Créons un client et ajoutons le en base.
+        Client clienMystere = new Client("Raymon", "Mon adresse", "coordGPS", "tel");
+        ClientDAO cDAO = new ClientDAO(conn);
+        cDAO.add(clienMystere);
+
+        // Pour l'instant, le client n'est dans aucune tournée.
+        assertFalse(tourneeDAO.clientEstDansTournee(clienMystere.getIdClient()));
+
+        // Désormais ajoutons une commande et ajoutons-la dans la tournée.
+        // Cette commande associe le client à la tournée.
+        Commande commande1 = new Commande("commande1", 31F, new Timestamp(30000), new Timestamp(370000), PRODUCTEUR,
+                clienMystere);
+        CommandeDAO commandeDAO = new CommandeDAO(conn);
+        commandeDAO.add(commande1);
+        TOURNEE_A.addCommande(commande1);
+        tourneeDAO.update(TOURNEE_A);
+
+        // L'assertion est vrai, car la tournée est maintenant associé au client.
+        assertTrue(tourneeDAO.clientEstDansTournee(TOURNEE_A.getCommandes().get(0).getClient().getIdClient()));
+    }
+
+    /**
      * Fermeture de la Connection apres les tests.
      *
      * @throws SQLException

@@ -8,49 +8,54 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.text.Text;
+import modele.Producteur;
 import utility.ControllersUtils;
+import utility.UserAuth;
 
 /**
-* Contrôleur de la page de profil du Producteur.
-*/
+ * Contrôleur de la page de profil du Producteur.
+ */
 public class ProdProfileCtrl implements Initializable {
-	
+
     @FXML
-    private Text prodLoginText;
-    
+    private Text propNameText;
     @FXML
     private Text prodSiretText;
-    
     @FXML
     private Text prodAddressText;
-    
     @FXML
     private Text prodPhoneText;
-
     private ControllersUtils util;
-
     @FXML
     private Hyperlink modifyPasswordLink;
+    private Producteur user;
 
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		util = new ControllersUtils();
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        user = UserAuth.getProd();
+        propNameText.setText(user.getProprietaire());
+        prodSiretText.setText(user.getSiret());
+        propNameText.setText(user.getProprietaire());
+        prodAddressText.setText(user.getAdresseProd().replace(",", " "));
+        prodPhoneText.setText(user.getNumTelProd());
+        util = new ControllersUtils();
     }
 
     /**
-     * Méthode qui permet la modification du profile utilisateur.
+     * Méthode qui permet la modification du profil utilisateur.
+     * 
      * @param event ActionEvent
      */
-    public void modifyInfo(ActionEvent event) {
-        util.loadPopup(event, "/views/passwordChange.fxml");
+    public void modifyPassword(ActionEvent event) {
+        util.loadPopup(event, "/views/ProdpasswordChange.fxml");
     }
-    
+
     /**
-	* Méthode qui permet de fermer la vue du profile.
-	* @param event ActionEvent
-	*/
+     * Méthode qui permet de fermer la vue du profil.
+     * 
+     * @param event ActionEvent
+     */
     public void closeProdProfile(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 }
