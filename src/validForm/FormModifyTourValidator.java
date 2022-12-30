@@ -28,6 +28,11 @@ public class FormModifyTourValidator extends FormTourValidator {
                                        String poids, Tournee tournee) {
                 super(libelle, producteur, vehicule, commandes, poids);
 
+                // On affiche les erreurs avant de faire d'autres verifications.
+                if (!isValid()) {
+                        return;
+                }
+
                 // Si le vehicle n'a pas changé, il ne faut pas revérifier.
                 if (!tournee.getVehicule().equals(vehicule) && !ValidateurTournee.valideVehicule(vehicule, horaires[0], horaires[1])) {
                         setInvalid("Le véhicule n'est pas disponible pour ce créneau horaire !");

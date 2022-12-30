@@ -37,7 +37,6 @@ public class FormModifyProdValidator extends FormProdValidator {
                 setInvalid("Impossible de modifier l'adresse car le producteur est concerne par une tournée.");
                 return;
             }
-
         } catch (NumberFormatException | AdresseInvalideException e) {
             setInvalid("L'adresse n'est pas valide");
             return;
