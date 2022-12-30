@@ -3,9 +3,7 @@ package validForm;
 import validator.ValidateurDonnee;
 
 /**
- * Utilisé lorsqu'on modifie un Producteur.
- * 
- * @see controllers.ModifyProdCtrl
+ * Utilisé lorsqu'on modifie/ajoute un Producteur.
  */
 public class FormProdValidator extends FormValidator {
     private String adresseCsv;

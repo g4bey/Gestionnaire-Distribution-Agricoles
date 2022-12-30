@@ -5,8 +5,7 @@ import validator.ValidateurAdresse;
 import validator.ValidateurDonnee;
 
 /**
- * Validateur de formulaire pour ajouter ou modifier un Client
- * 
+ * Validateur de formulaire pour ajouter un client.
  * @see controllers.AddClientCtrl
  */
 public class FormClientValidator extends FormValidator {

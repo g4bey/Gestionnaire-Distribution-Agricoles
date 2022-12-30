@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 /**
  * Formulaire d'ajout de tournée.
- * 
- * @see controllers.AddTourCtrl
  */
 public class FormTourValidator extends FormValidator {
     protected Timestamp[] horaires;

@@ -251,7 +251,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
     public void validateModifyTour(ActionEvent event) {
         FormModifyTourValidator fatv = new FormModifyTourValidator(tourLabelField.getText(), UserAuth.getProd(),
                 vehicleChoiceBox.getSelectionModel().getSelectedItem(),
-                new ArrayList<Commande>(commListView.getItems()), maxWeightLabel.getText(), tournee.getIdTournee());
+                new ArrayList<Commande>(commListView.getItems()), maxWeightLabel.getText(), tournee);
         formErrorText.setVisible(false);
         if (fatv.isValid()) {
             tournee.setHoraireDebut(fatv.getHeureDebut());

@@ -9,7 +9,6 @@ import validator.ValidateurTournee;
 
 /**
  * Formulaire d'ajout de tournée.
- * 
  * @see controllers.AddTourCtrl
  */
 public class FormAddTourValidator extends FormTourValidator {
