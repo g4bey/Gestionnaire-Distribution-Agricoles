@@ -36,6 +36,9 @@ public class FormModifyProdValidator extends FormValidator {
         if (proprietaire.equals("")) {
             setInvalid("Veuillez entrer un propriétaire");
         }
+        if (!ValidateurDonnee.valideNom(proprietaire, 50)) {
+            setInvalid("Ce nom est invalide et doit faire au plus 50 caractères.");
+        }
         if (!ValidateurDonnee.valideTelephone(numTelProd)) {
             setInvalid("Le numéro de téléphone est invalide");
         }

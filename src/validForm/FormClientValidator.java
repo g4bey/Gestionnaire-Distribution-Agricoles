@@ -32,6 +32,9 @@ public class FormClientValidator extends FormValidator {
         if (clientName.equals("")) {
             setInvalid("Veuillez entrer le nom du Client");
         }
+        if (!ValidateurDonnee.valideNom(clientName, 50)) {
+            setInvalid("Ce nom est invalide et doit faire au plus 50 caractères.");
+        }
         if (!ValidateurDonnee.valideTelephone(clientPhone)) {
             setInvalid("Le numéro de téléphone n'est pas valide");
         }
