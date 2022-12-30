@@ -215,7 +215,9 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
 
             // On conserve uniquement les commandes dont les horaires de début sont après
             // l'horaire d'arrivée de la dernière commande
-            commsDispo = commsDispo.stream().filter(c -> c.getHoraireFin().compareTo(horaires[1]) > 0).toList();
+            commsDispo = commsDispo.stream()
+                    .filter(c -> c.getHoraireFin().compareTo(horaires[1]) > 0 && !commListView.getItems().contains(c))
+                    .toList();
         }
 
         commChoiceBox.getItems().addAll(commsDispo);

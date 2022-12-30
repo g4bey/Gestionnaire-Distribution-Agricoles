@@ -26,7 +26,7 @@ public class FormAddTourValidator extends FormTourValidator {
 
         super(libelle, producteur, vehicule, commandes, poids);
 
-        if (!ValidateurTournee.valideVehicule(vehicule, super.getHeureDebut(), super.getHeureFin())) {
+        if (isValid && !ValidateurTournee.valideVehicule(vehicule, horaires[0], horaires[1])) {
             setInvalid("Le véhicule n'est pas disponible pour ce créneau horaire !");
         }
 

@@ -236,7 +236,9 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
             changeLabel(Float.parseFloat(maxWeightLabel.getText()) - poids, horaires[0], horaires[1],
                     horaires[0]);
 
-            commsDispo = commsDispo.stream().filter(c -> c.getHoraireFin().compareTo(horaires[1]) < 0).toList();
+            commsDispo = commsDispo.stream()
+                    .filter(c -> c.getHoraireFin().compareTo(horaires[1]) < 0 && !commListView.getItems().contains(c))
+                    .toList();
         }
         commChoiceBox.getItems().addAll(commsDispo);
     }

@@ -17,7 +17,6 @@ import exceptions.InvalidRouteException;
 import modele.Commande;
 import modele.Vehicule;
 import utility.ConfigHelper;
-import utility.DateManager;
 
 /**
  * Valide ou pas la tournée paramétrée.
@@ -142,7 +141,13 @@ public class ValidateurTournee {
         }
 
         // On calcul la fin du trajet en ajoutant la durée pour rentrer au dépôt
-        horaireTmp.setTime(horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong() * 1000);
+        horaireTmp = new Timestamp(
+                horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong() * 1000);
+
+        // Vérifie qu'il n'arrive pas après l'heure de fin
+        if (horaireTmp.after(commandes.get(commandes.size() - 1).getHoraireFin())) {
+            throw new InvalidRouteException("Le trajet généré ne respecte pas les horaires des commandes !");
+        }
 
         return new Timestamp[] { horaireDebut, horaireTmp };
     }

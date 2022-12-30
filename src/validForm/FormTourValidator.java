@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @see controllers.AddTourCtrl
  */
 public class FormTourValidator extends FormValidator {
-    private Timestamp[] horaires;
+    protected Timestamp[] horaires;
 
     /**
      *
@@ -48,7 +48,6 @@ public class FormTourValidator extends FormValidator {
             horaires = ValidateurTournee.calculTournee(commandes, producteur.getGpsProd());
         } catch (IOException | InterruptedException | InvalidRouteException e) {
             setInvalid("La suite de commandes est incorrecte !");
-            return;
         }
     }
 
