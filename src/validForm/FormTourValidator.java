@@ -40,6 +40,10 @@ public class FormTourValidator extends FormValidator {
             setInvalid("Veuillez choisir une commande !");
             return;
         }
+        if(commandes.size() > 9) {
+            setInvalid("Une tournée doit contenir moins de 10 commandes !");
+            return;
+        }
         if (!ValidateurTournee.validePoids(vehicule.getPoidsMax(), commandes)) {
             setInvalid("La capacité du véhicule est dépassé !");
         }

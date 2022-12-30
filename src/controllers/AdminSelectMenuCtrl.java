@@ -3,6 +3,8 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,6 +89,33 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
             public void updateItem(Client row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getNomClient());
+            }
+        });
+
+        prodListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Producteur>() {
+            @Override
+            public void changed(ObservableValue<? extends Producteur> arg0, Producteur arg1, Producteur arg2) {
+                // TODO Auto-generated method stub$
+                if (prodListView.getItems().size() > 0) {
+                    modifyProdBtn.setDisable(false);
+                    deleteProdBtn.setDisable(false);
+                } else {
+                    modifyProdBtn.setDisable(true);
+                    deleteProdBtn.setDisable(true);
+                }
+            }
+        });
+        clientListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Client>() {
+            @Override
+            public void changed(ObservableValue<? extends Client> arg0, Client arg1, Client arg2) {
+                // TODO Auto-generated method stub$
+                if (clientListView.getItems().size() > 0) {
+                    modifyClientBtn.setDisable(false);
+                    deleteClientBtn.setDisable(false);
+                } else {
+                    modifyClientBtn.setDisable(true);
+                    deleteClientBtn.setDisable(true);
+                }
             }
         });
 

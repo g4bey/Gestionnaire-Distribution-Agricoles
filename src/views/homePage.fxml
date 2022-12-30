@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="600.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomePageCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="620.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomePageCtrl">
    <children>
-      <Button fx:id="adminConnBtn" layoutX="269.0" layoutY="163.0" mnemonicParsing="false" onAction="#switchToAdminConn" prefHeight="37.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion administrateur">
+      <Button fx:id="adminConnBtn" layoutX="280.0" layoutY="165.0" mnemonicParsing="false" onAction="#switchToAdminConn" prefHeight="37.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion administrateur">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -19,7 +19,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="prodConnBtn" layoutX="269.0" layoutY="231.0" mnemonicParsing="false" onAction="#switchToProdConn" prefHeight="38.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion producteur">
+      <Button fx:id="prodConnBtn" layoutX="280.0" layoutY="233.0" mnemonicParsing="false" onAction="#switchToProdConn" prefHeight="38.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion producteur">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -27,8 +27,8 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="135.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="465.0" />
-      <Text layoutX="138.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionnaire Distributions Agricoles" wrappingWidth="458.5999755859375">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="135.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="485.0" />
+      <Text layoutX="148.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionnaire Distributions Agricoles" wrappingWidth="458.5999755859375">
          <font>
             <Font size="29.0" />
          </font>
