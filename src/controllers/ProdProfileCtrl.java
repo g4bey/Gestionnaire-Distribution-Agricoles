@@ -13,10 +13,10 @@ import utility.ControllersUtils;
 import utility.UserAuth;
 
 /**
-* Contrôleur de la page de profil du Producteur.
-*/
+ * Contrôleur de la page de profil du Producteur.
+ */
 public class ProdProfileCtrl implements Initializable {
-	
+
     @FXML
     private Text propNameText;
     @FXML
@@ -31,30 +31,31 @@ public class ProdProfileCtrl implements Initializable {
     private Producteur user;
 
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+    public void initialize(URL arg0, ResourceBundle arg1) {
         user = UserAuth.getProd();
         propNameText.setText(user.getProprietaire());
         prodSiretText.setText(user.getSiret());
         propNameText.setText(user.getProprietaire());
-        prodAddressText.setText(user.getAdresseProd());
+        prodAddressText.setText(user.getAdresseProd().replace(",", " "));
         prodPhoneText.setText(user.getNumTelProd());
-		util = new ControllersUtils();
+        util = new ControllersUtils();
     }
 
     /**
      * Méthode qui permet la modification du profil utilisateur.
+     * 
      * @param event ActionEvent
      */
     public void modifyPassword(ActionEvent event) {
         util.loadPopup(event, "/views/ProdpasswordChange.fxml");
     }
-    
+
     /**
-	* Méthode qui permet de fermer la vue du profil.
-	* @param event ActionEvent
-	*/
+     * Méthode qui permet de fermer la vue du profil.
+     * 
+     * @param event ActionEvent
+     */
     public void closeProdProfile(ActionEvent event) {
-    	ControllersUtils.closePopupAndUpdateParent(event);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
 }

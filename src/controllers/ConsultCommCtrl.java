@@ -55,14 +55,13 @@ public class ConsultCommCtrl implements Initializable {
         commDateText.setText(DateManager.TimestampToDateString((commande.getHoraireDebut())));
         commStartText.setText(DateManager.TimestampToHourString(commande.getHoraireDebut()));
         commEndText.setText(DateManager.TimestampToHourString(commande.getHoraireFin()));
-        clientAddressText.setText(commande.getClient().getAdresseClient());
+        clientAddressText.setText(commande.getClient().getAdresseClient().replace(",", " "));
         clientNameText.setText(commande.getClient().getNomClient());
         tourLabelText.setText(commande.getTournee() != null ? commande.getTournee().getLibelle() : "Aucune.");
 
         WebEngine webEngine = commMapWebView.getEngine();
         webEngine.load(GenerateurUrl.AffichageCommandeUrl(commande));
     }
-
 
     /**
      * Méthode qui permet de fermer la vue de consultation
