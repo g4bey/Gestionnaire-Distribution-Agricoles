@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import modele.Producteur;
 import utility.ControllersUtils;
 import validForm.FormModifyProdValidator;
@@ -49,6 +50,9 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
 
     @FXML
     private TextField confirmPasswordField;
+
+    @FXML
+    private Text formErrorText;
 
     private static Producteur producteur;
 
@@ -102,6 +106,9 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
 
             pDAO.update(producteur);
             ControllersUtils.closePopupAndUpdateParent(event);
+        } else {
+            formErrorText.setVisible(true);
+            formErrorText.setText(fmpv.getErrors());
         }
     }
 

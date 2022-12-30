@@ -31,6 +31,11 @@ public class FormCommModifyValidator extends FormCommValidator {
             Client client) {
         super(libelle, poids, date, creneauDebut, creneauFin, client);
 
+        // Si jamais l'appel précédent n'arrive pas à bout.
+        if (!this.isValid()) {
+            return;
+        }
+
         CommandeDAO cDAO;
         try {
             cDAO = new CommandeDAO(DatabaseConnection.getInstance("production"));
