@@ -33,6 +33,13 @@ public abstract class FormValidator {
     }
 
     /**
+     * Rend le formulaire invalide.
+     */
+    public void setInvalid() {
+        isValid = false;
+    }
+
+    /**
      * @return on reset le formulaire.
      */
     public String getErrors() {

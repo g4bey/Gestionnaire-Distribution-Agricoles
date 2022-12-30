@@ -34,10 +34,13 @@ public class FormModifyClientValidator extends FormClientValidator {
     public FormModifyClientValidator(int idClient, String clientName, String addressNumField, String addressPathType,
                                      String addressPathName, String addressTownName, String addressPostCode, String clientPhone) throws SQLException {
 
-
         super(clientName, addressNumField, addressPathType,
                 addressPathName, addressTownName, addressPostCode, clientPhone);
 
+        // Si jamais l'appel précédent n'arrive pas à bout.
+        if (!this.isValid()) {
+            return;
+        }
 
         TourneeDAO tDAO;
         ClientDAO cDAO;
