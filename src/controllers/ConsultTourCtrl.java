@@ -9,11 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import modele.Commande;
 import modele.Tournee;
 import utility.ControllersUtils;
 import utility.DateManager;
+import utility.GenerateurUrl;
 
 /**
  * Contrôleur permettant l'aperçu Tournee.
@@ -68,6 +70,9 @@ public class ConsultTourCtrl implements Initializable {
         setText(empty ? null : row.getLibelle());
       }
     });
+
+    WebEngine webEngine = tourMapWebView.getEngine();
+    webEngine.load(GenerateurUrl.AffichageTourneeUrl(tournee));
   }
 
   /**

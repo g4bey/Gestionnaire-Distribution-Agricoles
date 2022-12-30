@@ -167,7 +167,7 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         // On conserve uniquement les commandes dont les horaires de début sont après
         // l'horaire d'arrivée de la dernière commande
         List<Commande> newComms = commChoiceBox.getItems().stream()
-                .filter(c -> c.getHoraireDebut().compareTo(horaires[1]) > 0).toList();
+                .filter(c -> c.getHoraireFin().compareTo(horaires[1]) > 0).toList();
         commChoiceBox.getItems().clear();
         commChoiceBox.getItems().addAll(newComms);
 
@@ -213,7 +213,9 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
             changeLabel(Float.parseFloat(maxWeightLabel.getText()) - poids, horaires[0], horaires[1],
                     horaires[0]);
 
-            commsDispo = commsDispo.stream().filter(c -> c.getHoraireDebut().compareTo(horaires[1]) >= 0).toList();
+            // On conserve uniquement les commandes dont les horaires de début sont après
+            // l'horaire d'arrivée de la dernière commande
+            commsDispo = commsDispo.stream().filter(c -> c.getHoraireFin().compareTo(horaires[1]) > 0).toList();
         }
 
         commChoiceBox.getItems().addAll(commsDispo);

@@ -84,7 +84,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
                 .getItems().addAll(
                         UserAuth.getProd().getCommandes().stream()
                                 .filter(commande -> commande.getTournee() == null
-                                        && commande.getHoraireDebut().compareTo(tournee.getHoraireFin()) >= 0)
+                                        && commande.getHoraireFin().compareTo(tournee.getHoraireFin()) > 0)
                                 .toList());
 
         vehicleChoiceBox.setConverter(new StringConverter<Vehicule>() {
@@ -189,7 +189,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
         // On conserve uniquement les commandes dont les horaires de début sont après
         // l'horaire d'arrivée de la dernière commande
         List<Commande> newComms = commChoiceBox.getItems().stream()
-                .filter(c -> c.getHoraireDebut().compareTo(horaires[1]) > 0).toList();
+                .filter(c -> c.getHoraireFin().compareTo(horaires[1]) > 0).toList();
         commChoiceBox.getItems().clear();
         commChoiceBox.getItems().addAll(newComms);
 
@@ -236,7 +236,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
             changeLabel(Float.parseFloat(maxWeightLabel.getText()) - poids, horaires[0], horaires[1],
                     horaires[0]);
 
-            commsDispo = commsDispo.stream().filter(c -> c.getHoraireDebut().compareTo(horaires[1]) >= 0).toList();
+            commsDispo = commsDispo.stream().filter(c -> c.getHoraireFin().compareTo(horaires[1]) < 0).toList();
         }
         commChoiceBox.getItems().addAll(commsDispo);
     }
