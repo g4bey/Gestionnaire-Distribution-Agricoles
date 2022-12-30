@@ -98,7 +98,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
             @Override
             public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle());
+                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut());
             }
         });
 
@@ -174,15 +174,15 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         commandes = UserAuth.getProd().getCommandes();
         tournees = UserAuth.getProd().getTournees();
 
-        Comparator<Commande> commandesAsc = (comm1, comm2) -> Long.valueOf(
-                comm1.getHoraireDebut().getTime())
-                .compareTo(comm2.getHoraireDebut().getTime());
+        Comparator<Commande> commandesDesc = (comm1, comm2) -> Long.valueOf(
+                comm2.getHoraireDebut().getTime())
+                .compareTo(comm1.getHoraireDebut().getTime());
 
-        Comparator<Tournee> tourneesAsc = (tour1, tour2) -> Long.valueOf(
-                tour1.getHoraireDebut().getTime())
-                .compareTo(tour2.getHoraireDebut().getTime());
-        Collections.sort(commandes, commandesAsc);
-        Collections.sort(tournees, tourneesAsc);
+        Comparator<Tournee> tourneesDesc = (tour1, tour2) -> Long.valueOf(
+                tour2.getHoraireDebut().getTime())
+                .compareTo(tour1.getHoraireDebut().getTime());
+        Collections.sort(commandes, commandesDesc);
+        Collections.sort(tournees, tourneesDesc);
 
         commListView.getItems().addAll(commandes);
         tourListView.getItems().addAll(tournees);
