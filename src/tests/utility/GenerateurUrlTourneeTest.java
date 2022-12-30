@@ -27,7 +27,6 @@ public class GenerateurUrlTourneeTest {
     static private TourneeDAO tourneeDAO;
     static private VehiculeDAO vehiculeDAO;
     static private ProducteurDAO producteurDAO;
-    static private GenerateurUrl gut;
 
     /**
      * Simule un TRUNCATE de la table table.
@@ -60,8 +59,6 @@ public class GenerateurUrlTourneeTest {
         vehiculeDAO = new VehiculeDAO(conn);
         producteurDAO = new ProducteurDAO(conn);
 
-        gut = new GenerateurUrl();
-
         truncateTable("Commande");
         truncateTable("Client");
         truncateTable("Tournee");
@@ -76,68 +73,62 @@ public class GenerateurUrlTourneeTest {
     @DisplayName("Test du générateur d'URL")
     public void AffichageTourneeUrlTest() {
 
-        // Coordonnées GPS arrondies pour correspondre à OpenRouteService (imprécisions donc)
+        // Coordonnées GPS arrondies pour correspondre à OpenRouteService (imprécisions
+        // donc)
         Producteur producteur = new Producteur(
-            "siret",
-            "proprietaire",
-            "Tour Eiffel",
-            "numTelProd",
-            "48.858585,2.2945564",
-            "mdpProd");
+                "siret",
+                "proprietaire",
+                "Tour Eiffel",
+                "numTelProd",
+                "48.858585,2.2945564",
+                "mdpProd");
         Vehicule vehicule = new Vehicule(
-            "numImm",
-            70F,
-            "VROUM",
-            producteur);
+                "numImm",
+                70F,
+                "VROUM",
+                producteur);
         Client client1 = new Client(
-            "nomClient",
-            "Invalides",
-            "48.856693,2.3127310",
-            "numTelClient"
-        );
+                "nomClient",
+                "Invalides",
+                "48.856693,2.3127310",
+                "numTelClient");
         Client client2 = new Client(
-            "nomClient",
-            "Gare Montparnasse",
-            "48.840864,2.3193185",
-            "numTelClient"
-        );
+                "nomClient",
+                "Gare Montparnasse",
+                "48.840864,2.3193185",
+                "numTelClient");
         Client client3 = new Client(
-            "nomClient",
-            "Jardin du Luxembourg",
-            "48.846331,2.3371190",
-            "numTelClient"
-        );
+                "nomClient",
+                "Jardin du Luxembourg",
+                "48.846331,2.3371190",
+                "numTelClient");
         Tournee tournee = new Tournee(
-            new Timestamp(70000),
-            new Timestamp(95000),
-            69F,
-            "Livraison de goodies parisiens",
-            vehicule
-        );
+                new Timestamp(70000),
+                new Timestamp(95000),
+                69F,
+                "Livraison de goodies parisiens",
+                vehicule);
         Commande commande1 = new Commande(
-            "Commande Invalides",
-            14F,
-            new Timestamp(72000),
-            new Timestamp(73000),
-            producteur,
-            client1
-            );
+                "Commande Invalides",
+                14F,
+                new Timestamp(72000),
+                new Timestamp(73000),
+                producteur,
+                client1);
         Commande commande2 = new Commande(
-          "Commande Montparnasse",
-          25F,
-            new Timestamp(80000),
-            new Timestamp(82000),
-            producteur,
-            client2
-        );
+                "Commande Montparnasse",
+                25F,
+                new Timestamp(80000),
+                new Timestamp(82000),
+                producteur,
+                client2);
         Commande commande3 = new Commande(
-            "Commande Jardin du Luxembourg",
-            30F,
-            new Timestamp(85000),
-            new Timestamp(88000),
-            producteur,
-            client3
-        );
+                "Commande Jardin du Luxembourg",
+                30F,
+                new Timestamp(85000),
+                new Timestamp(88000),
+                producteur,
+                client3);
 
         producteurDAO.add(producteur);
         vehiculeDAO.add(vehicule);
@@ -155,10 +146,9 @@ public class GenerateurUrlTourneeTest {
         commandeDAO.update(commande2);
         commandeDAO.update(commande3);
 
-        assertEquals(
-            gut.AffichageTourneeUrl(tournee),
-            "https://www.google.com/maps/dir/?api=1&origin=48.858585,2.2945564"
-                + "&destination=48.858585,2.2945564&waypoints=48.856693,2.3127310%7C"
-                + "48.840864,2.3193185%7C48.846331,2.3371190");
+        assertEquals(GenerateurUrl.AffichageTourneeUrl(tournee),
+                "https://www.google.com/maps/dir/?api=1&origin=48.858585,2.2945564"
+                        + "&destination=48.858585,2.2945564&waypoints=48.856693,2.3127310%7C"
+                        + "48.840864,2.3193185%7C48.846331,2.3371190");
     }
 }
