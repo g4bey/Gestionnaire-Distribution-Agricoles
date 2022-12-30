@@ -4,9 +4,6 @@ import validator.ValidateurDonnee;
 
 /**
  * Formulaire utilisé lorsqu'on ajoute ou modifie un véhicule.
- * 
- * @see FormAddVehicleCtrl
- * @see FormModifyVehicleCtrl
  */
 public class FormVehicleValidator extends FormValidator {
     /**

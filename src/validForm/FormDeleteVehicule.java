@@ -13,6 +13,11 @@ import java.sql.SQLException;
  * @see controllers.DeleteVehicleCtrl
  */
 public class FormDeleteVehicule extends FormValidator {
+
+    /**
+     * Constructeur de FormDeleteVehicule.
+     * @param vehicule le vehicule à supprimer.
+     */
     public FormDeleteVehicule(Vehicule vehicule) {
         TourneeDAO tDAO;
 
