@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 import modele.Vehicule;
 import utility.ControllersUtils;
 import utility.UserAuth;
+import validForm.FormAddVehicleValidator;
 import validForm.FormVehicleValidator;
 
 /**
@@ -32,7 +33,7 @@ public class AddVehicleCtrl extends AbstractConnCtrl {
      * @param event ActionEvent
      */
     public void validateAddVehicle(ActionEvent event) {
-        FormVehicleValidator fvv = new FormVehicleValidator(vehicleImmatField.getText(), vehicleCapacityField.getText(),
+        FormVehicleValidator fvv = new FormAddVehicleValidator(vehicleImmatField.getText(), vehicleCapacityField.getText(),
                 vehicleLabelField.getText());
 
         if (fvv.isValid()) {
