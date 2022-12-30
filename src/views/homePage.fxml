@@ -11,6 +11,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="620.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomePageCtrl">
    <children>
+      <ImageView fitHeight="257.0" fitWidth="485.0" layoutX="135.0" layoutY="86.0">
+         <image>
+            <Image url="@../ressources/pictures/lettuce.png" />
+         </image>
+      </ImageView>
       <Button fx:id="adminConnBtn" layoutX="280.0" layoutY="165.0" mnemonicParsing="false" onAction="#switchToAdminConn" prefHeight="37.0" prefWidth="196.0" styleClass="mainBtn" text="Connexion administrateur">
          <cursor>
             <Cursor fx:constant="HAND" />
