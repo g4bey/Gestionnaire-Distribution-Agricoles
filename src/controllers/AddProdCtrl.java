@@ -57,6 +57,7 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
         listePath.add("Route");
         listePath.add("Impasse");
         listePath.add("Lieu Dit");
+        listePath.add("Place");
         pathTypeChoiceBox.setItems(listePath);
     }
 
