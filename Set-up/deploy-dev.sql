@@ -25,6 +25,7 @@ CREATE TABLE Producteur(
     ,CONSTRAINT Producteur_PK PRIMARY KEY (idProducteur)
 )ENGINE=InnoDB;
 
+
 #------------------------------------------------------------
 # Table: Vehicule
 #------------------------------------------------------------
@@ -40,6 +41,7 @@ CREATE TABLE Vehicule(
 
     ,CONSTRAINT Vehicule_Producteur_FK FOREIGN KEY (idProducteur) REFERENCES Producteur(idProducteur) ON DELETE CASCADE
 )ENGINE=InnoDB;
+
 
 #------------------------------------------------------------
 # Table: Tournee
