@@ -247,7 +247,11 @@ public class ProducteurDAO extends DAO<Producteur> {
     public void delete(Producteur prd) {
         try {
             TourneeDAO tDAO = new TourneeDAO(conn);
-            prd.getCommandes().stream().map(c -> c.getTournee()).distinct().forEach(t -> tDAO.delete(t));
+            prd.getCommandes().stream().map(c -> c.getTournee()).distinct().forEach(t -> {
+                if (t != null) {
+                    tDAO.delete(t);
+                }
+            });
 
             pstmt = conn.prepareStatement("DELETE FROM Producteur WHERE idProducteur = ?");
             pstmt.setInt(1, prd.getIdProducteur());
