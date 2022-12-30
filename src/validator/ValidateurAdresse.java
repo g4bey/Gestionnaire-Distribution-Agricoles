@@ -12,6 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 /**
  * Wrapper vers l'API de géocodage https://api-adresse.data.gouv.fr
@@ -34,6 +35,9 @@ public class ValidateurAdresse {
     private String coordX;
     private String coordY;
     private String coordXY;
+
+    // Le parametre de type String est l'adresse au format CSV par formatCSV()
+    private static HashMap<String, ValidateurAdresse> adressesValide = new HashMap<>();
 
     /**
      * Vérifie la validité d'une adresse en fonction d'un score de pertinence.
@@ -126,24 +130,55 @@ public class ValidateurAdresse {
         label = numeroRue.concat(" ").concat(typeRue).concat(" ").concat(nomRue).concat(" ").concat(ville).concat(" ")
                 .concat(codePostale);
 
-        csv = numeroRue.concat(",").concat(typeRue).concat(",").concat(nomRue).concat(",").concat(ville).concat(",")
-                .concat(codePostale);
+        csv = formatCSV(numeroRue, typeRue, nomRue, ville, codePostale);
 
         this.score = infos.get("score").getAsDouble();
     }
 
     /**
+     * Formate les parametres au format CSV.
+     * @param numeroRue le numero de rue.
+     * @param typeRue le type de rue.
+     * @param nomRue le nom de la rue.
+     * @param ville la ville.
+     * @param codePostale le code postale.
+     * @return l'adresse au format CSV.
+     */
+    private static String formatCSV(String numeroRue, String typeRue, String nomRue, String ville, String codePostale) {
+        return numeroRue.concat(",").concat(typeRue)
+                .concat(",").concat(nomRue)
+                .concat(",").concat(ville)
+                .concat(",").concat(codePostale);
+    }
+
+    /**
      * Initie l'instanciation d'un objet adresse valide et
      * provoque une erreur s'il est impossible de récupérer l'adresse.
+     * <p>
+     * Si l'adresse a deja été calculé, on renvoie l'objet ValidateurAdresse existant.
      *
-     * @param address l'adresse complète au format csv
-     * @return un objet AdresseValide
+     * @param numeroRue le numero de rue.
+     * @param typeRue le type de rue.
+     * @param nomRue le nom de la rue.
+     * @param ville la ville.
+     * @param codePostale le code postale.
+     * @return un objet ValidateurAdresse
      * @throws AdresseInvalideException l'adresse est invalide.
      */
     public static ValidateurAdresse create(String numeroRue, String typeRue, String nomRue, String ville,
             String codePostale) throws AdresseInvalideException {
+        String adresseCSV = formatCSV(numeroRue, typeRue, nomRue, ville, codePostale);
 
-        return new ValidateurAdresse(numeroRue, typeRue, nomRue, ville, codePostale);
+        // si l'adresse a deja été calculé lors de cette session
+        // on retourne l'adresse existante
+        if (adressesValide.containsKey(adresseCSV)) {
+            return adressesValide.get(adresseCSV);
+        }
+
+        // Sinon, on insère cet objet ValidateurAdresse dans l'hashmap.
+        ValidateurAdresse adresseValide =  new ValidateurAdresse(numeroRue, typeRue, nomRue, ville, codePostale);
+        adressesValide.put(adresseCSV, adresseValide);
+        return adresseValide;
     }
 
     /**
