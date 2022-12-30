@@ -107,7 +107,7 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty);
-                setText(empty ? null : row.getLibelle());
+                setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
         });
 
