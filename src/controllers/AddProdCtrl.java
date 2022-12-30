@@ -12,7 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import modele.Producteur;
 import utility.ControllersUtils;
-import validForm.FormAddProdCtrl;
+import validForm.FormAddProdValidator;
+import validForm.FormProdValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,7 +68,7 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void validateAddProd(ActionEvent event) {
-        FormAddProdCtrl fapc = new FormAddProdCtrl(prodSiretField.getText(), propNameField.getText(),
+        FormProdValidator fapc = new FormAddProdValidator(prodSiretField.getText(), propNameField.getText(),
                 addressNumField.getText(), pathTypeChoiceBox.getValue(), pathNameField.getText(),
                 townNameField.getText(), postcodeField.getText(), prodPhoneField.getText(), prodPasswordField.getText(),
                 confirmPasswordField.getText());
@@ -76,6 +77,7 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
             formErrorText.setVisible(false);
             Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64);
             String hashedPs = argon2.hash(2, 15 * 1024, 1, prodPasswordField.getText().toCharArray());
+
             pDAO.add(new Producteur(
                     prodSiretField.getText(),
                     propNameField.getText(),
