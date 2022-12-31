@@ -133,7 +133,6 @@ public class ValidateurTournee {
 
         Timestamp horaireDebut = new Timestamp(
                 premiereEtape - itSegm.next().getAsJsonObject().get("duration").getAsLong() * 1000);
-
         Timestamp horaireTmp = new Timestamp(premiereEtape);
 
         horaireTmp = valideSuiteCommandes(itCmd, itSegm, horaireTmp);
@@ -145,10 +144,12 @@ public class ValidateurTournee {
         horaireTmp = new Timestamp(
                 horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong() * 1000);
 
-        // Vérifie qu'il n'arrive pas après l'heure de fin
-        if (horaireTmp.after(commandes.get(commandes.size() - 1).getHoraireFin())) {
+        // Vérifie qu'il n'arrive pas après l'heure de fin, et que ce n'est pas la derniere commande.
+        if (horaireTmp.after(commandes.get(commandes.size() - 1).getHoraireFin()) && itCmd.hasNext()) {
             throw new InvalidRouteException("Le trajet généré ne respecte pas les horaires des commandes !");
         }
+
+
 
         return new Timestamp[] { horaireDebut, horaireTmp };
     }
