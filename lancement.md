@@ -10,32 +10,32 @@ La base de donnée utilisée est un serveur **MariaDB version 10.4**.<br>
 Par souci de simplicité, on peut l'installer via [XAMPP](https://www.apachefriends.org/download.html) ce qui permet d'utiliser phpmyadmin.<br>
 <br>
 La commande `mariadb --version` permet de vérifier la version.<br>
-Il est aussi possible de consulter cette information sur la page d'acceuil de phpmyadmin.
+Il est aussi possible de consulter cette information sur la page d'accueil de phpmyadmin.
 
 ### Bibliothèques:
 Dans un premier temps, nous procéderons au téléchargement des librairies.<br>
 Ensuite, nous traiterons de leurs installations.
 
-#### Bibliothèques fournies sur le dépot:
+#### Bibliothèques fournies sur le dépôt:
 - JUnit 5.8.1: *junit-platform-console-standalone-1.9.1.jar*
 - Gson 2.10: *gson-2.10.jar*
 - Argon2-jvm 2.11: *Argon2-jvm-2.11.jar, Argon2-jvm-nolibs-2.11.jar*
 - JNA version 5.12.1: *jna-5.12.1.jar utilisée par Argon2-jvm 2.11*
 - Connecteur MYSQL version 8.0.13: *mysql-connector-java-8.0.13.jar*
 
-Pour les retrouver, veuillez consulter le dossier **/librairies** disponible à la racine du dépot.
+Pour les retrouver, veuillez consulter le dossier **/librairies** disponible à la racine du dépôt.
 
 #### Bibliothèques non-fournies:
 JavaFX étant dépendante du système d'exploitation, nous avons choisi de ne pas la fournir.<br>
 Notez que le projet a été developpé sous la **version 19 de JAVAFX** [disponible sur cette page](https://gluonhq.com/products/javafx/).
 
 ## Installation du projet:
-### Clonage du dépot:
+### Clonage du dépôt:
 - 1/ Selectionnez la SDK 19 comme JRE.
-- 2/ Importez le ddépot : `https://github.com/g4bey/Gestionnaire-Distribution-Agricoles.git`
+- 2/ Importez le dépôt : `https://github.com/g4bey/Gestionnaire-Distribution-Agricoles.git`
 
 **Attention!** : Si vous souhaitez utiliser Eclipse, **utilisez la branche release-eclipse**.<br>
-L'IDE ajoutant un packet src, les chemins dans les fichiers FXML ne seront plus valide autrement.
+L'IDE ajoutant un paquet src, les chemins dans les fichiers FXML ne seront plus valides autrement.
 
 ### Ajout des bibliothèques:
 #### Bibliothèques fournies:
