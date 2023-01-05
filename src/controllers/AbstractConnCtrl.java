@@ -13,8 +13,8 @@ import DAO.VehiculeDAO;
 import utility.DatabaseConnection;
 
 /**
- * Les controllers nécessitant une connexion à la BDD dérivent de ce controleur.
- * On n'instancie les DAO qu'une seule fois, ainsi ces attributs sont statiques.
+ * Les contrôleurs nécessitant une connexion à la BDD dérivent de ce contrôleur.
+ * On n'instancie les DAO qu'une seule fois, ces attributs sont statiques.
  */
 public abstract class AbstractConnCtrl {
     protected static Connection conn = null;
@@ -26,16 +26,16 @@ public abstract class AbstractConnCtrl {
     protected static VehiculeDAO vDAO = null;
 
     /**
-     * On instancie les attributs que si c'est le premier appel d'une classe fille.
+     * On n'instancie les attributs que si c'est le premier appel d'une classe fille.
      */
     public AbstractConnCtrl() {
         if(conn == null) {
             instantiateAttributes();
         }
-    }
+    } // AbstractConnCtrl
 
     /**
-     * Instancie les DAO ainsi que la connection à la base donnée.
+     * Instancie les DAO ainsi que la connection à la base de données.
      */
     public void instantiateAttributes() {
         try {
@@ -43,7 +43,7 @@ public abstract class AbstractConnCtrl {
         } catch (ClassNotFoundException | SQLException | IOException e) {
             e.printStackTrace();
             return;
-        }
+        } // try/catch
 
         aDAO = new AdministrateurDAO(conn);
         pDAO = new ProducteurDAO(conn);
@@ -52,5 +52,6 @@ public abstract class AbstractConnCtrl {
         tDAO = new TourneeDAO(conn);
         vDAO = new VehiculeDAO(conn);
         tDAO = new TourneeDAO(conn);
-    }
-}
+    } // instanciateAttributes
+
+} // AbstractConnCtrl
