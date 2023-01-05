@@ -74,10 +74,10 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
         postcodeField.setText(adresse[4]);
 
         clientPhoneField.setText(client.getNumTelClient());
-    }
+    } // initialize
 
     /**
-     * Méthode qui valide la modification d'un client.
+     * Méthode qui valide la modification d'un Client.
      * 
      * @param event ActionEvent
      */
@@ -94,28 +94,30 @@ public class ModifyClientCtrl extends AbstractConnCtrl implements Initializable 
             client.setNumTelClient(clientPhoneField.getText());
             cltDAO.update(client);
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             formErrorText.setVisible(true);
             formErrorText.setText(fmcc.getErrors());
-        }
+        } // else
     }
 
     /**
-     * Méthode qui ferme la vue de modification d'un client.
+     * Méthode qui ferme la vue de modification d'un Client.
      * 
      * @param event ActionEvent
      */
     public void cancelModifyClient(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelModifyClient
 
     /**
-     * Méthode qui récupère le client sélectionné dans la listView
+     * Méthode qui récupère le Client sélectionné dans la listView
      * de la vue précédente (adminSelectMenu)
      * 
      * @param cl Client
      */
     public static void setClient(Client cl) {
         client = cl;
-    }
-}
+    } // setClient
+
+} // ModifyClientCtrl
