@@ -20,38 +20,38 @@ import modele.Vehicule;
 import utility.ConfigHelper;
 
 /**
- * Valide ou pas la tournée paramétrée.
+ * Permet de valider ou non une Tournée.
  */
 public class ValidateurTournee {
     /**
-     * Vérifie que le Vehicule n'est pas déjà utilisé lors de la livraison
+     * Vérifie que le Véhicule n'est pas déjà utilisé lors de la livraison.
      * 
-     * @param vehicule     Le Vehicule que l'on veut vérifier
-     * @param horaireDebut L'horaire de début de la Tournee
-     * @param horaireFin   L'horaire de fin de la Tournee
-     * @return Un booléen qui indique la disponibilité du Vehicule pour les horaires
+     * @param vehicule     Le Véhicule que l'on veut vérifier
+     * @param horaireDebut L'horaire de début de la Tournée
+     * @param horaireFin   L'horaire de fin de la Tournée
+     * @return Un booléen qui indique la disponibilité du Véhicule pour les horaires
      */
     public static boolean valideVehicule(Vehicule vehicule, Timestamp horaireDebut, Timestamp horaireFin) {
         return !vehicule.getTournees().stream()
                 .anyMatch(t -> t.getHoraireDebut().before(horaireFin) && t.getHoraireFin().after(horaireDebut));
-    }
+    } // valideVehicule
 
     /**
-     * Vérifie que le poids maximum du Vehicule est compatible avec les commandes
+     * Vérifie que le poids maximum du Véhicule est compatible avec les commandes
      * 
-     * @param poidsMax  Le poids maximum du Vehicule que l'on veut vérifier
-     * @param commandes Les commandes de la Tournee
-     * @return Un booléen qui indique si le Vehicule peut accueillir un tel poids
+     * @param poidsMax  Le poids maximum du Véhicule que l'on veut vérifier
+     * @param commandes Les commandes de la Tournée
+     * @return Un booléen qui indique si le Véhicule peut accueillir un tel poids
      */
     public static boolean validePoids(float poidsMax, ArrayList<Commande> commandes) {
         return poidsMax >= commandes.stream().map(c -> c.getPoids()).reduce(0.F, Float::sum);
-    }
+    } // validePoids
 
     /**
-     * Vérifie que l'ordre dans lequel les commandes sont livrées permet de
+     * Vérifie que l'ordre dans lequel les Commandes sont livrées permet de
      * respecter les horaires de chacune
      * 
-     * @param itCmd      Itérateur des commandes dans l'ordre
+     * @param itCmd      Itérateur des Commandes dans l'ordre
      * @param itSegm     Itérateur des segments composant le trajet
      * @param horaireTmp Timestamp représentant l'horaire qui évolue au cours du
      *                   trajet
@@ -68,22 +68,22 @@ public class ValidateurTournee {
             // Vérifie qu'il n'arrive pas après l'heure de fin
             if (horaireTmp.after(commande.getHoraireFin())) {
                 return null;
-            }
+            } // if
 
             // S'il arrive avant l'heure de début, il attend
             if (horaireTmp.before(commande.getHoraireDebut())) {
                 horaireTmp = new Timestamp(commande.getHoraireDebut().getTime());
-            }
-        }
+            } // if
+        } // while
 
         return horaireTmp;
-    }
+    } // valideSuiteCommandes
 
     /**
-     * Calcul les horaires de départ et d'arrivée du trajet associé à la suite de
-     * commandes
+     * Calcule les horaires de départ et d'arrivée du trajet associé à la suite de
+     * Commandes
      * 
-     * @param commandes Les commandes de la Tournee, dans l'ordre de livraison
+     * @param commandes Les Commandes de la Tournée, dans l'ordre de livraison
      * @param gpsProd   Les coordonnées GPS du Producteur
      * @return Un couple de Timestamp représentant l'heure de départ et l'heure
      *         d'arrivée
@@ -114,7 +114,7 @@ public class ValidateurTournee {
                     .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonObjectCoordsGPS))).build();
         } catch (IOException e1) {
             throw e1;
-        }
+        } // try/catch
 
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response;
@@ -123,7 +123,7 @@ public class ValidateurTournee {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw e;
-        }
+        } // try/catch
 
         Iterator<Commande> itCmd = commandes.iterator();
         Iterator<JsonElement> itSegm = gson.fromJson(response.body(), JsonObject.class).get("routes").getAsJsonArray()
@@ -138,19 +138,20 @@ public class ValidateurTournee {
         horaireTmp = valideSuiteCommandes(itCmd, itSegm, horaireTmp);
         if (horaireTmp == null) {
             throw new InvalidRouteException("Le trajet généré ne respecte pas les horaires des commandes !");
-        }
+        } // if
 
-        // On calcul la fin du trajet en ajoutant la durée pour rentrer au dépôt
+        // On calcule la fin du trajet en ajoutant la durée pour rentrer au dépôt
         horaireTmp = new Timestamp(
                 horaireTmp.getTime() + itSegm.next().getAsJsonObject().get("duration").getAsLong() * 1000);
 
-        // Vérifie qu'il n'arrive pas après l'heure de fin, et que ce n'est pas la derniere commande.
+        // Vérifie qu'il n'arrive pas après l'heure de fin, et que ce n'est pas la dernière commande.
         if (horaireTmp.after(commandes.get(commandes.size() - 1).getHoraireFin()) && itCmd.hasNext()) {
             throw new InvalidRouteException("Le trajet généré ne respecte pas les horaires des commandes !");
-        }
+        } // if
 
 
 
         return new Timestamp[] { horaireDebut, horaireTmp };
-    }
-}
+    } // calculTournee
+
+} // ValidateurTournee
