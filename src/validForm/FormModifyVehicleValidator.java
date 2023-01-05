@@ -3,25 +3,28 @@ package validForm;
 import modele.Vehicule;
 
 /**
- * Formulaire utilisé lorsqu'on ajoute ou modifie un véhicule.
+ * Validateur de formulaire pour ModifyVehicleCtrl
  *
  * @see controllers.ModifyVehicleCtrl
  */
 public class FormModifyVehicleValidator extends FormVehicleValidator {
+
     /**
+     * Constructeur de FormVehicleValidator.
      * Vérifie le format des données correspondant à un véhicule.
      *
-     * @param numImmat   la plaque d'immatriculation avec des tirets entre les zones.
-     * @param poids      le poids max du véhicule.
-     * @param libelle    un libellé utilisé pour l'identifier facilement.
-     * @param vehicule   le vehicule concerné.
+     * @param numImmat   La plaque d'immatriculation du Véhicule avec des tirets entre les zones.
+     * @param poids      Le poids max du Véhicule.
+     * @param libelle    Le libellé du Véhicule.
+     * @param vehicule   Le Véhicule concerné.
      */
     public FormModifyVehicleValidator(String numImmat, String poids, String libelle, Vehicule vehicule) {
         super(numImmat, poids, libelle);
 
         // Si on veut changer le poids.
         if (!vehicule.getTournees().isEmpty() && Float.parseFloat(poids) != vehicule.getPoidsMax()) {
-            setInvalid("Modifcation poids impossible car ce vehicule est concerné par une tournée.");
-        }
-    }
-}
+            setInvalid("Modification du poids impossible car ce Véhicule est concerné par une tTurnée.");
+        } // if
+    } // constructeur
+
+} // FormModifyVehicleValidator
