@@ -18,7 +18,7 @@ public class UserAuth {
      */
     public static void setProducteur(Producteur prod) {
         UserAuth.prodUser = prod;
-    }
+    } // setProducteur
 
     /**
      * Associe adminUser à l'Administrateur connecté.
@@ -27,13 +27,14 @@ public class UserAuth {
      */
     public static void setAdministrateur(Administrateur admin) {
         UserAuth.adminUser = admin;
-    }
+    } // setAdministrateur
 
     public static Producteur getProd() {
         return prodUser;
-    }
+    } // getProd
 
     public static Administrateur getAdmin() {
         return adminUser;
-    }
-}
+    } // getAdmin
+
+} // UserAuth
