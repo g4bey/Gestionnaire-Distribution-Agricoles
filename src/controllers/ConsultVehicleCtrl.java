@@ -18,7 +18,7 @@ import modele.Vehicule;
 import utility.ControllersUtils;
 
 /**
- * Contrôleur permettant l'aperçu d'un Vehicule.
+ * Contrôleur permettant l'aperçu d'un Véhicule.
  */
 public class ConsultVehicleCtrl implements Initializable {
 
@@ -51,33 +51,35 @@ public class ConsultVehicleCtrl implements Initializable {
         Collections.sort(tournees, tourneesAsc);
         tourListView.getItems().addAll(tournees);
 
-        // Affichage du libelle uniquement sur le listView.
+        // Affichage du libellé uniquement sur le listView.
         tourListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle());
             }
-        });
-    }
+        } // updateItem
+        ); // setCellFactory
+    } // initialize
 
     /**
      * Méthode qui ferme la vue de consultation
-     * des informations d'un véhicule.
+     * des informations d'un Véhicule.
      * 
      * @param event ActionEvent
      */
     public void closeConsultVehicle(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // closeConsultVehicle
 
     /**
-     * Méthode qui récupère le véhicule sélectionné dans la listView
+     * Méthode qui récupère le Véhicule sélectionné dans la listView
      * de la vue précédente (prodSelectMenu)
      * 
      * @param vehi Vehicule
      */
     public static void setVehicule(Vehicule vehi) {
         vehicule = vehi;
-    }
-}
+    } // setVehicule
+
+} // ConsultVehicleCtrl
