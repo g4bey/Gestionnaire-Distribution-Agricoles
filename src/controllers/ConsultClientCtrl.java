@@ -31,25 +31,26 @@ public class ConsultClientCtrl implements Initializable {
         clientNameText.setText(client.getNomClient());
         clientAddressText.setText(client.getAdresseClient().replace(",", " "));
         clientPhoneText.setText(client.getNumTelClient());
-    }
+    } // initialize
 
     /**
      * Méthode qui permet de fermer la vue de consultation
-     * des informations d'un client.
+     * des informations d'un Client.
      * 
      * @param event ActionEvent
      */
     public void closeConsultClient(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // closeConsultClient
 
     /**
-     * Méthode qui récupère le client sélectionné dans la listView
+     * Méthode qui récupère le Client sélectionné dans la listView
      * de la vue précédente (adminSelectMenu)
      * 
      * @param cl Client
      */
     public static void setClient(Client cl) {
         client = cl;
-    }
-}
+    } // setClient
+
+} // ConsultClientCtrl
