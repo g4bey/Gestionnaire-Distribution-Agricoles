@@ -40,11 +40,12 @@ public class PasswordChangeCtrl extends AbstractConnCtrl {
             prod.setMdpProd(hashedPs);
             pDAO.update(prod);
             ControllersUtils.closePopup(event);
-        } else {
+        } // if
+        else {
             modifyErrorText.setVisible(true);
             modifyErrorText.setText(formulaire.getErrors());
-        }
-    }
+        } // else
+    } // validatePasswordChangeProd
 
     /**
      * Méthode qui permet à l'utilisateur de changer son mot de passe.
@@ -61,11 +62,12 @@ public class PasswordChangeCtrl extends AbstractConnCtrl {
             admin.setMdpAdmin(hashedPs);
             aDAO.update(admin);
             ControllersUtils.closePopup(event);
-        } else {
+        } // if
+        else {
             modifyErrorText.setVisible(true);
             modifyErrorText.setText(formulaire.getErrors());
-        }
-    }
+        } // else
+    } // validatePasswordChangeAdmin
 
     /**
      * Méthode qui ferme la fenêtre de changement de mot de passe.
@@ -74,5 +76,6 @@ public class PasswordChangeCtrl extends AbstractConnCtrl {
      */
     public void cancelPasswordChange(ActionEvent event) {
         ControllersUtils.closePopup(event);
-    }
-}
+    } // cancelPasswordChange
+
+} // PasswordChangeCtrl
