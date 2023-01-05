@@ -84,18 +84,27 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
         postcodeField.setText(adresse[4]);
 
         prodPhoneField.setText(producteur.getNumTelProd());
-    }
+    } // initialize
 
     /**
-     * Méthode qui valide la modification d'un producteur.
+     * Méthode qui valide la modification d'un Producteur.
      * 
      * @param event ActionEvent
      */
     public void validateModifyProd(ActionEvent event) {
-        FormProdValidator fmpv = new FormModifyProdValidator(prodSiretField.getText(), propNameField.getText(),
-                addressNumField.getText(), pathTypeChoiceBox.getValue(), pathNameField.getText(),
-                townNameField.getText(), postcodeField.getText(), prodPhoneField.getText(), prodPasswordField.getText(),
-                confirmPasswordField.getText(), producteur);
+        FormProdValidator fmpv = new FormModifyProdValidator(
+            prodSiretField.getText(),
+            propNameField.getText(),
+            addressNumField.getText(),
+            pathTypeChoiceBox.getValue(),
+            pathNameField.getText(),
+            townNameField.getText(),
+            postcodeField.getText(),
+            prodPhoneField.getText(),
+            prodPasswordField.getText(),
+            confirmPasswordField.getText(),
+            producteur
+        ); // fmpv
 
         if (fmpv.isValid()) {
 
@@ -106,7 +115,8 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
                 producteur.setAdresseProd(fmpv.getAdresseCSV());
                 producteur.setGpsProd(fmpv.getCoordsXY());
                 producteur.setMdpProd(producteur.getMdpProd());
-            } else {
+            } // if
+            else {
                 producteur.setSiret(prodSiretField.getText());
                 producteur.setProprietaire(propNameField.getText());
                 producteur.setNumTelProd(prodPhoneField.getText());
@@ -114,33 +124,35 @@ public class ModifyProdCtrl extends AbstractConnCtrl implements Initializable {
                 producteur.setGpsProd(fmpv.getCoordsXY());
                 producteur.setMdpProd(Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, 32, 64).hash(2, 15 * 1024, 1,
                         prodPasswordField.getText().toCharArray()));
-            }
-
+            } // else
 
             pDAO.update(producteur);
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+
+        } // if (fmpv.isValid())
+        else {
             formErrorText.setVisible(true);
             formErrorText.setText(fmpv.getErrors());
-        }
-    }
+        } // else
+    } // validateModifyProd
 
     /**
-     * Méthode qui permet de fermer la vue de modification d'un producteur.
+     * Méthode qui permet de fermer la vue de modification d'un Producteur.
      * 
      * @param event ActionEvent
      */
     public void cancelModifyProd(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelModifyProd
 
     /**
-     * Méthode qui récupère le producteur sélectionné dans la listView
+     * Méthode qui récupère le Producteur sélectionné dans la listView
      * de la vue précédente (adminSelectMenu)
      * 
      * @param prod Producteur
      */
     public static void setProd(Producteur prod) {
         producteur = prod;
-    }
-}
+    } // setProd
+
+} // ModifyProdCtrl
