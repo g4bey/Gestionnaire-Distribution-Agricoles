@@ -382,10 +382,8 @@ public class CommandeDAOTest {
         } // getCommandesByTourneeTest
 
         /**
-         * On vérifie que getCommandesByProducteurWithoutTournee renvoie bien une liste de
-         * Commandes identique à ce qui est inséré dans une Tournée.
-         * <p>
-         * Ici, une commande ne peut pas être dans une Tournée.
+         * On vérifie que getCommandesByProducteurWithoutTournee renvoie bien la liste de
+         * Commandes du Producteur n'appartenant à aucune Tournée
          *
          * @throws SQLException
          */
@@ -435,7 +433,7 @@ public class CommandeDAOTest {
                 ArrayList<Commande> commandes = commandeDAO.getCommandesByProducteurWithoutTournee(PRODUCTEUR_DEMO);
                 assertTrue(commandeSeule.equals(commandes.get(0)));
                 assertTrue(commandes.size() == 1);
-        }
+        } // getCommandesByProducteurWithoutTourneeTest
 
         /**
          * Fermeture de la Connection apres les tests.
