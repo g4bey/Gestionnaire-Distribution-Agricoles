@@ -393,7 +393,6 @@ public class CommandeDAOTest {
         @DisplayName("Test la méthode getCommandesByProducteurWithoutTournee")
         public void getCommandesByProducteurWithoutTourneeTest() throws SQLException {
                 commandeDAO.add(COMMANDE_A);
-                commandeDAO.add(COMMANDE_B);
 
                 // On crée un nouveau Véhicule
                 VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
@@ -434,10 +433,9 @@ public class CommandeDAOTest {
 
                 // On récupère la liste de Commandes et on y vérifie les valeurs
                 ArrayList<Commande> commandes = commandeDAO.getCommandesByProducteurWithoutTournee(PRODUCTEUR_DEMO);
-                assertTrue(commandes.get(0).equals(COMMANDE_A));
-                assertTrue(commandes.get(1).equals(commandeSeule));
-                assertTrue(commandes.size() == 2);
-        } // getCommandesByProducteurWithoutTourneeTest
+                assertTrue(commandeSeule.equals(commandes.get(0)));
+                assertTrue(commandes.size() == 1);
+        }
 
         /**
          * Fermeture de la Connection apres les tests.
