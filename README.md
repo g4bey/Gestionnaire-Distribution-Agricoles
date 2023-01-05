@@ -81,6 +81,7 @@ La configuration du checkstyle pour les IDE se trouve dans /src/ressources/check
 - gson 2.10
 - Argon2 2.11
 - Scnene Builder
+
 Plus de details dans [lancement.md](/lancement.md)
 
 **Collaborateurs:**
