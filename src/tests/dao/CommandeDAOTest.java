@@ -47,7 +47,7 @@ public class CommandeDAOTest {
                 Statement st = conn.createStatement();
                 st.execute("DELETE FROM " + table);
                 st.execute("ALTER TABLE " + table + " AUTO_INCREMENT=1");
-        }
+        } // truncateTable
 
         /**
          * Instantiation de la Connection avant TOUS les tests.
@@ -70,7 +70,7 @@ public class CommandeDAOTest {
                 truncateTable("Tournee");
                 truncateTable("Vehicule");
                 truncateTable("Producteur");
-        }
+        } // setup
 
         /**
          * Avant CHAQUE test, on réinitialise les objets métier Commande, Client et
@@ -100,7 +100,8 @@ public class CommandeDAOTest {
                                 new Timestamp(500000),
                                 null,
                                 PRODUCTEUR_DEMO,
-                                CLIENT_DEMO);
+                                CLIENT_DEMO
+                                ); // COMMANDE_A
 
                 COMMANDE_B = new Commande(
                                 "Commande 2",
@@ -109,8 +110,9 @@ public class CommandeDAOTest {
                                 new Timestamp(1000000),
                                 null,
                                 PRODUCTEUR_DEMO,
-                                CLIENT_DEMO);
-        }
+                                CLIENT_DEMO
+                                ); // COMMANDE_B
+        } // init
 
         /**
          * Vérifions que l'ID de COMMANDE_A : 0 avant insertion,
@@ -125,7 +127,7 @@ public class CommandeDAOTest {
                 assertEquals(0, COMMANDE_A.getIdCommande());
                 commandeDAO.add(COMMANDE_A);
                 assertEquals(1, COMMANDE_A.getIdCommande());
-        }
+        } // addTest
 
         /**
          * On insère COMMANDE_A en base.
@@ -134,7 +136,7 @@ public class CommandeDAOTest {
          * <p>
          * Puis on vérifie que l'attribut producteur est bien le Producteur dans
          * COMMANDE_A.
-         * De même pour l'attribut Client.
+         * De même pour l'attribut client.
          * <p>
          * Enfin, on assure qu'un ID inexistant renvoie bien null.
          */
@@ -148,18 +150,18 @@ public class CommandeDAOTest {
                 Commande commandeRetour = commandeDAO.get(COMMANDE_A.getIdCommande());
                 assertTrue(COMMANDE_A.equals(commandeRetour));
 
-                // L'ID de la Commande est associée à un Producteur
+                // L'ID de la Commande est associé à un Producteur
                 Producteur producteur = commandeRetour.getProducteur();
                 assertEquals(producteur.getIdProducteur(), COMMANDE_A.getProducteur().getIdProducteur());
 
-                // L'ID de la Commande est associée à un Client
+                // L'ID de la Commande est associé à un Client
                 Client client = commandeRetour.getClient();
                 assertTrue(client.equals(COMMANDE_A.getClient()));
 
                 // Cet ID n'existe pas.
                 Commande commandeNull = commandeDAO.get(5);
                 assertNull(commandeNull);
-        }
+        } // getTest
 
         /**
          * Insérons COMMANDE_A et COMMANDE_B en base.
@@ -179,13 +181,13 @@ public class CommandeDAOTest {
                 assertEquals(2, commandeListe.size());
                 assertEquals(1, commandeListe.get(0).getIdCommande());
                 assertEquals(2, commandeListe.get(1).getIdCommande());
-        }
+        } // getAllTest
 
         /**
          * On insère la COMMANDE_A en base.
          * Ensuite, on récupère son ID.
          * <p>
-         * Enfin, on supprime la commande correspondant à cet ID.
+         * Enfin, on supprime la Commande correspondant à cet ID.
          * Puis on vérifie que demander cet ID renvoie bien null.
          */
         @Test
@@ -194,15 +196,15 @@ public class CommandeDAOTest {
                 commandeDAO.add(COMMANDE_A);
                 int idCommande = COMMANDE_A.getIdCommande();
 
-                // Après suppression, l'ID devrait être null.
+                // Après suppression, l'ID devrait renvoyer null.
                 commandeDAO.delete(COMMANDE_A);
                 assertNull(commandeDAO.get(idCommande));
-        }
+        } // deleteTest
 
         /**
-         * On commence par créer et ajouter une commande en base.
+         * On commence par créer et ajouter une Commande en base.
          * Ensuite, on modifie tous les attributs, y compris les références.
-         * puis on update ce véhicule, y compris le producteur.
+         * puis on update son Véhicule et son Producteur.
          * <p>
          * Enfin, on crée un autre objet avec le même ID pour s'assurer
          * que les attributs sont égaux.
@@ -215,35 +217,48 @@ public class CommandeDAOTest {
                 // On crée un Client
                 ClientDAO clientDAO = new ClientDAO(conn);
                 Client client = new Client(
-                                "Jean", "Charles",
-                                "20,40", "000394985");
+                                "Jean",
+                                "Charles",
+                                "20,40",
+                                "000394985"
+                                ); // client
                 clientDAO.add(client);
 
                 // On crée un nouveau Producteur
                 ProducteurDAO producteurDAO = new ProducteurDAO(conn);
                 Producteur producteur = new Producteur(
-                                "123123", "Bastien",
+                                "123123",
+                                "Bastien",
                                 "12 rue de la vilardiere",
-                                "04049484", "30,2",
-                                "mdp");
+                                "04049484",
+                                "30,2",
+                                "mdp"
+                                ); // producteur
                 producteurDAO.add(producteur);
 
                 // On crée un nouveau Véhicule
                 VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
                 Vehicule vehicule = new Vehicule(
-                                "193", 40F,
-                                "patrick", producteur);
+                                "193",
+                                40F,
+                                "patrick",
+                                producteur
+                                ); // vehicule
                 vehiculeDAO.add(vehicule);
 
                 // On l'ajoute à une Tournée.
                 TourneeDAO tourneeDAO = new TourneeDAO(conn);
                 Tournee tournee = new Tournee(
-                                new Timestamp(90000), new Timestamp(80000),
-                                40F, "text", vehicule);
+                                new Timestamp(90000),
+                                new Timestamp(80000),
+                                40F,
+                                "text",
+                                vehicule
+                                ); // tournee
                 tourneeDAO.add(tournee);
 
                 // On ajoute puis met à jour la COMMANDE_A
-                // On change Producteur, Clients et Tournée.
+                // On change Producteur, Client et Tournée.
                 COMMANDE_A.setProducteur(producteur);
                 COMMANDE_A.setLibelle("Lib2");
                 COMMANDE_A.setClient(client);
@@ -253,14 +268,14 @@ public class CommandeDAOTest {
                 COMMANDE_A.setPoids(40F);
                 commandeDAO.update(COMMANDE_A);
 
-                // On crée un autre object de même ID pour s'assurer que les attributs
+                // On crée un autre objet de même ID pour s'assurer que les attributs
                 // sont identiques. Cela induit qu'ils sont modifiés en BDD.
                 Commande commandeRetour = commandeDAO.get(COMMANDE_A.getIdCommande());
                 assertTrue(commandeRetour.equals(COMMANDE_A));
-        }
+        } // updateTest
 
         /**
-         * On essaye de s'assurer que les références sont propagées.
+         * On essaie de s'assurer que les références sont propagées.
          * Par exemple en ajoutant des Commandes dans les Tournées,
          * les Commandes déjà existantes auront des liens vers les nouvelles Commandes
          * via le tableau de Tournées.
@@ -274,15 +289,22 @@ public class CommandeDAOTest {
                 // On crée un nouveau Véhicule
                 VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
                 Vehicule vehicule = new Vehicule(
-                                "193", 40F,
-                                "patrick", PRODUCTEUR_DEMO);
+                                "193",
+                                40F,
+                                "patrick",
+                                PRODUCTEUR_DEMO
+                                ); // vehicule
                 vehiculeDAO.add(vehicule);
 
                 // On l'ajoute à une Tournée.
                 TourneeDAO tourneeDAO = new TourneeDAO(conn);
                 Tournee tournee = new Tournee(
-                                new Timestamp(90000), new Timestamp(80000),
-                                40F, "text", vehicule);
+                                new Timestamp(90000),
+                                new Timestamp(80000),
+                                40F,
+                                "text",
+                                vehicule
+                                ); // tournee
                 tourneeDAO.add(tournee);
 
                 // On ajoute des Commandes dans la Tournée
@@ -297,7 +319,7 @@ public class CommandeDAOTest {
                 assertTrue(COMMANDE_A.getTournee().equals(tournee));
                 assertTrue(COMMANDE_A.getTournee().getCommandes().equals(tournee.getCommandes()));
 
-                // On supprime une commande d'une Tournée.
+                // On supprime une Commande d'une Tournée.
                 tournee.removeCommande(COMMANDE_A);
                 commandeDAO.update(COMMANDE_A);
 
@@ -307,7 +329,7 @@ public class CommandeDAOTest {
                 // Contains se base sur obj.equals
                 // On s'assure que la Tournée ne contient plus la Commande en base.
                 assertFalse(tourneeDAO.get(tournee.getIdTournee()).getCommandes().contains(COMMANDE_A));
-        }
+        } // propagationTest
 
         /**
          * On vérifie que getCommandesByTournee renvoie bien une liste de Commandes
@@ -324,15 +346,22 @@ public class CommandeDAOTest {
                 // On crée un nouveau Véhicule
                 VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
                 Vehicule vehicule = new Vehicule(
-                                "193", 40F,
-                                "patrick", PRODUCTEUR_DEMO);
+                                "193",
+                                40F,
+                                "patrick",
+                                PRODUCTEUR_DEMO
+                                ); // vehicule
                 vehiculeDAO.add(vehicule);
 
-                // On crée la Tournee
+                // On crée la Tournée
                 TourneeDAO tourneeDAO = new TourneeDAO(conn);
                 Tournee tournee = new Tournee(
-                                new Timestamp(100000), new Timestamp(80000),
-                                40F, "text", vehicule);
+                                new Timestamp(100000),
+                                new Timestamp(80000),
+                                40F,
+                                "text",
+                                vehicule
+                                ); // tournee
                 tourneeDAO.add(tournee);
 
                 // On ajoute des Commandes à la Tournée.
@@ -350,10 +379,10 @@ public class CommandeDAOTest {
                 assertTrue(commandes.get(0).equals(COMMANDE_A));
                 assertTrue(commandes.get(1).equals(COMMANDE_B));
                 assertTrue(commandes.size() == 2);
-        }
+        } // getCommandesByTourneeTest
 
         /**
-         * On vérifie que getCommandesByProducteurTournees renvoie bien une liste de
+         * On vérifie que getCommandesByProducteurWithoutTournee renvoie bien une liste de
          * Commandes identique à ce qui est inséré dans une Tournée.
          * <p>
          * Ici, une commande ne peut pas être dans une Tournée.
@@ -369,15 +398,22 @@ public class CommandeDAOTest {
                 // On crée un nouveau Véhicule
                 VehiculeDAO vehiculeDAO = new VehiculeDAO(conn);
                 Vehicule vehicule = new Vehicule(
-                                "193", 40F,
-                                "patrick", PRODUCTEUR_DEMO);
+                                "193",
+                                40F,
+                                "patrick",
+                                PRODUCTEUR_DEMO
+                                ); // vehicule
                 vehiculeDAO.add(vehicule);
 
                 // On crée la Tournée
                 TourneeDAO tourneeDAO = new TourneeDAO(conn);
                 Tournee tournee = new Tournee(
-                                new Timestamp(100000), new Timestamp(80000),
-                                40F, "text", vehicule);
+                                new Timestamp(100000),
+                                new Timestamp(80000),
+                                40F,
+                                "text",
+                                vehicule
+                                ); // tournee
                 tourneeDAO.add(tournee);
 
                 // On ajoute des Commandes à la Tournée.
@@ -392,7 +428,8 @@ public class CommandeDAOTest {
                                 new Timestamp(500000),
                                 null,
                                 PRODUCTEUR_DEMO,
-                                CLIENT_DEMO);
+                                CLIENT_DEMO
+                                ); // commandeSeule
                 commandeDAO.add(commandeSeule);
 
                 // On récupère la liste de Commandes et on y vérifie les valeurs
@@ -400,7 +437,7 @@ public class CommandeDAOTest {
                 assertTrue(commandes.get(0).equals(COMMANDE_A));
                 assertTrue(commandes.get(1).equals(commandeSeule));
                 assertTrue(commandes.size() == 2);
-        }
+        } // getCommandesByProducteurWithoutTourneeTest
 
         /**
          * Fermeture de la Connection apres les tests.
@@ -410,5 +447,6 @@ public class CommandeDAOTest {
         @AfterAll
         public static void tearDown() throws SQLException {
                 DatabaseConnection.close("testing");
-        }
-}
+        } // tearDown
+
+} // CommandeDAOTest
