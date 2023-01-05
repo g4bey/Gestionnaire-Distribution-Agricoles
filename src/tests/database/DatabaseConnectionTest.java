@@ -20,14 +20,14 @@ import static org.junit.Assert.assertNull;
 public class DatabaseConnectionTest {
 
     /**
-     * Fermons la connection avant chaque tests.
+     * Fermons la connection avant chaque test.
      *
      * @throws SQLException
      */
     @BeforeEach
     void init() throws SQLException {
         DatabaseConnection.close("testing");
-    }
+    } // init
 
     /**
      * Nous vérifions que le Singleton renvoie bien une Instance lors que
@@ -44,8 +44,8 @@ public class DatabaseConnectionTest {
             assertNotNull(conn);
         } catch (SQLException e) {
             fail("Serveur MySQL indisponible");
-        } // end try catch
-    }
+        } // try/catch
+    } // connectionValide
 
     /**
      * Nous vérifions qu'un environnement inexistant du fichier de configuration
@@ -64,8 +64,8 @@ public class DatabaseConnectionTest {
             fail("Problème avec le constructeur.");
         } catch (IOException e) {
             assertNull(conn);
-        } // end try catch
-    }
+        } // try/catch
+    } // chargeurAttributFonctionnel
 
     /**
      * Nous cherchons à tester l'unicité de la connection.
@@ -82,8 +82,8 @@ public class DatabaseConnectionTest {
             assertEquals(conn, conn2);
         } catch (SQLException e) {
             fail("Le Singleton ne renvoie pas une unique Connection");
-        } // end try catch
-    }
+        } // try/catch
+    } // singletonFonctionnel
 
     /**
      * Fermeture de la Connection apres les tests.
@@ -93,5 +93,6 @@ public class DatabaseConnectionTest {
     @AfterAll
     public static void tearDown() throws SQLException {
         DatabaseConnection.close("testing");
-    }
-}
+    } // tearDown
+
+} //DatabaseConnectionTest
