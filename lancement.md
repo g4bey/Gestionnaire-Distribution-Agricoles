@@ -30,6 +30,14 @@ Pour les retrouver, veuillez consulter le dosser **/librairies** disponible à l
 JavaFX étant dépendante du systeme d'exploitation, nous avons choisi de ne pas la fournir.<br>
 Le projet a été developpé sous la **version 19 de JAVAFX**: [disponible sur cette page](https://gluonhq.com/products/javafx/).
 
+## Installation
+### Mise en route:
+- 1/ Selectionnez la SDK 19 comme JRE.
+- 2/ Importez le depot : `https://github.com/g4bey/Gestionnaire-Distribution-Agricoles.git`
+- 3/ Copier les jar fournies dans un dossier /lib
+- 4/ Ajoutez ces jars au classpath.
 
+**Attention!** : Si vous souhaitez utiliser Eclipse, **utilisez la branche release-eclipse**.<br>
+L'IDE ajoutant un packet src, les chemins dans les fichiers FXML ne seront plus valide.
 
-
+### Installation de JavaFX:
