@@ -12,9 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Représente le DAO des véhicules.
+ * Représente le DAO des Commandes.
  */
 public class CommandeDAO extends DAO<Commande> {
+
     /**
      * Récupère dans la base de données l'instance de Commande demandée.
      * 
@@ -40,15 +41,16 @@ public class CommandeDAO extends DAO<Commande> {
                         rs.getTimestamp("horaireFin"),
                         tDAO.get(rs.getInt("idTournee")),
                         pDAO.get(rs.getInt("idProducteur")),
-                        clDAO.get(rs.getInt("idClient")));
-            }
+                        clDAO.get(rs.getInt("idClient"))
+                ); // Comande
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
      * Récupère dans la base de données toutes les instances de Commande.
@@ -74,15 +76,17 @@ public class CommandeDAO extends DAO<Commande> {
                         rs.getTimestamp("horaireFin"),
                         tDAO.get(rs.getInt("idTournee")),
                         pDAO.get(rs.getInt("idProducteur")),
-                        clDAO.get(rs.getInt("idClient"))));
-            }
+                        clDAO.get(rs.getInt("idClient"))
+                        ) // Commande
+                ); // add
+            } // while
 
             return commandes;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // getAll
 
     /**
      * Ajoute dans la base de données une instance de Commande.
@@ -108,15 +112,15 @@ public class CommandeDAO extends DAO<Commande> {
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 cmd.setIdCommande((int) id);
-            }
+            } // if
 
             // On ajoute la Commande au Producteur
             cmd.getProducteur().addCommande(cmd);
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // add
 
     /**
      * Met à jour dans la base de données une instance de Commande.
@@ -134,9 +138,10 @@ public class CommandeDAO extends DAO<Commande> {
             pstmt.setTimestamp(4, cmd.getHoraireFin());
             if (cmd.getTournee() != null) {
                 pstmt.setInt(5, cmd.getTournee().getIdTournee());
-            } else {
+            } // if
+            else {
                 pstmt.setNull(5, java.sql.Types.NULL);
-            }
+            } // else
             pstmt.setInt(6, cmd.getProducteur().getIdProducteur());
             pstmt.setInt(7, cmd.getClient().getIdClient());
             pstmt.setInt(8, cmd.getIdCommande());
@@ -145,17 +150,17 @@ public class CommandeDAO extends DAO<Commande> {
             // Si la Commande n'est pas dans le tableau
             if (!cmd.getProducteur().getCommandes().contains(cmd)) {
                 cmd.getProducteur().addCommande(cmd);
-            }
+            } // if
 
             // Si la Commande n'est pas dans le tableau et que sa Tournée n'est pas null
             if (cmd.getTournee() != null && !cmd.getTournee().getCommandes().contains(cmd)) {
                 cmd.getTournee().addCommande(cmd);
-            }
+            } // if
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // update
 
     /**
      * Supprime de la base de données l'instance de Commande associée à l'id.
@@ -175,12 +180,12 @@ public class CommandeDAO extends DAO<Commande> {
             // Si la Commande est dans une Tournée, on la supprime.
             if (cmd.getTournee() != null) {
                 cmd.getTournee().removeCommande(cmd);
-            }
+            } // if
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // delete
 
     /**
      * Retourne une liste de Commandes associée à une Tournée.
@@ -209,15 +214,22 @@ public class CommandeDAO extends DAO<Commande> {
                     rs.getTimestamp("horaireFin"),
                     tournee,
                     prd,
-                    new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
-                            rs.getString("gpsClient"), rs.getString("numTelClient"))));
-        }
+                    new Client(
+                        rs.getInt("idClient"),
+                        rs.getString("nomClient"),
+                        rs.getString("adresseClient"),
+                        rs.getString("gpsClient"),
+                        rs.getString("numTelClient")
+                    ) // Client
+            ) // Commande
+            ); // add
+        } // while
 
         return commandes;
-    }
+    } // getCommandesByTournees
 
     /**
-     * Retourne une liste de Commandes d'un Producteur qui n'ont pas de Tournee
+     * Retourne une liste de Commandes d'un Producteur qui n'appartiennent à aucune Tournée
      * <p>
      * 
      * @param prd Le Producteur
@@ -244,12 +256,19 @@ public class CommandeDAO extends DAO<Commande> {
                     rs.getTimestamp("horaireFin"),
                     null,
                     prd,
-                    new Client(rs.getInt("idClient"), rs.getString("nomClient"), rs.getString("adresseClient"),
-                            rs.getString("gpsClient"), rs.getString("numTelClient"))));
-        }
+                    new Client(
+                        rs.getInt("idClient"),
+                        rs.getString("nomClient"),
+                        rs.getString("adresseClient"),
+                        rs.getString("gpsClient"),
+                        rs.getString("numTelClient")
+                    ) // Client
+            ) // Commande
+            ); // add
+        } // while
 
         return commandes;
-    }
+    } // getCommandesByProducteurWithoutTournees
 
     /**
      * Constructeur de CommandeDAO.
@@ -258,5 +277,6 @@ public class CommandeDAO extends DAO<Commande> {
      */
     public CommandeDAO(Connection conn) {
         super(conn);
-    }
-}
+    } // constructeur
+
+} // CommandeDAO
