@@ -35,7 +35,7 @@ public class ClientDAOTest {
         Statement st = conn.createStatement();
         st.execute("DELETE FROM " + table);
         st.execute("ALTER TABLE " + table + " AUTO_INCREMENT=1");
-    }
+    } // truncateTable
 
     /**
      * On crée une Connection puis instancie les DAO.
@@ -55,7 +55,7 @@ public class ClientDAOTest {
         truncateTable("Tournee");
         truncateTable("Vehicule");
         truncateTable("Producteur");
-    }
+    } // setup
 
     /**
      * On crée deux Clients.
@@ -71,7 +71,7 @@ public class ClientDAOTest {
         CLIENT_B = new Client("Thierry", "97 avenue MySQL", "", "");
 
         truncateTable("Client");
-    }
+    } // init
 
     /**
      * Vérifions que l'ID de CLIENT_A : 0 avant insertion,
@@ -86,7 +86,7 @@ public class ClientDAOTest {
         assertEquals(0, CLIENT_A.getIdClient());
         clientDAO.add(CLIENT_A);
         assertEquals(1, CLIENT_A.getIdClient());
-    }
+    } // addTest
 
     /**
      * On insère CLIENT_A en base.
@@ -108,7 +108,7 @@ public class ClientDAOTest {
         // Cet ID n'existe pas.
         Client clientNull = clientDAO.get(5);
         assertNull(clientNull);
-    }
+    } // getTest
 
     /**
      * Insérons CLIENT_A et CLIENT_B en base.
@@ -128,7 +128,7 @@ public class ClientDAOTest {
         assertEquals(2, clientList.size());
         assertEquals(1, clientList.get(0).getIdClient());
         assertEquals(2, clientList.get(1).getIdClient());
-    }
+    } // getAllTest
 
     /**
      * On insère le CLIENT_A en base.
@@ -143,10 +143,10 @@ public class ClientDAOTest {
         clientDAO.add(CLIENT_A);
         int idClient = CLIENT_A.getIdClient();
 
-        // Après suppression, l'ID devrait être null.
+        // Après suppression, l'ID devrait renvoyer null.
         clientDAO.delete(CLIENT_A);
         assertNull(clientDAO.get(idClient));
-    }
+    } // deleteTest
 
     /**
      * On ajoute CLIENT_A en base et modifie tous ses attributs,
@@ -170,7 +170,7 @@ public class ClientDAOTest {
         // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Client clientRetour = clientDAO.get(CLIENT_A.getIdClient());
         assertTrue(clientRetour.equals(CLIENT_A));
-    }
+    } // updateTest
 
     /**
      * Fermeture de la Connection apres les tests.
@@ -180,5 +180,6 @@ public class ClientDAOTest {
     @AfterAll
     public static void tearDown() throws SQLException {
         DatabaseConnection.close("testing");
-    }
-}
+    } // tearDown
+
+} // ClientDAOTest
