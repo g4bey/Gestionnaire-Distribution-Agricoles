@@ -22,7 +22,7 @@ Ensuite, nous procéderons à leurs installations.
 - Gson 2.10: *gson-2.10.jar*
 - Argon2-jvm 2.11: *Argon2-jvm-2.11.jar, Argon2-jvm-nolibs-2.11.jar*
 - JNA version 5.12.1: *jna-5.12.1.jar utilisée par Argon2-jvm 2.11*
-- Connecteur MYSQL version 8.0.13: *mysql-connector-java-8.0.13.jar
+- Connecteur MYSQL version 8.0.13: *mysql-connector-java-8.0.13.jar*
 
 Pour les retrouver, veuillez consulter le dosser **/librairies** disponible à la racine du dépot.
 
@@ -30,14 +30,33 @@ Pour les retrouver, veuillez consulter le dosser **/librairies** disponible à l
 JavaFX étant dépendante du systeme d'exploitation, nous avons choisi de ne pas la fournir.<br>
 Le projet a été developpé sous la **version 19 de JAVAFX**: [disponible sur cette page](https://gluonhq.com/products/javafx/).
 
-## Installation
-### Mise en route:
+## Installation du projet:
+### Clonage du depot:
 - 1/ Selectionnez la SDK 19 comme JRE.
 - 2/ Importez le depot : `https://github.com/g4bey/Gestionnaire-Distribution-Agricoles.git`
-- 3/ Copier les jar fournies dans un dossier /lib
-- 4/ Ajoutez ces jars au classpath.
 
 **Attention!** : Si vous souhaitez utiliser Eclipse, **utilisez la branche release-eclipse**.<br>
 L'IDE ajoutant un packet src, les chemins dans les fichiers FXML ne seront plus valide.
 
-### Installation de JavaFX:
+### Ajout des bibliotheques:
+#### Biblotheques fournies:
+- 1/ Copier les jar fournies dans le dossier `/librairies/` dans un dossier `/lib/` à la racine.
+- 2/ Ajoutez ces jars au buildpath.
+- 3/ Verifiez qu'elles apparaissent bien dans le dossier `Referenced Librairies`
+
+#### Installation de JavaFX 19:
+- 1/ Dezippez le dossier `javafx-sdk-19` dans le dossier `/lib/`
+- 2/ Ajoutez les jars dans `/lib/javafx-sdk-19/lib/` au buildpath.
+
+## Configuration du projet:
+### Ajout d'une nouvelle configuration:
+- 1/ Creez une nouvelle configuration de type **JAVA Application**.
+- 2/ Verifiez que la JRE est bien la **JDK 19**.
+- 3/ Selectionnez `src/GDA.java` comme classe principale.
+- 4/ Ajoutez les VM arguments suivants:
+
+```--module-path <CHEMIN>/lib/javafx-sdk-19/lib/```<br>
+```--add-modules=javafx.base,javafx.graphics,javafx.controls,javafx.fxml,javafx.web,javafx.media```
+
+<CHEMIN\> est le chemin absolu vers le dossier `/lib/javafx-sdk-19/lib/`.
+
