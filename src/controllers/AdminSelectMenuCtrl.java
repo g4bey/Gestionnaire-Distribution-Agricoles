@@ -19,7 +19,7 @@ import modele.Producteur;
 import utility.ControllersUtils;
 
 /**
- * Contrôleur permettant la consultation Administrateur.
+ * Contrôleur permettant la consultation par l'Administrateur des Administrateurs, Producteurs et Clients.
  */
 public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializable {
     @FXML
@@ -69,28 +69,31 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         modifyProdBtn.setDisable(false);
         deleteProdBtn.setDisable(false);
 
-        // Affichage du libelle uniquement sur le listView.
+        // Affichage du libellé uniquement sur le listView.
         adminListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Administrateur row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getPseudo());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
         prodListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Producteur row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getProprietaire());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
         clientListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Client row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getNomClient());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
 
         prodListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Producteur>() {
             @Override
@@ -99,12 +102,15 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
                 if (prodListView.getItems().size() > 0) {
                     modifyProdBtn.setDisable(false);
                     deleteProdBtn.setDisable(false);
-                } else {
+                } // if
+                else {
                     modifyProdBtn.setDisable(true);
                     deleteProdBtn.setDisable(true);
-                }
-            }
-        });
+                } // else
+            } // changed
+        } // ChangeListener<Producteur>
+        ); // addListener
+
         clientListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Client>() {
             @Override
             public void changed(ObservableValue<? extends Client> arg0, Client arg1, Client arg2) {
@@ -112,21 +118,24 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
                 if (clientListView.getItems().size() > 0) {
                     modifyClientBtn.setDisable(false);
                     deleteClientBtn.setDisable(false);
-                } else {
+                } // if
+                else {
                     modifyClientBtn.setDisable(true);
                     deleteClientBtn.setDisable(true);
-                }
-            }
-        });
+                } // else
+            } // changed
+        } // ChangeListener<Client>
+        ); // addListener
 
-        // si une pop-up est close.
+        // Si une pop-up est close.
         ControllersUtils.getStage().setOnCloseRequest(
                 event -> {
                     reloadListViews();
-                });
+                } // event
+        ); // setOnCloseRequest
 
         loadListViews();
-    }
+    } // initialize
 
     /**
      * Reload les listViews.
@@ -134,7 +143,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
     private void reloadListViews() {
         clearListViews();
         loadListViews();
-    }
+    } // reloadListViews
 
     /**
      * Clear les listViews.
@@ -143,25 +152,25 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         adminListView.getItems().clear();
         prodListView.getItems().clear();
         clientListView.getItems().clear();
-    }
+    } // clearListViews
 
     /**
-     * Load les ListViews
+     * Charge les ListViews
      */
     private void loadListViews() {
         adminListView.getItems().addAll(aDAO.getAll());
         prodListView.getItems().addAll(pDAO.getAll());
         clientListView.getItems().addAll(cltDAO.getAll());
-    }
+    } // loadListViews
 
     /**
-     * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
+     * Méthode qui ouvre une pop-up affichant le profil de l'utilisateur.
      * 
      * @param event MouseEvent
      */
     public void userProfile(ActionEvent event) {
         util.loadPopup(event, "/views/adminProfile.fxml");
-    }
+    } // userProfile
 
     /**
      * Méthode qui déconnecte l'utilisateur et redirige vers la première vue.
@@ -170,28 +179,28 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
      */
     public void deconnection(ActionEvent event) {
         util.loadView(event, "/views/homePage.fxml");
-    }
+    } // deconnection
 
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un administrateur.
+     * Méthode qui ouvre une pop-up pour l'ajout d'un Administrateur.
      * 
      * @param event ActionEvent
      */
     public void popupAddAdmin(ActionEvent event) {
         util.loadPopup(event, "/views/addAdmin.fxml");
-    }
+    } // popupAddAdmin
 
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un producteur.
+     * Méthode qui ouvre une pop-up pour l'ajout d'un Producteur.
      * 
      * @param event ActionEvent
      */
     public void popupAddProd(ActionEvent event) {
         util.loadPopup(event, "/views/addProd.fxml");
-    }
+    } // popupAddProd
 
     /**
-     * Méthode qui ouvre une popup pour la modification d'un producteur.
+     * Méthode qui ouvre une pop-up pour la modification d'un Producteur.
      * 
      * @param event ActionEvent
      */
@@ -199,12 +208,12 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         if (!prodListView.getSelectionModel().isEmpty()) {
             ModifyProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/modifyProd.fxml");
-        }
-    }
+        } // if
+    } // popupModifyProd
 
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'un producteur.
+     * Méthode qui ouvre une pop-up pour demander la confirmation
+     * de la suppression d'un Producteur.
      * 
      * @param event ActionEvent
      */
@@ -212,12 +221,12 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         if (!prodListView.getSelectionModel().isEmpty()) {
             DeleteProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/deleteProd.fxml");
-        }
-    }
+        } // if
+    } // popupDeleteProd
 
     /**
-     * Méthode qui ouvre une popup permettant de
-     * consulter un producteur double-cliqué dans la ListView prodListView.
+     * Méthode qui ouvre une pop-up permettant de
+     * consulter un Producteur double-cliqué dans la ListView prodListView.
      * 
      * @param event MouseEvent
      */
@@ -225,20 +234,20 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         if (event.getClickCount() >= 2 && !prodListView.getSelectionModel().isEmpty()) {
             ConsultProdCtrl.setProd(prodListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultProd.fxml");
-        }
-    }
+        } // if
+    } // popupConsultProd
 
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un client.
+     * Méthode qui ouvre une pop-up pour l'ajout d'un Client.
      * 
      * @param event ActionEvent
      */
     public void popupAddClient(ActionEvent event) {
         util.loadPopup(event, "/views/addClient.fxml");
-    }
+    } // popupAddClient
 
     /**
-     * Méthode qui ouvre une popup pour la modification d'un client.
+     * Méthode qui ouvre une pop-up pour la modification d'un Client.
      * 
      * @param event ActionEvent
      */
@@ -246,12 +255,12 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         if (!clientListView.getSelectionModel().isEmpty()) {
             ModifyClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/modifyClient.fxml");
-        }
-    }
+        } // if
+    } // popupModifyClient
 
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'un client.
+     * Méthode qui ouvre une pop-up pour demander la confirmation
+     * de la suppression d'un Client.
      * 
      * @param event ActionEvent
      */
@@ -259,12 +268,12 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         if (!clientListView.getSelectionModel().isEmpty()) {
             DeleteClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/deleteClient.fxml");
-        }
-    }
+        } // if
+    } // popupDeleteClient
 
     /**
-     * Méthode qui ouvre une popup permettant de
-     * consulter un client double-cliqué dans la ListView clientListView.
+     * Méthode qui ouvre une pop-up permettant de
+     * consulter un Client double-cliqué dans la ListView clientListView.
      * 
      * @param event MouseEvent
      */
@@ -272,6 +281,7 @@ public class AdminSelectMenuCtrl extends AbstractConnCtrl implements Initializab
         if (event.getClickCount() >= 2 && !clientListView.getSelectionModel().isEmpty()) {
             ConsultClientCtrl.setClient(clientListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultClient.fxml");
-        }
-    }
-}
+        } // if
+    } // popupConsultClient
+
+} // AdminSelectMenuCtrl
