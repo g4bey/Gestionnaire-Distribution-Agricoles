@@ -3,8 +3,9 @@ package validForm;
 import modele.Commande;
 
 /**
- * Utilisé lors qu'on supprime une commande.
- * Si une tournée est associée à une commande, elle ne peut etre supprimée.
+ * Validateur de formulaire pour DeleteCommCtrl
+ * Utilisé lors qu'on supprime une Commande.
+ * Si la Commande est associée à une Tournée, elle ne peut être supprimée.
  * 
  * @see controllers.DeleteCommCtrl
  */
@@ -12,12 +13,13 @@ public class FormDeleteCommand extends FormValidator {
     /**
      * Constructeur de FormDeleteCommand.
      * 
-     * @param commande la commande à supprimer.
+     * @param commande La commande à supprimer.
      */
     public FormDeleteCommand(Commande commande) {
-        // Il faut qu'elle soit associée à aucune tournée.
+        // Il faut qu'elle ne soit associée à aucune tournée.
         if (commande.getTournee() != null) {
-            setInvalid("Cette commande est associée à une tournée");
-        }
-    }
-}
+            setInvalid("Impossible de supprimer une Commande associée à une Tournée");
+        } // if
+    } // constructeur
+
+} // FormDeleteCommand
