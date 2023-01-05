@@ -46,7 +46,7 @@ public class SQLInjectionTest {
                         + " (null, 'user2', 'user2@gmail.com', 'AncienPassword');")
                 ;
         st.close();
-    }
+    } // init
 
     /**
      * Injection SQL de premier ordre.
@@ -65,7 +65,7 @@ public class SQLInjectionTest {
         ResultSet res = pst.executeQuery();
         assertFalse(res.first());
         pst.close();
-    }
+    } // executeQueryFirstOrder
 
     /**
      * Vérifions que les preparedStatements protègent des injections SQL de second
@@ -107,9 +107,9 @@ public class SQLInjectionTest {
         if (rs.first()) {
             assertNotEquals("nouveauPassword", rs.getString("password"));
             assertEquals("AncienPassword", rs.getString("password"));
-        } // end if
+        } // if
         st.close();
-    }
+    } // secondOrderSQLInjectionTest
 
     /**
      * Fermeture de la Connection apres les tests.
@@ -119,5 +119,6 @@ public class SQLInjectionTest {
     @AfterAll
     public static void tearDown() throws SQLException {
         DatabaseConnection.close("testing");
-    }
-}
+    } // tearDown
+
+} // SQLInjectionTest
