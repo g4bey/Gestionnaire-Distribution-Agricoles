@@ -13,7 +13,7 @@ import validForm.FormDeleteVehicule;
 import validForm.FormValidator;
 
 /**
- * Contrôleur permettant la suppression d'un Vehicule.
+ * Contrôleur permettant la suppression d'un Véhicule.
  */
 public class DeleteVehicleCtrl extends AbstractConnCtrl implements Initializable {
 
@@ -27,10 +27,10 @@ public class DeleteVehicleCtrl extends AbstractConnCtrl implements Initializable
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         vehicleLabelText.setText(vehicule.getLibelle());
-    }
+    } // initialize
 
     /**
-     * Méthode qui valide la suppression du véhicule.
+     * Méthode qui valide la suppression du Véhicule.
      * 
      * @param event ActionEvent
      */
@@ -41,28 +41,30 @@ public class DeleteVehicleCtrl extends AbstractConnCtrl implements Initializable
         if (formulaire.isValid()) {
             vDAO.delete(vehicule);
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             deleteErrorText.setVisible(true);
             deleteErrorText.setText(formulaire.getErrors());
-        }
-    }
+        } // else
+    } // validateDeleteVehicle
 
     /**
-     * Méthode qui annule la suppression du véhicule.
+     * Méthode qui annule la suppression du Véhicule.
      * 
      * @param event ActionEvent
      */
     public void cancelDeleteVehicle(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelDeleteVehicle
 
     /**
-     * Méthode qui récupère le véhicule sélectionné dans la listView
+     * Méthode qui récupère le Véhicule sélectionné dans la listView
      * de la vue précédente (prodSelectMenu)
      * 
      * @param vehi Vehicule
      */
     public static void setVehicule(Vehicule vehi) {
         vehicule = vehi;
-    }
-}
+    } // setVehicule
+
+} // DeleteVehicleCtrl
