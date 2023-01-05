@@ -39,7 +39,7 @@ public class ControllersUtils {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setScene(scene);
     	stage.show();
-    }
+    } // loadView
 
     /**
     * Méthode qui charge une vue passée en paramètre.
@@ -58,10 +58,10 @@ public class ControllersUtils {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setScene(scene);
     	stage.show();
-    }
+    } // loadView
 
     /**
-    * Méthode qui charge une vue popup passée en paramètre.
+    * Méthode qui charge une vue pop-up passée en paramètre.
     * @param event ActionEvent
     * @param path String Chemin vers la vue
     */
@@ -80,10 +80,10 @@ public class ControllersUtils {
         stage.initOwner((Stage)((Node)event.getSource()).getScene().getWindow());
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
-    }
+    } // loadPopup
 
     /**
-    * Méthode qui charge une vue popup passée en paramètre.
+    * Méthode qui charge une vue pop-up passée en paramètre.
     * @param event MouseEvent
     * @param path String Chemin vers la vue
     */
@@ -102,17 +102,17 @@ public class ControllersUtils {
         stage.initOwner((Stage)((Node)event.getSource()).getScene().getWindow());
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
-    }
+    } // loadPopup
 
 	/**
-    * Méthode qui permet de fermer la vue popup.
+    * Méthode qui permet de fermer la vue pop-up et avertir le parent de sa fermeture.
     * @param event ActionEvent
     */
     public static void closePopupAndUpdateParent(ActionEvent event) {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         notifcationFermetureFenetre(stage);
     	stage.close();
-    }
+    } // closePopupAndUpdateParent
 
     /**
      * Méthode qui permet de fermer la vue popup.
@@ -121,11 +121,10 @@ public class ControllersUtils {
     public static void closePopup(ActionEvent event) {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
-    }
+    } // closePopup
 
     /**
-     * Permet d'envoyer lors qu'on ferme une fenetre.
-     * On va notifier la fenetre ayant invoqué cette derniere.
+     * Permet de signaler au parent la fermeture d'une fenêtre.
      * @param stage la fenetre qui provoque cette notification.
      */
     public static void notifcationFermetureFenetre(Stage stage) {
@@ -133,11 +132,12 @@ public class ControllersUtils {
         if (stage.getOwner().getOnCloseRequest() != null) {
             stage.getOwner().getOnCloseRequest().handle(
                     new WindowEvent(stage.getOwner(), WindowEvent.WINDOW_CLOSE_REQUEST)
-            );
-        }
-    }
+            ); // handle
+        } // if
+    } // notificationFermetureFenetre
 
     public static Stage getStage() {
         return stage;
-    }
-}
+    } // getStage
+
+} // ControllersUtils
