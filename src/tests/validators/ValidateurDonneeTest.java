@@ -19,7 +19,7 @@ public class ValidateurDonneeTest {
         assertFalse(ValidateurDonnee.valideSiret("1234123412341A"));
         assertFalse(ValidateurDonnee.valideSiret("123412341234122"));
         assertFalse(ValidateurDonnee.valideSiret("aaaabbbbccccdd"));
-    }
+    } // valideSiretTest
 
     /*
      * Permet d'assurer que le numéro de téléphone suit le bon format.
@@ -39,7 +39,7 @@ public class ValidateurDonneeTest {
         assertFalse(ValidateurDonnee.valideTelephone("0628050A05"));
         assertFalse(ValidateurDonnee.valideTelephone("06280505054"));
         assertFalse(ValidateurDonnee.valideTelephone("0L28050A05"));
-    }
+    } // valideTelephoneTest
 
     /*
      * Permet d'assurer qu'un poids puisse bien être converti en double.
@@ -52,7 +52,7 @@ public class ValidateurDonneeTest {
         assertFalse(ValidateurDonnee.validePoids(""));
         assertTrue(ValidateurDonnee.validePoids("42"));
         assertTrue(ValidateurDonnee.validePoids("42.1"));
-    }
+    } // validePoidsTest
 
     /*
      * Permet d'assurer qu'un poids fourni est bien strictement inférieur au
@@ -64,11 +64,11 @@ public class ValidateurDonneeTest {
         assertTrue(ValidateurDonnee.validePoids("42", 50));
         assertTrue(ValidateurDonnee.validePoids("42", 42));
         assertFalse(ValidateurDonnee.validePoids("42", 41));
-    }
+    } // validePoidsMax
 
     /**
      * Permet de valider le format d'une heure sous forme de String.
-     * L'on fera le choix que minuit est 00:00 et non 24:00.
+     * On fera le choix que minuit est 00:00 et non 24:00.
      */
     @Test
     @DisplayName("Permet de valider une heure")
@@ -90,7 +90,7 @@ public class ValidateurDonneeTest {
         assertFalse(ValidateurDonnee.valideHeure("0A:5A"));
         assertFalse(ValidateurDonnee.valideHeure("A23:00"));
         assertFalse(ValidateurDonnee.valideHeure("23:00A"));
-    }
+    } // valideHeureTest
 
     /**
      * Un nom peut contenir tirets, espaces et apostrophes.
@@ -112,14 +112,14 @@ public class ValidateurDonneeTest {
         assertFalse(ValidateurDonnee.valideNom("SixSix'", 15));
         assertFalse(ValidateurDonnee.valideNom("", 15));
         assertFalse(ValidateurDonnee.valideNom("Jean-bon-beurre", 1));
-    }
+    } // valideNomTest
 
     /**
      * Validation d'un pseudonyme.
      * On accepte tirets, underscore et valeurs alphanumériques.
      * Un pseudo ne peut être vide.
      * <p>
-     * L'on définit une taille maximum dans la fonction de validation.
+     * On définit une taille maximum dans la fonction de validation.
      */
     @Test
     @DisplayName("Validation d'un pseudonyme")
@@ -129,13 +129,13 @@ public class ValidateurDonneeTest {
         assertTrue(ValidateurDonnee.validePseudonyme("K4leb_4-ko", 15));
         assertTrue(ValidateurDonnee.validePseudonyme("Kaleb", 5));
         assertFalse(ValidateurDonnee.validePseudonyme("", 5));
-    }
+    } // validePseudonymeTest
 
     /**
      * Regex trouvée en ligne.
      * https://regex101.com/r/VGjLx1/1
      * <p>
-     * Elle prend en compte les formats anciens / recents.
+     * Elle prend en compte les formats anciens / récents.
      * Néanmoins, ici, on demandera obligatoirement un tiret entre les groupes,
      * par souci d'homogénéité.
      */
@@ -150,7 +150,7 @@ public class ValidateurDonneeTest {
         assertTrue(ValidateurDonnee.valideImmatriculation("3123-AA-11"));
         assertTrue(ValidateurDonnee.valideImmatriculation("8987-VG-33"));
         assertTrue(ValidateurDonnee.valideImmatriculation("AA-222-BB"));
-    }
+    } // valideImmatriculationTest
 
     /**
      * Validation d'un code postal.
@@ -164,5 +164,6 @@ public class ValidateurDonneeTest {
         assertFalse(ValidateurDonnee.valideCodePostal("370000"));
         assertFalse(ValidateurDonnee.valideCodePostal("99034"));
         assertTrue(ValidateurDonnee.valideCodePostal("37000"));
-    }
-}
+    } // valideCodePostalTest
+
+} // ValidateurDonneeTest

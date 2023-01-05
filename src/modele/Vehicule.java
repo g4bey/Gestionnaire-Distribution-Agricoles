@@ -21,47 +21,47 @@ public class Vehicule {
 
     public int getIdVehicule() {
         return idVehicule;
-    }
+    } // getIdVehicule
 
     public String getNumImmat() {
         return numImmat;
-    }
+    } // getNumImmat
 
     public float getPoidsMax() {
         return poidsMax;
-    }
+    } // getPoidsMax
 
     public String getLibelle() {
         return libelle;
-    }
+    } // getLibelle
 
     public ArrayList<Tournee> getTournees() {
         return tournees;
-    }
+    } // getTournees
 
     public Producteur getProducteur() {
         return producteur;
-    }
+    } // getProducteur
 
     public void setIdVehicule(int idVehicule) {
         this.idVehicule = idVehicule;
-    }
+    } // setIdVehicule
 
     public void setNumImmat(String numImmat) {
         this.numImmat = numImmat;
-    }
+    } // setNumImmat
 
     public void setPoidsMax(float poidsMax) {
         this.poidsMax = poidsMax;
-    }
+    } // setPoidsMax
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
-    }
+    } // setLibelle
 
     public void setProducteur(Producteur producteur) {
         this.producteur = producteur;
-    }
+    } // setProducteur
 
     @Override
     public String toString() {
@@ -70,7 +70,7 @@ public class Vehicule {
                 .concat("\nPoids max : " + poidsMax)
                 .concat("\nLibellé : ").concat(libelle)
                 .concat("\nProducteur : ").concat(producteur.getProprietaire());
-    }
+    } // toString
 
     /**
      * Compare au niveau des attributs l'égalité entre 2 instances de Véhicule
@@ -84,7 +84,7 @@ public class Vehicule {
                 && Float.compare(poidsMax, vh.poidsMax) == 0
                 && libelle.equals(vh.libelle)
                 && producteur.equals(vh.producteur);
-    }
+    } // equals
 
     /**
      * Constructeur de Véhicule.
@@ -95,7 +95,7 @@ public class Vehicule {
      * @param libelle    String représentant le libellé du Véhicule.
      * @param poidsMax   Float représentant le poids maximum que le Véhicule peut
      *                   accepter.
-     * @param producteur Producteur représentant le producteur utilisant le
+     * @param producteur Producteur représentant le Producteur utilisant le
      *                   Véhicule.
      */
     public Vehicule(int idVehicule, String numImmat, float poidsMax, String libelle, Producteur producteur) {
@@ -105,7 +105,7 @@ public class Vehicule {
         this.libelle = libelle;
         this.poidsMax = poidsMax;
         this.producteur = producteur;
-    }
+    } // constructeur
 
     /**
      * Constructeur de Véhicule.
@@ -115,7 +115,7 @@ public class Vehicule {
      * @param libelle    String représentant le libellé du Véhicule.
      * @param poidsMax   Float représentant le poids maximum que le Véhicule peut
      *                   accepter.
-     * @param producteur Producteur représentant le producteur utilisant le
+     * @param producteur Producteur représentant le Producteur utilisant le
      *                   Véhicule.
      */
     public Vehicule(String numImmat, float poidsMax, String libelle, Producteur producteur) {
@@ -124,7 +124,7 @@ public class Vehicule {
         this.libelle = libelle;
         this.poidsMax = poidsMax;
         this.producteur = producteur;
-    }
+    } // constructeur
 
     /**
      * Permet d'ajouter une Tournée à la liste de Tournées du Véhicule
@@ -133,7 +133,7 @@ public class Vehicule {
      */
     public void addTournee(Tournee tournee) {
         this.tournees.add(tournee);
-    }
+    } // addTournee
 
     /**
      * Permet de supprimer une Tournée de la liste de Tournées du Véhicule
@@ -142,5 +142,6 @@ public class Vehicule {
      */
     public void removeTournee(Tournee tournee) {
         this.tournees.remove(tournee);
-    }
-}
+    } // removeTournee
+
+} // Vehicule

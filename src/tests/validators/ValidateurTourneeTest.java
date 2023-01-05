@@ -49,7 +49,7 @@ public class ValidateurTourneeTest {
                 Statement st = conn.createStatement();
                 st.execute("DELETE FROM " + table);
                 st.execute("ALTER TABLE " + table + " AUTO_INCREMENT=1");
-        }
+        } // truncateTable
 
         /**
          * Ajoutons les données nécessaires en base.
@@ -73,60 +73,76 @@ public class ValidateurTourneeTest {
                 truncateTable("Vehicule");
                 truncateTable("Producteur");
 
-                // Ajouton un producteur.
+                // Ajoutons un Producteur.
                 PRODUCTEUR_A = new Producteur(
                                 "siret",
                                 "La FAC Granmont",
                                 "Rue François Bonamy 37200 Tours",
                                 "numTel",
                                 "0.684000,47.392000",
-                                "mdp");
+                                "mdp"
+                                ); // PRODUCTEUR_A
                 producteurDAO.add(PRODUCTEUR_A);
 
-                // Ajouton un vehicule;
+                // Ajoutons un Véhicule;
                 VEHICULE_A = new Vehicule(
                                 1,
                                 "AAAABB",
                                 100F,
                                 "Libelle",
-                                PRODUCTEUR_A);
+                                PRODUCTEUR_A
+                                ); // VEHICULE_A
                 vehiculeDAO.add(VEHICULE_A);
 
-                // Ajouton des clients
+                // Ajoutons des Clients
                 CLIENT_A = new Client(
-                                "Blaise", "ibis Tours Sud 37200 Tours", "0.7003045,47.3357014", "1001101101");
+                                "Blaise",
+                                "ibis Tours Sud 37200 Tours",
+                                "0.7003045,47.3357014",
+                                "1001101101"
+                                ); // CLIENT_A
                 COMMANDE_A = new Commande(
-                                "Les PC nuls de la fac", 10F,
-                        Timestamp.valueOf(LocalDateTime.now().plusHours(2)),
-                        Timestamp.valueOf(LocalDateTime.now().plusHours(5)),
-                                PRODUCTEUR_A, CLIENT_A);
+                                "Les PC nuls de la fac",
+                                10F,
+                                Timestamp.valueOf(LocalDateTime.now().plusHours(2)),
+                                Timestamp.valueOf(LocalDateTime.now().plusHours(5)),
+                                PRODUCTEUR_A,
+                                CLIENT_A
+                                ); // COMMANDE_A
                 clientDAO.add(CLIENT_A);
                 commandeDAO.add(COMMANDE_A);
                 CLIENT_B = new Client(
-                                "Jul", "Les Atlantes Saint Pierre Des Corps 37700", "0.724309,47.3839677", "non");
+                                "Jul",
+                                "Les Atlantes Saint Pierre Des Corps 37700",
+                                "0.724309,47.3839677",
+                                "non"
+                                ); // CLIENT_B
                 COMMANDE_B = new Commande(
-                                "Des albums claqués au sol.", 20F,
-                        Timestamp.valueOf(LocalDateTime.now().plusHours(3)),
-                        Timestamp.valueOf(LocalDateTime.now().plusHours(12)),
-                                PRODUCTEUR_A, CLIENT_B);
+                                "Des albums claqués au sol.",
+                                20F,
+                                Timestamp.valueOf(LocalDateTime.now().plusHours(3)),
+                                Timestamp.valueOf(LocalDateTime.now().plusHours(12)),
+                                PRODUCTEUR_A,
+                                CLIENT_B
+                                ); // COMMANDE_B
                 clientDAO.add(CLIENT_B);
                 commandeDAO.add(COMMANDE_B);
-        }
+        } // setup
 
         /**
-         * Créons une liste de commandes qui sera
-         * toujours vidée puis recréer avant chaque test.
-         * Cette suite de commandes sans modification est cohérente.
+         * Créons une liste de Commandes qui sera
+         * toujours vidée puis recréée avant chaque test.
+         * Cette suite de Commandes sans modification est cohérente.
          */
         @BeforeEach
         public void init() {
                 listCommandes = new ArrayList<>();
                 listCommandes.add(COMMANDE_A);
                 listCommandes.add(COMMANDE_B);
-        }
+        } // init
 
         /**
-         * On injecte une liste de commandes et un poids de départ dans le validateur,
+         * On injecte une liste de Commandes et un poids de départ dans le validateur,
          * et on constate que c'est cohérent.
          */
         @Test
@@ -140,31 +156,35 @@ public class ValidateurTourneeTest {
                 } catch (InvalidRouteException e) {
                         e.printStackTrace();
                         fail("Erreur, le trajet est bon et la méthode ne doit pas échouer.");
-                }
-        }
+                } // try/catch
+        } // tourneeValideTest
 
         /**
-         * Désormais ajoutons une commande fictive
-         * et impossible à livrer dans le créneau donnée.
+         * Ajoutons une Commande fictive
+         * et impossible à livrer dans le créneau donné.
          */
         @Test
-        @DisplayName("Test d'une tournée impossible, pas assez de temps trop loin.")
-        public void tourneeImpossible() {
-                // c'est la commande A.
+        @DisplayName("Test d'une tournée impossible, pas assez de temps, trop loin.")
+        public void tourneeImpossibleTest() {
+                // C'est la commande A.
 
                 // Une commande vachement loin.
                 Client clientChiant = new Client(
                                 "Kim Jong Un",
-                                "Residence Ryongsong,  Corée du Nord",
+                                "Residence Ryongsong, Corée du Nord",
                                 "2.2972896,48.8735162",
-                                "Rien");
+                                "Rien"
+                                ); // clientChiant
 
                 // La plage horaire ne permet pas de se rendre si loin.
                 Commande commandeImpossible = new Commande(
-                                "Les PC nuls de la fac", 10F,
-                        Timestamp.valueOf(LocalDateTime.now().plusHours(2)),
-                        Timestamp.valueOf(LocalDateTime.now().plusHours(3)),
-                                PRODUCTEUR_A, clientChiant);
+                                "Les PC nuls de la fac",
+                                10F,
+                                Timestamp.valueOf(LocalDateTime.now().plusHours(2)),
+                                Timestamp.valueOf(LocalDateTime.now().plusHours(3)),
+                                PRODUCTEUR_A,
+                                clientChiant
+                                ); // commandeImpossible
                 listCommandes.add(commandeImpossible);
 
                 // Vérifions que le résultat est FALSE.
@@ -175,58 +195,84 @@ public class ValidateurTourneeTest {
                         fail("Erreur d'accès lors de la requête.\n".concat(e.toString()));
                 } catch (InvalidRouteException e) {
                         assertNotNull(e);
-                }
-        }
+                } // try/catch
+        } // tourneeImpossible
 
         /**
-         * Dans un premier temps, nous ajoutons une tournée en base.
-         * Ensuite, nous vérifions que fournir une plage horaire où le véhicule est
-         * libre renvoi bien TRUE.
-         * Puis nous vérifions qu'une plage horaire où le véhicule est non-libre renvoi
-         * false.
+         * Dans un premier temps, nous ajoutons une Tournée en base.
+         * Ensuite, nous vérifions que fournir une plage horaire où le Véhicule est
+         * libre renvoie bien TRUE.
+         * Puis nous vérifions qu'une plage horaire où le véhicule est non-libre renvoie
+         * FALSE.
          * <p>
-         * Il faut prendre en compte que c'est méthode est appelée avant d'avoir créé la
-         * tournée.
+         * Il faut prendre en compte que cette méthode est appelée avant d'avoir créé la
+         * Tournée.
          */
         @Test
         @DisplayName("Test véhicule non disponible sur une plage donnée.")
         public void vehiculeNonDisponibleTest() {
 
-                Tournee tournee = new Tournee(new Timestamp(1672012800), new Timestamp(1673012800), 50F, "Test",
-                                VEHICULE_A);
+                Tournee tournee = new Tournee(
+                                new Timestamp(1672012800),
+                                new Timestamp(1673012800),
+                                50F,
+                                "Test",
+                                VEHICULE_A
+                                ); // tournee
                 tourneeDAO.add(tournee);
 
-                // Deux horaires où le véhicule est libre.
+                // Deux horaires où le Véhicule est libre.
                 assertTrue(
-                                ValidateurTournee.valideVehicule(VEHICULE_A, new Timestamp(1972012800),
-                                                new Timestamp(1973012800)));
+                    ValidateurTournee.valideVehicule(
+                        VEHICULE_A,
+                        new Timestamp(1972012800),
+                        new Timestamp(1973012800)
+                    ) // valideVehicule
+                ); // assertTrue
 
                 // Deux horaires où le véhicule est non-libre.
                 assertFalse(
-                                ValidateurTournee.valideVehicule(VEHICULE_A, new Timestamp(1672012800),
-                                                new Timestamp(1672012900)));
+                    ValidateurTournee.valideVehicule(
+                        VEHICULE_A,
+                        new Timestamp(1672012800),
+                        new Timestamp(1672012900)
+                    ) // valideVehicule
+                ); // assertFalse
                 tourneeDAO.delete(tournee);
-        }
+        } // vehiculeNonDisponibleTest
 
         /**
          * Nous testons si validePoids renvoie FALSE quand le poids max du véhicule est
          * inférieur au poids de la tournée.
-         * Nous testons aussi qu'il renvoie true lorsque ce poids est supérieur.
-         * Enfin nous testons le validateur lorsque ces poids sont identique.
+         * Nous testons aussi qu'il renvoie TRUE lorsque ce poids est supérieur.
+         * Enfin, nous testons le validateur lorsque ces poids sont identiques.
          */
         @Test
-        @DisplayName("Test poids commandes vs poids max véhicule")
+        @DisplayName("Test poids Commandes vs poids max Véhicule")
         public void validePoidsTest() {
-                // Le poids max est inférieur au poids des commandes.
+                // Le poids max est inférieur au poids des Commandes.
                 assertFalse(
-                                ValidateurTournee.validePoids(10F, listCommandes));
+                    ValidateurTournee.validePoids(
+                        10F,
+                        listCommandes
+                    ) // validePoids
+                ); // assertPoidsTest
 
                 // Le poids max est supérieur au poids des commandes.
                 assertTrue(
-                                ValidateurTournee.validePoids(50F, listCommandes));
+                    ValidateurTournee.validePoids(
+                        50F,
+                        listCommandes
+                    ) // validePoids
+                ); // assertTrue
 
                 // Le poids max est égal au poids des commandes.
                 assertTrue(
-                                ValidateurTournee.validePoids(30F, listCommandes));
-        }
-}
+                    ValidateurTournee.validePoids(
+                        30F,
+                        listCommandes
+                    ) // validePoids
+                ); // assertTrue
+        } // validePoidsTest
+
+} // ValidateurTourneeTest

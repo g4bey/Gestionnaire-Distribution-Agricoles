@@ -39,7 +39,7 @@ public class AdminConnCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         util = new ControllersUtils();
         formErrorText.setVisible(false);
-    }
+    } // initialize
 
     /**
      * Méthode pour annuler la connexion de l'utilisateur
@@ -49,7 +49,7 @@ public class AdminConnCtrl implements Initializable {
      */
     public void cancelAdminConn(ActionEvent event) {
         util.loadView(event, "/views/homePage.fxml");
-    }
+    } // cancelAdminConn
 
     /**
      * Méthode pour connecter l'utilisateur.
@@ -61,9 +61,11 @@ public class AdminConnCtrl implements Initializable {
                 adminPasswordField.getText());
         if (verif.isValid()) {
             util.loadView(event, "/views/adminSelectMenu.fxml");
-        } else {
+        } // if
+        else {
             formErrorText.setText(verif.getErrors());
             formErrorText.setVisible(true);
-        }
-    }
-}
+        } // else
+    } // validateAdminConn
+
+} // AdminConnCtrl

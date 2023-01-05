@@ -25,31 +25,32 @@ public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
         prodLabelText.setText(producteur.getSiret());
-    }
+    } // initialize
     
     /**
-    * Méthode qui valide la suppression du producteur.
+    * Méthode qui valide la suppression du Producteur.
     * @param event ActionEvent
     */
     public void validateDeleteProd(ActionEvent event) {
         pDAO.delete(producteur);
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // validateDeleteProd
     
     /**
-    * Méthode qui annule la suppression du producteur.
+    * Méthode qui annule la suppression du Producteur.
     * @param event ActionEvent
     */
     public void cancelDeleteProd(ActionEvent event) {
     	ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelDeleteProd
 
     /**
-    * Méthode qui récupère le producteur sélectionné dans la listView
+    * Méthode qui récupère le Producteur sélectionné dans la listView
     * de la vue précédente (adminSelectMenu)
     * @param prod Producteur
     */
     public static void setProd(Producteur prod) {
         producteur = prod;
-    }
-}
+    } // setProd
+
+} // DeleteProdCtrl

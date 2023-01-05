@@ -11,7 +11,7 @@ import modele.Tournee;
 import utility.ControllersUtils;
 
 /**
- * Contrôleur permettant la suppression d'une Tournee.
+ * Contrôleur permettant la suppression d'une Tournée.
  */
 public class DeleteTourCtrl extends AbstractConnCtrl implements Initializable {
 
@@ -25,34 +25,35 @@ public class DeleteTourCtrl extends AbstractConnCtrl implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     tourLabelText.setText(tournee.getLibelle());
-  }
+  } // initialize
 
   /**
-   * Méthode qui valide la suppression de la tournée.
+   * Méthode qui valide la suppression de la Tournée.
    * 
    * @param event ActionEvent
    */
   public void validateDeleteTour(ActionEvent event) {
     tDAO.delete(tournee);
     ControllersUtils.closePopupAndUpdateParent(event);
-  }
+  } // validateDeleteTour
 
   /**
-   * Méthode qui annule la suppression de la tournée.
+   * Méthode qui annule la suppression de la Tournée.
    * 
    * @param event ActionEvent
    */
   public void cancelDeleteTour(ActionEvent event) {
     ControllersUtils.closePopupAndUpdateParent(event);
-  }
+  } // cancelDeleteTour
 
   /**
-   * Méthode qui récupère la tournée sélectionnée dans la listView
+   * Méthode qui récupère la Tournée sélectionnée dans la listView
    * de la vue précédente (prodSelectMenu)
    * 
    * @param tour Tournee
    */
   public static void setTournee(Tournee tour) {
     tournee = tour;
-  }
-}
+  } // setTournee
+
+} // DeleteTourCtrl

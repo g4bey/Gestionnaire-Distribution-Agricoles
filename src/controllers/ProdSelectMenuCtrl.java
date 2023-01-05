@@ -23,7 +23,7 @@ import modele.Commande;
 import utility.UserAuth;
 
 /**
- * Contrôleur permettant la consultation d'un Producteur.
+ * Contrôleur permettant la consultation par un Producteur de ses Commandes, Tournées et Véhicules
  */
 public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializable {
     @FXML
@@ -79,28 +79,31 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         // TODO Auto-generated method stub
         util = new ControllersUtils();
 
-        // Affichage du libelle uniquement sur le listView.
+        // Affichage du libellé uniquement sur le listView.
         commListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
         vehicleListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Vehicule row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
         tourListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
 
         commListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Commande>() {
             @Override
@@ -109,12 +112,15 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
                 if (commListView.getItems().size() > 0) {
                     modifyCommBtn.setDisable(false);
                     deleteCommBtn.setDisable(false);
-                } else {
+                } // if
+                else {
                     modifyCommBtn.setDisable(true);
                     deleteCommBtn.setDisable(true);
-                }
-            }
-        });
+                } // else
+            } // changed
+        } // ChangeListener <Commande>
+        ); // // changed
+
         tourListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tournee>() {
             @Override
             public void changed(ObservableValue<? extends Tournee> arg0, Tournee arg1, Tournee arg2) {
@@ -122,12 +128,15 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
                 if (commListView.getItems().size() > 0) {
                     modifyTourBtn.setDisable(false);
                     deleteTourBtn.setDisable(false);
-                } else {
+                } // if
+                else {
                     modifyTourBtn.setDisable(true);
                     deleteTourBtn.setDisable(true);
-                }
-            }
-        });
+                } // else
+            } // changed
+        } // ChangeListener
+        ); // addListener
+
         vehicleListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Vehicule>() {
             @Override
             public void changed(ObservableValue<? extends Vehicule> arg0, Vehicule arg1, Vehicule arg2) {
@@ -135,20 +144,23 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
                 if (commListView.getItems().size() > 0) {
                     modifyVehicleBtn.setDisable(false);
                     deleteVehicleBtn.setDisable(false);
-                } else {
+                } // if
+                else {
                     modifyVehicleBtn.setDisable(true);
                     deleteVehicleBtn.setDisable(true);
-                }
-            }
-        });
+                } // else
+            } // changed
+        } // ChangeListener
+        ); // addListener
 
-        // si une pop-up est close.
+        // Si une pop-up est close.
         ControllersUtils.getStage().setOnCloseRequest(
                 event -> {
                     reloadListViews();
-                });
+                } // event
+        ); // setOnCloseRequest
         loadListViews();
-    }
+    } // initialize
 
     /**
      * Reload les listViews.
@@ -156,7 +168,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
     private void reloadListViews() {
         clearListViews();
         loadListViews();
-    }
+    } // reloasListViews
 
     /**
      * Clear les listViews.
@@ -165,10 +177,10 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         commListView.getItems().clear();
         tourListView.getItems().clear();
         vehicleListView.getItems().clear();
-    }
+    } // clearListViews
 
     /**
-     * Load les ListViews
+     * Charge les ListViews
      */
     private void loadListViews() {
         commandes = UserAuth.getProd().getCommandes();
@@ -187,16 +199,16 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         commListView.getItems().addAll(commandes);
         tourListView.getItems().addAll(tournees);
         vehicleListView.getItems().addAll(UserAuth.getProd().getVehicules());
-    }
+    } // loadListViews
 
     /**
-     * Méthode qui ouvre une popup affichant le profile de l'utilisateur.
+     * Méthode qui ouvre une pop-up affichant le profil de l'utilisateur.
      * 
      * @param event
      */
     public void userProfile(ActionEvent event) {
         util.loadPopup(event, "/views/prodProfile.fxml");
-    }
+    } // userProfile
 
     /**
      * Méthode qui déconnecte l'utilisateur et redirige vers la première vue.
@@ -205,19 +217,19 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
      */
     public void deconnection(ActionEvent event) {
         util.loadView(event, "/views/homePage.fxml");
-    }
+    } // deconnection
 
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'une commande.
+     * Méthode qui ouvre une pop-up pour l'ajout d'une Commande.
      * 
      * @param event ActionEvent
      */
     public void popupAddComm(ActionEvent event) {
         util.loadPopup(event, "/views/addComm.fxml");
-    }
+    } // popupAddComm
 
     /**
-     * Méthode qui ouvre une popup pour la modification d'une commande
+     * Méthode qui ouvre une pop-up pour la modification d'une Commande
      * sélectionnée dans la ListView commListView.
      * 
      * @param event ActionEvent
@@ -226,12 +238,12 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (!commListView.getSelectionModel().isEmpty()) {
             ModifyCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/modifyComm.fxml");
-        }
-    }
+        } // if
+    } // popupModifyComm
 
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'une commande sélectionnée dans la ListView commListView.
+     * Méthode qui ouvre une pop-up pour demander la confirmation
+     * de la suppression d'une Commande sélectionnée dans la ListView commListView.
      * 
      * @param event ActionEvent
      */
@@ -239,12 +251,12 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (!commListView.getSelectionModel().isEmpty()) {
             DeleteCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/deleteComm.fxml");
-        }
-    }
+        } // if
+    } // popupDeleteComm
 
     /**
-     * Méthode qui ouvre une popup permettant de
-     * consulter une commande double-cliquée dans la ListView commListView.
+     * Méthode qui ouvre une pop-up permettant de
+     * consulter une Commande double-cliquée dans la ListView commListView.
      * 
      * @param event MouseEvent
      */
@@ -252,20 +264,20 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (event.getClickCount() >= 2 && !commListView.getSelectionModel().isEmpty()) {
             ConsultCommCtrl.setCommande(commListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultComm.fxml");
-        }
-    }
+        } // if
+    } // popupConsultComm
 
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'une tournée.
+     * Méthode qui ouvre une pop-up pour l'ajout d'une Tournée.
      * 
      * @param event ActionEvent
      */
     public void popupAddTour(ActionEvent event) {
         util.loadPopup(event, "/views/addTour.fxml");
-    }
+    } // popupAddTour
 
     /**
-     * Méthode qui ouvre une popup pour la modification d'une tournée
+     * Méthode qui ouvre une pop-up pour la modification d'une Tournée
      * sélectionnée dans la ListView tourListView.
      * 
      * @param event ActionEvent
@@ -274,12 +286,12 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (!tourListView.getSelectionModel().isEmpty()) {
             ModifyTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/modifyTour.fxml");
-        }
-    }
+        } // if
+    } // popupModifyTour
 
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'une tournée sélectionnée dans la ListView commListView.
+     * Méthode qui ouvre une pop-up pour demander la confirmation
+     * de la suppression d'une Tournée sélectionnée dans la ListView commListView.
      * 
      * @param event ActionEvent
      */
@@ -287,12 +299,12 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (!tourListView.getSelectionModel().isEmpty()) {
             DeleteTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/deleteTour.fxml");
-        }
-    }
+        } // if
+    } // popupDeleteTour
 
     /**
-     * Méthode qui ouvre une popup permettant de
-     * consulter une tournée double-cliquée dans la ListView tourListView.
+     * Méthode qui ouvre une pop-up permettant de
+     * consulter une Tournée double-cliquée dans la ListView tourListView.
      * 
      * @param event MouseEvent
      */
@@ -300,20 +312,20 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (event.getClickCount() >= 2 && !tourListView.getSelectionModel().isEmpty()) {
             ConsultTourCtrl.setTournee(tourListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultTour.fxml");
-        }
-    }
+        } // if
+    } // popupConsultTour
 
     /**
-     * Méthode qui ouvre une popup pour l'ajout d'un véhicule.
+     * Méthode qui ouvre une pop-up pour l'ajout d'un Véhicule.
      * 
      * @param event ActionEvent
      */
     public void popupAddVehicle(ActionEvent event) {
         util.loadPopup(event, "/views/addVehicle.fxml");
-    }
+    } // popupAddVehicle
 
     /**
-     * Méthode qui ouvre une popup pour la modification d'un véhicule
+     * Méthode qui ouvre une pop-up pour la modification d'un Véhicule
      * sélectionné dans la ListView vehicleListView.
      * 
      * @param event ActionEvent
@@ -322,12 +334,12 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (!vehicleListView.getSelectionModel().isEmpty()) {
             ModifyVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/modifyVehicle.fxml");
-        }
-    }
+        } // if
+    } // popupModifyVehicle
 
     /**
-     * Méthode qui ouvre une popup pour demander la confirmation
-     * de la suppression d'un véhicule sélectionné dans la ListView vehicleListView.
+     * Méthode qui ouvre une pop-up pour demander la confirmation
+     * de la suppression d'un Véhicule sélectionné dans la ListView vehicleListView.
      * 
      * @param event ActionEvent
      */
@@ -335,12 +347,12 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (!vehicleListView.getSelectionModel().isEmpty()) {
             DeleteVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/deleteVehicle.fxml");
-        }
-    }
+        } // if
+    } // popupDeleteVehicle
 
     /**
-     * Méthode qui ouvre une popup permettant de
-     * consulter un véhicule double-cliqué dans la ListView vehicleListView.
+     * Méthode qui ouvre une pop-up permettant de
+     * consulter un Véhicule double-cliqué dans la ListView vehicleListView.
      * 
      * @param event
      */
@@ -348,6 +360,7 @@ public class ProdSelectMenuCtrl extends AbstractConnCtrl implements Initializabl
         if (event.getClickCount() >= 2 && !vehicleListView.getSelectionModel().isEmpty()) {
             ConsultVehicleCtrl.setVehicule(vehicleListView.getSelectionModel().getSelectedItem());
             util.loadPopup(event, "/views/consultVehicle.fxml");
-        }
-    }
-}
+        } // if
+    } // popupConsultVehicle
+
+} // ProdSelectMenuCtrl

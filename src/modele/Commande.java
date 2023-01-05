@@ -25,67 +25,67 @@ public class Commande {
 
     public int getIdCommande() {
         return idCommande;
-    }
+    } // getIdCommande
 
     public String getLibelle() {
         return libelle;
-    }
+    } // getLibelle
 
     public float getPoids() {
         return poids;
-    }
+    } // getPoids
 
     public Timestamp getHoraireDebut() {
         return horaireDebut;
-    }
+    } // getHoraireDebut
 
     public Timestamp getHoraireFin() {
         return horaireFin;
-    }
+    } // getHoraireFin
 
     public Producteur getProducteur() {
         return producteur;
-    }
+    } // getProducteur
 
     public Client getClient() {
         return client;
-    }
+    } // getClient
 
     public Tournee getTournee() {
         return tournee;
-    }
+    } // getTournee
 
     public void setIdCommande(int idCommande) {
         this.idCommande = idCommande;
-    }
+    } // setIdCommande
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
-    }
+    } // setLibelle
 
     public void setPoids(float poids) {
         this.poids = poids;
-    }
+    } // setPoids
 
     public void setHoraireDebut(Timestamp horaireDebut) {
         this.horaireDebut = horaireDebut;
-    }
+    } // setHoraireDebut
 
     public void setHoraireFin(Timestamp horaireFin) {
         this.horaireFin = horaireFin;
-    }
+    } // setHoraireFin
 
     public void setProducteur(Producteur producteur) {
         this.producteur = producteur;
-    }
+    } // setProducteur
 
     public void setClient(Client client) {
         this.client = client;
-    }
+    } // setClient
 
     public void setTournee(Tournee tournee) {
         this.tournee = tournee;
-    }
+    } // setTournee
 
     @Override
     public String toString() {
@@ -96,7 +96,7 @@ public class Commande {
                 .concat("\nTournée : ").concat(tournee == null ? "" : tournee.getLibelle())
                 .concat("\nProducteur : ").concat(producteur.getSiret())
                 .concat("\nClient : ").concat(client.getNomClient());
-    }
+    } // toString
 
     /**
      * Compare au niveau des attributs l'égalité entre 2 instances de Commande
@@ -115,7 +115,7 @@ public class Commande {
                 && cmd.tournee != null ? tournee.equals(cmd.tournee) : tournee == null;
         // Les Tournées peuvent être null lorsqu'on crée une Commande.
         // Si l'une est null et pas l'autre, c'est false par défaut.
-    }
+    } // equals
 
     /**
      * Constructeur de Commande.
@@ -141,7 +141,7 @@ public class Commande {
         this.tournee = tournee;
         this.producteur = producteur;
         this.client = client;
-    }
+    } // constructeur
 
     /**
      * Constructeur de Commande.
@@ -165,7 +165,7 @@ public class Commande {
         this.tournee = tournee;
         this.producteur = producteur;
         this.client = client;
-    }
+    } // constructeur
 
     /**
      * Constructeur de Commande lors qu'on la crée.
@@ -188,5 +188,6 @@ public class Commande {
         this.tournee = null;
         this.producteur = producteur;
         this.client = client;
-    }
-}
+    } // constructeur
+
+} // Commande

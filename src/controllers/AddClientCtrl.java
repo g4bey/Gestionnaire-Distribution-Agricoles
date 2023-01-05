@@ -51,10 +51,10 @@ public class AddClientCtrl extends AbstractConnCtrl implements Initializable {
         listePath.add("Lieu Dit");
         listePath.add("Place");
         pathTypeChoiceBox.setItems(listePath);
-    }
+    } // initialize
 
     /**
-     * Méthode qui valide l'ajout d'un client.
+     * Méthode qui valide l'ajout d'un Client.
      * 
      * @param event ActionEvent
      */
@@ -72,20 +72,20 @@ public class AddClientCtrl extends AbstractConnCtrl implements Initializable {
                     fcv.getCoordsXY(),
                     clientPhoneField.getText()));
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             formErrorText.setText(fcv.getErrors());
             formErrorText.setVisible(true);
-        }
-
-    }
+        } // else
+    } // validateAddClient
 
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'un client.
+     * Méthode qui permet de fermer la vue d'ajout d'un Client.
      * 
      * @param event ActionEvent
      */
     public void cancelAddClient(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelAddClient
 
-}
+} // AddClientCtrl

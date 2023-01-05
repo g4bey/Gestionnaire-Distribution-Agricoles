@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 
 import utility.DateManager;
 
+/**
+ * Tests de la classe utility.DateManager.
+ */
 public class DateManagerTest {
     
     static private LocalDate date;
@@ -30,7 +33,7 @@ public class DateManagerTest {
         assertEquals(DateManager.convertToTimestamp(date, "15:30"), ts);
         date = LocalDate.parse("2023-01-01");
         assertEquals(DateManager.convertToTimestamp(date, "15:30"), ts);
-    }
+    } // convertToTimestampTest
 
     /**
     * Permet de vérifier qu'un Timestamp est correctement converti en date LocalDate
@@ -43,10 +46,10 @@ public class DateManagerTest {
         LocalDate dateComplete = LocalDate.of(2023, 11, 15);
         Timestamp ts = generateTimestamp("2023-11-15 01:00:00");
         assertEquals(DateManager.TimestampToLocalDate(ts), dateComplete);
-    }
+    } // TimestampToLocalDateTest
 
     /**
-    * Permet de vérifier qu'un Timestamp est correctement converti en string de format HH:mm (heures:minutes)
+    * Permet de vérifier qu'un Timestamp est correctement converti en String de format HH:mm (heures:minutes)
     */
     @Test
     @DisplayName("Validation de la conversion d'un Timestamp en String de format HH:mm")
@@ -54,10 +57,10 @@ public class DateManagerTest {
         Timestamp ts = generateTimestamp("2023-11-15 13:46:00");
         assertNotEquals(DateManager.TimestampToHourString(ts), "00:00");
         assertEquals(DateManager.TimestampToHourString(ts), "13:46");
-    }
+    } // TimestampToHourString
 
     /**
-     * Permet de vérifier qu'un Timestamp est correctement converti en string de format dd:mm:yyyy (jour:mois:année)
+     * Permet de vérifier qu'un Timestamp est correctement converti en String de format dd:mm:yyyy (jour:mois:année)
      */
     @Test
     @DisplayName("Validation de la conversion d'un Timestamp en String de format dd:mm:yyyy")
@@ -67,7 +70,7 @@ public class DateManagerTest {
         assertNotEquals(DateManager.TimestampToDateString(ts), "05-2-2041");
         assertNotEquals(DateManager.TimestampToDateString(ts), "5-02-2041");
         assertEquals(DateManager.TimestampToDateString(ts), "05-02-2041");
-    }
+    } // TimestampToDateString
 
     /**
      * Permet de vérifier qu'un Timestamp est correctement converti en LocalTime
@@ -80,14 +83,15 @@ public class DateManagerTest {
         assertEquals(DateManager.TimestampToLocalTime(ts), time);
         time = LocalTime.of(17, 05);
         assertEquals(DateManager.TimestampToLocalTime(ts), time);
-    }
+    } // TimestampToLocalTime
 
     /**
-    * Permet de generer un Timestamp
+    * Permet de générer un Timestamp
     * @param dateString String la date et l'heure en chaîne de caractère.
     * @return Timestamp
     */
     public Timestamp generateTimestamp(String dateString) {
         return Timestamp.valueOf(dateString);
-    }
-}
+    } // generateTimestamp
+
+} // DateManagerTest

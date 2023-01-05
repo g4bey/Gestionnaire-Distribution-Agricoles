@@ -31,7 +31,7 @@ import validForm.FormAddTourValidator;
 import validator.ValidateurTournee;
 
 /**
- * Contrôleur permettant l'ajout d'une Tournee.
+ * Contrôleur permettant l'ajout d'une Tournée.
  */
 public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
 
@@ -75,33 +75,34 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
             @Override
             public Vehicule fromString(String arg0) {
                 return null;
-            }
+            } // fromString
 
             @Override
             public String toString(Vehicule arg0) {
                 if (arg0 == null) {
                     return "";
-                }
+                } // if
                 return arg0.getLibelle();
-            }
-
-        });
+            } // toString
+        } // StringConverter
+        ); // setConverter
 
         commChoiceBox.setConverter(new StringConverter<Commande>() {
 
             @Override
             public Commande fromString(String arg0) {
                 return null;
-            }
+            } // fromString
 
             @Override
             public String toString(Commande arg0) {
                 if (arg0 == null) {
                     return "";
-                }
+                } // if
                 return arg0.getLibelle();
-            }
-        });
+            } // toString
+        } // StringConverter<Commande>
+        ); // setConverter
 
         commListView.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -109,7 +110,8 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
 
         commListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Commande>() {
 
@@ -117,11 +119,13 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
             public void changed(ObservableValue<? extends Commande> arg0, Commande arg1, Commande arg2) {
                 if (commListView.getItems().size() > 0) {
                     remCommBtn.setDisable(false);
-                } else {
+                } // if
+                else {
                     remCommBtn.setDisable(true);
-                }
-            }
-        });
+                } // else
+            } // changed
+        } // ChangeListener<Commande>
+        ); // addListener
 
         vehicleChoiceBox.getItems().addAll(UserAuth.getProd().getVehicules());
         commChoiceBox.getItems().addAll(
@@ -132,15 +136,17 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Commande> arg0, Commande arg1, Commande arg2) {
                 addCommBtn.setDisable(false);
-            }
+            } // changed
 
-        });
+        } // ChangeListener<Commande>
+        ); // addListener
+
 
         maxWeightLabel.setText("0");
-    }
+    } // initialize
 
     /**
-     * Ajoute une commande, sélectionnée dans commChoiceBox, dans commListView.
+     * Ajoute une Commande, sélectionnée dans commChoiceBox, dans commListView.
      * 
      * @param event
      */
@@ -156,7 +162,7 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         } catch (IOException | InterruptedException | InvalidRouteException e) {
             commsList.remove(comm);
             return;
-        }
+        } // try/catch
 
         commListView.getItems().add(comm);
 
@@ -164,8 +170,8 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         commChoiceBox.getItems().remove(comm);
         addCommBtn.setDisable(true);
 
-        // On conserve uniquement les commandes dont les horaires de début sont après
-        // l'horaire d'arrivée de la dernière commande
+        // On conserve uniquement les Commandes dont les horaires de fin sont après
+        // l'horaire d'arrivée effectif de la dernière Commande
         List<Commande> newComms = commChoiceBox.getItems().stream()
                 .filter(c -> c.getHoraireFin().compareTo(horaires[1]) > 0).toList();
         commChoiceBox.getItems().clear();
@@ -173,10 +179,10 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
 
         changeLabel(Float.parseFloat(maxWeightLabel.getText()) + comm.getPoids(), horaires[0], horaires[1],
                 horaires[0]);
-    }
+    } // addComm
 
     /**
-     * Retire une commande, sélectionnée dans commListView, de commChoiceBox.
+     * Retire une Commande, sélectionnée dans commListView, de commChoiceBox.
      * 
      * @param event ActionEvent
      */
@@ -188,19 +194,17 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         commChoiceBox.getItems().clear();
 
         List<Commande> commsDispo = new ArrayList<>(
-                UserAuth.getProd().getCommandes().stream().filter(commande -> commande.getTournee() == null).toList()); // toutes
-                                                                                                                        // les
-                                                                                                                        // commandes
-                                                                                                                        // disponibles
-                                                                                                                        // de
-                                                                                                                        // l'utilisateur
+                UserAuth.getProd().getCommandes().stream().filter(commande -> commande.getTournee() == null).toList()
+        ); // ArrayList<Commande>
+        // Toutes les Commandes disponibles de l'utilisateur
 
         if (commListView.getItems().size() == 0) {
             startLabel.setText("");
             endLabel.setText("");
             datetimeLabel.setText("");
             maxWeightLabel.setText("0");
-        } else {
+        } // if
+        else {
             Timestamp[] horaires;
 
             try {
@@ -208,23 +212,23 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
                         UserAuth.getProd().getGpsProd());
             } catch (IOException | InterruptedException | InvalidRouteException e) {
                 return;
-            }
+            } // try/catch
 
             changeLabel(Float.parseFloat(maxWeightLabel.getText()) - poids, horaires[0], horaires[1],
                     horaires[0]);
 
-            // On conserve uniquement les commandes dont les horaires de début sont après
-            // l'horaire d'arrivée de la dernière commande
+            // On conserve uniquement les Commandes dont les horaires de fin sont après
+            // l'horaire d'arrivée effectif de la dernière Commande
             commsDispo = commsDispo.stream()
                     .filter(c -> c.getHoraireFin().compareTo(horaires[1]) > 0 && !commListView.getItems().contains(c))
                     .toList();
-        }
+        } // else
 
         commChoiceBox.getItems().addAll(commsDispo);
-    }
+    } // remComm
 
     /**
-     * Méthode qui valide l'ajout d'une tournée.
+     * Méthode qui valide l'ajout d'une Tournée.
      * 
      * @param event ActionEvent
      */
@@ -238,31 +242,32 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
                     fatv.getHeureFin(),
                     Float.parseFloat(maxWeightLabel.getText()),
                     tourLabelField.getText(),
-                    vehicleChoiceBox.getSelectionModel().getSelectedItem());
+                    vehicleChoiceBox.getSelectionModel().getSelectedItem()); // maTournee
             commListView.getItems().forEach(cmd -> maTournee.addCommande(cmd));
             tDAO.add(maTournee);
 
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             formErrorText.setVisible(true);
             formErrorText.setText(fatv.getErrors());
-        }
-    }
+        } // else
+    } // validateAddTour
 
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'une tournée.
+     * Méthode qui permet de fermer la vue d'ajout d'une Tournée.
      * 
      * @param event ActionEvent
      */
     public void cancelAddTour(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelAddTour
 
     /**
      * Permet de modifier les labels maxWeightLabel, startLabel,
      * endLabel et datetimeLabel en fonction des commandes ajoutées
      * dans la ListView commListView.
-     * 
+     *
      * @see addComm
      * @see remComm
      * @param weight    Float
@@ -275,5 +280,6 @@ public class AddTourCtrl extends AbstractConnCtrl implements Initializable {
         startLabel.setText(DateManager.TimestampToHourString(startTime));
         endLabel.setText(DateManager.TimestampToHourString(endTime));
         datetimeLabel.setText(DateManager.TimestampToDateString(dateTime));
-    }
-}
+    } // changeLabel
+
+} // AddTourCtrl

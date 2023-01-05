@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Validateur de formulaire pour ajouter ou modifier un Client
+ * Validateur de formulaire pour modifier un Client.
  * 
  * @see controllers.ModifyClientCtrl
  */
@@ -18,11 +18,11 @@ public class FormModifyClientValidator extends FormClientValidator {
     public String coordsXY;
 
     /**
-     * Constructeur de FormClientAddValidator,
-     * permet de changer les champs d'adresse en une adresse au format CSV
+     * Constructeur de FormClientAddValidator.
+     * Permet de changer les champs d'adresse en une adresse au format CSV
      * et génère les coordonnées GPS
      *
-     * @param idClient        id du Client récupéré dans la vue
+     * @param idClient        Id du Client récupéré dans la vue
      * @param clientName      Nom du Client récupéré dans la vue
      * @param addressNumField Numéro de voie du Client récupéré dans la vue
      * @param addressPathType Type de voie du Client récupéré dans la vue
@@ -40,7 +40,7 @@ public class FormModifyClientValidator extends FormClientValidator {
         // Si jamais l'appel précédent n'arrive pas à bout.
         if (!this.isValid()) {
             return;
-        }
+        } // if
 
         TourneeDAO tDAO;
         ClientDAO cDAO;
@@ -50,14 +50,15 @@ public class FormModifyClientValidator extends FormClientValidator {
         } catch (ClassNotFoundException | SQLException | IOException e) {
             setInvalid("Impossible de se connecter à la base de donnée.");
             return;
-        }
+        } // try/catch
 
         // Si on ne modifie pas l'adresse, il n'y a pas d'incohérence.
         if (!super.getAdresseCSV().equals(cDAO.get(idClient).getAdresseClient())) {
-            // Si on modifie l'adresse, il faut etre sur que le client ne pas dans une tournée.
+            // Si on modifie l'adresse, il faut être sûr que le Client n'est pas concerné par une Tournée.
             if (tDAO.clientEstDansTournee(idClient)) {
-                setInvalid("Impossible de modifier l'adresse d'un client dans une tournée.");
-            }
-        }
-    }
-}
+                setInvalid("Impossible de modifier l'adresse d'un Client dans une Tournée.");
+            } // if
+        } // if
+    } // constructeur
+
+} // FormModifyClientValidator

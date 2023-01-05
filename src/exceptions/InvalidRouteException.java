@@ -6,5 +6,6 @@ package exceptions;
 public class InvalidRouteException extends Exception {
     public InvalidRouteException(String error) {
         super(error);
-    }
-}
+    } // constructeur
+
+} // InvalidRouteException

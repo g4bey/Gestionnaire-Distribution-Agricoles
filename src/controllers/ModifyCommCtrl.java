@@ -63,20 +63,21 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
             @Override
             public Client fromString(String arg0) {
                 return null;
-            }
+            } // fromString
         
             @Override
             public String toString(Client arg0) {
                 if (arg0 == null) {
                     return "";
-                }
+                } // if
                 return arg0.getNomClient();
-            }
-        });
-    }
+            } // toString
+        } // StringConverter<Client>
+        ); // setConverter
+    } // initialize
 
     /**
-     * Méthode qui valide la modification de la commande.
+     * Méthode qui valide la modification de la Commande.
      *
      * @param event ActionEvent
      */
@@ -94,28 +95,30 @@ public class ModifyCommCtrl extends AbstractConnCtrl implements Initializable {
 
             commDAO.update(commande);
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             formErrorText.setVisible(true);
             formErrorText.setText(fmcv.getErrors());
-        }
-    }
+        } // else
+    } // validateModifyComm
 
     /**
-     * Méthode qui ferme la vue de modification de la commande.
+     * Méthode qui ferme la vue de modification de la Commande.
      *
      * @param event ActionEvent
      */
     public void cancelModifyComm(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelModifyComm
 
     /**
-     * Méthode qui récupère la commande sélectionnée dans la listView
+     * Méthode qui récupère la Commande sélectionnée dans la listView
      * de la vue précédente (prodSelectMenu)
      *
      * @param comm Commande
      */
     public static void setCommande(Commande comm) {
         commande = comm;
-    }
-}
+    } // set Commande
+
+} // ModifyCommCtrl

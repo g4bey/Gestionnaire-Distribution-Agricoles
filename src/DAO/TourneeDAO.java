@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * Représente le DAO des Tournées.
  */
 public class TourneeDAO extends DAO<Tournee> {
+
     /**
      * Récupère dans la base de données l'instance de Tournée demandée.
      * 
@@ -36,17 +37,17 @@ public class TourneeDAO extends DAO<Tournee> {
                 // On charge la liste des Commandes
                 for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(vh.getProducteur(), tournee)) {
                     tournee.addCommande(commande);
-                }
+                } // for
 
                 return tournee;
-            }
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
      * Récupère dans la base de données toutes les instances de Tournée.
@@ -72,22 +73,23 @@ public class TourneeDAO extends DAO<Tournee> {
                         rs.getTimestamp("horaireFin"),
                         rs.getFloat("poids"),
                         rs.getString("libelle"),
-                        vh);
+                        vh
+                ); // tournee
 
                 // On charge la liste des Commandes
                 for (Commande commande : cmdDAO.getCommandesByTournee(vh.getProducteur(), tournee)) {
                     tournee.addCommande(commande);
-                }
+                } // for
 
                 tournees.add(tournee);
-            }
+            } // while
 
             return tournees;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // getAll
 
     /**
      * Ajoute dans la base de données une instance de Tournée.
@@ -114,7 +116,8 @@ public class TourneeDAO extends DAO<Tournee> {
                 CommandeDAO coDAO = new CommandeDAO(conn);
                 for (Commande commande : t.getCommandes()) {
                     coDAO.update(commande);
-                }
+                } // for
+
                 // On met à jour la liste de Tournées dans Véhicule.
                 t.getVehicule().addTournee(t);
                 new VehiculeDAO(conn).update(t.getVehicule());
@@ -122,11 +125,11 @@ public class TourneeDAO extends DAO<Tournee> {
                 // On met à jour la liste de Tournées dans Producteur
                 t.getVehicule().getProducteur().addTournee(t);
                 new ProducteurDAO(conn).update(t.getVehicule().getProducteur());
-            }
+            } // if
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // add
 
     /**
      * Met à jour dans la base de données une instance de Tournée.
@@ -150,23 +153,23 @@ public class TourneeDAO extends DAO<Tournee> {
 
             for (Commande commande : t.getCommandes()) {
                 coDAO.update(commande);
-            }
+            } // for
 
             // On met à jour la liste de Tournées dans Véhicule.
             if (!t.getVehicule().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
                 new VehiculeDAO(conn).update(t.getVehicule());
-            }
+            } // if
 
-            // On met à jour la liste de Tournees dans Producteur.
+            // On met à jour la liste de Tournées dans Producteur.
             if (!t.getVehicule().getProducteur().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
                 new ProducteurDAO(conn).update(t.getVehicule().getProducteur());
-            }
+            } // if
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // update
 
     /**
      * Supprime de la base de données l'instance de Tournée associée à l'id.
@@ -184,22 +187,22 @@ public class TourneeDAO extends DAO<Tournee> {
             t.getVehicule().removeTournee(t);
 
             CommandeDAO commandeDAO = new CommandeDAO(conn);
-            // On met les Tournées à null.
+            // On met les Tournées à null dans les Commandes anciennement concernées par celle-ci.
             t.getCommandes().forEach(c -> {
                 c.setTournee(null);
                 commandeDAO.update(c);
-            });
+            }); // forEach
 
-            // On supprime de la liste de Tournées dans Producteur
+            // On supprime la Tournée de la liste de Tournées dans Producteur
             t.getVehicule().getProducteur().removeTournee(t);
             new VehiculeDAO(conn).update(t.getVehicule());
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // delete
 
     /**
-     * Retour une liste de Tournées associées à un Véhicle.
+     * Retour une liste de Tournées associées à un Véhicule.
      *
      * @param vh Le Véhicule qui doit être associé à la Tournée
      * @return Un ArrayList<> contenant les Tournées associées au Véhicule
@@ -220,11 +223,13 @@ public class TourneeDAO extends DAO<Tournee> {
                     rs.getTimestamp("horaireFin"),
                     rs.getFloat("poids"),
                     rs.getString("libelle"),
-                    vh));
-        }
+                    vh
+            ) // Tournee
+            ); // add
+        } // while
 
         return tournees;
-    }
+    } // getTourneesByVehicule
 
     /**
      * Retourne une liste de Tournées associées à une liste de Véhicules, pour
@@ -241,16 +246,16 @@ public class TourneeDAO extends DAO<Tournee> {
 
         for (Vehicule vehicule : vehicules) {
             tournees.addAll(getTourneesByVehicule(vehicule));
-        }
+        } // for
 
         return tournees;
-    }
+    } // getTourneesByVehicules
 
     /**
      * Retourne si oui ou non un client est dans une tournée
      *
      * @param clientId L'id du Client qui doit être associé à la Tournée
-     * @return Un boolean attestant de la présence d'une client dans une tournée
+     * @return Un booléen attestant de la présence d'un Client dans une Tournée
      * @throws SQLException
      */
     public boolean clientEstDansTournee(int clientId) throws SQLException {
@@ -261,10 +266,10 @@ public class TourneeDAO extends DAO<Tournee> {
 
         if (rs.first()) {
             return true;
-        }
+        } // if
 
         return false;
-    }
+    } // clientEstDansTournee
 
     /**
      * Constructeur de TourneeDAO.
@@ -273,5 +278,6 @@ public class TourneeDAO extends DAO<Tournee> {
      */
     public TourneeDAO(Connection conn) {
         super(conn);
-    }
-}
+    } // constructeur
+
+} // TourneeDAO

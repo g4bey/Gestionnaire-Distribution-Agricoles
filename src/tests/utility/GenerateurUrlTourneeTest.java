@@ -40,7 +40,7 @@ public class GenerateurUrlTourneeTest {
         Statement st = conn.createStatement();
         st.execute("DELETE FROM " + table);
         st.execute("ALTER TABLE " + table + " AUTO_INCREMENT=1");
-    }
+    } // truncateTable
 
     /**
      * On crée une Connection puis instancie les DAO.
@@ -64,7 +64,7 @@ public class GenerateurUrlTourneeTest {
         truncateTable("Tournee");
         truncateTable("Vehicule");
         truncateTable("Producteur");
-    }
+    } // setup
 
     /**
      * On crée une Tournée et on vérifie que l'URL généré est bien celui attendu
@@ -81,54 +81,63 @@ public class GenerateurUrlTourneeTest {
                 "Tour Eiffel",
                 "numTelProd",
                 "48.858585,2.2945564",
-                "mdpProd");
+                "mdpProd"
+                ); // producteur
         Vehicule vehicule = new Vehicule(
                 "numImm",
                 70F,
                 "VROUM",
-                producteur);
+                producteur
+                ); // vehicule
         Client client1 = new Client(
                 "nomClient",
                 "Invalides",
                 "48.856693,2.3127310",
-                "numTelClient");
+                "numTelClient"
+                ); // client1
         Client client2 = new Client(
                 "nomClient",
                 "Gare Montparnasse",
                 "48.840864,2.3193185",
-                "numTelClient");
+                "numTelClient"
+                ); // client2
         Client client3 = new Client(
                 "nomClient",
                 "Jardin du Luxembourg",
                 "48.846331,2.3371190",
-                "numTelClient");
+                "numTelClient"
+                ); // client3
         Tournee tournee = new Tournee(
                 new Timestamp(70000),
                 new Timestamp(95000),
                 69F,
                 "Livraison de goodies parisiens",
-                vehicule);
+                vehicule
+                ); // tournee
         Commande commande1 = new Commande(
                 "Commande Invalides",
                 14F,
                 new Timestamp(72000),
                 new Timestamp(73000),
                 producteur,
-                client1);
+                client1
+                ); // commande1
         Commande commande2 = new Commande(
                 "Commande Montparnasse",
                 25F,
                 new Timestamp(80000),
                 new Timestamp(82000),
                 producteur,
-                client2);
+                client2
+                ); // commande2
         Commande commande3 = new Commande(
                 "Commande Jardin du Luxembourg",
                 30F,
                 new Timestamp(85000),
                 new Timestamp(88000),
                 producteur,
-                client3);
+                client3
+                ); // commande3
 
         producteurDAO.add(producteur);
         vehiculeDAO.add(vehicule);
@@ -150,5 +159,6 @@ public class GenerateurUrlTourneeTest {
                 "https://www.google.com/maps/dir/?api=1&origin=48.858585,2.2945564"
                         + "&destination=48.858585,2.2945564&waypoints=48.856693,2.3127310%7C"
                         + "48.840864,2.3193185%7C48.846331,2.3371190");
-    }
-}
+    } // AffichageTourneeUrlTest
+
+} // GenerateurUrlTest

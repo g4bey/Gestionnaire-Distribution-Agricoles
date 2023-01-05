@@ -28,71 +28,71 @@ public class Producteur {
 
     public int getIdProducteur() {
         return idProducteur;
-    }
+    } // getIdProducteur
 
     public String getSiret() {
         return siret;
-    }
+    } // getSiret
 
     public String getProprietaire() {
         return proprietaire;
-    }
+    } // getProprietaire
 
     public String getAdresseProd() {
         return adresseProd;
-    }
+    } // getAdresseProd
 
     public String getNumTelProd() {
         return numTelProd;
-    }
+    } // getNumTelProd
 
     public String getGpsProd() {
         return gpsProd;
-    }
+    } // getGpsProd
 
     public String getMdpProd() {
         return mdpProd;
-    }
+    } // getMdpProd
 
     public ArrayList<Vehicule> getVehicules() {
         return vehicules;
-    }
+    } // getVehicules
 
     public ArrayList<Commande> getCommandes() {
         return commandes;
-    }
+    } // getCommandes
 
     public ArrayList<Tournee> getTournees() {
         return tournees;
-    }
+    } // getTournees
 
     public void setIdProducteur(int idProducteur) {
         this.idProducteur = idProducteur;
-    }
+    } // setIdProducteur
 
     public void setSiret(String siret) {
         this.siret = siret;
-    }
+    } // setSiret
 
     public void setProprietaire(String proprietaire) {
         this.proprietaire = proprietaire;
-    }
+    } // setProprietaire
 
     public void setAdresseProd(String adresseProd) {
         this.adresseProd = adresseProd;
-    }
+    } // setAdresseProd
 
     public void setNumTelProd(String numTelProd) {
         this.numTelProd = numTelProd;
-    }
+    } // setNumTelProd
 
     public void setGpsProd(String gpsProd) {
         this.gpsProd = gpsProd;
-    }
+    } // setGpsProd
 
     public void setMdpProd(String mdpProd) {
         this.mdpProd = mdpProd;
-    }
+    } // setMdpProd
 
     @Override
     public String toString() {
@@ -103,8 +103,7 @@ public class Producteur {
                 .concat("Numéro téléphone : ").concat(numTelProd)
                 .concat("GPS : ").concat(gpsProd)
                 .concat("Hash du mdp : ").concat(mdpProd);
-
-    }
+    } // toString
 
     /**
      * Compare au niveau des attributs l'égalité entre 2 instances de Producteur
@@ -120,7 +119,7 @@ public class Producteur {
                 && numTelProd.equals(prd.numTelProd)
                 && gpsProd.equals(prd.gpsProd)
                 && mdpProd.equals(prd.mdpProd);
-    }
+    } // equals
 
     /**
      * Constructeur de Producteur.
@@ -143,7 +142,7 @@ public class Producteur {
         this.numTelProd = numTelProd;
         this.gpsProd = gpsProd;
         this.mdpProd = mdpProd;
-    }
+    } // constructeur
 
     /**
      * Constructeur de Producteur.
@@ -164,25 +163,25 @@ public class Producteur {
         this.numTelProd = numTelProd;
         this.gpsProd = gpsProd;
         this.mdpProd = mdpProd;
-    }
+    } // constructeur
 
     /**
-     * Permet d'ajouter un véhicule à la liste de véhicules du producteur
+     * Permet d'ajouter un Véhicule à la liste de Véhicules du Producteur
      * 
      * @param vehicule L'objet Véhicule à ajouter
      */
     public void addVehicule(Vehicule vehicule) {
         this.vehicules.add(vehicule);
-    }
+    } // addVehicule
 
     /**
-     * Permet de supprimer un véhicule de la liste de véhicules du producteur
+     * Permet de supprimer un Véhicule de la liste de Véhicules du Producteur
      * 
      * @param vehicule L'objet Véhicule à supprimer
      */
     public void removeVehicule(Vehicule vehicule) {
         this.vehicules.remove(vehicule);
-    }
+    } // removeVehicule
 
     /**
      * Permet d'ajouter une Commande à la liste de Commandes du Producteur
@@ -191,7 +190,7 @@ public class Producteur {
      */
     public void addCommande(Commande commande) {
         this.commandes.add(commande);
-    }
+    } // addCommande
 
     /**
      * Permet de supprimer une Commande de la liste de Commandes du Producteur
@@ -200,7 +199,7 @@ public class Producteur {
      */
     public void removeCommande(Commande commande) {
         this.commandes.remove(commande);
-    }
+    } // removeCommande
 
     /**
      * Permet d'ajouter une Tournée à la liste de Tournées du Producteur
@@ -209,7 +208,7 @@ public class Producteur {
      */
     public void addTournee(Tournee tournee) {
         this.tournees.add(tournee);
-    }
+    } // addTournee
 
     /**
      * Permet de supprimer une Tournée de la liste de Tournées du Producteur
@@ -218,5 +217,6 @@ public class Producteur {
      */
     public void removeTournee(Tournee tournee) {
         this.tournees.remove(tournee);
-    }
-}
+    } // removeTournee
+
+} // Producteur

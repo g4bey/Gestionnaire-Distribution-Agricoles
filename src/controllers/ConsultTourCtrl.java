@@ -18,7 +18,7 @@ import utility.DateManager;
 import utility.GenerateurUrl;
 
 /**
- * Contrôleur permettant l'aperçu Tournee.
+ * Contrôleur permettant l'aperçu Tournée.
  */
 public class ConsultTourCtrl implements Initializable {
 
@@ -62,36 +62,38 @@ public class ConsultTourCtrl implements Initializable {
     capacityText.setText(String.valueOf(tournee.getPoids()).concat("kg"));
     commListView.getItems().addAll(tournee.getCommandes());
 
-    // Affichage du libelle uniquement sur le listView.
+    // Affichage du libellé uniquement sur le listView.
     commListView.setCellFactory(lv -> new ListCell<>() {
       @Override
       public void updateItem(Commande row, boolean empty) {
         super.updateItem(row, empty);
         setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
       }
-    });
+    } // updateItem
+    ); // setCellFactory
 
     WebEngine webEngine = tourMapWebView.getEngine();
     webEngine.load(GenerateurUrl.AffichageTourneeUrl(tournee));
-  }
+  } // initialize
 
   /**
    * Méthode qui ferme la vue de consultation
-   * des informations d'une tournée.
+   * des informations d'une Tournée.
    * 
    * @param event ActionEvent
    */
   public void closeConsultTour(ActionEvent event) {
     ControllersUtils.closePopupAndUpdateParent(event);
-  }
+  } // closeConsultTour
 
   /**
-   * Méthode qui récupère la tournée sélectionnée dans la listView
+   * Méthode qui récupère la Tournée sélectionnée dans la listView
    * de la vue précédente (prodSelectMenu)
    * 
    * @param tour Tournee
    */
   public static void setTournee(Tournee tour) {
     tournee = tour;
-  }
-}
+  } // setTournee
+
+} // ConsultTourCtrl

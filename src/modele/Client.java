@@ -16,43 +16,43 @@ public class Client {
 
     public int getIdClient() {
         return idClient;
-    }
+    } // getIdClient
 
     public String getNomClient() {
         return nomClient;
-    }
+    } // getNomClient
 
     public String getAdresseClient() {
         return adresseClient;
-    }
+    } // getAdresseClient
 
     public String getGpsClient() {
         return gpsClient;
-    }
+    } // getGpsClient
 
     public String getNumTelClient() {
         return numTelClient;
-    }
+    } // getNumTelClient
 
     public void setIdClient(int idClient) {
         this.idClient = idClient;
-    }
+    } // setIdClient
 
     public void setNomClient(String nomClient) {
         this.nomClient = nomClient;
-    }
+    } // setNomClient
 
     public void setAdresseClient(String adresseClient) {
         this.adresseClient = adresseClient;
-    }
+    } // setAdresseClient
 
     public void setGpsClient(String gpsClient) {
         this.gpsClient = gpsClient;
-    }
+    } // setGpsClient
 
     public void setNumTelClient(String numTelClient) {
         this.numTelClient = numTelClient;
-    }
+    } // setNumTelClient
 
     @Override
     public String toString() {
@@ -61,7 +61,7 @@ public class Client {
                 .concat("\nAdresse : ").concat(adresseClient.replace(",", " "))
                 .concat("\nGPS : ").concat(gpsClient)
                 .concat("\nNuméro téléphone : ").concat(numTelClient);
-    }
+    } // toString
 
     /**
      * Compare au niveau des attributs l'égalité entre 2 instances Client
@@ -75,7 +75,7 @@ public class Client {
                 && adresseClient.equals(clt.adresseClient)
                 && gpsClient.equals(clt.gpsClient)
                 && numTelClient.equals(clt.numTelClient);
-    }
+    } // equals
 
     /**
      * Constructeur de Client.
@@ -92,7 +92,7 @@ public class Client {
         this.adresseClient = adresseClient;
         this.gpsClient = gpsClient;
         this.numTelClient = numTelClient;
-    }
+    } // constructeur
 
     /**
      * Constructeur de Client.
@@ -107,5 +107,6 @@ public class Client {
         this.adresseClient = adresseClient;
         this.gpsClient = gpsClient;
         this.numTelClient = numTelClient;
-    }
-}
+    } // constructeur
+
+} // Client

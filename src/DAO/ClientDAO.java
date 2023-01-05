@@ -9,9 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Représente le DAO des clients.
+ * Représente le DAO des Clients.
  */
 public class ClientDAO extends DAO<Client> {
+
     /**
      * Récupère dans la base de données l'instance de Client demandée.
      * 
@@ -30,15 +31,16 @@ public class ClientDAO extends DAO<Client> {
                         rs.getString("nomClient"),
                         rs.getString("adresseClient"),
                         rs.getString("gpsClient"),
-                        rs.getString("numTelClient"));
-            }
+                        rs.getString("numTelClient")
+                ); // Client
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
      * Récupère dans la base de données toutes les instances de Client.
@@ -57,15 +59,17 @@ public class ClientDAO extends DAO<Client> {
                         rs.getString("nomClient"),
                         rs.getString("adresseClient"),
                         rs.getString("gpsClient"),
-                        rs.getString("numTelClient")));
-            }
+                        rs.getString("numTelClient")
+                        ) // Client
+                ); // add
+            } // while
 
             return clients;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // getAll
 
     /**
      * Ajoute dans la base de données une instance de Client.
@@ -88,12 +92,12 @@ public class ClientDAO extends DAO<Client> {
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 clt.setIdClient((int) id);
-            }
+            } // if
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // add
 
     /**
      * Met à jour dans la base de données une instance de Client.
@@ -114,8 +118,8 @@ public class ClientDAO extends DAO<Client> {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // update
 
     /**
      * Supprime de la base de données l'instance de Client associée à l'id.
@@ -131,8 +135,8 @@ public class ClientDAO extends DAO<Client> {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // delete
 
     /**
      * Constructeur de ClientDAO.
@@ -141,5 +145,6 @@ public class ClientDAO extends DAO<Client> {
      */
     public ClientDAO(Connection conn) {
         super(conn);
-    }
-}
+    } // constructeur
+
+} // ClientDAO

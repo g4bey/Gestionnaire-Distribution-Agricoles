@@ -8,15 +8,17 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
+ * Validateur de formulaire pour DeleteVehicleCtrl.
  * Utilisé lors qu'on supprime un véhicule.
  * Si un véhicule est lié à une tournée, on ne peut le supprimer.
+ *
  * @see controllers.DeleteVehicleCtrl
  */
 public class FormDeleteVehicule extends FormValidator {
 
     /**
      * Constructeur de FormDeleteVehicule.
-     * @param vehicule le vehicule à supprimer.
+     * @param vehicule Le Véhicule à supprimer.
      */
     public FormDeleteVehicule(Vehicule vehicule) {
         TourneeDAO tDAO;
@@ -24,17 +26,18 @@ public class FormDeleteVehicule extends FormValidator {
         try {
             tDAO = new TourneeDAO(DatabaseConnection.getInstance("production"));
         } catch (ClassNotFoundException | SQLException | IOException e) {
-            setInvalid("Impossible de se connecter à la base de donnée.");
+            setInvalid("Impossible de se connecter à la base de données.");
             return;
-        }
+        } // try/catch
         
-        // Il faut qu'elle soit associée à aucune tournée.
+        // Il faut qu'elle ne soit associée à aucune Tournée.
         try {
             if (!tDAO.getTourneesByVehicule(vehicule).isEmpty()) {
-                setInvalid("Ce véhicule est associé à une tournée");
+                setInvalid("Impossible de supprimer un Véhicule associé à une Tournée");
             }
         } catch (SQLException e) {
-            setInvalid("Probleme, veuillez contacter l'administrateur: " + e.getErrorCode());
-        }
-    }
-}
+            setInvalid("Problème, veuillez contacter l'Administrateur: " + e.getErrorCode());
+        } // try/catch
+    } // constructeur
+
+} // FormDeleteVehicule

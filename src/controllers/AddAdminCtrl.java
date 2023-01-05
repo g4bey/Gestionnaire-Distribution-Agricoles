@@ -34,10 +34,10 @@ public class AddAdminCtrl extends AbstractConnCtrl implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         formErrorText.setVisible(false);
-    }
+    } // initialize
 
 	/**
-	* Méthode qui valide l'ajout d'un administrateur.
+	* Méthode qui valide l'ajout d'un Administrateur.
 	* @param event ActionEvent
 	*/
     public void validateAddAdmin(ActionEvent event) {
@@ -51,18 +51,19 @@ public class AddAdminCtrl extends AbstractConnCtrl implements Initializable {
             String hashedPs = argon2.hash(2,15*1024,1, adminPasswordField.getText().toCharArray());
             aDAO.add(new Administrateur(adminLoginField.getText(), hashedPs));
             ControllersUtils.closePopupAndUpdateParent(event);
-        }
+        } // if
         else {
             formErrorText.setText(faav.getErrors());
             formErrorText.setVisible(true);
-        }
-    }
+        } // else
+    } // validateAddAdmin
     
     /**
-    * Méthode qui permet de fermer la vue d'ajout d'un administrateur.
+    * Méthode qui permet de fermer la vue d'ajout d'un Administrateur.
     * @param event ActionEvent
     */
     public void cancelAddAdmin(ActionEvent event) {
     	ControllersUtils.closePopupAndUpdateParent(event);
-    }
-}
+    } // cancelAddAdmin
+
+} // AddAdminCtrl

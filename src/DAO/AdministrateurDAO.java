@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * Représente le DAO des Administrateurs.
  */
 public class AdministrateurDAO extends DAO<Administrateur> {
+
     /**
      * Récupère dans la base de données l'instance d'Administrateur demandée.
      * 
@@ -25,15 +26,18 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return new Administrateur(id, rs.getString("pseudo"), rs.getString("mdpAdmin"));
-            }
+                return new Administrateur(id,
+                    rs.getString("pseudo"),
+                    rs.getString("mdpAdmin")
+                ); // Administrateur
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
      * Récupère dans la base de données l'instance d'Administrateur demandée.
@@ -49,15 +53,19 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return new Administrateur(rs.getInt("idAdministrateur"), pseudo, rs.getString("mdpAdmin"));
-            }
+                return new Administrateur(
+                    rs.getInt("idAdministrateur"),
+                    pseudo,
+                    rs.getString("mdpAdmin")
+                ); // Administrateur
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
      * Récupère dans la base de données toutes les instances d'Administrateur.
@@ -74,15 +82,17 @@ public class AdministrateurDAO extends DAO<Administrateur> {
                 administrateurs.add(new Administrateur(
                         rs.getInt("idAdministrateur"),
                         rs.getString("pseudo"),
-                        rs.getString("mdpAdmin")));
-            }
+                        rs.getString("mdpAdmin")
+                        ) // Administrateur
+                ); // add
+            } // while
 
             return administrateurs;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // getAll
 
     /**
      * Ajoute dans la base de données une instance d'Administrateur.
@@ -103,11 +113,11 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 adm.setIdAdministrateur((int) id);
-            }
+            } // if
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // add
 
     /**
      * Met à jour dans la base de données une instance d'Administrateur.
@@ -126,8 +136,8 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // update
 
     /**
      * Supprime de la base de données l'instance d'Administrateur associée à l'id.
@@ -143,8 +153,8 @@ public class AdministrateurDAO extends DAO<Administrateur> {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // delete
 
     /**
      * Constructeur d'AdministrateurDAO.
@@ -153,5 +163,6 @@ public class AdministrateurDAO extends DAO<Administrateur> {
      */
     public AdministrateurDAO(Connection conn) {
         super(conn);
-    }
-}
+    } // constructeur
+
+} // AdministrateurDAO

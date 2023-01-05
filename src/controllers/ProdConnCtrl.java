@@ -38,7 +38,7 @@ public class ProdConnCtrl implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
         util = new ControllersUtils();
-    }
+    } // initialize
 
     /**
      * Méthode qui authentifie l'utilisateur.
@@ -49,12 +49,12 @@ public class ProdConnCtrl implements Initializable {
         FormProdConnCtrl verif = new FormProdConnCtrl(prodSiretField.getText(), prodPasswordField.getText());
         if (verif.isValid()) {
             util.loadView(event, "/views/prodSelectMenu.fxml");
-        } else {
+        } // if
+        else {
             connErreurText.setText(verif.getErrors());
             connErreurText.setVisible(true);
-        }
-
-    }
+        } // else
+    } // validateProdConn
 
     /**
      * Méthode pour revenir sur la page d'accueil.
@@ -63,5 +63,6 @@ public class ProdConnCtrl implements Initializable {
      */
     public void cancelProdConn(ActionEvent event) {
         util.loadView(event, "/views/homePage.fxml");
-    }
-}
+    } // cancelProdConn
+
+} // ProdConnCtrl

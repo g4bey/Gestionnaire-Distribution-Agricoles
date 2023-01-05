@@ -60,7 +60,8 @@ public class ConsultProdCtrl implements Initializable {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
 
         prodSiretText.setText(producteur.getSiret());
         prodPropText.setText(producteur.getProprietaire());
@@ -82,47 +83,51 @@ public class ConsultProdCtrl implements Initializable {
         prodCommListView.getItems().addAll(commandes);
         prodTourListView.getItems().addAll(tournees);
 
-        // Affichage du libelle uniquement sur le listView.
+        // Affichage du libellé uniquement sur le listView.
         prodCommListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Commande row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
         prodTourListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Tournee row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle() + " | " + row.getHoraireDebut() + " | " + row.getHoraireFin());
             }
-        });
+        } // updateItem
+        ); // setCellFactory
         prodVehicleListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             public void updateItem(Vehicule row, boolean empty) {
                 super.updateItem(row, empty);
                 setText(empty ? null : row.getLibelle());
             }
-        });
-    }
+        } // updateItem
+        ); // setCellFactory
+    } // initialize
 
     /**
      * Méthode qui permet de fermer la vue de consultation
-     * des informations d'un producteur.
+     * des informations d'un Producteur.
      * 
      * @param event ActionEvent
      */
     public void closeConsultProd(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // closeConsultProd
 
     /**
-     * Méthode qui récupère le producteur sélectionné dans la listView
+     * Méthode qui récupère le Producteur sélectionné dans la listView
      * de la vue précédente (adminSelectMenu)
      * 
      * @param prod Producteur
      */
     public static void setProd(Producteur prod) {
         producteur = prod;
-    }
-}
+    } // setProd
+
+} // ConsultProdCtrl

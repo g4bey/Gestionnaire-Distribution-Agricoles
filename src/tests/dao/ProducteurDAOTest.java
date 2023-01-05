@@ -46,7 +46,7 @@ public class ProducteurDAOTest {
         Statement st = conn.createStatement();
         st.execute("DELETE FROM " + table);
         st.execute("ALTER TABLE " + table + " AUTO_INCREMENT=1");
-    }
+    } // truncateTable
 
     /**
      * On crée une Connection, puis instancie les DAO.
@@ -71,7 +71,7 @@ public class ProducteurDAOTest {
         truncateTable("Tournee");
         truncateTable("Vehicule");
         truncateTable("Producteur");
-    }
+    } // setup
 
     /**
      * On crée deux Producteurs puis l'on les insère en base.
@@ -82,18 +82,35 @@ public class ProducteurDAOTest {
      */
     @BeforeEach
     public void init() throws SQLException {
-        PRODUCTEUR_A = new Producteur("73282932000074", "Jean", "267 rue de Grandmont", "0674384726",
-                "47.37760650.8082932", "hashMDP1");
-        PRODUCTEUR_B = new Producteur("73282932000075", "Patrick", "13 rue du Poulpe", "0612934563",
-                "48.37760650.8082932", "hashMDP2");
+        PRODUCTEUR_A = new Producteur(
+            "73282932000074",
+            "Jean",
+            "267 rue de Grandmont",
+            "0674384726",
+            "47.37760650.8082932",
+            "hashMDP1"
+            ); // PRODUCTEUR_A
+        PRODUCTEUR_B = new Producteur(
+            "73282932000075",
+            "Patrick",
+            "13 rue du Poulpe",
+            "0612934563",
+            "48.37760650.8082932",
+            "hashMDP2"
+            ); // PRODUCTEUR_B
 
-        VEHICULE_A = new Vehicule("AA229AA", 32F, "véhicule principal", PRODUCTEUR_A);
+        VEHICULE_A = new Vehicule(
+            "AA229AA",
+            32F,
+            "véhicule principal",
+            PRODUCTEUR_A
+            ); // VEHICULE_A
 
         truncateTable("Producteur");
         truncateTable("Vehicule");
 
         PRODUCTEUR_A.addVehicule(VEHICULE_A);
-    }
+    } // init
 
     /**
      * Vérifions que l'ID de PRODUCTEUR_A : 0 avant insertion,
@@ -108,7 +125,7 @@ public class ProducteurDAOTest {
         assertEquals(0, PRODUCTEUR_A.getIdProducteur());
         prodDAO.add(PRODUCTEUR_A);
         assertEquals(1, PRODUCTEUR_A.getIdProducteur());
-    }
+    } // addTest
 
     /**
      * On insère PRODUCTEUR_A en base.
@@ -118,7 +135,7 @@ public class ProducteurDAOTest {
      * Puis on vérifie que l'attribut producteur est bien le Producteur dans
      * PRODUCTEUR_A.
      * <p>
-     * Enfin l'on assure qu'un ID inexistant renvoi bien null.
+     * Enfin l'on assure qu'un ID inexistant renvoie bien null.
      */
     @Test
     @DisplayName("Test de la méthode get")
@@ -133,13 +150,13 @@ public class ProducteurDAOTest {
         // Cet ID n'existe pas.
         Producteur ProducteurNull = prodDAO.get(5);
         assertNull(ProducteurNull);
-    }
+    } // getTest
 
     /**
      * Insérons PRODUCTEUR_A et PRODUCTEUR_B en base.
      * Ces derniers auront comme ID 1 et 2.
      * <p>
-     * On vérifie qu'il y a bien 2 éléments dans le tableau retourné.
+     * On vérifie qu'il y ait bien 2 éléments dans le tableau retourné.
      * Puis on vérifie que ces éléments ont les bons ID.
      */
     @Test
@@ -153,7 +170,7 @@ public class ProducteurDAOTest {
         assertEquals(2, ProducteurList.size());
         assertEquals(1, ProducteurList.get(0).getIdProducteur());
         assertEquals(2, ProducteurList.get(1).getIdProducteur());
-    }
+    } // getAllTest
 
     /**
      * On insère le PRODUCTEUR_A en base.
@@ -168,10 +185,10 @@ public class ProducteurDAOTest {
         prodDAO.add(PRODUCTEUR_A);
         int idProducteur = PRODUCTEUR_A.getIdProducteur();
 
-        // Après suppression, l'ID devrait être null.
+        // Après suppression, l'ID devrait renvoyer null.
         prodDAO.delete(PRODUCTEUR_A);
         assertNull(prodDAO.get(idProducteur));
-    }
+    } // deleteTest
 
     /**
      * On commence par créer et ajouter un nouveau Producteur en base.
@@ -187,7 +204,7 @@ public class ProducteurDAOTest {
         PRODUCTEUR_A.addVehicule(VEHICULE_A);
 
         // On ajoute puis met à jour le PRODUCTEUR_A
-        // on change aussi le Producteur
+        // on change aussi le Véhicule
         prodDAO.add(PRODUCTEUR_A);
         PRODUCTEUR_A.setAdresseProd("200 rue de Grandmont");
         PRODUCTEUR_A.setGpsProd("46.37760650.8082932");
@@ -201,7 +218,7 @@ public class ProducteurDAOTest {
         // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Producteur ProducteurRetour = prodDAO.get(PRODUCTEUR_A.getIdProducteur());
         assertTrue(ProducteurRetour.equals(PRODUCTEUR_A));
-    }
+    } // updateTest
 
     /**
      * On s'assure que les références vers d'autres objets sont
@@ -214,31 +231,51 @@ public class ProducteurDAOTest {
 
         // On ajoute un Client en base
         ClientDAO clientDAO = new ClientDAO(conn);
-        Client client = new Client("Jean", "120 Rue", "123,987", "229938");
+        Client client = new Client(
+            "Jean",
+            "120 Rue",
+            "123,987",
+            "229938"
+            ); // client
         clientDAO.add(client);
 
         // On ajoute une Commande en base
         CommandeDAO commandeDAO = new CommandeDAO(conn);
         Commande commande = new Commande(
-                "Com", 20F, new Timestamp(10000), new Timestamp(20000),
-                PRODUCTEUR_A, client);
+                "Com",
+                20F,
+                new Timestamp(10000),
+                new Timestamp(20000),
+                PRODUCTEUR_A,
+                client
+                ); // commande
         commandeDAO.add(commande);
 
         // On vérifie que le Producteur possède bien cette Commande.
         assertTrue(PRODUCTEUR_A.getCommandes().get(0).equals(commande));
 
-        // On insère une autre commande pour le Producteur.
+        // On insère une autre Commande pour le Producteur.
         Commande commandeBis = new Commande(
-                "Com2", 20F, new Timestamp(100000), new Timestamp(200000),
-                PRODUCTEUR_A, client);
+                "Com2",
+                20F,
+                new Timestamp(100000),
+                new Timestamp(200000),
+                PRODUCTEUR_A,
+                client
+                ); // commandeBis
         PRODUCTEUR_A.addCommande(commandeBis);
         prodDAO.update(PRODUCTEUR_A);
 
-        // On constate que c'est bien dans l'objet.
+        // On constate que la Commande est bien présente dans l'objet.
         assertTrue(PRODUCTEUR_A.getCommandes().get(1).equals(commandeBis));
 
         // On crée un nouveau Véhicule
-        Vehicule vehicule = new Vehicule("9897-FF", 90F, "Vehi", PRODUCTEUR_A);
+        Vehicule vehicule = new Vehicule(
+            "9897-FF",
+            90F,
+            "Vehi",
+            PRODUCTEUR_A
+            ); // vehicule
         VehiculeDAO vehiDAO = new VehiculeDAO(conn);
         vehiDAO.add(vehicule);
 
@@ -250,7 +287,13 @@ public class ProducteurDAOTest {
         assertTrue(PRODUCTEUR_A.getVehicules().contains(vehicule));
 
         // On crée une nouvelle Tournée
-        Tournee tournee = new Tournee(new Timestamp(100000), new Timestamp(100000), 30F, "Tournee", vehicule);
+        Tournee tournee = new Tournee(
+            new Timestamp(100000),
+            new Timestamp(100000),
+            30F,
+            "Tournee",
+            vehicule
+            ); // tournee
         TourneeDAO tourneeDAO = new TourneeDAO(conn);
         tourneeDAO.add(tournee);
 
@@ -262,14 +305,14 @@ public class ProducteurDAOTest {
         tournee.setVehicule(VEHICULE_A);
         tourneeDAO.update(tournee);
 
-        // On constate que c'est update dans le tableau de Tournée.
+        // On constate que c'est mis à jour dans le tableau de Tournées.
         assertTrue(PRODUCTEUR_A.getTournees().get(0).getVehicule().equals(VEHICULE_A));
 
         // On supprime la Tournée et constate qu'elle n'est plus
-        // dans le tableau de Tournée du Producteur.
+        // dans le tableau de Tournées du Producteur.
         tourneeDAO.delete(tournee);
         assertFalse(PRODUCTEUR_A.getTournees().contains(tournee));
-    }
+    } // propagationTest
 
     /**
      * Fermeture de la Connection apres les tests.
@@ -279,5 +322,6 @@ public class ProducteurDAOTest {
     @AfterAll
     public static void tearDown() throws SQLException {
         DatabaseConnection.close("testing");
-    }
-}
+    } // tearDown
+
+} // ProducteurDAOTest

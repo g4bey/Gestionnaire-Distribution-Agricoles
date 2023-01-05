@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * Représente le DAO des Producteurs.
  */
 public class ProducteurDAO extends DAO<Producteur> {
+
     /**
      * Récupère dans la base de données l'instance de Producteur demandée.
      * 
@@ -33,7 +34,8 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("adresseProd"),
                         rs.getString("numTelProd"),
                         rs.getString("gpsProd"),
-                        rs.getString("mdpProd"));
+                        rs.getString("mdpProd")
+                ); // prd
 
                 TourneeDAO tDAO = new TourneeDAO(conn);
                 CommandeDAO cmdDAO = new CommandeDAO(conn);
@@ -43,32 +45,32 @@ public class ProducteurDAO extends DAO<Producteur> {
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
 
-                    // On remplie le tableau de tournee dans vehicule
+                    // On remplit le tableau de Tournées dans Véhicule
                     for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
                         prd.addTournee(tournee);
                         vehicule.addTournee(tournee);
 
-                        // On charge les commandes de la Tournee
+                        // On charge les Commandes de la Tournée
                         for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
                             prd.addCommande(commande);
                             tournee.addCommande(commande);
-                        }
-                    }
-                }
+                        } // for
+                    } // for
+                } // for
 
                 for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
                     prd.addCommande(commande);
-                }
+                } // for
 
                 return prd;
-            }
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
      * Récupère dans la base de données l'instance de Producteur demandée.
@@ -88,7 +90,8 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("adresseProd"),
                         rs.getString("numTelProd"),
                         rs.getString("gpsProd"),
-                        rs.getString("mdpProd"));
+                        rs.getString("mdpProd")
+                ); // prd
 
                 TourneeDAO tDAO = new TourneeDAO(conn);
                 CommandeDAO cmdDAO = new CommandeDAO(conn);
@@ -98,32 +101,32 @@ public class ProducteurDAO extends DAO<Producteur> {
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
 
-                    // On remplie le tableau de tournee dans vehicule
+                    // On remplit le tableau de Tournées dans Véhicule
                     for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
                         prd.addTournee(tournee);
                         vehicule.addTournee(tournee);
 
-                        // On charge les commandes de la Tournee
+                        // On charge les Commandes de la Tournée
                         for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
                             prd.addCommande(commande);
                             tournee.addCommande(commande);
-                        }
-                    }
-                }
+                        } // for
+                    } // for
+                } // for
 
                 for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
                     prd.addCommande(commande);
-                }
+                } // for
 
                 return prd;
-            }
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
      * Récupère dans la base de données toutes les instances de Producteur.
@@ -149,40 +152,41 @@ public class ProducteurDAO extends DAO<Producteur> {
                         rs.getString("adresseProd"),
                         rs.getString("numTelProd"),
                         rs.getString("gpsProd"),
-                        rs.getString("mdpProd"));
+                        rs.getString("mdpProd")
+                ); // prd
 
                 // On charge la liste de Véhicules
                 ArrayList<Vehicule> vehicules = vDAO.getVehiculesByProducteur(prd);
                 for (Vehicule vehicule : vehicules) {
                     prd.addVehicule(vehicule);
 
-                    // On remplie le tableau de tournee dans vehicule
+                    // On remplit le tableau de Tournées dans Véhicule
                     for (Tournee tournee : tDAO.getTourneesByVehicule(vehicule)) {
                         prd.addTournee(tournee);
                         vehicule.addTournee(tournee);
 
-                        // On charge les commandes de la Tournee
+                        // On charge les Commandes de la Tournée
                         for (Commande commande : cmdDAO.getCommandesByTournee(prd, tournee)) {
                             prd.addCommande(commande);
                             tournee.addCommande(commande);
-                        }
-                    }
-                }
+                        } // for
+                    } // for
+                } // for
 
-                // Les commandes qui ne sont pas associées à une Tournee
+                // Les Commandes qui ne sont pas associées à une Tournée
                 for (Commande commande : cmdDAO.getCommandesByProducteurWithoutTournee(prd)) {
                     prd.addCommande(commande);
-                }
+                } // for
 
                 producteurs.add(prd);
-            }
+            } // while
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
+        } // catch
 
         return producteurs;
-    }
+    } // getAll
 
     /**
      * Ajoute dans la base de données une instance de Producteur.
@@ -207,12 +211,12 @@ public class ProducteurDAO extends DAO<Producteur> {
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 prd.setIdProducteur((int) id);
-            }
+            } // if
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // add
 
     /**
      * Met à jour dans la base de données une instance de Producteur.
@@ -235,8 +239,8 @@ public class ProducteurDAO extends DAO<Producteur> {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // update
 
     /**
      * Supprime de la base de données une instance de Producteur.
@@ -256,8 +260,8 @@ public class ProducteurDAO extends DAO<Producteur> {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // delete
 
     /**
      * Constructeur de ProducteurDAO.
@@ -266,5 +270,6 @@ public class ProducteurDAO extends DAO<Producteur> {
      */
     public ProducteurDAO(Connection conn) {
         super(conn);
-    }
-}
+    } // constructeur
+
+} // ProducteurDAO

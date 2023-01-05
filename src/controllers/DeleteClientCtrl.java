@@ -27,10 +27,10 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         clientNameText.setText(client.getNomClient());
-    }
+    } // initialize
 
     /**
-     * Méthode qui valide la suppression du client.
+     * Méthode qui valide la suppression du Client.
      * 
      * @param event ActionEvent
      */
@@ -40,28 +40,30 @@ public class DeleteClientCtrl extends AbstractConnCtrl implements Initializable 
         if (formulaire.isValid()) {
             cltDAO.delete(client);
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             deleteErrorText.setVisible(true);
             deleteErrorText.setText(formulaire.getErrors());
-        }
-    }
+        } // else
+    } // validateDeleteClient
 
     /**
-     * Méthode qui annule la suppression du client.
+     * Méthode qui annule la suppression du Client.
      * 
      * @param event ActionEvent
      */
     public void cancelDeleteClient(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelDeleteClient
 
     /**
-     * Méthode qui récupère le client sélectionné dans la listView
+     * Méthode qui récupère le Client sélectionné dans la listView
      * de la vue précédente (adminSelectMenu)
      * 
      * @param cl Client
      */
     public static void setClient(Client cl) {
         client = cl;
-    }
-}
+    } // set Client
+
+} // DeleteClientCtrl
