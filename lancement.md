@@ -49,7 +49,7 @@ L'IDE ajoutant un packet src, les chemins dans les fichiers FXML ne seront plus 
 - 2/ Ajoutez les jars dans `/lib/javafx-sdk-19/lib/` au buildpath.
 
 ## Configuration du projet:
-### Ajout d'une nouvelle configuration:
+### Lancement du projet JAVAFx:
 - 1/ Creez une nouvelle configuration de type **JAVA Application**.
 - 2/ Verifiez que la JRE est bien la **JDK 19**.
 - 3/ Selectionnez `src/GDA.java` comme classe principale.
@@ -60,3 +60,7 @@ L'IDE ajoutant un packet src, les chemins dans les fichiers FXML ne seront plus 
 
 <CHEMIN\> est le chemin absolu vers le dossier `/lib/javafx-sdk-19/lib/`.
 
+### Lancement des tests JUnit:
+- 1/ Creez une nouvelle configuration de type **JUnit**.
+- 2/ Verifiez que la JRE est bien la **JDK 19**.
+- 3/ Selectionnez `src/tests/` comme dossier contenant les tests.
