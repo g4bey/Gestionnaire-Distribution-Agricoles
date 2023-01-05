@@ -31,20 +31,22 @@ public class AdminProfileCtrl implements Initializable {
         admin = UserAuth.getAdmin();
         adminLoginLabel.setText(admin.getPseudo());
         util = new ControllersUtils();
-    }
+    } // initialize
 
     /**
-     * 
+     * Méthode permettant d'ouvrir la vue de changement de mot de passe
      * @param event
      */
     public void changePassword(ActionEvent event) {
         util.loadPopup(event, "/views/AdminPasswordChange.fxml");
-    }
+    } // changePassword
+
     /**
-    * Méthode qui permet de fermer la vue du profile.
+    * Méthode qui permet de fermer la vue du profil.
     * @param event ActionEvent
     */
     public void closeAdminProfile(ActionEvent event) {
     	ControllersUtils.closePopupAndUpdateParent(event);
-    }
-}
+    } // closeAdminProfile
+
+} // AdminProfileCtrl
