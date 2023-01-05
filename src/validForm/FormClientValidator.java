@@ -11,8 +11,8 @@ import validator.ValidateurDonnee;
  */
 public class FormClientValidator extends FormValidator {
 
-    public String adresseCsv;
-    public String coordsXY;
+    private String adresseCsv;
+    private String coordsXY;
 
     /**
      * Constructeur de FormClientAddValidator,
