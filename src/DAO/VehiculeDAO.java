@@ -35,26 +35,27 @@ public class VehiculeDAO extends DAO<Vehicule> {
                         rs.getString("numImmat"),
                         rs.getFloat("poidsMax"),
                         rs.getString("libelle"),
-                        pDAO.get(rs.getInt("idProducteur")));
+                        pDAO.get(rs.getInt("idProducteur"))
+                ); // vehicule
 
                 // On charge la liste de Tournées
                 TourneeDAO tourneeDAO = new TourneeDAO(conn);
                 for (Tournee tournee : tourneeDAO.getTourneesByVehicule(vehicule)) {
                     vehicule.addTournee(tournee);
-                }
+                } // for
 
                 return vehicule;
-            }
+            } // if
 
             return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // get
 
     /**
-     * Retour une liste de Véhicules associée à une Tournée.
+     * Retourne le Véhicule associé à une Tournée.
      *
      * @param prd       Le Producteur qui doit être associé à la Tournée
      * @param idTournee L'id de la Tournée.
@@ -73,11 +74,12 @@ public class VehiculeDAO extends DAO<Vehicule> {
                     rs.getString("numImmat"),
                     rs.getFloat("poidsMax"),
                     rs.getString("V.libelle"),
-                    prd);
-        }
+                    prd
+            ); // Vehicule
+        } // if
 
         return null;
-    }
+    } // getVehiculeByIdTournee
 
     /**
      * Récupère dans la base de données toutes les instances de Véhicule.
@@ -100,27 +102,28 @@ public class VehiculeDAO extends DAO<Vehicule> {
                         rs.getString("numImmat"),
                         rs.getFloat("poidsMax"),
                         rs.getString("libelle"),
-                        pDAO.get(rs.getInt("idProducteur")));
+                        pDAO.get(rs.getInt("idProducteur"))
+                ); // vehicule
 
                 // On charge la liste de Tournées
                 for (Tournee tournee : tourneeDAO.getTourneesByVehicule(vehicule)) {
                     vehicule.addTournee(tournee);
-                }
+                } // for
 
                 vehicules.add(vehicule);
-            }
+            } // while
 
             return vehicules;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
+        } // try/catch
+    } // getAll
 
     /**
      * Retourne une liste de Véhicules associés à un Producteur.
      *
-     * @param prd le Producteur qui doit être associé au Véhicule.
+     * @param prd Le Producteur qui doit être associé au Véhicule.
      * @return vehicules - ArrayList<> contenant les véhicules associés au
      *         Producteur
      * @throws SQLException
@@ -138,16 +141,18 @@ public class VehiculeDAO extends DAO<Vehicule> {
                     rs.getString("numImmat"),
                     rs.getFloat("poidsMax"),
                     rs.getString("libelle"),
-                    prd));
-        }
+                    prd
+            ) // Vehicule
+            ); // add
+        } // while
 
         return vehicules;
-    }
+    } // getVehiculesByProducteur
 
     /**
      * Ajoute dans la base de données une instance de Véhicule.
      * 
-     * @param vh l'instance Véhicule de l'objet à ajouter.
+     * @param vh L'instance Véhicule de l'objet à ajouter.
      */
     @Override
     public void add(Vehicule vh) {
@@ -165,13 +170,13 @@ public class VehiculeDAO extends DAO<Vehicule> {
             if (rs.next()) {
                 long id = ((BigInteger) rs.getObject(1)).longValue();
                 vh.setIdVehicule((int) id);
-            }
+            } // if
             vh.getProducteur().addVehicule(vh);
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // add
 
     /**
      * Met à jour dans la base de données une instance de Véhicule.
@@ -193,11 +198,11 @@ public class VehiculeDAO extends DAO<Vehicule> {
 
             if (!vh.getProducteur().getVehicules().contains(vh)) {
                 vh.getProducteur().addVehicule(vh);
-            }
+            } // if
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // update
 
     /**
      * Supprime de la base de données l'instance de Véhicule associée à l'id.
@@ -216,8 +221,8 @@ public class VehiculeDAO extends DAO<Vehicule> {
             vh.getProducteur().removeVehicule(vh); // Ajout pour tester
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // delete
 
     /**
      * Constructeur de VehiculeDAO.
@@ -226,5 +231,6 @@ public class VehiculeDAO extends DAO<Vehicule> {
      */
     public VehiculeDAO(Connection conn) {
         super(conn);
-    }
-}
+    } // constructeur
+
+} // VehiculeDAO
