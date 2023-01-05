@@ -26,21 +26,22 @@ public class HomePageCtrl implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         util = new ControllersUtils();
-    }
+    } // initialize
 	
     /**
-    * Méthode qui permet de changer vers la vue de connexion des administrateur.
+    * Méthode qui permet de changer vers la vue de connexion des Administrateurs.
     * @param ActionEvent event
     */
     public void switchToAdminConn(ActionEvent event) {
     	util.loadView(event, "/views/adminConn.fxml");
-    }
+    } // switchToAdminConn
     
     /**
-    * Méthode qui permet de changer vers la vue de connexion des producteurs.
+    * Méthode qui permet de changer vers la vue de connexion des Producteurs.
     * @param ActionEvent event
     */
     public void switchToProdConn(ActionEvent event) {
     	util.loadView(event, "/views/prodConn.fxml");
-    }
-}
+    } // switchToProdConn
+
+} // HomePageCtrl
