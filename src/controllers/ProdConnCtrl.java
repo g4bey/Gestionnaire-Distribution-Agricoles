@@ -7,50 +7,61 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
+import validForm.FormProdConnCtrl;
 
 /**
-* Contrôleur permettant la connexion d'un Producteur.
-*/
+ * Contrôleur permettant la connexion d'un Producteur.
+ */
 public class ProdConnCtrl implements Initializable {
     @FXML
-	private TextField prodSiretField;
-	
+    private TextField prodSiretField;
+
     @FXML
-	private TextField prodPasswordField;
+    private PasswordField prodPasswordField;
 
     @FXML
     private Button validateProdConn;
-    
+
     @FXML
     private Button cancelProdConn;
-    
+
     @FXML
     private Text connErreurText;
-    
+
     private ControllersUtils util;
-    
+
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        // TODO Auto-generated method stub
         util = new ControllersUtils();
     }
-    
+
     /**
-    * Méthode pour revenir sur la page d'accueil.
-    * @param event ActionEvent
-    */
+     * Méthode qui authentifie l'utilisateur.
+     * 
+     * @param event ActionEvent
+     */
     public void validateProdConn(ActionEvent event) {
-    	util.loadView(event, "/views/prodSelectMenu.fxml");
+        FormProdConnCtrl verif = new FormProdConnCtrl(prodSiretField.getText(), prodPasswordField.getText());
+        if (verif.isValid()) {
+            util.loadView(event, "/views/prodSelectMenu.fxml");
+        } else {
+            connErreurText.setText(verif.getErrors());
+            connErreurText.setVisible(true);
+        }
+
     }
-    
+
     /**
-    * Méthode pour connecter l'utilisateur.
-    * @param event ActionEvent
-    */
+     * Méthode pour revenir sur la page d'accueil.
+     * 
+     * @param event ActionEvent
+     */
     public void cancelProdConn(ActionEvent event) {
-    	util.loadView(event, "/views/homePage.fxml");
+        util.loadView(event, "/views/homePage.fxml");
     }
 }

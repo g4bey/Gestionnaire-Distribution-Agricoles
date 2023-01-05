@@ -56,7 +56,7 @@ public class VehiculeDAO extends DAO<Vehicule> {
     /**
      * Retour une liste de Véhicules associée à une Tournée.
      *
-     * @param prd Le Producteur qui doit être associé à la Tournée
+     * @param prd       Le Producteur qui doit être associé à la Tournée
      * @param idTournee L'id de la Tournée.
      * @return Le Véhicule associé à une Tournée.
      * @throws SQLException
@@ -87,6 +87,8 @@ public class VehiculeDAO extends DAO<Vehicule> {
     @Override
     public ArrayList<Vehicule> getAll() {
         ArrayList<Vehicule> vehicules = new ArrayList<>();
+
+        TourneeDAO tourneeDAO = new TourneeDAO(conn);
         try {
             rs = stmt.executeQuery("SELECT * FROM Vehicule");
 
@@ -99,6 +101,11 @@ public class VehiculeDAO extends DAO<Vehicule> {
                         rs.getFloat("poidsMax"),
                         rs.getString("libelle"),
                         pDAO.get(rs.getInt("idProducteur")));
+
+                // On charge la liste de Tournées
+                for (Tournee tournee : tourneeDAO.getTourneesByVehicule(vehicule)) {
+                    vehicule.addTournee(tournee);
+                }
 
                 vehicules.add(vehicule);
             }

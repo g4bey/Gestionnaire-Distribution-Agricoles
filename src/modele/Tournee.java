@@ -77,11 +77,11 @@ public class Tournee {
     @Override
     public String toString() {
         return ("Information Tournee :\nId : " + idTournee)
-                .concat("Horaire début : " + horaireDebut)
-                .concat("Horaire fin : " + horaireFin)
-                .concat("Poids : " + poids)
-                .concat("Libellé : ").concat(libelle)
-                .concat("Véhicule : ").concat(vehicule.getNumImmat());
+                .concat("\nHoraire début : " + horaireDebut)
+                .concat("\nHoraire fin : " + horaireFin)
+                .concat("\nPoids : " + poids)
+                .concat("\nLibellé : ").concat(libelle)
+                .concat("\nVéhicule : ").concat(vehicule.getNumImmat());
     }
 
     /**

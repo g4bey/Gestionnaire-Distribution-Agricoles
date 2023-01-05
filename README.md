@@ -23,7 +23,7 @@
     ├── Rapports              # Rapports envoyées
     ├── Set-up                # Script de mise en route du projet
     ├── src                   # Racine du projet           
-    ├── libraries             # les librairies utilisés      
+    ├── libraries             # les librairies cross-platform utilisées     
     ├── README.md             # Informations sur le projet
     └── resumé-reunions.md    # Résumé des réunions de groupe
     
@@ -37,6 +37,7 @@
     ├── ressources            # Configurations et fichiers utilisés par le logiciel.
     ├── exceptions            # Exceptions dérivant d'Exception
     ├── validator             # les différents validateurs sont ici.
+    ├── validForm             # les différents validateurs de formulaires sont ici.
     ├── tests                 # Tests des classes, rangés intuitivement.
     ├── views                 # Vues (interface graphique)
     └── utility               # Classes utilitaires et objets-Service

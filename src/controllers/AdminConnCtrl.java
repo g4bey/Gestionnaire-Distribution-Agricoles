@@ -7,52 +7,63 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utility.ControllersUtils;
+import validForm.FormAdminConnValidator;
 
 /**
-* Contrôleur permettant la connexion d'un Administrateur.
-*/
+ * Contrôleur permettant la connexion d'un Administrateur.
+ */
 public class AdminConnCtrl implements Initializable {
-	
+
     @FXML
     private TextField adminLoginField;
-	
+
     @FXML
-    private TextField adminPasswordField;
-	
+    private PasswordField adminPasswordField;
+
     @FXML
     private Button validateAdminConn;
-	
+
     @FXML
     private Button cancelAdminConn;
-    
+
     @FXML
     private Text formErrorText;
-    
+
     private ControllersUtils util;
-    
+
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+    public void initialize(URL arg0, ResourceBundle arg1) {
         util = new ControllersUtils();
+        formErrorText.setVisible(false);
     }
-    
+
     /**
-    * Méthode pour annuler la connexion de l'utilisateur
-    * et revenir sur la page d'accueil.
-    * @param event ActionEvent
-    */
+     * Méthode pour annuler la connexion de l'utilisateur
+     * et revenir sur la page d'accueil.
+     * 
+     * @param event ActionEvent
+     */
     public void cancelAdminConn(ActionEvent event) {
-    	util.loadView(event, "/views/homePage.fxml");
+        util.loadView(event, "/views/homePage.fxml");
     }
-    
-	/**
-    * Méthode pour connecter l'utilisateur.
-    * @param event ActionEvent
-    */
+
+    /**
+     * Méthode pour connecter l'utilisateur.
+     * 
+     * @param event ActionEvent
+     */
     public void validateAdminConn(ActionEvent event) {
-    	util.loadView(event, "/views/adminSelectMenu.fxml");
+        FormAdminConnValidator verif = new FormAdminConnValidator(adminLoginField.getText(),
+                adminPasswordField.getText());
+        if (verif.isValid()) {
+            util.loadView(event, "/views/adminSelectMenu.fxml");
+        } else {
+            formErrorText.setText(verif.getErrors());
+            formErrorText.setVisible(true);
+        }
     }
 }

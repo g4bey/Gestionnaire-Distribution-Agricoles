@@ -1,70 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddClientCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="568.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddClientCtrl">
    <children>
-      <Text layoutX="205.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Client">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="101.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="466.0" />
+      <Text layoutX="253.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Client">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <TextField fx:id="clientNameField" layoutX="212.0" layoutY="88.0" />
-      <TextField fx:id="clientPhoneField" layoutX="233.0" layoutY="315.0" />
-      <Label layoutX="140.0" layoutY="86.0" text="Nom:">
+      <TextField fx:id="clientNameField" layoutX="335.0" layoutY="141.0" styleClass="prettyField" />
+      <TextField fx:id="clientPhoneField" layoutX="344.0" layoutY="412.0" styleClass="prettyField" />
+      <Label layoutX="263.0" layoutY="139.0" text="Nom:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="312.0" text="Num. téléphone:">
+      <Label layoutX="177.0" layoutY="409.0" text="Num. téléphone:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="validateAddClient" layoutX="320.0" layoutY="397.0" mnemonicParsing="false" onAction="#validateAddClient" text="Valider" />
-      <Button fx:id="cancelAddClient" layoutX="82.0" layoutY="397.0" mnemonicParsing="false" onAction="#cancelAddClient" text="Annuler" />
-      <Line endX="347.8000183105469" layoutX="109.0" layoutY="76.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
-      <Line endX="-117.10003662109375" endY="-117.0" layoutX="267.0" layoutY="114.0" startX="-117.10002136230469" startY="-39.50000762939453" />
-      <ImageView fitHeight="58.0" fitWidth="122.0" layoutX="14.0" layoutY="7.0">
+      <Button fx:id="validateAddClient" layoutX="420.0" layoutY="523.0" mnemonicParsing="false" onAction="#validateAddClient" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Valider">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="cancelAddClient" layoutX="203.0" layoutY="523.0" mnemonicParsing="false" onAction="#cancelAddClient" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Annuler">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Line endX="100.0" layoutX="453.0" layoutY="226.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
+      <Line endX="100.0" layoutX="453.0" layoutY="388.0" startX="-303.9071044921875" startY="1.52587890625E-5" strokeWidth="1.5" />
+      <Text layoutX="311.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Label layoutX="163.0" layoutY="290.0" text="Ville:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="164.0" layoutY="333.0" text="Code postal:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="pathNameField" layoutX="395.0" layoutY="249.0" promptText="des tulipes" styleClass="prettyField" />
+      <TextField fx:id="townNameField" layoutX="220.0" layoutY="293.0" promptText="Saint-Pierre-des-Corps" styleClass="prettyField" />
+      <TextField fx:id="postcodeField" layoutX="282.0" layoutY="335.0" promptText="37700" styleClass="prettyField" />
+      <ChoiceBox fx:id="pathTypeChoiceBox" layoutX="224.0" layoutY="249.0" prefWidth="150.0" styleClass="prettyField" />
+      <TextField fx:id="addressNumField" layoutX="161.0" layoutY="248.0" prefHeight="26.0" prefWidth="42.0" promptText="5" styleClass="prettyField" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="583.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="29.0" layoutY="12.0">
          <image>
-            <Image url="@../ressources/pictures/1751148-ff5722.png" />
+            <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
-      <Text fx:id="formErrorText" layoutX="183.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Line endX="100.0" layoutX="330.0" layoutY="156.0" startX="-303.9071044921875" startY="1.52587890625E-5" />
-      <Line endX="100.0" layoutX="330.0" layoutY="287.0" startX="-303.9071044921875" startY="1.52587890625E-5" />
-      <Text layoutX="188.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Label layoutX="38.0" layoutY="202.0" text="Ville:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="239.0" text="Code postal:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="pathNameField" layoutX="272.0" layoutY="168.0" promptText="des tulipes" />
-      <TextField fx:id="townNameField" layoutX="95.0" layoutY="205.0" promptText="Saint-Pierre-des-Corps" />
-      <TextField fx:id="postcodeField" layoutX="158.0" layoutY="241.0" promptText="37700" />
-      <ChoiceBox fx:id="pathTypeChoiceBox" layoutX="101.0" layoutY="168.0" prefWidth="150.0" />
-      <TextField fx:id="addressNumField" layoutX="38.0" layoutY="167.0" prefHeight="26.0" prefWidth="42.0" promptText="5" />
+      <ScrollPane layoutX="164.0" layoutY="452.0" prefHeight="55.0" prefWidth="367.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="363.72845458984375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

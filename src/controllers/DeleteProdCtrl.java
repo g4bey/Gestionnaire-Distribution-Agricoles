@@ -7,20 +7,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import modele.Producteur;
 import utility.ControllersUtils;
 
 /**
 * Contrôleur permettant la suppression d'un Producteur.
 */
-public class DeleteProdCtrl implements Initializable {
+public class DeleteProdCtrl extends AbstractConnCtrl implements Initializable {
 	
     @FXML
     private Text prodLabelText;
+    @FXML
+    private Text deleteErrorText;
+
+    private static Producteur producteur;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+        prodLabelText.setText(producteur.getSiret());
     }
     
     /**
@@ -28,7 +32,8 @@ public class DeleteProdCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void validateDeleteProd(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+        pDAO.delete(producteur);
+        ControllersUtils.closePopupAndUpdateParent(event);
     }
     
     /**
@@ -36,6 +41,15 @@ public class DeleteProdCtrl implements Initializable {
     * @param event ActionEvent
     */
     public void cancelDeleteProd(ActionEvent event) {
-    	ControllersUtils.closePopup(event);
+    	ControllersUtils.closePopupAndUpdateParent(event);
+    }
+
+    /**
+    * Méthode qui récupère le producteur sélectionné dans la listView
+    * de la vue précédente (adminSelectMenu)
+    * @param prod Producteur
+    */
+    public static void setProd(Producteur prod) {
+        producteur = prod;
     }
 }

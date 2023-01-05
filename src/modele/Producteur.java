@@ -99,7 +99,7 @@ public class Producteur {
         return ("Information Producteur :\nId : " + idProducteur)
                 .concat("SIRET : ").concat(siret)
                 .concat("Propriétaire : ").concat(proprietaire)
-                .concat("Adresse : ").concat(adresseProd)
+                .concat("Adresse : ").concat(adresseProd.replace(",", " "))
                 .concat("Numéro téléphone : ").concat(numTelProd)
                 .concat("GPS : ").concat(gpsProd)
                 .concat("Hash du mdp : ").concat(mdpProd);

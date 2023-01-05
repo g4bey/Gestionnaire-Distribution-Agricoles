@@ -1,53 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddVehiculeCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="552.0" styleClass="anchorPaneBackground" stylesheets="@../ressources/style/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddVehicleCtrl">
    <children>
-      <Line endX="374.0000305175781" layoutX="109.0" layoutY="78.0" startX="-107.99998474121094" startY="-7.62939453125E-6" />
-      <Line endX="-117.10003662109375" endY="-117.0" layoutX="284.0" layoutY="117.0" startX="-117.10002136230469" startY="-39.50000762939453" />
-      <Text layoutX="215.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout véhicule">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="83.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" styleClass="greenishRectangle" width="469.0" />
+      <Text layoutX="236.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout véhicule">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Label layoutX="57.0" layoutY="118.0" text="N° d'immatriulation:">
+      <Label layoutX="157.0" layoutY="142.0" text="N° d'immatriculation:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="175.0" layoutY="157.0" text="Libellé:">
+      <Label layoutX="286.0" layoutY="198.0" text="Libellé:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="201.0" text="Poids max supporté:">
+      <Label layoutX="168.0" layoutY="255.0" text="Poids max supporté:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="vehicleImmatField" layoutX="256.0" layoutY="121.0" />
-      <TextField fx:id="vehicleCapacityField" layoutX="256.0" layoutY="205.0" />
-      <Button fx:id="validateAddVehicle" layoutX="365.0" layoutY="297.0" mnemonicParsing="false" onAction="#validateAddVehicle" text="Valider" />
-      <Button fx:id="cancelAddVehicle" layoutX="57.0" layoutY="297.0" mnemonicParsing="false" onAction="#cancelAddVehicle" text="Annuler" />
-      <TextField fx:id="vehicleLabelField" layoutX="256.0" layoutY="161.0" />
-      <ImageView fitHeight="63.0" fitWidth="135.0" layoutX="18.0" layoutY="7.0">
+      <TextField fx:id="vehicleImmatField" layoutX="369.0" layoutY="144.0" styleClass="prettyField" />
+      <TextField fx:id="vehicleCapacityField" layoutX="367.0" layoutY="259.0" styleClass="prettyField" />
+      <Button fx:id="validateAddVehicle" layoutX="407.0" layoutY="382.0" mnemonicParsing="false" onAction="#validateAddVehicle" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Valider">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="cancelAddVehicle" layoutX="191.0" layoutY="382.0" mnemonicParsing="false" onAction="#cancelAddVehicle" prefHeight="26.0" prefWidth="94.0" styleClass="mainBtn" text="Annuler">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextField fx:id="vehicleLabelField" layoutX="367.0" layoutY="202.0" styleClass="prettyField" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="441.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" styleClass="bluishRectangle" width="137.0" />
+      <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="29.0" layoutY="15.0">
          <image>
-            <Image url="@../ressources/pictures/1751148-ff5722.png" />
+            <Image url="@../ressources/pictures/Logo.png" />
          </image>
       </ImageView>
-      <Text fx:id="formErrorText" layoutX="196.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" visible="false">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
+      <ScrollPane layoutX="180.0" layoutY="298.0" prefHeight="59.0" prefWidth="327.0" styleClass="errorScrollPane">
+         <content>
+            <Text fx:id="formErrorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Texte d'erreur" textAlignment="CENTER" visible="false" wrappingWidth="323.49798583984375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

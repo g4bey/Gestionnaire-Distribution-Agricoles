@@ -12,12 +12,15 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 /**
  * Wrapper vers l'API de géocodage https://api-adresse.data.gouv.fr
- * Ici l'on utilise l'endpoint search pour récupérer des coords GSP à partir d'une adresse.
+ * Ici l'on utilise l'endpoint search pour récupérer des coords GSP à partir
+ * d'une adresse.
  * <p>
- * Si l'adresse est valide, on pourra récupérer les différentes informations via les getter.
+ * Si l'adresse est valide, on pourra récupérer les différentes informations via
+ * les getter.
  */
 public class ValidateurAdresse {
     private final String BASE_URL = "https://api-adresse.data.gouv.fr";
@@ -27,41 +30,53 @@ public class ValidateurAdresse {
     private String codePostale;
     private String ville;
     private String label;
+    private String csv;
     private double score;
     private String coordX;
     private String coordY;
     private String coordXY;
 
+    // Le parametre de type String est l'adresse au format CSV par formatCSV()
+    private static HashMap<String, ValidateurAdresse> adressesValide = new HashMap<>();
+
     /**
      * Vérifie la validité d'une adresse en fonction d'un score de pertinence.
-     * On vérifie aussi que la ville et le code postal récupéré dans la réponse sont identiques au
+     * On vérifie aussi que la ville et le code postal récupéré dans la réponse sont
+     * identiques au
      * résultat fourni.
      * Au minima, la ville et le code postal est précis.
      * <p>
-     * Si les résultats sont cohérents, on pourra récupérer les résultats via les getters.
-     * @param rue la rue fourni
+     * Si les résultats sont cohérents, on pourra récupérer les résultats via les
+     * getters.
+     * 
+     * @param numeroRue   la numero de rue fourni
+     * @param typeRue     la type de rue fourni
+     * @param nomRue      la nom  rue fourni
      * @param codePostale le code postal fourni
-     * @param ville la ville fourni
+     * @param ville       la ville fourni
      * @throws AdresseInvalideException
      */
-    private ValidateurAdresse(String rue, String codePostale, String ville) throws AdresseInvalideException {
+    private ValidateurAdresse(String numeroRue, String typeRue, String nomRue, String ville, String codePostale)
+            throws AdresseInvalideException {
         // Récupérons le résultat de la requête
-        JsonObject objetJson = makeRequest(makeURI(rue, codePostale, ville));
+        JsonObject objetJson = makeRequest(makeURI(
+                numeroRue.concat(" ").concat(typeRue).concat(" ").concat(nomRue), codePostale, ville));
 
         // Si le résultat est nul, l'adresse est invalide.
-        if (objetJson.isJsonNull()) {
+        if (objetJson.isJsonNull() || objetJson.get("features").getAsJsonArray().isEmpty()) {
             throw new AdresseInvalideException("Impossible de récupérer cette adresse");
         }
 
         // Remplissions les attributs.
-        fillAttributs(objetJson);
+        fillAttributs(numeroRue, typeRue, nomRue, objetJson);
 
         // Si le score est trop faible, le résultat n'est pas pertinent.
         if (this.score < SCORE_MIN) {
             throw new AdresseInvalideException("Résultats non pertinent.");
         }
 
-        // Si la ville ou le code postale récupéré ne sont pas ceux fournis, il y a incohérence.
+        // Si la ville ou le code postale récupéré ne sont pas ceux fournis, il y a
+        // incohérence.
         if (!this.ville.equalsIgnoreCase(ville) || !this.codePostale.equals(codePostale)) {
             throw new AdresseInvalideException("La ville ne correspond pas.");
         }
@@ -85,8 +100,7 @@ public class ValidateurAdresse {
         try {
             response = client.send(
                     request,
-                    HttpResponse.BodyHandlers.ofString()
-            );
+                    HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -98,44 +112,83 @@ public class ValidateurAdresse {
     /**
      * Rempli les attributs lors de la création de l'objet.
      */
-    private void fillAttributs(JsonObject objetJson) {
+    private void fillAttributs(String numeroRue, String typeRue, String nomRue, JsonObject objetJson) {
         // Récupérons les coordonnées.
         JsonArray coords = objetJson.get("features")
                 .getAsJsonArray().get(0).getAsJsonObject().get("geometry").getAsJsonObject()
                 .get("coordinates").getAsJsonArray();
         this.coordX = coords.get(1).getAsString();
         this.coordY = coords.get(0).getAsString();
-        this.coordXY = coordX + "," + coordY;
+        this.coordXY = coordY + "," + coordX;
 
         // Récupérons les informations sur le lieu
         JsonObject infos = objetJson.get("features")
                 .getAsJsonArray().get(0).getAsJsonObject().get("properties").getAsJsonObject();
         this.codePostale = infos.get("postcode").getAsString();
         this.ville = infos.get("city").getAsString();
-        this.label = infos.get("label").getAsString();
+
+        label = numeroRue.concat(" ").concat(typeRue).concat(" ").concat(nomRue).concat(" ").concat(ville).concat(" ")
+                .concat(codePostale);
+
+        csv = formatCSV(numeroRue, typeRue, nomRue, ville, codePostale);
+
         this.score = infos.get("score").getAsDouble();
+    }
+
+    /**
+     * Formate les parametres au format CSV.
+     * @param numeroRue le numero de rue.
+     * @param typeRue le type de rue.
+     * @param nomRue le nom de la rue.
+     * @param ville la ville.
+     * @param codePostale le code postale.
+     * @return l'adresse au format CSV.
+     */
+    private static String formatCSV(String numeroRue, String typeRue, String nomRue, String ville, String codePostale) {
+        return numeroRue.concat(",").concat(typeRue)
+                .concat(",").concat(nomRue)
+                .concat(",").concat(ville)
+                .concat(",").concat(codePostale);
     }
 
     /**
      * Initie l'instanciation d'un objet adresse valide et
      * provoque une erreur s'il est impossible de récupérer l'adresse.
+     * <p>
+     * Si l'adresse a deja été calculé, on renvoie l'objet ValidateurAdresse existant.
      *
-     * @param rue la rue
-     * @param codePostale le code postale
-     * @param ville la ville
-     * @return un objet AdresseValide
+     * @param numeroRue le numero de rue.
+     * @param typeRue le type de rue.
+     * @param nomRue le nom de la rue.
+     * @param ville la ville.
+     * @param codePostale le code postale.
+     * @return un objet ValidateurAdresse
      * @throws AdresseInvalideException l'adresse est invalide.
      */
-    public static ValidateurAdresse create(String rue, String codePostale, String ville) throws AdresseInvalideException {
-        return new ValidateurAdresse(rue, codePostale, ville);
+    public static ValidateurAdresse create(String numeroRue, String typeRue, String nomRue, String ville,
+            String codePostale) throws AdresseInvalideException {
+        String adresseCSV = formatCSV(numeroRue, typeRue, nomRue, ville, codePostale);
+
+        // si l'adresse a deja été calculé lors de cette session
+        // on retourne l'adresse existante
+        if (adressesValide.containsKey(adresseCSV)) {
+            return adressesValide.get(adresseCSV);
+        }
+
+        // Sinon, on insère cet objet ValidateurAdresse dans l'hashmap.
+        ValidateurAdresse adresseValide =  new ValidateurAdresse(numeroRue, typeRue, nomRue, ville, codePostale);
+        adressesValide.put(adresseCSV, adresseValide);
+        return adresseValide;
     }
 
     /**
-     * Encode les paramètres rue, codePostale et ville selon les spécifications de l'API.
+     * Encode les paramètres rue, codePostale et ville selon les spécifications de
+     * l'API.
      * <p>
-     * @param rue la rue
+     * 
+     * @param rue         la rue
      * @param codePostale le code postal
-     * @param ville la ville
+     * @param ville       la ville
      * @return URI une url encodé dans le bon format.
      */
     private URI makeURI(String rue, String codePostale, String ville) {
@@ -150,6 +203,7 @@ public class ValidateurAdresse {
 
     /**
      * Renvoie le coordonné X de l'adresse.
+     * 
      * @return le coordonné x.
      */
     public String getCoordX() {
@@ -158,6 +212,7 @@ public class ValidateurAdresse {
 
     /**
      * Renvoie le coordonné Y de l'adresse.
+     * 
      * @return le coordonné y.
      */
     public String getCoordY() {
@@ -166,6 +221,7 @@ public class ValidateurAdresse {
 
     /**
      * Renvoie les coordonnés X et Y séparés par une virgule.
+     * 
      * @return le couple de coordonnés X, Y au format x,y sous forme de string.
      */
     public String getCoordXY() {
@@ -174,10 +230,19 @@ public class ValidateurAdresse {
 
     /**
      * Renvoie l'adresse au format RUE, Code Postale, Ville
+     * 
      * @return l'adresse bien formattée.
      */
     public String format() {
         return label;
     }
-}
 
+    /**
+     * Renvoie l'adresse au format CSV
+     * 
+     * @return l'adresse au format CSV.
+     */
+    public String csv() {
+        return csv;
+    }
+}

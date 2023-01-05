@@ -31,13 +31,10 @@ public class TourneeDAO extends DAO<Tournee> {
                 Vehicule vh = new VehiculeDAO(conn).get(rs.getInt("idVehicule"));
 
                 Tournee tournee = new Tournee(id, rs.getTimestamp("horaireDebut"), rs.getTimestamp("horaireFin"),
-                        rs.getFloat("poids"), rs.getString("libelle"),
-                        vh);
+                        rs.getFloat("poids"), rs.getString("libelle"), vh);
 
                 // On charge la liste des Commandes
-                ArrayList<Commande> commandes = new CommandeDAO(conn).getCommandesByTournee(vh.getProducteur(),
-                        tournee);
-                for (Commande commande : commandes) {
+                for (Commande commande : new CommandeDAO(conn).getCommandesByTournee(vh.getProducteur(), tournee)) {
                     tournee.addCommande(commande);
                 }
 
@@ -59,19 +56,30 @@ public class TourneeDAO extends DAO<Tournee> {
     @Override
     public ArrayList<Tournee> getAll() {
         ArrayList<Tournee> tournees = new ArrayList<>();
+
+        CommandeDAO cmdDAO = new CommandeDAO(conn);
         try {
             rs = stmt.executeQuery("SELECT * FROM Tournee");
 
             VehiculeDAO vDAO = new VehiculeDAO(conn);
 
             while (rs.next()) {
-                tournees.add(new Tournee(
+                Vehicule vh = vDAO.get(rs.getInt("idVehicule"));
+
+                Tournee tournee = new Tournee(
                         rs.getInt("idTournee"),
                         rs.getTimestamp("horaireDebut"),
                         rs.getTimestamp("horaireFin"),
                         rs.getFloat("poids"),
                         rs.getString("libelle"),
-                        vDAO.get(rs.getInt("idVehicule"))));
+                        vh);
+
+                // On charge la liste des Commandes
+                for (Commande commande : cmdDAO.getCommandesByTournee(vh.getProducteur(), tournee)) {
+                    tournee.addCommande(commande);
+                }
+
+                tournees.add(tournee);
             }
 
             return tournees;
@@ -105,13 +113,15 @@ public class TourneeDAO extends DAO<Tournee> {
 
                 CommandeDAO coDAO = new CommandeDAO(conn);
                 for (Commande commande : t.getCommandes()) {
-                    coDAO.add(commande);
+                    coDAO.update(commande);
                 }
                 // On met à jour la liste de Tournées dans Véhicule.
                 t.getVehicule().addTournee(t);
+                new VehiculeDAO(conn).update(t.getVehicule());
 
                 // On met à jour la liste de Tournées dans Producteur
                 t.getVehicule().getProducteur().addTournee(t);
+                new ProducteurDAO(conn).update(t.getVehicule().getProducteur());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -145,11 +155,13 @@ public class TourneeDAO extends DAO<Tournee> {
             // On met à jour la liste de Tournées dans Véhicule.
             if (!t.getVehicule().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
+                new VehiculeDAO(conn).update(t.getVehicule());
             }
 
             // On met à jour la liste de Tournees dans Producteur.
             if (!t.getVehicule().getProducteur().getTournees().contains(t)) {
                 t.getVehicule().addTournee(t);
+                new ProducteurDAO(conn).update(t.getVehicule().getProducteur());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -180,6 +192,7 @@ public class TourneeDAO extends DAO<Tournee> {
 
             // On supprime de la liste de Tournées dans Producteur
             t.getVehicule().getProducteur().removeTournee(t);
+            new VehiculeDAO(conn).update(t.getVehicule());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -227,22 +240,30 @@ public class TourneeDAO extends DAO<Tournee> {
         ArrayList<Tournee> tournees = new ArrayList<>();
 
         for (Vehicule vehicule : vehicules) {
-            pstmt = conn.prepareStatement("SELECT * FROM Tournee WHERE idVehicule = ?");
-            pstmt.setInt(1, vehicule.getIdVehicule());
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                tournees.add(new Tournee(
-                        rs.getInt("idTournee"),
-                        rs.getTimestamp("horaireDebut"),
-                        rs.getTimestamp("horaireFin"),
-                        rs.getFloat("poids"),
-                        rs.getString("libelle"),
-                        vehicule));
-            }
+            tournees.addAll(getTourneesByVehicule(vehicule));
         }
 
         return tournees;
+    }
+
+    /**
+     * Retourne si oui ou non un client est dans une tournée
+     *
+     * @param clientId L'id du Client qui doit être associé à la Tournée
+     * @return Un boolean attestant de la présence d'une client dans une tournée
+     * @throws SQLException
+     */
+    public boolean clientEstDansTournee(int clientId) throws SQLException {
+        pstmt = conn.prepareStatement(
+                "SELECT idTournee FROM Tournee T JOIN Commande USING(idTournee) WHERE idClient = ?");
+        pstmt.setInt(1, clientId);
+        rs = pstmt.executeQuery();
+
+        if (rs.first()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

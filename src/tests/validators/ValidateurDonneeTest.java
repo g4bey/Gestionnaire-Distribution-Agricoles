@@ -151,4 +151,18 @@ public class ValidateurDonneeTest {
         assertTrue(ValidateurDonnee.valideImmatriculation("8987-VG-33"));
         assertTrue(ValidateurDonnee.valideImmatriculation("AA-222-BB"));
     }
+
+    /**
+     * Validation d'un code postal.
+     * Il ne peut commencer que par un couple de chiffres entre 01 et 98,
+     * et ne peut contenir que des chiffres.
+     */
+    @Test
+    @DisplayName("Validation code postal")
+    public void valideCodePostalTest() {
+        assertFalse(ValidateurDonnee.valideCodePostal("A356A"));
+        assertFalse(ValidateurDonnee.valideCodePostal("370000"));
+        assertFalse(ValidateurDonnee.valideCodePostal("99034"));
+        assertTrue(ValidateurDonnee.valideCodePostal("37000"));
+    }
 }
