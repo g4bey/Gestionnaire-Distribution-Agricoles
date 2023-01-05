@@ -58,20 +58,21 @@ public class AddCommCtrl extends AbstractConnCtrl implements Initializable {
             @Override
             public Client fromString(String arg0) {
                 return null;
-            }
+            } // fromString
 
             @Override
             public String toString(Client arg0) {
                 if (arg0 == null) {
                     return "";
-                }
+                } // if
                 return arg0.getNomClient();
-            }
-        });
-    }
+            } // toString
+        } // StringConverter<Client>
+        ); // setConverter
+    } // initialize
 
     /**
-     * Méthode qui valide l'ajout d'une commande.
+     * Méthode qui valide l'ajout d'une Commande.
      * 
      * @param event ActionEvent
      */
@@ -89,19 +90,20 @@ public class AddCommCtrl extends AbstractConnCtrl implements Initializable {
                     UserAuth.getProd(),
                     clientChoiceBox.getValue()));
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             formErrorText.setText(fcv.getErrors());
             formErrorText.setVisible(true);
-        }
-
-    }
+        } // else
+    } // validateAddComm
 
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'une commande.
+     * Méthode qui permet de fermer la vue d'ajout d'une Commande.
      * 
      * @param event ActionEvent
      */
     public void cancelAddComm(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
-}
+    } // cancelAddComm
+
+} // AddCommCtrl
