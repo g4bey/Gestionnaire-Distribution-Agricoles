@@ -21,7 +21,6 @@ public class AdministrateurDAOTest {
     static private AdministrateurDAO adminDAO;
     static private Administrateur ADMIN_A;
     static private Administrateur ADMIN_B;
-
     /**
      * Instantiation de la Connection avant TOUS les tests.
      * On injecte la Connection dans le DAO Administrateur.
@@ -35,7 +34,7 @@ public class AdministrateurDAOTest {
     public static void setup() throws SQLException, IOException, ClassNotFoundException {
         conn = DatabaseConnection.getInstance("testing");
         adminDAO = new AdministrateurDAO(conn);
-    }
+    } // setup
 
     /**
      * Avant CHAQUE test, on réinitialise les objets métier Administrateur témoins.
@@ -52,10 +51,10 @@ public class AdministrateurDAOTest {
 
         Statement st = conn.createStatement();
         st.execute("TRUNCATE TABLE `Administrateur`;");
-    }
+    } // init
 
     /**
-     * On vérifie que ADMIN_A a pour ID : 0 (null)
+     * On vérifie que ADMIN_A ait pour ID : 0 (null)
      * Ensuite, on insère cet Administrateur en base.
      * <p>
      * Enfin, on vérifie que l'ID est bien update
@@ -68,7 +67,7 @@ public class AdministrateurDAOTest {
         assertEquals(0, ADMIN_A.getIdAdministrateur());
         adminDAO.add(ADMIN_A);
         assertEquals(1, ADMIN_A.getIdAdministrateur());
-    }
+    } // addTest
 
     /**
      * On insère l'ADMIN_A en base.
@@ -89,7 +88,7 @@ public class AdministrateurDAOTest {
 
         Administrateur adminNull = adminDAO.get(5);
         assertNull(adminNull);
-    }
+    } // getTest
 
     /**
      * On insère ADMIN_A et ADMIN_B en base.
@@ -108,7 +107,7 @@ public class AdministrateurDAOTest {
         assertEquals(2, adminList.size());
         assertEquals(1, adminList.get(0).getIdAdministrateur());
         assertEquals(2, adminList.get(1).getIdAdministrateur());
-    }
+    } // getAllTest
 
     /**
      * On insère ADMIN_A en base, il aura l'ID 1.
@@ -122,10 +121,10 @@ public class AdministrateurDAOTest {
         adminDAO.add(ADMIN_A);
         int idAdmin = ADMIN_A.getIdAdministrateur();
 
-        // Après suppression, un getIdAdmin doit être null.
+        // Après suppression, un getIdAdmin doit renvoyer null.
         adminDAO.delete(ADMIN_A);
         assertNull(adminDAO.get(idAdmin));
-    }
+    } // deleteTest
 
     /**
      * On insère ADMIN_A, ensuite on modifie mot de passe et pseudo.
@@ -142,11 +141,11 @@ public class AdministrateurDAOTest {
         ADMIN_A.setMdpAdmin("UpdateMDP");
         adminDAO.update(ADMIN_A);
 
-        // On crée un autre object de meme ID pour s'assurer que les attributs
+        // On crée un autre objet de même ID pour s'assurer que les attributs
         // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Administrateur adminRetour = adminDAO.get(ADMIN_A.getIdAdministrateur());
         assertTrue(adminRetour.equals(ADMIN_A));
-    }
+    } // updateTest
 
     /**
      * Fermeture de la Connection apres les tests.
@@ -156,5 +155,6 @@ public class AdministrateurDAOTest {
     @AfterAll
     public static void tearDown() throws SQLException {
         DatabaseConnection.close("testing");
-    }
-}
+    } // tearDown
+
+} // AdministrateurDAOTest
