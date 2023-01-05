@@ -52,15 +52,15 @@ public class ValidateurAdresse {
      * @param numeroRue   la numero de rue fourni
      * @param typeRue     la type de rue fourni
      * @param nomRue      la nom  rue fourni
-     * @param codePostale le code postal fourni
+     * @param codePostal le code postal fourni
      * @param ville       la ville fourni
      * @throws AdresseInvalideException
      */
-    private ValidateurAdresse(String numeroRue, String typeRue, String nomRue, String ville, String codePostale)
+    private ValidateurAdresse(String numeroRue, String typeRue, String nomRue, String ville, String codePostal)
             throws AdresseInvalideException {
         // Récupérons le résultat de la requête
         JsonObject objetJson = makeRequest(makeURI(
-                numeroRue.concat(" ").concat(typeRue).concat(" ").concat(nomRue), codePostale, ville));
+                numeroRue.concat(" ").concat(typeRue).concat(" ").concat(nomRue), codePostal, ville));
 
         // Si le résultat est nul, l'adresse est invalide.
         if (objetJson.isJsonNull() || objetJson.get("features").getAsJsonArray().isEmpty()) {
@@ -77,7 +77,7 @@ public class ValidateurAdresse {
 
         // Si la ville ou le code postale récupéré ne sont pas ceux fournis, il y a
         // incohérence.
-        if (!this.ville.equalsIgnoreCase(ville) || !this.codePostale.equals(codePostale)) {
+        if (!this.ville.equalsIgnoreCase(ville) || !this.codePostale.equals(codePostal)) {
             throw new AdresseInvalideException("La ville ne correspond pas.");
         }
     }
