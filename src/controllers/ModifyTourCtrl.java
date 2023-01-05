@@ -284,7 +284,7 @@ public class ModifyTourCtrl extends AbstractConnCtrl implements Initializable {
      * @param event ActionEvent
      */
     public void cancelModifyTour(ActionEvent event) {
-        for (Commande CommandeDel : tournee.getCommandes()) {
+        for (Commande CommandeDel : tournee.getCommandes().stream().toList()) {
             tournee.removeCommande(CommandeDel);
         } // for
         for (Commande CommandeSav : commandesSav) {
