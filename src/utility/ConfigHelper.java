@@ -6,7 +6,7 @@ import java.util.Properties;
 
 /**
  * Méthode permettant de récupérer les valeurs associées aux clefs
- * dans config.property situé dans le fichier ressource.
+ * dans config.properties situé dans le dossier ressources.
  */
 public class ConfigHelper {
     private static final String PATH_TO_CONFIG = "ressources/config.properties";
@@ -14,12 +14,12 @@ public class ConfigHelper {
     /**
      * Permet de retourner un attribut dans le fichier config.properties
      * <p>
-     * @param key la clef de l'attribut recherché
-     * @return la valeur de l'attribut.
-     * @throws IOException impossible de trouver le fichier de configuration
+     * @param key La clef de l'attribut recherché
+     * @return La valeur de l'attribut.
+     * @throws IOException Impossible de trouver le fichier de configuration
      */
     public static String get(String key) throws IOException {
-        // Récupérons le classLoader de l'object
+        // Récupérons le classLoader de l'objet
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
         // Obtenons le fichier de configuration sous forme de stream, à partir de la racine
@@ -33,5 +33,6 @@ public class ConfigHelper {
 
         // Retournons l'attribut
         return config.getProperty(key);
-    }
-}
+    } // get
+
+} // ConfigHelper
