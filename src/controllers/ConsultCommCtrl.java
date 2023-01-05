@@ -61,25 +61,26 @@ public class ConsultCommCtrl implements Initializable {
 
         WebEngine webEngine = commMapWebView.getEngine();
         webEngine.load(GenerateurUrl.AffichageCommandeUrl(commande));
-    }
+    } // initialize
 
     /**
      * Méthode qui permet de fermer la vue de consultation
-     * des informations d'une commande.
+     * des informations d'une Commande.
      * 
      * @param event ActionEvent
      */
     public void closeConsultComm(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // closeConsultComm
 
     /**
-     * Méthode qui récupère la commande sélectionnée dans la listView
+     * Méthode qui récupère la Commande sélectionnée dans la listView
      * de la vue précédente (prodSelectMenu)
      * 
      * @param comm Commande
      */
     public static void setCommande(Commande comm) {
         commande = comm;
-    }
-}
+    } // setCommande
+
+} // ConsultCommCtrl
