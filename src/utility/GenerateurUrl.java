@@ -27,16 +27,17 @@ public class GenerateurUrl {
             // On ajoute les "espaces" entre chaque coordonnée
             if (i != tournee.getCommandes().size() - 1) {
                 wayPoints.append("%7C");
-            }
-        } // end for
+            } // if
+        } //for
 
         return "https://www.google.com/maps/dir/?api=1&origin=" + adresseProd + "&destination="
             + adresseProd + "&waypoints=" + wayPoints;
-    }
+    } // AffichageTourneeUrl
 
     public static String AffichageCommandeUrl(Commande commande) {
         String gps1 = commande.getClient().getGpsClient().split(",")[1];
         String gps2 = commande.getClient().getGpsClient().split(",")[0];
         return "https://www.google.com/maps/search/?api=1&query=" + gps1 + "," + gps2;
-    }
-}
+    } // AffichageCommandeUrl
+
+} // GenerateurUrl
