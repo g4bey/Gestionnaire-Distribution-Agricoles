@@ -27,8 +27,8 @@ public abstract class DAO<T> {
             stmt = conn.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        } // try/catch
+    } // constructeur
 
     /**
      * Récupère dans la base de données l'instance de T demandée.
