@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Cette classe permet de valider la coherence des entrées fournies.
+ * Cette classe permet de valider la cohérence des entrées fournies.
  * Il s'agit de s'assurer que les données seront exploitables et homogènes.
  */
 public class ValidateurDonnee {
@@ -14,69 +14,69 @@ public class ValidateurDonnee {
     private static Matcher matcher;
 
     /*
-     * Permet de valider le siret, une chaine de 14 chiffres.
+     * Permet de valider le SIRET, une chaîne de 14 chiffres.
      * 
-     * @param siret le siret sous forme de string.
+     * @param siret Le SIRET sous forme de String.
      */
     public static boolean valideSiret(String siret) {
-        // Une suite de 14 chiffre uniquement.
+        // Une suite de 14 chiffres uniquement.
         pattern = Pattern.compile("^[0-9]{14}$");
         matcher = pattern.matcher(siret);
 
-        // si la regex match, true.
+        // Si la regex match, true.
         return matcher.matches();
-    }
+    } // valideSiret
 
     /*
-     * Assure que le poids sous forme de string puisse être convertit en double.
+     * Assure que le poids sous forme de String puisse être converti en double.
      * 
-     * @param poids le poids sous forme de string.
+     * @param poids Le poids sous forme de String.
      */
     public static boolean validePoids(String poids) {
 
-        // On vérifie que le poids fournit puisse être parsé.
+        // On vérifie que le poids fourni puisse être parsé.
         try {
             Float.parseFloat(poids);
         } catch (NumberFormatException e) {
             return false;
-        } // end try catch
+        } // try/catch
 
         // Le poids est bien parsable.
         return true;
-    }
+    } // validePoids
 
     /*
      * Permet de valider le poids avec une contrainte de poids max.
-     * On utilise validePoids pour vérifer qu'on puisse bien parser.
+     * On utilise validePoids pour vérifier qu'on puisse bien parser.
      *
-     * @param poids le poids sous forme de string.
+     * @param poids Le poids sous forme de string.
      * 
-     * @param max le poids max en double.
+     * @param max Le poids max en double.
      * 
      * @see validePoids
      */
     public static boolean validePoids(String poids, float max) {
         // Si non parsable, ou poids > max: false, sinon true.
         return validePoids(poids) && !(Float.parseFloat(poids) > max);
-    }
+    } // validePoids
 
     /**
-     * Verifie une date.
+     * Vérifie une date.
      * Si elle est sous format LocalDate, on pourra la parser.
      * <p>
      * 
-     * @param date LocalDate la date saisi.
+     * @param date LocalDate La date saisie.
      * @return bool
      */
     public static boolean valideDate(LocalDate date) {
         return date != null;
-    }
+    } // validateDate
 
     /**
      * Assure qu'une heure est sous le bon format
      * <p>
      * 
-     * @param heure l'heure saisie.
+     * @param heure L'heure saisie.
      * @return bool
      */
     public static boolean valideHeure(String heure) {
@@ -84,12 +84,12 @@ public class ValidateurDonnee {
         matcher = pattern.matcher(heure);
 
         return matcher.matches();
-    }
+    } // valideHeure
 
     /*
-     * Permet de valider un numero de téléphone francais, +33 compris.
+     * Permet de valider un numéro de téléphone francais, +33 compris.
      * 
-     * @param heure l'heure sous forme de string.
+     * @param telephone Le numéro de téléphone sous forme de String.
      */
     public static boolean valideTelephone(String telephone) {
         pattern = Pattern.compile("^(0[0-9]|\\+33[0-9])([0-9][0-9]){4}$");
@@ -97,28 +97,30 @@ public class ValidateurDonnee {
 
         // Si la regex match
         return matcher.matches();
-    }
+    } // valideTelephone
 
     /*
-     * @param nom le nom sous forme de string.
-     * 
-     * @param maxChars la taille maximale du nom.
+     * Permet de valider un nom.
+     *
+     * @param nom Le nom sous forme de String.
+     * @param maxChars La taille maximale du nom.
      */
     public static boolean valideNom(String nom, int maxChars) {
         // Jean val Jean, Jam-bom-beurre, Jean, Jean'ne'mar valide.
-        // Accents valide, il doit y avoir une suite apres un tiret
-        // un espace ou un apostrophe.
+        // Accents valides, il doit y avoir une suite apres un tiret,
+        // un espace ou une apostrophe.
         pattern = Pattern.compile("^([a-zA-ZÀ-ÿ]+((-| |')[a-zA-ZÀ-ÿ]+)*)$");
         matcher = pattern.matcher(nom);
 
-        // Si la regex match & et que le nom est de la bonne taille, true.
+        // Si la regex match et que le nom est de la bonne taille, true.
         return matcher.matches() && nom.length() <= maxChars ? true : false;
-    }
+    } // valideNom
 
     /*
-     * @param pseudonyme le pseudonyme sous forme de string.
-     * 
-     * @param maxChars la taille maximale du pseudonynme.
+     * Permet de valider un pseudonyme.
+     *
+     * @param pseudonyme Le pseudonyme sous forme de String.
+     * @param maxChars La taille maximale du pseudonynme.
      */
     public static boolean validePseudonyme(String pseudonyme, int maxChars) {
         // Kaleb, K3l3b, K7, R2-D2, C3_P0 valide.
@@ -126,19 +128,19 @@ public class ValidateurDonnee {
         pattern = Pattern.compile("^[0-9a-zA-Z_-]{2,}+$");
         matcher = pattern.matcher(pseudonyme);
 
-        // Si la regex match & et que le pseudo est de la bonne taille, true.
+        // Si la regex match et que le pseudo est de la bonne taille, true.
         return matcher.matches() && pseudonyme.length() <= maxChars ? true : false;
-    }
+    } // validePseudonyme
 
     /*
      * Regex trouvée en ligne.
      * https://regex101.com/r/VGjLx1/1
      * 
-     * Elle en compte les formats anciens / recents.
+     * Elle en compte les formats anciens / récents.
      * Néanmoins, ici, on demandera obligatoirement un tiret entre les groupes,
      * par soucis d'homogénéité.
      * 
-     * @param immatriculation l'immatriculation sous forme de string.
+     * @param immatriculation L'immatriculation sous forme de String.
      */
     public static boolean valideImmatriculation(String immatriculation) {
         String regex = "[A-HJ-NP-TV-Z]{2}[-]"
@@ -148,7 +150,7 @@ public class ValidateurDonnee {
         matcher = pattern.matcher(immatriculation);
 
         return matcher.matches();
-    }
+    } // valideImmatriculation
 
     /**
      * Validateur de code postal
@@ -163,20 +165,21 @@ public class ValidateurDonnee {
         matcher = pattern.matcher(codePostal);
 
         return matcher.matches();
-    }
+    } // valideCodePostal
 
     /**
      * Vérifie que le mot de passe est en conformité avec les recommandations
      * minimales de l'ANSSI, à savoir une longueur d'au moins 9 caractères, au moins
-     * 1 caractère spécial, 1 majuscule, 1 miniscule et 1 chiffre
+     * 1 caractère spécial, 1 majuscule, 1 minuscule et 1 chiffre
      * 
      * https://www.ssi.gouv.fr/guide/recommandations-relatives-a-lauthentification-multifacteur-et-aux-mots-de-passe/
      * 
-     * @param password Le mot de passe du l'utilisateur
+     * @param password Le mot de passe de l'utilisateur
      * @return La validité du mot de passe avec les recommandations minimales de
      *         l'ANSSI
      */
     public static boolean validePassword(String password) {
         return password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{9,}$");
-    }
-}
+    } // validePassword
+
+} // ValidateurDonnee
