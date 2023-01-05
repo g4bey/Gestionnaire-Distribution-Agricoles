@@ -50,6 +50,9 @@
   + Attribution des taches prochain sprint.
 
   **16 decembre 2022**
-  + Réunion prévue à 19h30.
+  + Mise en place réunion quotidienne de 15h01
+
+Réunion quotidienne de 15h01 du 17 décembres au 30 décembres.
+Réunion bilan le 5 janvier 2023.
 
 
