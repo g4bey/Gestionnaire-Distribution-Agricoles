@@ -60,10 +60,10 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
         listePath.add("Lieu Dit");
         listePath.add("Place");
         pathTypeChoiceBox.setItems(listePath);
-    }
+    } // initialize
 
     /**
-     * Méthode qui valide l'ajout d'un producteur.
+     * Méthode qui valide l'ajout d'un Producteur.
      * 
      * @param event ActionEvent
      */
@@ -84,20 +84,24 @@ public class AddProdCtrl extends AbstractConnCtrl implements Initializable {
                     fapc.getAdresseCSV(),
                     prodPhoneField.getText(),
                     fapc.getCoordsXY(),
-                    hashedPs));
+                    hashedPs
+                    ) // Producteur
+            ); // add
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } //if
+        else {
             formErrorText.setText(fapc.getErrors());
             formErrorText.setVisible(true);
-        }
-    }
+        } // else
+    } //validateAddProd
 
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'un producteur.
+     * Méthode qui permet de fermer la vue d'ajout d'un Producteur.
      * 
      * @param event ActionEvent
      */
     public void cancelAddProd(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
-}
+    } // cancelAddProd
+
+} // AddProdCtrl
