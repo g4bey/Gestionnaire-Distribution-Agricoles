@@ -49,7 +49,7 @@ public class TourneeDAOTest {
         Statement st = conn.createStatement();
         st.execute("DELETE FROM " + table);
         st.execute("ALTER TABLE " + table + " AUTO_INCREMENT=1");
-    }
+    } // truncateTable
 
     /**
      * On crée une Connection puis instancie les DAO.
@@ -83,7 +83,8 @@ public class TourneeDAOTest {
                 "adresseProd",
                 "numTel",
                 "gps",
-                "mdp");
+                "mdp"
+                ); // PRODUCTEUR
 
         producteurDAO.add(PRODUCTEUR);
 
@@ -92,10 +93,11 @@ public class TourneeDAOTest {
                 "AAAA",
                 30.5F,
                 "Libelle",
-                PRODUCTEUR);
+                PRODUCTEUR
+                ); // VEHICULE
 
         vehiculeDAO.add(VEHICULE);
-    }
+    } // setup
 
     /**
      * On crée deux Tournées.
@@ -107,13 +109,23 @@ public class TourneeDAOTest {
      */
     @BeforeEach
     public void init() throws SQLException {
-        TOURNEE_A = new Tournee(new Timestamp(30000), new Timestamp(40000), 31.5F, "Livarisno de corercteurs",
-                VEHICULE);
-        TOURNEE_B = new Tournee(new Timestamp(450000), new Timestamp(8000000), 22F, "Livraison de flûtes québecoises",
-                VEHICULE);
+        TOURNEE_A = new Tournee(
+            new Timestamp(30000),
+            new Timestamp(40000),
+            31.5F,
+            "Livarisno de corercteurs",
+            VEHICULE
+            ); // TOURNEE_A
+        TOURNEE_B = new Tournee(
+            new Timestamp(450000),
+            new Timestamp(8000000),
+            22F,
+            "Livraison de flûtes québecoises",
+            VEHICULE
+            ); // TOURNEE_B
 
         truncateTable("Tournee");
-    }
+    } // init
 
     /**
      * Vérifions que l'ID de TOURNEE_A : 0 avant insertion,
@@ -128,7 +140,7 @@ public class TourneeDAOTest {
         assertEquals(0, TOURNEE_A.getIdTournee());
         tourneeDAO.add(TOURNEE_A);
         assertEquals(1, TOURNEE_A.getIdTournee());
-    }
+    } // addTest
 
     /**
      * On insère TOURNEE_A en base.
@@ -158,7 +170,7 @@ public class TourneeDAOTest {
         // Cet ID n'existe pas.
         Tournee tourneeNull = tourneeDAO.get(5);
         assertNull(tourneeNull);
-    }
+    } // getTest
 
     /**
      * Insérons TOURNEE_A et TOURNEE_B en base.
@@ -178,7 +190,7 @@ public class TourneeDAOTest {
         assertEquals(2, tourneeList.size());
         assertEquals(1, tourneeList.get(0).getIdTournee());
         assertEquals(2, tourneeList.get(1).getIdTournee());
-    }
+    } // getAllTest
 
     /**
      * On insère la TOURNEE_A en base.
@@ -193,15 +205,15 @@ public class TourneeDAOTest {
         tourneeDAO.add(TOURNEE_A);
         int idTournee = TOURNEE_A.getIdTournee();
 
-        // Après suppression, l'ID devrait être null.
+        // Après suppression, l'ID devrait renvoyer null.
         tourneeDAO.delete(TOURNEE_A);
         assertNull(tourneeDAO.get(idTournee));
-    }
+    } // deleteTest
 
     /**
      * On commence par créer et ajouter un nouveau Véhicule en base.
      * Ensuite, on ajoute TOURNEE_A en base et modifie tous ses attributs,
-     * puis on update cette Tournée, y compris le Véhicule.
+     * puis on update cette Tournée, y compris son Véhicule.
      * <p>
      * Enfin, on crée un autre objet avec le même ID pour s'assurer
      * que les attributs sont égaux.
@@ -210,11 +222,16 @@ public class TourneeDAOTest {
     @DisplayName("Test la méthode update")
     public void updateTest() {
         // On ajoute un nouveau Véhicule
-        Vehicule vehiculeB = new Vehicule("1337", 50F, "VOITURE", PRODUCTEUR);
+        Vehicule vehiculeB = new Vehicule(
+            "1337",
+            50F,
+            "VOITURE",
+            PRODUCTEUR
+            ); // vehiculeB
         vehiculeDAO.add(vehiculeB);
 
         // On ajoute puis met à jour la TOURNEE_A
-        // On change aussi le Producteur
+        // On change aussi son Véhicule
         tourneeDAO.add(TOURNEE_A);
         TOURNEE_A.setHoraireDebut(new Timestamp(25000));
         TOURNEE_A.setHoraireFin(new Timestamp(35000));
@@ -227,7 +244,7 @@ public class TourneeDAOTest {
         // sont identiques. Cela induit qu'ils sont modifiés en BDD.
         Tournee tourneeRetour = tourneeDAO.get(TOURNEE_A.getIdTournee());
         assertTrue(tourneeRetour.equals(TOURNEE_A));
-    }
+    } // updateTest
 
     /**
      * On s'assure que les Commandes sont bien propagées,
@@ -235,17 +252,34 @@ public class TourneeDAOTest {
      */
     @Test
     @DisplayName("Test propagation update commande")
-    public void propagationCommande() {
+    public void propagationCommandeTest() {
         tourneeDAO.add(TOURNEE_A);
 
         // On crée un Client
-        Client client = new Client("Pedro", "31 rue NullPointerException 37000 TOURS", "", "0634117279");
+        Client client = new Client(
+            "Pedro",
+            "31 rue NullPointerException 37000 TOURS",
+            "",
+            "0634117279"
+            ); // client
 
         // On crée deux Commandes
-        Commande commande1 = new Commande("commande1", 31F, new Timestamp(30000), new Timestamp(370000), PRODUCTEUR,
-                client);
-        Commande commande2 = new Commande("commande2", 12F, new Timestamp(12000), new Timestamp(12000), PRODUCTEUR,
-                client);
+        Commande commande1 = new Commande(
+            "commande1",
+            31F,
+            new Timestamp(30000),
+            new Timestamp(370000),
+            PRODUCTEUR,
+            client
+            ); // commande1
+        Commande commande2 = new Commande(
+            "commande2",
+            12F,
+            new Timestamp(12000),
+            new Timestamp(12000),
+            PRODUCTEUR,
+            client
+            ); // commande2
 
         // On les ajoute en base.
         CommandeDAO commandeDAO = new CommandeDAO(conn);
@@ -270,7 +304,7 @@ public class TourneeDAOTest {
         assertTrue(tourneeRetour.getCommandes().get(0).equals(TOURNEE_A.getCommandes().get(0)));
 
         // On vérifie que les commandes ne sont plus associées à la Tournée dans les
-        // objets
+        // objets une fois celle-ci supprimée
         tourneeDAO.delete(TOURNEE_A);
         assertNull(commande1.getTournee());
         assertNull(commande2.getTournee());
@@ -278,7 +312,7 @@ public class TourneeDAOTest {
         // On vérifie que les Commandes ne sont plus associées à la Tournée en base.
         assertNull(commandeDAO.get(commande1.getIdCommande()).getTournee());
         assertNull(commandeDAO.get(commande2.getIdCommande()).getTournee());
-    }
+    } // propagationCommandeTest
 
     /**
      * On s'assure que les Tournées concernées par un Véhicule peuvent bien être
@@ -289,10 +323,27 @@ public class TourneeDAOTest {
     @Test
     @DisplayName("Test de la méthode getTourneesByVehicule")
     public void getTourneesByVehiculeTest() throws SQLException {
-        Producteur producteurC = new Producteur("Dédé", "Jean-Louis", "23 rue de la grosse grange", "", "", "");
-        Vehicule vehiculeC = new Vehicule("450677", 57F, "PELLETEUSE", producteurC);
-        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission",
-                vehiculeC);
+        Producteur producteurC = new Producteur(
+            "Dédé",
+            "Jean-Louis",
+            "23 rue de la grosse grange",
+            "",
+            "",
+            ""
+            ); // producteurC
+        Vehicule vehiculeC = new Vehicule(
+            "450677",
+            57F,
+            "PELLETEUSE",
+            producteurC
+            ); // vehiculeC
+        Tournee tourneeC = new Tournee(
+            new Timestamp(78000),
+            new Timestamp(97000),
+            30F,
+            "Courroies de transmission",
+            vehiculeC
+            ); // tourneeC
 
         producteurDAO.add(producteurC);
         vehiculeDAO.add(vehiculeC);
@@ -307,7 +358,7 @@ public class TourneeDAOTest {
         // On vérifie les valeurs des Tournées
         assertTrue(TOURNEE_A.equals(tournees.get(0)));
         assertTrue(TOURNEE_B.equals(tournees.get(1)));
-    }
+    } // getTourneesByVehiculeTest
 
     /**
      * On s'assure que les Tournées concernées par une liste de Véhicules peuvent
@@ -318,13 +369,40 @@ public class TourneeDAOTest {
     @Test
     @DisplayName("Test de la méthode getTourneesByVehicules")
     public void getTourneesByVehiculesTest() throws SQLException {
-        Producteur producteurC = new Producteur("DDDDDDD", "Jean-Louis", "23 rue de la grosse grange", "", "", "");
-        Vehicule vehiculeC = new Vehicule("4506", 57F, "PELLETEUSE", producteurC);
-        Tournee tourneeC = new Tournee(new Timestamp(78000), new Timestamp(97000), 30F, "Courroies de transmission",
-                vehiculeC);
-        Vehicule vehiculeD = new Vehicule("23814", 45F, "TRACTEUR", PRODUCTEUR);
-        Tournee tourneeD = new Tournee(new Timestamp(13000), new Timestamp(47000), 20F, "Transfert de lingitos",
-                VEHICULE);
+        Producteur producteurC = new Producteur(
+            "DDDDDDD",
+            "Jean-Louis",
+            "23 rue de la grosse grange",
+            "",
+            "",
+            ""
+            ); // producteurC
+        Vehicule vehiculeC = new Vehicule(
+            "4506",
+            57F,
+            "PELLETEUSE",
+            producteurC
+            ); // vehiculeC
+        Tournee tourneeC = new Tournee(
+            new Timestamp(78000),
+            new Timestamp(97000),
+            30F,
+            "Courroies de transmission",
+            vehiculeC
+            ); // tourneeC
+        Vehicule vehiculeD = new Vehicule(
+            "23814",
+            45F,
+            "TRACTEUR",
+            PRODUCTEUR
+            ); // vehiculeD
+        Tournee tourneeD = new Tournee(
+            new Timestamp(13000),
+            new Timestamp(47000),
+            20F,
+            "Transfert de lingitos",
+            VEHICULE
+            ); // tourneeD
 
         producteurDAO.add(producteurC);
         vehiculeDAO.add(vehiculeC);
@@ -347,11 +425,10 @@ public class TourneeDAOTest {
         assertTrue(TOURNEE_A.equals(tournees.get(0)));
         assertTrue(TOURNEE_B.equals(tournees.get(1)));
         assertTrue(tourneeD.equals(tournees.get(2)));
-    }
+    } // getTourneesByVehiculesTest
 
     /**
-     * Vérifions que clientEstDansTournee rend bien compte de la présence d'une tournée
-     * associé à un client.
+     * Vérifions que clientEstDansTournee rend bien compte de la présence d'un Client dans une Tournée.
      * @throws SQLException
      */
     @Test
@@ -359,26 +436,37 @@ public class TourneeDAOTest {
     public void clientEstDansTourneeTest() throws SQLException {
         tourneeDAO.add(TOURNEE_A);
 
-        // Créons un client et ajoutons le en base.
-        Client clienMystere = new Client("Raymon", "Mon adresse", "coordGPS", "tel");
+        // Créons un Client et ajoutons-le en base.
+        Client clientMystere = new Client(
+            "Raymon",
+            "Mon adresse",
+            "coordGPS",
+            "tel"
+            ); // clientMystere
         ClientDAO cDAO = new ClientDAO(conn);
-        cDAO.add(clienMystere);
+        cDAO.add(clientMystere);
 
-        // Pour l'instant, le client n'est dans aucune tournée.
-        assertFalse(tourneeDAO.clientEstDansTournee(clienMystere.getIdClient()));
+        // Pour l'instant, le Client n'est dans aucune tournée.
+        assertFalse(tourneeDAO.clientEstDansTournee(clientMystere.getIdClient()));
 
-        // Désormais ajoutons une commande et ajoutons-la dans la tournée.
-        // Cette commande associe le client à la tournée.
-        Commande commande1 = new Commande("commande1", 31F, new Timestamp(30000), new Timestamp(370000), PRODUCTEUR,
-                clienMystere);
+        // Désormais ajoutons une Commande et ajoutons-la dans la Tournée.
+        // Cette Commande associe le Client à la Tournée.
+        Commande commande1 = new Commande(
+            "commande1",
+            31F,
+            new Timestamp(30000),
+            new Timestamp(370000),
+            PRODUCTEUR,
+            clientMystere
+            ); // commande1
         CommandeDAO commandeDAO = new CommandeDAO(conn);
         commandeDAO.add(commande1);
         TOURNEE_A.addCommande(commande1);
         tourneeDAO.update(TOURNEE_A);
 
-        // L'assertion est vrai, car la tournée est maintenant associé au client.
+        // L'assertion est vraie, car le Client est maintenant associé à la Tournée.
         assertTrue(tourneeDAO.clientEstDansTournee(TOURNEE_A.getCommandes().get(0).getClient().getIdClient()));
-    }
+    } // clientEstDansTourneeTest
 
     /**
      * Fermeture de la Connection apres les tests.
@@ -388,5 +476,6 @@ public class TourneeDAOTest {
     @AfterAll
     public static void tearDown() throws SQLException {
         DatabaseConnection.close("testing");
-    }
-}
+    } // tearDown
+
+} // TourneeDAOTest
