@@ -11,7 +11,7 @@ import validForm.FormAddVehicleValidator;
 import validForm.FormVehicleValidator;
 
 /**
- * Contrôleur permettant l'ajout d'un Vehicule.
+ * Contrôleur permettant l'ajout d'un Véhicule.
  */
 public class AddVehicleCtrl extends AbstractConnCtrl {
 
@@ -28,7 +28,7 @@ public class AddVehicleCtrl extends AbstractConnCtrl {
     private Text formErrorText;
 
     /**
-     * Méthode qui valide l'ajout d'un véhicule.
+     * Méthode qui valide l'ajout d'un Véhicule.
      * 
      * @param event ActionEvent
      */
@@ -40,18 +40,20 @@ public class AddVehicleCtrl extends AbstractConnCtrl {
             vDAO.add(new Vehicule(vehicleImmatField.getText(), Float.parseFloat(vehicleCapacityField.getText()),
                     vehicleLabelField.getText(), UserAuth.getProd()));
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             formErrorText.setText(fvv.getErrors());
             formErrorText.setVisible(true);
-        }
-    }
+        } // else
+    } // validateAddVehicle
 
     /**
-     * Méthode qui permet de fermer la vue d'ajout d'un véhicule.
+     * Méthode qui permet de fermer la vue d'ajout d'un Véhicule.
      * 
      * @param event ActionEvent
      */
     public void cancelAddVehicle(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
-}
+    } // cancelAddVehicle
+
+} // AddVehicleCtrl
