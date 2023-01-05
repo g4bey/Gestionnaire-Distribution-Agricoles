@@ -34,8 +34,8 @@ Notez que le projet a été developpé sous la **version 19 de JAVAFX** [disponi
 - 1/ Sélectionnez la SDK 19 comme JRE.
 - 2/ Importez le dépôt : `https://github.com/g4bey/Gestionnaire-Distribution-Agricoles.git`
 
-**Attention!** : Si vous souhaitez utiliser Eclipse, **utilisez la branche release-eclipse**.<br>
-L'IDE ajoutant un paquet src, les chemins dans les fichiers FXML ne seront plus valides autrement.
+**Attention!** : Utilisez **VSCode**, **IntelliJ** ou la ligne de commande preference.
+En effet, il difficile d'importer le projet correctement sur eclipse il veut absolument un paquage autre que celui par défaut. Nous avons essayé de créer un package par défaut pour eclipse... cependant lors de l'import, il créait un nouveau package ce qui posait des problèmes. Si refractor pour accommoder le changement, il faudra changer les liens dans le vues FXML qui ne seront plus à jour, et potentiellement les chemins relatifs dans le contrôleurs.
 
 ### Ajout des bibliothèques :
 #### Bibliothèques fournies :
