@@ -14,8 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * FormVehicleValidator
- * Contrôleur permettant la modification d'un Vehicule.
+ * Contrôleur permettant la modification d'un Véhicule.
  */
 public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable {
     @FXML
@@ -37,10 +36,10 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
         vehicleImmatField.setText(vehicule.getNumImmat());
         vehicleLabelField.setText(vehicule.getLibelle());
         vehicleCapacityField.setText(Float.toString(vehicule.getPoidsMax()));
-    }
+    } // initialize
 
     /**
-     * Méthode qui valide la modification d'un véhicule.
+     * Méthode qui valide la modification d'un Véhicule.
      * 
      * @param event ActionEvent
      */
@@ -56,29 +55,31 @@ public class ModifyVehicleCtrl extends AbstractConnCtrl implements Initializable
             vDAO.update(vehicule);
 
             ControllersUtils.closePopupAndUpdateParent(event);
-        } else {
+        } // if
+        else {
             formErrorText.setText(fvv.getErrors());
             formErrorText.setVisible(true);
-        }
-    }
+        } // else
+    } // validateModifyVehicle
 
     /**
      * Méthode qui permet de fermer la vue
-     * de modification d'un véhicule.
+     * de modification d'un Véhicule.
      * 
      * @param event ActionEvent
      */
     public void cancelModifyVehicle(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
+    } // cancelModifyVehicle
 
     /**
-     * Méthode qui récupère le véhicule sélectionné dans la listView
+     * Méthode qui récupère le Véhicule sélectionné dans la listView
      * de la vue précédente (prodSelectMenu)
      * 
      * @param vehi Vehicule
      */
     public static void setVehicule(Vehicule vehi) {
         vehicule = vehi;
-    }
-}
+    } // setVehicule
+
+} // ModifyVehicleCtrl
