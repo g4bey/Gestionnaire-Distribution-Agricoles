@@ -63,7 +63,7 @@ public class ValidateurAdresse {
                 numeroRue.concat(" ").concat(typeRue).concat(" ").concat(nomRue), codePostale, ville));
 
         // Si le résultat est nul, l'adresse est invalide.
-        if (objetJson.isJsonNull()) {
+        if (objetJson.isJsonNull() || objetJson.get("features").getAsJsonArray().isEmpty()) {
             throw new AdresseInvalideException("Impossible de récupérer cette adresse");
         }
 

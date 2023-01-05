@@ -37,6 +37,10 @@ public class FormClientValidator extends FormValidator {
         if (!ValidateurDonnee.valideTelephone(clientPhone)) {
             setInvalid("Le numéro de téléphone n'est pas valide");
         }
+        if (!ValidateurDonnee.valideCodePostal(addressPostCode)) {
+            setInvalid("Le code postale n'est pas valide");
+            return;
+        }
         if (addressPathType == null) {
             setInvalid("Veuillez sélectionner un type de voie");
             return;
