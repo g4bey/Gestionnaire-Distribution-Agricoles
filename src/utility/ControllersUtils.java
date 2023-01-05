@@ -42,25 +42,6 @@ public class ControllersUtils {
     } // loadView
 
     /**
-    * Méthode qui charge une vue passée en paramètre.
-    * @param event MouseEvent
-    * @param path String Chemin vers la vue
-    */
-    public void loadView(MouseEvent event, String path) {
-    	try {
-            root = FXMLLoader.load(getClass().getResource(path));
-        }
-    	catch (IOException e) {
-			// TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    	scene = new Scene(root);
-    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setScene(scene);
-    	stage.show();
-    } // loadView
-
-    /**
     * Méthode qui charge une vue pop-up passée en paramètre.
     * @param event ActionEvent
     * @param path String Chemin vers la vue
