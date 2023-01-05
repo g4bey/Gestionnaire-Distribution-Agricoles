@@ -39,7 +39,7 @@ public class ProdProfileCtrl implements Initializable {
         prodAddressText.setText(user.getAdresseProd().replace(",", " "));
         prodPhoneText.setText(user.getNumTelProd());
         util = new ControllersUtils();
-    }
+    } // initialize
 
     /**
      * Méthode qui permet la modification du profil utilisateur.
@@ -48,7 +48,7 @@ public class ProdProfileCtrl implements Initializable {
      */
     public void modifyPassword(ActionEvent event) {
         util.loadPopup(event, "/views/ProdpasswordChange.fxml");
-    }
+    } // modifyPassword
 
     /**
      * Méthode qui permet de fermer la vue du profil.
@@ -57,5 +57,6 @@ public class ProdProfileCtrl implements Initializable {
      */
     public void closeProdProfile(ActionEvent event) {
         ControllersUtils.closePopupAndUpdateParent(event);
-    }
-}
+    } // closeProdProfile
+
+} // ProdProfileCtrl
