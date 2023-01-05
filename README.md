@@ -15,6 +15,9 @@
    • <a href="https://github.com/phoboswolf/Gestionnaire-Distribution-Agricoles/blob/main/Genie%20Logiciel/Requetes.pdf">Requetes</a>
 </div>
 
+<br><br>
+Pour installer le projet, veuillez consulter la page [lancement.md](/lancement.md)
+
 ---
 **Structure:**
 
@@ -65,7 +68,6 @@
 - Commentaire JavaDoc
 - IdBDD, port, tous les trucs de setup dans un json à part
 - Documenter chaque classe
-- Utilisation d'accolades 
 
 La configuration du checkstyle pour les IDE se trouve dans /src/ressources/checkstyleConfigurationGDA.xml
 
@@ -73,11 +75,13 @@ La configuration du checkstyle pour les IDE se trouve dans /src/ressources/check
 **Outils:**
 - JDK 19
 - JavaFX 19 & FXML
-- MySQL 10.2 (preconfiguré par XAMPP)
+- MariaDB 10.4 (preconfiguré par XAMPP)
 - JDBC 
 - JUnit 5.8.1
 - gson 2.10
+- Argon2 2.11
 - Scnene Builder
+Plus de details dans [lancement.md](/lancement.md)
 
 **Collaborateurs:**
 + LAGASSE Adrian: @Alpha-Lin
