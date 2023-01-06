@@ -22,13 +22,15 @@ Pour installer le projet, veuillez consulter la page [lancement.md](/lancement.m
 **Structure:**
 
     .
-    ├── Genie Logiciel        # Partie liée au génie logiciel
-    ├── Rapports              # Rapports envoyées
-    ├── Set-up                # Script de mise en route du projet
-    ├── src                   # Racine du projet           
-    ├── libraries             # les librairies cross-platform utilisées     
-    ├── README.md             # Informations sur le projet
-    └── resumé-reunions.md    # Résumé des réunions de groupe
+    ├── Genie Logiciel          # Partie liée au génie logiciel
+    ├── Rapports                # Rapports envoyées
+    ├── Set-up                  # Script de mise en route du projet
+    ├── src                     # Racine du projet           
+    ├── libraries               # les librairies cross-platform utilisées     
+    ├── README.md               # Informations sur le projet
+    ├── lancement.md            # Comment lancer le projet
+    ├── identifiants_user.txt   # Identifiants des utilisateurs présents dans le dump.
+    └── resumé-reunions.md      # Résumé des réunions de groupe
     
 
 **Focus sur src:**
