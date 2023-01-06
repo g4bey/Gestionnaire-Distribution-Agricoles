@@ -29,7 +29,7 @@ Pour installer le projet, veuillez consulter la page [lancement.md](/lancement.m
     ├── libraries               # les librairies cross-platform utilisées     
     ├── README.md               # Informations sur le projet
     ├── lancement.md            # Comment lancer le projet
-    ├── identifiants_user.txt   # Identifiants des utilisateurs présents dans le dump.
+    ├── identifiants_users.txt   # Identifiants des utilisateurs présents dans le dump.
     └── resumé-reunions.md      # Résumé des réunions de groupe
     
 
